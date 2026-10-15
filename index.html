@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ÁNGELES DE VIDA - enfermeras a domicilio en Bogotá</title>
+  <meta name="description" content="Ángeles de Vida: terapia y acompañamiento emocional para atravesar el duelo, el trauma y los cambios de vida en un espacio seguro." />
+
+  <!-- Tipografías: Inter (texto) + Playfair Display (titulares con cursiva de acento).
+       Sustituyen a Inter + Merchant + Times Italic del original. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+
+  <!-- Lenis: hoja base recomendada por la librería (scroll suave) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ============================================================
+       LOADER DE ENTRADA
+       Capa morada con una "ventana" rectangular recortada (clip-path).
+       GSAP la escala hasta que la ventana cubre toda la pantalla y
+       revela el hero que hay debajo. La marca sube y se desvanece.
+       ============================================================ -->
+  <div class="loader" aria-hidden="true">
+    <div class="loader__overlay"></div>
+    <div class="loader__wordmark">Ángeles <em>de</em> Vida</div>
+  </div>
+
+  <!-- ============================================================
+       CABECERA
+       ============================================================ -->
+  <header class="header" data-header>
+    <div class="header__bar">
+      <a href="#inicio" class="header__logo" aria-label="Ángeles de Vida — inicio">
+        <!-- Logo provisional en SVG; sustituir por assets/img/logo.svg -->
+        <svg class="header__logo-mark" viewBox="0 0 40 40" aria-hidden="true">
+          <circle cx="20" cy="20" r="18.5" fill="none" stroke="currentColor" stroke-width="1.2"/>
+          <path d="M20 31c0-6 0-11 0-16M20 18c-3-4-8-5-11-3 3 1 6 3 11 6M20 18c3-4 8-5 11-3-3 1-6 3-11 6M20 13c-2-2-2-5 0-7 2 2 2 5 0 7" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+        <span class="header__logo-text">Ángeles de Vida</span>
+      </a>
+
+      <nav class="header__nav">
+        <button class="menu-toggle" data-menu-open aria-expanded="false" aria-controls="menu">
+          <span class="menu-toggle__text">Ver menú</span>
+          <span class="menu-toggle__icon"><span></span><span></span></span>
+        </button>
+
+        <!-- Botón CTA reutilizable: la flecha sale por arriba-derecha y
+             una copia entra desde abajo-izquierda; el círculo se expande. -->
+        <a href="#contacto" class="cta-btn">
+          <span class="cta-btn__text">Reserva una consulta</span>
+          <span class="cta-btn__arrow">
+            <span class="cta-btn__circle"></span>
+            <span class="cta-btn__icons">
+              <svg class="cta-btn__icon cta-btn__icon--1" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg>
+              <svg class="cta-btn__icon cta-btn__icon--2" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg>
+            </span>
+          </span>
+        </a>
+      </nav>
+    </div>
+
+    <!-- Menú a pantalla completa (panel lateral claro + fondo oscurecido) -->
+    <div class="menu" id="menu" aria-hidden="true">
+      <div class="menu__backdrop" data-menu-close></div>
+      <div class="menu__panel">
+        <button class="menu__close" data-menu-close aria-label="Cerrar menú">
+          <svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+        <nav class="menu__nav">
+          <!-- Cada enlace tiene dos copias del texto: al hacer hover la
+               primera sube y la segunda (cursiva) entra desde abajo. -->
+          <a href="#inicio" class="menu__link" style="--d:0s"><span class="menu__roll"><span>Home</span><span>Home</span></span></a>
+          <a href="#nosotros" class="menu__link" style="--d:.08s"><span class="menu__roll"><span>Nosotros</span><span>Nosotros</span></span></a>
+          <a href="#servicios" class="menu__link" style="--d:.16s"><span class="menu__roll"><span>Servicios</span><span>Servicios</span></span></a>
+          <a href="#programa" class="menu__link" style="--d:.24s"><span class="menu__roll"><span>Preguntas frecuentes</span><span>Preguntas frecuentes</span></span></a>
+          <a href="#proceso" class="menu__link" style="--d:.32s"><span class="menu__roll"><span>Precios</span><span>Precios</span></span></a>
+          <a href="#contacto" class="menu__link" style="--d:.40s"><span class="menu__roll"><span>Contacto</span><span>Contacto</span></span></a>
+        </nav>
+        <div class="menu__footer">
+          <p class="menu__brand">Ángeles <em>de</em> Vida</p>
+          <p class="menu__desc">Acompañamiento cercano y basado en evidencia para sanar, crecer y volver a sentirte en casa contigo.</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============================================================
+         HERO (fijo) + espaciador
+         El hero queda "position: fixed" y el espaciador de 100vh hace que
+         la siguiente sección suba por encima como una cortina.
+         ============================================================ -->
+    <div class="hero-wrap" id="inicio">
+      <section class="hero" data-hero>
+        <div class="hero__bg">
+          <img class="hero__img" src="assets/img/hero.jpg" alt="" fetchpriority="high" />
+          <div class="hero__gradient"></div>
+        </div>
+
+        <div class="hero__inner" data-hero-content>
+          <div class="hero__main">
+            <h1 class="hero__title">
+              <span class="line"><span class="line__in">Un acompañamiento</span></span>
+              <span class="line"><span class="line__in">que de verdad</span></span>
+              <span class="line"><span class="line__in">te <em>escucha</em>.</span></span>
+            </h1>
+            <p class="hero__lead" data-blur-in>Terapia y apoyo emocional para atravesar el duelo, el trauma y los grandes cambios de la vida, en un lugar donde tu historia se recibe con calma y sin juicios.</p>
+          </div>
+
+          <!-- Tarjeta con inclinación 3D según el ratón (--tilt-x / --tilt-y)
+               y un brillo radial que sigue al cursor (--mouse-x / --mouse-y). -->
+          <a href="#programa" class="tilt-card" data-tilt>
+            <span class="tilt-card__shine"></span>
+            <span class="tilt-card__pop">Un espacio pensado para acompañar a toda la familia en momentos de pérdida.</span>
+            <span class="tilt-card__body">
+              <svg class="tilt-card__icon" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 34s-12-7-12-16a7 7 0 0 1 12-5 7 7 0 0 1 12 5c0 9-12 16-12 16Z"/><path d="M14 20h12M20 14v12"/></svg>
+              <span class="tilt-card__title text-gold">Programa<br><em>familiar</em><br>de duelo</span>
+            </span>
+          </a>
+
+          <div class="hero__scroll">
+            <svg viewBox="0 0 24 24"><path d="M12 4v16M6 14l6 6 6-6"/></svg>
+            <span>Desliza</span>
+          </div>
+        </div>
+      </section>
+      <div class="hero-spacer"></div>
+    </div>
+
+    <!-- ============================================================
+         INTRO — textura de ruido, manchas difuminadas y dos imágenes
+         con revelado por máscara (clip-path) + parallax.
+         ============================================================ -->
+    <section class="intro" id="nosotros">
+      <div class="noise"></div>
+      <div class="blob blob--tl"></div>
+      <div class="blob blob--br"></div>
+
+      <div class="container">
+        <p class="eyebrow text-gold" data-reveal>Cuidado especializado</p>
+        <h2 class="intro__title" data-reveal>Mereces un lugar <em>seguro</em> y <em>cálido</em> donde detenerte, entender lo que sientes y seguir adelante.</h2>
+
+        <div class="intro__grid">
+          <figure class="mask-img mask-img--left" data-mask="x">
+            <img class="ph" src="assets/img/intro-1.jpg" alt="" data-parallax="-30" />
+          </figure>
+          <figure class="mask-img mask-img--right" data-mask="x-rev">
+            <img class="ph" src="assets/img/intro-2.jpg" alt="" data-parallax="-20" />
+          </figure>
+          <div class="intro__body">
+            <div class="spotlight"></div>
+            <p data-reveal>Tanto si sientes que cargas una pérdida que nadie ve, como si atraviesas un cambio que te ha descolocado, aquí encontrarás tiempo, escucha y herramientas para sanar a tu ritmo.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         PROGRAMA DESTACADO — imagen de fondo con degradado y
+         tarjeta clara con lista de "píldoras".
+         ============================================================ -->
+    <section class="feature" id="programa">
+      <div class="feature__bg">
+        <img class="ph" src="assets/img/feature.jpg" alt="" data-parallax="-12" />
+        <div class="feature__gradient"></div>
+      </div>
+      <div class="container feature__hero">
+        <h2 class="feature__title" data-reveal>Programa <em>familiar</em><br>de duelo</h2>
+        <p class="feature__text" data-reveal>Cuando una pérdida toca a toda la familia, cada persona la vive a su manera. Te ayudamos a encontrar palabras, rituales y apoyos para transitarla juntos.</p>
+        <div data-reveal>
+          <a href="#contacto" class="cta-btn cta-btn--glow">
+            <span class="cta-btn__text">Solicita información</span>
+            <span class="cta-btn__arrow"><span class="cta-btn__circle"></span><span class="cta-btn__icons">
+              <svg class="cta-btn__icon cta-btn__icon--1" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg>
+              <svg class="cta-btn__icon cta-btn__icon--2" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg>
+            </span></span>
+          </a>
+        </div>
+      </div>
+      <div class="container feature__card-wrap">
+        <div class="feature__card" data-reveal>
+          <p class="feature__card-text">Nuestra experiencia en <em class="hl">duelo</em>, <em class="hl">trauma</em> y <em class="hl">vínculos</em> nos permite acompañar con delicadeza cada etapa del proceso.</p>
+          <div class="pills">
+            <a href="#contacto" class="pill">Sesiones individuales</a>
+            <a href="#contacto" class="pill">Sesiones en familia</a>
+            <a href="#contacto" class="pill">Duelo infantil y adolescente</a>
+            <a href="#contacto" class="pill">Duelo perinatal</a>
+            <a href="#contacto" class="pill">Grupos de apoyo</a>
+            <a href="#contacto" class="pill">Orientación a centros educativos</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SERVICIOS — bloque de frase, split texto/imagen y tarjetas
+         que revelan imagen y descripción al pasar el ratón.
+         ============================================================ -->
+    <section class="services" id="servicios">
+      <div class="services__quote">
+        <div class="noise"></div>
+        <div class="container services__quote-inner">
+          <h2 class="services__quote-title" data-reveal>A veces la pérdida<br><em>no se ve a simple vista.</em></h2>
+          <p class="services__quote-text" data-reveal>Puede venir de una vida que imaginaste y no llegó, de expectativas que pesan o de un dolor callado que nadie más percibe. Quizá te sientas en pausa, con miedo al futuro o en soledad incluso rodeado de gente.</p>
+        </div>
+      </div>
+
+      <div class="split">
+        <div class="split__text">
+          <p class="eyebrow text-gold" data-reveal>Terapia</p>
+          <h3 class="split__title" data-reveal>No tienes que <em>resolverlo</em> sin compañía.</h3>
+          <ul class="checklist">
+            <li data-reveal>Puede que estés atravesando una pérdida.</li>
+            <li data-reveal>Puede que te cueste reconocerte.</li>
+            <li data-reveal>Puede que arrastres el peso de algo que ocurrió.</li>
+          </ul>
+        </div>
+        <figure class="split__img mask-img" data-mask="y">
+          <img class="ph" src="assets/img/therapy.jpg" alt="" data-parallax="-20" />
+          <span class="split__img-gradient"></span>
+        </figure>
+      </div>
+
+           <!--SERVICIOS DE ENFERMERIA-->
+      <div class="cards-wrap">
+        <div class="noise"></div>
+        <div class="container">
+          <h2 class="services__quote-title" data-reveal>Nuestros servicios <br><em>incluyen</em></h2>
+          <div class="cards" data-cards>
+            <article class="card" tabindex="0">
+              <div class="card__bg"><img class="ph" src="assets/img/card-1.jpg" alt="" /></div>
+              <p class="card__full">Un espacio individual para ordenar lo que sientes tras una pérdida o un cambio profundo, con técnicas adaptadas a tu momento.</p>
+              <div class="card__front">
+                <svg class="card__icon" viewBox="0 0 40 40"><path d="M20 33s-11-6.5-11-15a6 6 0 0 1 11-3.3A6 6 0 0 1 31 18c0 8.5-11 15-11 15Z"/></svg>
+                <h3 class="card__title">Cuidado en casa</h3>
+                <p class="card__sub">Duelo, trauma y estrés</p>
+              </div>
+            </article>
+            <article class="card" tabindex="0">
+              <div class="card__bg"><img class="ph" src="assets/img/card-2.jpg" alt="" /></div>
+              <p class="card__full">Un abordaje con respaldo científico para reprocesar recuerdos dolorosos y reducir su carga emocional sin tener que revivirlos en detalle.</p>
+              <div class="card__front">
+                <svg class="card__icon" viewBox="0 0 40 40"><path d="M8 20c0-4 3-6 6-6 6 0 6 12 12 12 3 0 6-2 6-6s-3-6-6-6c-6 0-6 12-12 12-3 0-6-2-6-6Z"/></svg>
+                <h3 class="card__title">Cuidado de adultos mayores</h3>
+                <p class="card__sub">Procesamiento de recuerdos</p>
+              </div>
+            </article>
+            <article class="card" tabindex="0">
+              <div class="card__bg"><img class="ph" src="assets/img/card-3.jpg" alt="" /></div>
+              <p class="card__full">Encuentros guiados para que la familia hable de lo ocurrido, se entienda mejor y encuentre nuevas formas de sostenerse.</p>
+              <div class="card__front">
+                <svg class="card__icon" viewBox="0 0 40 40"><circle cx="18" cy="22" r="10"/><circle cx="29" cy="12" r="4"/></svg>
+                <h3 class="card__title">Acompañamiento a citas médicas</h3>
+                <p class="card__sub">Vínculos y comunicación</p>
+              </div>
+            </article>
+            <article class="card" tabindex="0">
+              <div class="card__bg"><img class="ph" src="assets/img/card-1.jpg" alt="" /></div>
+              <p class="card__full">Un espacio individual para ordenar lo que sientes tras una pérdida o un cambio profundo, con técnicas adaptadas a tu momento.</p>
+              <div class="card__front">
+                <svg class="card__icon" viewBox="0 0 40 40"><path d="M20 33s-11-6.5-11-15a6 6 0 0 1 11-3.3A6 6 0 0 1 31 18c0 8.5-11 15-11 15Z"/></svg>
+                <h3 class="card__title">Acompañamiento hospitalario</h3>
+                <p class="card__sub">Duelo, trauma y estrés</p>
+              </div>
+            </article>
+            <article class="card" tabindex="0">
+              <div class="card__bg"><img class="ph" src="assets/img/card-2.jpg" alt="" /></div>
+              <p class="card__full">Un abordaje con respaldo científico para reprocesar recuerdos dolorosos y reducir su carga emocional sin tener que revivirlos en detalle.</p>
+              <div class="card__front">
+                <svg class="card__icon" viewBox="0 0 40 40"><path d="M8 20c0-4 3-6 6-6 6 0 6 12 12 12 3 0 6-2 6-6s-3-6-6-6c-6 0-6 12-12 12-3 0-6-2-6-6Z"/></svg>
+                <h3 class="card__title">Cuidado postoperatorio</h3>
+                <p class="card__sub">Procesamiento de recuerdos</p>
+              </div>
+            </article>
+            <article class="card" tabindex="0">
+              <div class="card__bg"><img class="ph" src="assets/img/card-3.jpg" alt="" /></div>
+              <p class="card__full">Encuentros guiados para que la familia hable de lo ocurrido, se entienda mejor y encuentre nuevas formas de sostenerse.</p>
+              <div class="card__front">
+                <svg class="card__icon" viewBox="0 0 40 40"><circle cx="18" cy="22" r="10"/><circle cx="29" cy="12" r="4"/></svg>
+                <h3 class="card__title">Curaciones</h3>
+                <p class="card__sub">Vínculos y comunicación</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         PROCESO — columna fija con número que "rueda", línea de
+         progreso que se llena con el scroll y pasos que se activan.
+         ============================================================ -->
+    <section class="process" id="proceso">
+      <div class="container process__grid">
+        <div class="process__sticky">
+          <h2 class="process__title text-gold">Funciones de <em>enfermería</em> </h2>
+          <div class="process__number" aria-hidden="true">
+            <span>0</span>
+            <span class="process__digits"><span class="process__digits-track" data-digits>
+              <span>1.</span><span>2.</span><span>3.</span><span>4.</span><span>5.</span><span>6.</span>
+            </span></span>
+          </div>
+        </div>
+
+        <div class="process__line" aria-hidden="true">
+          <div class="process__line-fill" data-line-fill></div>
+        </div>
+
+        <ol class="process__steps">
+          <li class="step" data-step>
+            <span class="step__dot"></span>
+            <h3 class="step__title">Cuidado personal del paciente</h3>
+            <p>Empezamos creando un espacio tranquilo donde puedas contar lo que necesites. Conocemos tu historia, tu contexto y lo que te ha traído hasta aquí.</p>
+          </li>
+          <li class="step" data-step>
+            <span class="step__dot"></span>
+            <h3 class="step__title">Alimentación</h3>
+            <p>Exploramos juntos lo que te preocupa, tus fortalezas y tus recursos, teniendo en cuenta cómo influyen tu entorno y tu manera de vivir la pérdida.</p>
+          </li>
+          <li class="step" data-step>
+            <span class="step__dot"></span>
+            <h3 class="step__title">Toma de signos vitales</h3>
+            <p>Definimos metas claras y realistas, alineadas con lo que te importa, y trazamos un camino que se adapte a tus circunstancias.</p>
+          </li>
+          <li class="step" data-step>
+            <span class="step__dot"></span>
+            <h3 class="step__title">Administración de medicamentos</h3>
+            <p>Aplicamos herramientas con respaldo científico —EMDR, atención plena, terapia narrativa— ajustadas a tu ritmo y a tu forma de ser.</p>
+          </li>
+          <li class="step" data-step>
+            <span class="step__dot"></span>
+            <h3 class="step__title">Manejo de sondas</h3>
+            <p>Practicamos estrategias para regular emociones, poner límites y cuidar tus vínculos, de modo que puedas usarlas fuera de la consulta.</p>
+          </li>
+          <li class="step" data-step>
+            <span class="step__dot"></span>
+            <h3 class="step__title">Curaciones</h3>
+            <p>Integramos lo aprendido en tu día a día y celebramos el camino recorrido, para que el bienestar se sostenga en el tiempo.</p>
+          </li>
+        </ol>
+      </div>
+
+      <!-- Misión compartida (split con lista e imagen) -->
+      <div class="split split--mission">
+        <div class="split__text">
+          <p class="eyebrow text-gold" data-reveal>Misión compartida</p>
+          <h3 class="split__title" data-reveal>Hacia dónde <em>caminamos</em> juntos:</h3>
+          <ul class="checklist checklist--icons">
+            <li data-reveal>Ganar confianza y capacidad de recuperación</li>
+            <li data-reveal>Construir redes de apoyo más sólidas</li>
+            <li data-reveal>Reconectar con las personas que más importan</li>
+            <li data-reveal>Cuidarte sin sentir culpa</li>
+            <li data-reveal>Reducir la ansiedad y recuperar la calma</li>
+            <li data-reveal>Vivir de acuerdo con tus valores</li>
+            <li data-reveal>Hacer las paces con el pasado y mirar al futuro con esperanza</li>
+          </ul>
+        </div>
+        <figure class="split__img mask-img" data-mask="y">
+          <img class="ph" src="assets/img/mission.jpg" alt="" data-parallax="-20" />
+          <span class="split__img-gradient"></span>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         PESTAÑAS AUTOMÁTICAS — imágenes que se funden y barra de
+         progreso que avanza; al completarse pasa a la siguiente.
+         ============================================================ -->
+    <section class="care" data-care>
+      <div class="care__media">
+        <div class="care__img is-active"><img class="ph" src="assets/img/care-1.jpg" alt="" /></div>
+        <div class="care__img"><img class="ph" src="assets/img/care-2.jpg" alt="" /></div>
+        <div class="care__img"><img class="ph" src="assets/img/care-3.jpg" alt="" /></div>
+        <div class="care__img"><img class="ph" src="assets/img/care-4.jpg" alt="" /></div>
+      </div>
+      <div class="care__content">
+        <div class="noise"></div>
+        <p class="eyebrow text-gold">En Ángeles de Vida, nuestro cuidado es:</p>
+        <div class="care__tabs" role="tablist">
+          <button class="care__tab is-active" role="tab"><span>Flexible y basado en evidencia</span><i class="care__bar"><i></i></i></button>
+          <button class="care__tab" role="tab"><span>Sensible al trauma y a cada historia</span><i class="care__bar"><i></i></i></button>
+          <button class="care__tab" role="tab"><span>Cercano e inclusivo</span><i class="care__bar"><i></i></i></button>
+          <button class="care__tab" role="tab"><span>Basado en la dignidad y el respeto</span><i class="care__bar"><i></i></i></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         POR QUÉ NOSOTROS — imagen grande, marca gigante y texto.
+         ============================================================ -->
+    <section class="why">
+      <div class="why__bg"><img class="ph" src="assets/img/why.jpg" alt="" data-parallax="-15" /></div>
+      <div class="why__gradient"></div>
+      <p class="why__wordmark" aria-hidden="true">Ángeles <em>de</em> Vida</p>
+      <div class="container why__content">
+        <div class="why__text">
+          <h2 class="why__title" data-reveal>¿Por qué las familias <em>confían</em> en nosotros?</h2>
+          <p data-reveal>Porque unimos calidez y rigor profesional. Contamos con formación específica en duelo, trauma y acompañamiento familiar, y cuidamos cada detalle para que te sientas en buenas manos desde la primera llamada.</p>
+        </div>
+        <p class="why__note" data-reveal>Atendemos de forma presencial y en línea. Consulta disponibilidad y modalidades en el formulario de contacto.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================================================
+       CTA FINAL + PIE
+       ============================================================ -->
+  <section class="cta" id="contacto">
+    <div class="noise"></div>
+    <div class="cta__content">
+      <p class="eyebrow text-gold">Tu camino de sanación</p>
+      <h2 class="cta__title" data-reveal>Tu historia <em>importa</em>, y tu bienestar también.</h2>
+      <p class="cta__text" data-reveal>Da el primer paso con una primera conversación gratuita. Hablaremos de lo que necesitas, resolveremos tus dudas y pensaremos juntos el mejor punto de partida.</p>
+      <div data-reveal>
+        <a href="mailto:hola@angelesdevida.example" class="cta-btn">
+          <span class="cta-btn__text">Reserva una consulta</span>
+          <span class="cta-btn__arrow"><span class="cta-btn__circle"></span><span class="cta-btn__icons">
+            <svg class="cta-btn__icon cta-btn__icon--1" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg>
+            <svg class="cta-btn__icon cta-btn__icon--2" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg>
+          </span></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__left">
+        <span class="footer__brand">Ángeles de Vida</span>
+        <span>© <span data-year>2026</span> · Todos los derechos reservados</span>
+      </div>
+      <nav class="footer__links">
+        <a href="#">Privacidad</a><a href="#">Términos</a><a href="#">Aviso legal</a><a href="#">Mapa del sitio</a>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- Botón volver arriba (aparece tras cierto scroll) -->
+  <button class="to-top" data-to-top aria-label="Volver arriba">
+    <svg viewBox="0 0 24 24"><path d="m18 15-6-6-6 6"/></svg>
+  </button>
+
+  <!-- Librerías: mismas que el original (GSAP 3.13 + ScrollTrigger + Lenis) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
