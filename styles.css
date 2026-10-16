@@ -41,7 +41,7 @@
   --fs-eyebrow: 1.5rem;
 
   /* Layout */
-  --container: 1200px;
+  --container: 1500px;   /* ancho máximo del contenido (incluye el --gutter). Más alto = márgenes laterales más estrechos */
   --gutter: clamp(1rem, 4vw, 2rem);
   --header-h: 141px;     /* alto inicial de la cabecera (al hacer scroll: ×0.8 = 113px) */
   --radius-pill: 999px;
@@ -244,7 +244,24 @@ img.is-missing { visibility: hidden; }
 .hero { position: fixed; inset: 0; height: 100vh; z-index: 0; overflow: hidden; color: var(--white); }
 .hero-spacer { height: 100vh; }
 .hero__bg { position: absolute; inset: 0; }
-.hero__img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.15); /* GSAP lo lleva a 1 */ }
+/* object-position 50% 0%: la foto se recorta por abajo, nunca por arriba, para que
+   los ojos de la enfermera (≈16% de la altura de la foto) no queden bajo el header. */
+.hero__img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 0%;
+  transform: scale(1.15); transform-origin: 50% 0%; /* GSAP lo lleva a 1 */
+  transition: opacity .75s ease; }
+/* Al empezar a hacer scroll (main.js añade .is-scrolled al hero) la imagen se atenúa */
+.hero.is-scrolled .hero__img { opacity: .775; }
+/* Textura (texture-5.webp, opaca) sobre la imagen y el degradado.
+   Al ser opaca, no se superpone tal cual (taparía la foto): se MEZCLA con
+   mix-blend-mode. "soft-light" tiñe y da grano sin oscurecer la escena.
+   Invisible al cargar; se funde a la vez que la imagen se atenúa. */
+.hero__texture {
+  position: absolute; inset: 0; pointer-events: none;
+  background: url("assets/img/texture-5.webp") center / cover no-repeat;
+  mix-blend-mode: soft-light;
+  opacity: 0; transition: opacity .45s ease;
+}
+.hero.is-scrolled .hero__texture { opacity: .9; }
 .hero__gradient {
   position: absolute; inset: 0;
   background: linear-gradient(180deg, rgba(23,6,25,.15) 0%, rgba(43,21,48,.35) 45%, rgba(23,6,25,.92) 100%);
@@ -255,7 +272,7 @@ img.is-missing { visibility: hidden; }
   display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 2rem;
 }
 .hero__main { max-width: 640px; align-self: center; }
-.hero__title { font-size: var(--fs-display); margin-bottom: 1.75rem; }
+.hero__title { font-size: var(--fs-display); margin-bottom: 1.75rem;}
 /* Cada línea es una ventana con overflow:hidden; GSAP sube el texto interior */
 .line { display: block; overflow: hidden; padding-bottom: .06em; }
 .line__in { display: block; }

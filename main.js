@@ -103,6 +103,15 @@ gsap.to('[data-hero-content]', {
   opacity: 0.1, y: 150, ease: 'none',
   scrollTrigger: { trigger: '.hero-spacer', start: 'top top', end: 'bottom top', scrub: 1 },
 });
+/* La imagen del hero baja lentamente mientras la cortina sube (scrub ligado al scroll).
+   El recorrido máximo es el 7% del alto de la ventana (≈63px a 900px de alto): menor que
+   el header compacto (99px escritorio / 77px móvil), así el hueco que deja arriba queda
+   siempre oculto tras el header blanco, y los ojos de la enfermera no se meten bajo él. */
+gsap.to('.hero__bg', {
+  y: () => Math.round(innerHeight * 0.07), ease: 'none',
+  scrollTrigger: { trigger: '.hero-spacer', start: 'top top', end: 'bottom top', scrub: true, invalidateOnRefresh: true },
+});
+
 // Cuando la cortina ya cubre todo, ocultamos el hero fijo (ahorra pintado)
 ScrollTrigger.create({
   trigger: '.hero-spacer', start: 'bottom top',
@@ -117,9 +126,11 @@ ScrollTrigger.create({
    está en CSS (.header.is-scrolled); aquí solo se alterna la clase.
    ----------------------------------------------------------------- */
 const header = $('[data-header]');
+const heroSection = $('[data-hero]');
 const SCROLL_THRESHOLD = 10; // px de margen para no parpadear en el tope
 function onScroll(y) {
   header.classList.toggle('is-scrolled', y > SCROLL_THRESHOLD);
+  heroSection.classList.toggle('is-scrolled', y > SCROLL_THRESHOLD); // atenúa la imagen del hero
   $('[data-to-top]').classList.toggle('is-visible', y > innerHeight * 1.5);
 }
 if (lenis) lenis.on('scroll', ({ scroll }) => onScroll(scroll));
