@@ -205,8 +205,12 @@ if (!reduceMotion) {
     });
   });
 
-  // 6c. Parallax: la imagen (más alta que su marco) se desplaza en yPercent
+  // 6c. Parallax: la imagen se desplaza en yPercent dentro de su marco.
+  //     Solo se aplica si la imagen es MÁS ALTA que su marco: si mide lo mismo
+  //     (p. ej. .mask-img img { height: 100% }), moverla dejaría un hueco vacío
+  //     abajo, así que se queda quieta y se ve completa.
   $$('[data-parallax]').forEach((img) => {
+    if (img.offsetHeight <= img.parentElement.offsetHeight + 1) return;
     gsap.fromTo(img, { yPercent: 0 }, {
       yPercent: parseFloat(img.dataset.parallax), ease: 'none',
       scrollTrigger: { trigger: img.parentElement, start: 'top bottom', end: 'bottom top', scrub: true },

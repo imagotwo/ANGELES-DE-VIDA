@@ -330,10 +330,11 @@ main > section, .cta, .footer { position: relative; z-index: 1; }
 .intro__title { font-size: var(--fs-h2); color: var(--plum-500); max-width: 18ch; margin-bottom: 4rem; }
 .intro__grid { display: grid; grid-template-columns: 1fr 1.2fr 1fr; grid-template-rows: auto auto; gap: 0; align-items: end; }
 .mask-img { position: relative; overflow: hidden; margin: 0; }
-/* Altura de la foto dentro de su marco: la regla de 145% está DESACTIVADA.
-   El parallax sube la foto hasta un 30% (izquierda) / 20% (derecha) de su altura;
-   si la foto no es más alta que su marco, aparece un hueco vacío abajo al hacer scroll.
-   Regla para evitarlo: alto ≥ 100 / (1 − 0.30) ≈ 143% → 145%. */
+/* La foto ocupa exactamente su marco (100%): se ve completa, sin recorte extra.
+   Afecta a la intro y a los bloques partidos (terapia y misión).
+   Como no sobra imagen para moverla, main.js (6c) NO les aplica parallax: si lo
+   hiciera aparecería un hueco vacío abajo. Para recuperar el parallax habría que
+   volver a una foto más alta que el marco: alto ≥ 100 / (1 − 0.30) ≈ 143% → 145%. */
 .mask-img img { height: 100%; }
 /* Imagen izquierda: ocupa el 75% de su columna y su proporción es 344/670
    (≈ 1 : 1.95, alargada). A 1440px de pantalla mide ≈ 323×628px.
@@ -524,10 +525,10 @@ main > section, .cta, .footer { position: relative; z-index: 1; }
   .tilt-card { width: 100%; max-width: 320px; }
   .intro__grid { grid-template-columns: 1fr 1fr; }
   /* Tablet: 2 columnas iguales, los % se refieren al ancho de la columna izquierda.
-     Con la imagen izquierda al 75% de su columna:
-     -27% → solapa ≈ 2.7% de la imagen izquierda · 14% → baja ≈ 9.6% de su alto.
+     Con la imagen izquierda al 75% de su columna, hay que cruzar ese hueco del 25%:
+     -36% → solapa ≈ 14.7% de la imagen izquierda (≤ 15%) · 14% → baja ≈ 9.6% de su alto.
      El texto pasa a una fila propia debajo de las imágenes. */
-  .mask-img--right { width: 100%; margin-left: -27%; margin-top: 14%; }
+  .mask-img--right { width: 100%; margin-left: -36%; margin-top: 14%; }
   .intro__body { grid-column: 1 / -1; grid-row: 3; padding: 2rem 0 0; }
   .services__quote-inner, .split, .care { grid-template-columns: 1fr; }
   .split__img, .care__media { min-height: 420px; }
@@ -546,12 +547,14 @@ main > section, .cta, .footer { position: relative; z-index: 1; }
 /* Intro en celulares. Va DESPUÉS del bloque de 900px a propósito: en un celular
    se cumplen ambos y, a igual especificidad, gana la regla que va más abajo.
    Una sola columna: izquierda, derecha debajo (sin solaparse) y luego el texto.
-   La izquierda deja la proporción 344/670 (a todo el ancho sería altísima) y pasa a 4/5. */
+   La izquierda deja la proporción 344/670 (a todo el ancho sería altísima) y pasa a 4/5.
+   Separaciones compactas: .75rem entre imágenes y 1.5rem hasta el texto
+   (anula el margin-top de 5rem de escritorio y el padding de 2rem de tablet). */
 @media (max-width: 640px) {
   .intro__grid { grid-template-columns: 1fr; }
   .mask-img--left  { grid-column: 1; grid-row: 1; width: 100%; aspect-ratio: 4 / 5; }
-  .mask-img--right { grid-column: 1; grid-row: 2; width: 100%; margin: 1rem 0 0; }
-  .intro__body     { grid-row: 3; }
+  .mask-img--right { grid-column: 1; grid-row: 2; width: 100%; margin: .75rem 0 0; }
+  .intro__body     { grid-row: 3; margin-top: 1.5rem; padding-top: 0; }
 }
 
 /* Accesibilidad: sin movimiento si el usuario lo pide */
