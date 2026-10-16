@@ -105,8 +105,9 @@ gsap.to('[data-hero-content]', {
 });
 /* La imagen del hero baja lentamente mientras la cortina sube (scrub ligado al scroll).
    El recorrido máximo es el 7% del alto de la ventana (≈63px a 900px de alto): menor que
-   el header compacto (99px escritorio / 77px móvil), así el hueco que deja arriba queda
-   siempre oculto tras el header blanco, y los ojos de la enfermera no se meten bajo él. */
+   el header compacto (99px escritorio / 67px móvil), así el hueco que deja arriba queda
+   siempre oculto tras el header blanco, y los ojos de la enfermera no se meten bajo él.
+   Si se sube --header-h o se baja --hs en CSS, revisar que 7% siga siendo menor. */
 gsap.to('.hero__bg', {
   y: () => Math.round(innerHeight * 0.07), ease: 'none',
   scrollTrigger: { trigger: '.hero-spacer', start: 'top top', end: 'bottom top', scrub: true, invalidateOnRefresh: true },
@@ -121,7 +122,7 @@ ScrollTrigger.create({
 
 /* -----------------------------------------------------------------
    3. CABECERA: siempre fija. En cuanto hay scroll pasa a su estado
-   compacto (−20%, fondo blanco, texto ciruela); al volver al tope
+   compacto (−30%, fondo blanco, texto ciruela); al volver al tope
    recupera su estado inicial transparente. Todo el cambio visual
    está en CSS (.header.is-scrolled); aquí solo se alterna la clase.
    ----------------------------------------------------------------- */

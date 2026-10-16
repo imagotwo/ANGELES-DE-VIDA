@@ -43,7 +43,7 @@
   /* Layout */
   --container: 1500px;   /* ancho máximo del contenido (incluye el --gutter). Más alto = márgenes laterales más estrechos */
   --gutter: clamp(1rem, 4vw, 2rem);
-  --header-h: 141px;     /* alto inicial de la cabecera (al hacer scroll: ×0.8 = 113px) */
+  --header-h: 141px;     /* alto inicial de la cabecera (al hacer scroll: ×0.7 = 99px) */
   --radius-pill: 999px;
   --ease-out: cubic-bezier(.22, 1, .36, 1);
 }
@@ -98,13 +98,17 @@ h1 em, h2 em, h3 em { font-weight: 400; }
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-/* Reserva para imágenes que aún no existen: degradado de marca.
-   main.js añade .is-missing cuando el archivo no carga. */
+/* Imágenes: .ph las ajusta a su marco (object-fit: cover).
+   main.js añade .is-missing cuando un archivo no carga y aquí se oculta la <img>
+   (evita el icono de imagen rota).
+   El degradado de reserva para marcos claros está DESACTIVADO (comentado abajo):
+   si falta una imagen en .mask-img, tarjetas, "care" o split, el marco queda vacío.
+   Solo los fondos oscuros (hero, programa, "por qué") conservan su reserva. */
 .ph { width: 100%; height: 100%; object-fit: cover; }
 img.is-missing { visibility: hidden; }
-.mask-img, .card__bg, .care__img, .split__img {
+/*.mask-img, .card__bg, .care__img, .split__img {
   background: linear-gradient(135deg, var(--plum-300) 0%, var(--sand-200) 55%, var(--gold-300) 100%);
-}
+}*/
 /* En secciones con texto blanco encima, la reserva es oscura para mantener contraste */
 .hero__bg, .feature__bg, .why__bg {
   background: radial-gradient(ellipse at 70% 30%, #8a6c8f 0%, transparent 60%),
@@ -165,9 +169,10 @@ img.is-missing { visibility: hidden; }
 .header .cta-btn { font-size: .95rem; padding: calc(.6rem * var(--hs)) calc(.6rem * var(--hs)) calc(.6rem * var(--hs)) calc(1.6rem * var(--hs)); transition: background-position .6s var(--ease-out), padding .45s var(--ease-out); }
 .header .cta-btn__arrow { width: calc(36px * var(--hs)); height: calc(36px * var(--hs)); transition: width .45s, height .45s; }
 
-/* "Ver menú": mismo tamaño que los párrafos. Icono de dos líneas iguales
-   (51px = 34px + 50%); al hover la inferior se reduce a la mitad
-   encogiéndose hacia la derecha (scaleX con origen a la derecha). */
+/* "Ver menú": mismo tamaño que los párrafos (--fs-body). Icono de dos líneas
+   iguales de 95px separadas 11px; al hover la inferior se reduce a la mitad
+   encogiéndose hacia la izquierda (scaleX con origen a la izquierda).
+   En celulares las líneas miden 44px (ver bloque RESPONSIVE). */
 .menu-toggle { display: flex; align-items: center; gap: .75rem; font-size: var(--fs-body); }
 .menu-toggle__icon { display: grid; gap: 11px; width: 95px; }
 .menu-toggle__icon span { height: 1px; background: currentColor; transform-origin: left center; transition: transform .4s var(--ease-out); }
@@ -218,8 +223,10 @@ img.is-missing { visibility: hidden; }
 .menu.is-open .menu__panel { transform: none; }
 .menu__close { position: absolute; top: 1.75rem; right: 1.75rem; width: 32px; height: 32px; }
 .menu__nav { display: grid; }
-/* Cada enlace ocupa todo el ancho del panel (margen negativo = relleno del
-   panel) y lleva una línea inferior; el primero también una superior. */
+/* Cada enlace lleva una línea inferior; el primero también una superior.
+   OJO: "margin: 1px" va después del margen negativo y lo anula, así que las
+   líneas NO llegan de lado a lado: empiezan y terminan en el relleno del panel
+   (--mp + 1px). Quitando "margin: 1px" vuelven a cruzar el panel entero. */
 .menu__link {
   display: block;
   margin: 0 calc(var(--mp) * -1);
@@ -249,12 +256,14 @@ img.is-missing { visibility: hidden; }
 .hero__img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 0%;
   transform: scale(1.15); transform-origin: 50% 0%; /* GSAP lo lleva a 1 */
   transition: opacity .75s ease; }
-/* Al empezar a hacer scroll (main.js añade .is-scrolled al hero) la imagen se atenúa */
+/* Al empezar a hacer scroll (main.js añade .is-scrolled al hero) la imagen se atenúa
+   a .775 en .75s (la textura entra algo más rápido, en .45s). */
 .hero.is-scrolled .hero__img { opacity: .775; }
 /* Textura (texture-5.webp, opaca) sobre la imagen y el degradado.
    Al ser opaca, no se superpone tal cual (taparía la foto): se MEZCLA con
    mix-blend-mode. "soft-light" tiñe y da grano sin oscurecer la escena.
-   Invisible al cargar; se funde a la vez que la imagen se atenúa. */
+   Invisible al cargar; aparece (hasta .9) al empezar a hacer scroll, junto
+   con la atenuación de la imagen. */
 .hero__texture {
   position: absolute; inset: 0; pointer-events: none;
   background: url("assets/img/texture-5.webp") center / cover no-repeat;
@@ -321,10 +330,27 @@ main > section, .cta, .footer { position: relative; z-index: 1; }
 .intro__title { font-size: var(--fs-h2); color: var(--plum-500); max-width: 18ch; margin-bottom: 4rem; }
 .intro__grid { display: grid; grid-template-columns: 1fr 1.2fr 1fr; grid-template-rows: auto auto; gap: 0; align-items: end; }
 .mask-img { position: relative; overflow: hidden; margin: 0; }
-.mask-img img { height: 120%; } /* margen extra para el parallax */
-.mask-img--left { grid-column: 1; grid-row: 1 / span 2; aspect-ratio: 3 / 5; }
-.mask-img--right { grid-column: 2; grid-row: 1; aspect-ratio: 4 / 3; margin-left: -25%; margin-bottom: 30%; }
-.intro__body { grid-column: 3; grid-row: 2; position: relative; padding-left: 2rem; font-size: var(--fs-body); max-width: 34ch; }
+/* Altura de la foto dentro de su marco: la regla de 145% está DESACTIVADA.
+   El parallax sube la foto hasta un 30% (izquierda) / 20% (derecha) de su altura;
+   si la foto no es más alta que su marco, aparece un hueco vacío abajo al hacer scroll.
+   Regla para evitarlo: alto ≥ 100 / (1 − 0.30) ≈ 143% → 145%. */
+.mask-img img { height: 100%; }
+/* Imagen izquierda: ocupa el 75% de su columna y su proporción es 344/670
+   (≈ 1 : 1.95, alargada). A 1440px de pantalla mide ≈ 323×628px.
+   Abarca las filas 1 y 2 de la grilla. */
+.mask-img--left { grid-column: 1; grid-row: 1 / span 2; align-self: start; width: 75%; aspect-ratio: 344 / 670; } /* ≈323×628px a 1440px de pantalla */
+/* Imagen derecha: se monta sobre la izquierda y empieza algo más abajo.
+   Los márgenes en % se calculan sobre el ancho de SU columna (1.2 × ancho de columna izq.).
+   Como la izquierda ocupa el 75% de su columna, el margen debe cruzar primero ese hueco del 25%:
+   - margin-left -30% → solapa ≈ 14.7% del ancho de la imagen izquierda
+   - margin-top   12% → baja  ≈ 9.9%  del alto de la imagen izquierda
+   z-index la pone por encima en la zona solapada. */
+.mask-img--right { grid-column: 2; grid-row: 1; align-self: start; aspect-ratio: 4 / 3;
+  width: 100%; /* = ancho de su columna (≈516×387px a 1440px). Ancho fijo: sin él, el margen negativo la estira */
+  margin-left: -30%; margin-top: 12%; z-index: 1; }
+/* Texto de la intro: celda superior derecha (columna 3, fila 1), 5rem por debajo
+   del borde superior de las imágenes, hasta 40 caracteres por línea. */
+.intro__body { grid-column: 3; grid-row: 1; align-self: start; position: relative; margin-top: 5rem; font-size: var(--fs-body); max-width: 40ch; }
 .spotlight { position: absolute; inset: -40%; background: radial-gradient(closest-side, rgba(255,255,255,.9), transparent); z-index: -1; }
 
 /* Revelado por máscara: GSAP anima --mask (0% → 100%).
@@ -474,13 +500,34 @@ main > section, .cta, .footer { position: relative; z-index: 1; }
 @media (max-width: 1100px) { .menu__panel { width: 75vw; } }
 @media (max-width: 640px)  { .menu__panel { width: 100%; } }
 
+/* Header en tablets y celulares (≤1024px):
+   [icono logo][rayas del menú] ............ [Reserva una consulta]
+   - Se oculta el texto del logo y el texto "Ver menú".
+   - .header__nav pasa a display: contents, así el botón de menú y el CTA se
+     convierten en hijos directos de la barra y se pueden reordenar con flex. */
+@media (max-width: 1024px) {
+  .header__logo-text, .menu-toggle__text { display: none; }
+  .header__nav { display: contents; }
+  .header__logo { order: 1; }
+  .menu-toggle  { order: 2; margin-left: calc(1rem * var(--hs)); margin-right: auto; }
+  .header__nav .cta-btn { order: 3; }
+}
+/* Celulares: rayas más cortas y CTA algo más compacto para que todo quepa */
+@media (max-width: 640px) {
+  .menu-toggle__icon { width: 44px; gap: 8px; }
+  .header .cta-btn { font-size: .85rem; padding-left: calc(1.1rem * var(--hs)); gap: .6rem; }
+}
+
 @media (max-width: 900px) {
-  :root { --header-h: 96px; }   /* móvil: proporcional (→ 77px al hacer scroll) */
-  .menu-toggle__text, .header__nav .cta-btn { display: none; }
+  :root { --header-h: 96px; }   /* móvil: proporcional (→ ×0.7 = 67px al hacer scroll) */
   .hero__inner { grid-template-columns: 1fr; align-content: end; }
   .tilt-card { width: 100%; max-width: 320px; }
   .intro__grid { grid-template-columns: 1fr 1fr; }
-  .mask-img--right { margin: 0; }
+  /* Tablet: 2 columnas iguales, los % se refieren al ancho de la columna izquierda.
+     Con la imagen izquierda al 75% de su columna:
+     -27% → solapa ≈ 2.7% de la imagen izquierda · 14% → baja ≈ 9.6% de su alto.
+     El texto pasa a una fila propia debajo de las imágenes. */
+  .mask-img--right { width: 100%; margin-left: -27%; margin-top: 14%; }
   .intro__body { grid-column: 1 / -1; grid-row: 3; padding: 2rem 0 0; }
   .services__quote-inner, .split, .care { grid-template-columns: 1fr; }
   .split__img, .care__media { min-height: 420px; }
@@ -494,6 +541,17 @@ main > section, .cta, .footer { position: relative; z-index: 1; }
   .process__steps { gap: 4rem; }
   .step__dot { left: calc(-1.5rem - 10px - 4px); }
   .why__content { flex-direction: column; align-items: flex-start; }
+}
+
+/* Intro en celulares. Va DESPUÉS del bloque de 900px a propósito: en un celular
+   se cumplen ambos y, a igual especificidad, gana la regla que va más abajo.
+   Una sola columna: izquierda, derecha debajo (sin solaparse) y luego el texto.
+   La izquierda deja la proporción 344/670 (a todo el ancho sería altísima) y pasa a 4/5. */
+@media (max-width: 640px) {
+  .intro__grid { grid-template-columns: 1fr; }
+  .mask-img--left  { grid-column: 1; grid-row: 1; width: 100%; aspect-ratio: 4 / 5; }
+  .mask-img--right { grid-column: 1; grid-row: 2; width: 100%; margin: 1rem 0 0; }
+  .intro__body     { grid-row: 3; }
 }
 
 /* Accesibilidad: sin movimiento si el usuario lo pide */
