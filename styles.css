@@ -7,13 +7,13 @@
 /* ---------- 1. TOKENS ---------- */
 :root {
   /* Color */
-  --plum-950: #170619;      /* fondo CTA / pie */
-  --plum-900: #2b1530;
-  --plum-800: #3b2140;
-  --plum-700: #4d3053;
-  --plum-500: #6a4f73;      /* color principal de marca */
-  --plum-300: #b2a2c0;
-  --plum-200: #8f7598;      /* texto inactivo sobre ciruela */
+  --plum-950: #071A33;      /* fondo CTA / pie */
+  --plum-900: #0B2545;
+  --plum-800: #123B68;
+  --plum-700: #1D528A;
+  --plum-500: #2F6EAD;      /* color principal de marca */
+  --plum-300: #4F8FC9;
+  --plum-200: #A7C9E8;      /* texto inactivo sobre ciruela */
   --cream-50: #fcf9f5;
   --cream-100: #f5efe8;
   --sand-200: #e8ddd1;
@@ -22,7 +22,7 @@
   --gold-700: #9c7d5c;
   --teal-400: #74c1cd;
   --mint-500: #1fb58f;      /* puntos de la línea de proceso */
-  --ink-700: #4a3a50;       /* texto de cuerpo sobre claro */
+  --ink-700: #29435f;       /* texto de cuerpo sobre claro */
   --white: #ffffff;
 
   /* Degradados de marca */
@@ -266,7 +266,7 @@ img.is-missing { visibility: hidden; }
    con la atenuación de la imagen. */
 .hero__texture {
   position: absolute; inset: 0; pointer-events: none;
-  background: url("assets/img/texture-5.webp") center / cover no-repeat;
+  background: url("assets/img/texture-5.png") center / cover no-repeat;
   mix-blend-mode: soft-light;
   opacity: 0; transition: opacity .45s ease;
 }
@@ -398,11 +398,12 @@ main > section, .cta, .footer { position: relative; z-index: 1; }
   padding: 5rem max(var(--gutter), calc((100vw - var(--container)) / 2 + var(--gutter)));
   padding-right: 4rem;
   background: linear-gradient(160deg, #f4eef7 0%, var(--cream-50) 50%, #fbe9d3 100%);
+  color: var(--ink-700);
 }
-.split__title { font-size: var(--fs-h3); color: var(--plum-500); margin-bottom: 2.5rem; max-width: 14ch; }
+.split__title { font-size: var(--fs-h3); color: var(--plum-700); margin-bottom: 2.5rem; max-width: 16ch; }
 .split__img { min-height: 100%; }
-.split__img-gradient { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(43,21,48,.15), transparent 40%); }
-.checklist { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; font-size: var(--fs-body); }
+.split__img-gradient { position: absolute; inset: 0;color: var(--cream-50); background: linear-gradient(90deg, rgba(43,21,48,.15), transparent 40%); }
+.checklist { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; font-size: var(--fs-body);}
 .checklist li { position: relative; padding-left: 1.8rem; }
 .checklist li::before {
   content: ""; position: absolute; left: 0; top: .3em; width: 12px; height: 12px;
@@ -436,7 +437,7 @@ main > section, .cta, .footer { position: relative; z-index: 1; }
 .process__sticky { position: sticky; top: 18vh; align-self: start; }
 .process__title { font-size: var(--fs-h2); margin-bottom: 1rem; }
 /* Número gigante: "0" fijo + columna de dígitos desplazada con translateY */
-.process__number { display: flex; font-family: var(--font-sans); font-weight: 400; font-size: /*clamp(7rem, 15vw, 13rem)*/clamp(7rem, 28vw, 25rem);; line-height: 1; color: var(--plum-500); letter-spacing: -.04em; }
+.process__number { display: flex; font-family: var(--font-sans); font-weight: 400; font-size: /*clamp(7rem, 15vw, 13rem)*/clamp(7rem, 28vw, 25rem);; line-height: 1; color: var(--plum-800); letter-spacing: -.04em; }
 .process__digits { display: block; height: 1em; overflow: hidden; }
 .process__digits-track { display: flex; flex-direction: column; transition: transform .7s var(--ease-out); }
 .process__digits-track span { height: 1em; }
@@ -454,9 +455,9 @@ main > section, .cta, .footer { position: relative; z-index: 1; }
 /* ---------- 13. PESTAÑAS "CARE" ---------- */
 .care { display: grid; grid-template-columns: 1fr 1fr; min-height: 640px; }
 .care__media { position: relative; overflow: hidden; }
-.care__img { position: absolute; inset: 0; opacity: 0; transition: opacity .8s ease; }
+.care__img { position: absolute; inset: 0; opacity: 0;background: linear-gradient(160deg, #f4eef7 0%, var(--cream-100) 50%, #fbe9d3 100%); color: var(--white); transition: opacity .8s ease; }
 .care__img.is-active { opacity: 1; }
-.care__content { position: relative; overflow: hidden; background: var(--plum-500); color: var(--white); padding: 5rem clamp(1.5rem, 5vw, 5rem); display: flex; flex-direction: column; justify-content: center; }
+.care__content { position: relative; overflow: hidden;background-color: var(--plum-500); padding: 5rem clamp(1.5rem, 5vw, 5rem); display: flex; flex-direction: column; justify-content: center; }
 .care__content > * { position: relative; z-index: 1; }
 .care__tabs { display: grid; }
 .care__tab { display: grid; gap: 1.1rem; padding: 1.1rem 0; text-align: left; }
@@ -478,7 +479,7 @@ main > section, .cta, .footer { position: relative; z-index: 1; }
 .why__note { max-width: 340px; font-size: var(--fs-small); }
 
 /* ---------- 15. CTA + PIE ---------- */
-.cta { background: var(--plum-950); color: var(--white); text-align: center; padding: 8rem var(--gutter); overflow: hidden; }
+.cta { background: var(--plum-950);background-image: url(assets/img/texture7.webp); color: var(--white); text-align: center; padding: 8rem var(--gutter); overflow: hidden; }
 .cta__content { position: relative; z-index: 1; max-width: 760px; margin: 0 auto; display: grid; justify-items: center; gap: 1.75rem; }
 .cta__title { font-size: var(--fs-h2); background: var(--grad-text-cta); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .cta__text { max-width: 54ch; font-size: var(--fs-body); color: rgba(255,255,255,.85); }
