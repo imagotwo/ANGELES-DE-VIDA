@@ -160,8 +160,21 @@ img.is-missing { visibility: hidden; }
   padding: 0 var(--gutter);
   display: flex; align-items: center; justify-content: space-between;
 }
-.header__logo { display: flex; align-items: center; gap: calc(.75rem * var(--hs)); }
-.header__logo-mark { width: calc(48px * var(--hs)); height: calc(48px * var(--hs)); transition: width .45s var(--ease-out), height .45s var(--ease-out); }
+/* Logo: dos imágenes (blanca y color) apiladas en la MISMA celda de la grilla.
+   Tamaño proporcional al header: su alto es el 55% del alto actual del header
+   (141px → 78px arriba · 99px → 54px con scroll) y el ancho sale solo de la
+   proporción del logo (1775×737 ≈ 2.4:1), así nunca se deforma.
+   Cambio de versión: fundido de opacidad sincronizado con el header (.45s). */
+.header__logo { display: grid; align-items: center; gap: calc(.75rem * var(--hs)); }
+.header__logo-mark {
+  grid-area: 1 / 1;
+  height: calc(var(--header-h) * var(--hs) * .55); width: auto; max-width: none;
+  transition: height .45s var(--ease-out), opacity .45s ease;
+}
+.header__logo-mark--dark { opacity: 0; }                       /* inicio: solo el blanco */
+.header.is-scrolled .header__logo-mark--light { opacity: 0; }   /* scroll: solo el de color */
+.header.is-scrolled .header__logo-mark--dark  { opacity: 1; }
+.header__logo-text:empty { display: none; }  /* el span vacío no ocupa espacio */
 .header__logo-text { font-family: var(--font-serif); font-size: 1.6rem; }
 .header__nav { display: flex; align-items: center; gap: calc(2rem * var(--hs)); }
 
@@ -280,7 +293,7 @@ img.is-missing { visibility: hidden; }
   max-width: var(--container); margin: 0 auto; padding: calc(var(--header-h) + 4vh) var(--gutter) 6vh;
   display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 2rem;
 }
-.hero__main { max-width: 640px; align-self: center; }
+.hero__main { max-width: 640px; align-self: center; padding-top: 5rem;}
 .hero__title { font-size: var(--fs-display); margin-bottom: 1.75rem;}
 /* Cada línea es una ventana con overflow:hidden; GSAP sube el texto interior */
 .line { display: block; overflow: hidden; padding-bottom: .06em; }
@@ -401,8 +414,42 @@ main > section, .cta, .footer { position: relative; z-index: 1; }
   color: var(--ink-700);
 }
 .split__title { font-size: var(--fs-h3); color: var(--plum-700); margin-bottom: 2.5rem; max-width: 16ch; }
-.split__img { min-height: 100%; }
+/*.split__img { min-height: 100%; }*/
 .split__img-gradient { position: absolute; inset: 0;color: var(--cream-50); background: linear-gradient(90deg, rgba(43,21,48,.15), transparent 40%); }
+/* ---------- 11b. BLOQUE ANCHO TEXTO/IMAGEN (.split--wide) ----------
+   Modificador reutilizable. Lo usan las secciones independientes
+   EQUIPO (.team) y PREGUNTAS FRECUENTES (.faq).
+   Alineación: el bloque va de lado a lado de la pantalla (fondo degradado e imagen
+   tocan los bordes), pero el TEXTO arranca en el mismo punto que el logo del header
+   y el resto del contenido (mismo --container y --gutter que .container).
+   Proporciones tomadas de la referencia (korawells.com, bloque "Therapy services"):
+   - Texto ≈58% · imagen ≈42% (58fr / 42fr).
+   - Alto: al menos el 95% de la ventana (mínimo 560px).
+   Efecto de entrada de la imagen:
+   - Máscara clip-path horizontal de derecha a izquierda, igual que la imagen derecha de la intro
+     (data-mask="x-rev", main.js 6b), en 1.2s.
+   - Parallax marcado: la foto sube un 35% con el scroll (data-parallax="-35", main.js 6c).
+     Para que no deje hueco abajo, la foto mide 160% de su marco
+     (≥ 100 / (1 − 0.35) ≈ 154%). Solo afecta a los bloques .split--wide: la regla
+     general .mask-img img { height: 100% } sigue igual para el resto. */
+.team, .faq { background: var(--cream-50); }
+.split--wide {
+  grid-template-columns: 58fr 42fr;
+  /* Al menos el 95% del alto de la ventana (y nunca menos de 560px en pantallas muy bajas).
+     Sin tope máximo: un clamp(min, valor, MÁX) recortaría el vh en pantallas altas. */
+  min-height: max(95vh, 560px);
+}
+/* Relleno izquierdo = margen exterior del contenido + --gutter → el texto queda
+   alineado con el logo aunque el fondo empiece en el borde de la pantalla. */
+.split--wide .split__text {
+  padding: 5rem clamp(1.5rem, 4vw, 4rem) 5rem
+           max(var(--gutter), calc((100vw - var(--container)) / 2 + var(--gutter)));
+}
+/* La foto va en absoluto dentro de su marco: así el ALTO del bloque lo marcan el texto
+   y min-height, no el tamaño natural de la foto (si no, estira toda la fila). */
+.split--wide .split__img img { position: absolute; top: 0; left: 0; width: 100%; height: 160%; }
+.split__body { display: grid; gap: 1rem; max-width: 52ch; }
+
 .checklist { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; font-size: var(--fs-body);}
 .checklist li { position: relative; padding-left: 1.8rem; }
 .checklist li::before {
@@ -457,7 +504,10 @@ main > section, .cta, .footer { position: relative; z-index: 1; }
 .care__media { position: relative; overflow: hidden; }
 .care__img { position: absolute; inset: 0; opacity: 0;background: linear-gradient(160deg, #f4eef7 0%, var(--cream-100) 50%, #fbe9d3 100%); color: var(--white); transition: opacity .8s ease; }
 .care__img.is-active { opacity: 1; }
-.care__content { position: relative; overflow: hidden;background-color: var(--plum-500); padding: 5rem clamp(1.5rem, 5vw, 5rem); display: flex; flex-direction: column; justify-content: center; }
+.care__content { position: relative; overflow: hidden;background-color: var(--plum-500);background-image: url(assets/img/texture6.webp); background-repeat: no-repeat;
+  background-size: cover;       /* la textura se escala para cubrir TODO el panel, sin deformarse */
+  background-position: center;  /* si sobra por algún lado, recorta por igual desde el centro */
+  padding: 5rem clamp(1.5rem, 5vw, 5rem); display: flex; flex-direction: column; justify-content: center; }
 .care__content > * { position: relative; z-index: 1; }
 .care__tabs { display: grid; }
 .care__tab { display: grid; gap: 1.1rem; padding: 1.1rem 0; text-align: left; }
@@ -479,7 +529,7 @@ main > section, .cta, .footer { position: relative; z-index: 1; }
 .why__note { max-width: 340px; font-size: var(--fs-small); }
 
 /* ---------- 15. CTA + PIE ---------- */
-.cta { background: var(--plum-950);background-image: url(assets/img/texture7.webp); color: var(--white); text-align: center; padding: 8rem var(--gutter); overflow: hidden; }
+.cta { background: var(--plum-950);background-image: url(assets/img/texture7.webp);background-size: cover;background-position:bottom; color: var(--white); text-align: center; padding: 8rem var(--gutter); overflow: hidden; }
 .cta__content { position: relative; z-index: 1; max-width: 760px; margin: 0 auto; display: grid; justify-items: center; gap: 1.75rem; }
 .cta__title { font-size: var(--fs-h2); background: var(--grad-text-cta); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .cta__text { max-width: 54ch; font-size: var(--fs-body); color: rgba(255,255,255,.85); }
@@ -514,10 +564,22 @@ main > section, .cta, .footer { position: relative; z-index: 1; }
   .menu-toggle  { order: 2; margin-left: calc(1rem * var(--hs)); margin-right: auto; }
   .header__nav .cta-btn { order: 3; }
 }
-/* Celulares: rayas más cortas y CTA algo más compacto para que todo quepa */
+/* Celulares: rayas más cortas, logo y CTA más compactos para que todo quepa en una línea.
+   El logo pasa del 55% al 36% del alto del header (96px → 35px arriba · 67px → 24px con scroll)
+   y el botón no se parte en dos líneas (nowrap). */
 @media (max-width: 640px) {
+  .header__logo-mark { height: calc(var(--header-h) * var(--hs) * .36); }
+  .menu-toggle { margin-left: .75rem; }
   .menu-toggle__icon { width: 44px; gap: 8px; }
-  .header .cta-btn { font-size: .85rem; padding-left: calc(1.1rem * var(--hs)); gap: .6rem; }
+  .header .cta-btn { font-size: .8rem; white-space: nowrap; padding-left: calc(1rem * var(--hs)); gap: .5rem; }
+  .header .cta-btn__arrow { width: calc(30px * var(--hs)); height: calc(30px * var(--hs)); }
+}
+/* Celulares muy estrechos (≤350px, p. ej. iPhone SE 1.ª gen.): un poco más compacto */
+@media (max-width: 350px) {
+  .header__logo-mark { height: calc(var(--header-h) * var(--hs) * .32); }
+  .menu-toggle { margin-left: .5rem; }
+  .menu-toggle__icon { width: 34px; }
+  .header .cta-btn { font-size: .75rem; padding-left: calc(.8rem * var(--hs)); }
 }
 
 @media (max-width: 900px) {

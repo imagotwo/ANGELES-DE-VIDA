@@ -1,21 +1,26 @@
 <!doctype html>
 <html lang="es">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>ÁNGELES DE VIDA - enfermeras a domicilio en Bogotá</title>
-  <meta name="description" content="Ángeles de Vida: terapia y acompañamiento emocional para atravesar el duelo, el trauma y los cambios de vida en un espacio seguro." />
+  <meta name="description"
+    content="Ángeles de Vida: terapia y acompañamiento emocional para atravesar el duelo, el trauma y los cambios de vida en un espacio seguro." />
 
   <!-- Tipografías: Inter (texto) + Playfair Display (titulares con cursiva de acento).
        Sustituyen a Inter + Merchant + Times Italic del original. -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap"
+    rel="stylesheet" />
 
   <!-- Lenis: hoja base recomendada por la librería (scroll suave) -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.css" />
   <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
 
   <!-- ============================================================
@@ -30,19 +35,19 @@
   </div>
 
   <!-- ============================================================
-       CABECERA
+       HEADER
        ============================================================ -->
   <header class="header" data-header>
     <div class="header__bar">
       <a href="#inicio" class="header__logo" aria-label="Ángeles de Vida — inicio">
-        <!-- Logo provisional en SVG; sustituir por assets/img/logo.svg -->
-        <svg class="header__logo-mark" viewBox="0 0 40 40" aria-hidden="true">
-          <circle cx="20" cy="20" r="18.5" fill="none" stroke="currentColor" stroke-width="1.2"/>
-          <path d="M20 31c0-6 0-11 0-16M20 18c-3-4-8-5-11-3 3 1 6 3 11 6M20 18c3-4 8-5 11-3-3 1-6 3-11 6M20 13c-2-2-2-5 0-7 2 2 2 5 0 7" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
-        </svg>
-        <span class="header__logo-text">Ángeles de Vida</span>
+        <!-- Dos versiones del logo apiladas en el mismo sitio:
+             --light (blanco) se ve al inicio, sobre el hero; --dark (color) se ve al
+             hacer scroll, cuando el header es blanco. El cambio lo hace el CSS con
+             .header.is-scrolled. El segundo lleva alt="" para no leer el nombre dos veces. -->
+        <img class="header__logo-mark header__logo-mark--light" src="assets/img/Angeles-de-vida-logo-blanco.svg" alt="Ángeles de Vida" />
+        <img class="header__logo-mark header__logo-mark--dark" src="assets/img/Angeles-de-vida-logo.svg" alt="" />
+        <span class="header__logo-text"></span>
       </a>
-
       <nav class="header__nav">
         <button class="menu-toggle" data-menu-open aria-expanded="false" aria-controls="menu">
           <span class="menu-toggle__text">Ver menú</span>
@@ -56,8 +61,12 @@
           <span class="cta-btn__arrow">
             <span class="cta-btn__circle"></span>
             <span class="cta-btn__icons">
-              <svg class="cta-btn__icon cta-btn__icon--1" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg>
-              <svg class="cta-btn__icon cta-btn__icon--2" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg>
+              <svg class="cta-btn__icon cta-btn__icon--1" viewBox="0 0 24 24">
+                <path d="M7 17 17 7M8 7h9v9" />
+              </svg>
+              <svg class="cta-btn__icon cta-btn__icon--2" viewBox="0 0 24 24">
+                <path d="M7 17 17 7M8 7h9v9" />
+              </svg>
             </span>
           </span>
         </a>
@@ -69,21 +78,30 @@
       <div class="menu__backdrop" data-menu-close></div>
       <div class="menu__panel">
         <button class="menu__close" data-menu-close aria-label="Cerrar menú">
-          <svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          <svg viewBox="0 0 24 24">
+            <path d="M18 6 6 18M6 6l12 12" />
+          </svg>
         </button>
         <nav class="menu__nav">
           <!-- Cada enlace tiene dos copias del texto: al hacer hover la
                primera sube y la segunda (cursiva) entra desde abajo. -->
-          <a href="#inicio" class="menu__link" style="--d:0s"><span class="menu__roll"><span>Home</span><span>Home</span></span></a>
-          <a href="#nosotros" class="menu__link" style="--d:.08s"><span class="menu__roll"><span>Nosotros</span><span>Nosotros</span></span></a>
-          <a href="#servicios" class="menu__link" style="--d:.16s"><span class="menu__roll"><span>Servicios</span><span>Servicios</span></span></a>
-          <a href="#programa" class="menu__link" style="--d:.24s"><span class="menu__roll"><span>Preguntas frecuentes</span><span>Preguntas frecuentes</span></span></a>
-          <a href="#proceso" class="menu__link" style="--d:.32s"><span class="menu__roll"><span>Precios</span><span>Precios</span></span></a>
-          <a href="#contacto" class="menu__link" style="--d:.40s"><span class="menu__roll"><span>Contacto</span><span>Contacto</span></span></a>
+          <a href="#inicio" class="menu__link" style="--d:0s"><span
+              class="menu__roll"><span>Home</span><span>Home</span></span></a>
+          <a href="#nosotros" class="menu__link" style="--d:.08s"><span
+              class="menu__roll"><span>Nosotros</span><span>Nosotros</span></span></a>
+          <a href="#servicios" class="menu__link" style="--d:.16s"><span
+              class="menu__roll"><span>Servicios</span><span>Servicios</span></span></a>
+          <a href="#programa" class="menu__link" style="--d:.24s"><span class="menu__roll"><span>Preguntas
+                frecuentes</span><span>Preguntas frecuentes</span></span></a>
+          <a href="#proceso" class="menu__link" style="--d:.32s"><span
+              class="menu__roll"><span>Precios</span><span>Precios</span></span></a>
+          <a href="#contacto" class="menu__link" style="--d:.40s"><span
+              class="menu__roll"><span>Contacto</span><span>Contacto</span></span></a>
         </nav>
         <div class="menu__footer">
           <p class="menu__brand">Ángeles <em>de</em> Vida</p>
-          <p class="menu__desc">Tus seres queridos en buenas manos, tu familia en tranquilidad. Cuidado profesional y humano para quienes más amas.<br>• Atención 24/7</p>
+          <p class="menu__desc">Tus seres queridos en buenas manos, tu familia en tranquilidad. Cuidado profesional y
+            humano para quienes más amas.<br>• Atención 24/7</p>
         </div>
       </div>
     </div>
@@ -98,7 +116,8 @@
     <div class="hero-wrap" id="inicio">
       <section class="hero" data-hero>
         <div class="hero__bg">
-          <img class="hero__img" src="assets/img/atención-domiciliaria-angeles-de-vida.jpg" alt="" fetchpriority="high" />
+          <img class="hero__img" src="assets/img/atención-domiciliaria-angeles-de-vida.jpg" alt=""
+            fetchpriority="high" />
           <div class="hero__gradient"></div>
           <!-- Capa de textura: aparece al hacer scroll junto con la atenuación de la imagen -->
           <div class="hero__texture" aria-hidden="true"></div>
@@ -109,25 +128,20 @@
             <h1 class="hero__title">
               <span class="line"><span class="line__in">Ángeles de Vida,</span></span>
               <span class="line"><span class="line__in">cuidados que dan </span></span> <span class="line">
-              <span class="line__in"> <em>tranquilidad.</em></span></span>
-              
+                <span class="line__in"> <em>tranquilidad.</em></span></span>
+
             </h1>
-            <p class="hero__lead" data-blur-in>Cuidamos a quienes más amas con profesionalismo y cariño, para que tu ser querido reciba la atención que merece y tu familia disfrute de la tranquilidad de saber que está en buenas manos.</p>
+            <p class="hero__lead" data-blur-in>Cuidamos a quienes más amas con profesionalismo y cariño, para que tu ser
+              querido reciba la atención que merece y tu familia disfrute de la tranquilidad de saber que está en buenas
+              manos.</p>
           </div>
 
-          <!-- Tarjeta con inclinación 3D según el ratón (--tilt-x / --tilt-y)
-               y un brillo radial que sigue al cursor (--mouse-x / --mouse-y). -->
-          <a href="#programa" class="tilt-card" data-tilt>
-            <span class="tilt-card__shine"></span>
-            <span class="tilt-card__pop">Un espacio pensado para acompañar a toda la familia en momentos de pérdida.</span>
-            <span class="tilt-card__body">
-              <svg class="tilt-card__icon" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 34s-12-7-12-16a7 7 0 0 1 12-5 7 7 0 0 1 12 5c0 9-12 16-12 16Z"/><path d="M14 20h12M20 14v12"/></svg>
-              <span class="tilt-card__title text-gold">Programa<br><em>familiar</em><br>de duelo</span>
-            </span>
-          </a>
+          
 
           <div class="hero__scroll">
-            <svg viewBox="0 0 24 24"><path d="M12 4v16M6 14l6 6 6-6"/></svg>
+            <svg viewBox="0 0 24 24">
+              <path d="M12 4v16M6 14l6 6 6-6" />
+            </svg>
             <span>Desliza</span>
           </div>
         </div>
@@ -157,7 +171,16 @@
           </figure>
           <div class="intro__body">
             <div class="spotlight"></div>
-            <p data-reveal>En enero de 2010 nació Ángeles de Vida con un sueño: ayudar a las familias a cuidar de las personas que más aman. Durante varios años hemos entendido y comprendido que cuidar a alguien que amas no siempre es fácil. A veces, tienes muchas cosas por hacer y no puedes estar a su lado todo el tiempo. Por eso, es normal que te preocupes y te preguntes: ¿quién cuidará de esa persona que tanto amo cuando yo no pueda estar ahí?<br>En Ángeles de Vida te escuchamos, comprendemos lo que necesitas y te acompañamos con cariño, respeto y dedicación. Brindamos cuidado en casa o en el hospital, para que tu ser querido esté acompañado y tú puedas sentirte más tranquilo.<br>Llevamos más de 16 años acompañando a familias y sabemos algo muy importante: pedir ayuda no significa amar menos. Significa encontrar nuevas formas de cuidar mejor.<br>Porque tú también mereces descansar, sentir tranquilidad y saber que la persona que amas está en buenas manos.</p>
+            <p data-reveal>En enero de 2010 nació Ángeles de Vida con un sueño: ayudar a las familias a cuidar de las
+              personas que más aman. Durante varios años hemos entendido y comprendido que cuidar a alguien que amas no
+              siempre es fácil. A veces, tienes muchas cosas por hacer y no puedes estar a su lado todo el tiempo. Por
+              eso, es normal que te preocupes y te preguntes: ¿quién cuidará de esa persona que tanto amo cuando yo no
+              pueda estar ahí?<br>En Ángeles de Vida te escuchamos, comprendemos lo que necesitas y te acompañamos con
+              cariño, respeto y dedicación. Brindamos cuidado en casa o en el hospital, para que tu ser querido esté
+              acompañado y tú puedas sentirte más tranquilo.<br>Llevamos más de 16 años acompañando a familias y sabemos
+              algo muy importante: pedir ayuda no significa amar menos. Significa encontrar nuevas formas de cuidar
+              mejor.<br>Porque tú también mereces descansar, sentir tranquilidad y saber que la persona que amas está en
+              buenas manos.</p>
           </div>
         </div>
       </div>
@@ -174,41 +197,56 @@
       </div>
       <div class="container feature__hero">
         <h2 class="feature__title" data-reveal>Enfermería <em>en casa,</em><br>día y noche</h2>
-        <p class="feature__text" data-reveal>Cuando alguien que amas necesita cuidados, toda la familia lo siente. Te acompañamos con enfermería en casa, las 24 horas. Atención a lo que cada persona necesita.</p>
+        <p class="feature__text" data-reveal>Cuando alguien que amas necesita cuidados, toda la familia lo siente. Te
+          acompañamos con enfermería en casa, las 24 horas. Atención a lo que cada persona necesita.</p>
         <div data-reveal>
           <a href="#contacto" class="cta-btn cta-btn--glow">
             <span class="cta-btn__text">Solicita tu servicio</span>
             <span class="cta-btn__arrow"><span class="cta-btn__circle"></span><span class="cta-btn__icons">
-              <svg class="cta-btn__icon cta-btn__icon--1" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg>
-              <svg class="cta-btn__icon cta-btn__icon--2" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg>
-            </span></span>
+                <svg class="cta-btn__icon cta-btn__icon--1" viewBox="0 0 24 24">
+                  <path d="M7 17 17 7M8 7h9v9" />
+                </svg>
+                <svg class="cta-btn__icon cta-btn__icon--2" viewBox="0 0 24 24">
+                  <path d="M7 17 17 7M8 7h9v9" />
+                </svg>
+              </span></span>
           </a>
         </div>
       </div>
     </section>
 
     <!-- ============================================================
-         SERVICIOS — bloque de frase, split texto/imagen y tarjetas
-         que revelan imagen y descripción al pasar el ratón.
+         EQUIPO — sección independiente. Bloque texto/imagen alineado con
+         el contenido de la página, texto ≈58% · imagen ≈42%.
+         La imagen entra con la misma máscara horizontal que la imagen
+         derecha de la intro (data-mask="x-rev", de derecha a izquierda) y hace parallax marcado (-35%).
          ============================================================ -->
-    <section class="services" id="servicios">
-      <div class="split">
+    <section class="team" id="equipo">
+      <div class="split split--wide">
         <div class="split__text">
           <p class="eyebrow text-gold" data-reveal>Nuestro equipo</p>
           <h3 class="split__title" data-reveal>Personas que <em>cuidan como</em> cuidarías tú.</h3>
-          <ul class="checklist">
-            <li data-reveal>Puede que estés atravesando una pérdida.</li>
-            <li data-reveal>Puede que te cueste reconocerte.</li>
-            <li data-reveal>Puede que arrastres el peso de algo que ocurrió.</li>
-          </ul>
+          <div class="split__body">
+            <p data-reveal>Detrás de cada visita hay una persona que llega a tu casa para acompañar a alguien que
+              quieres. Por eso, en ÁNGELES DE VIDA no pensamos solo en tareas: pensamos en tu familiar, en sus rutinas,
+              en sus tiempos y en lo que lo hace sentir tranquilo.<br>Nuestro equipo de enfermería trabaja siguiendo las
+              indicaciones médicas de cada paciente. Escucha, observa, te mantiene informado y te avisa cuando algo
+              cambia. Así puedes confiar en que hay alguien atento incluso cuando tú no puedes estar.</p>
+          </div>
         </div>
-        <figure class="split__img mask-img" data-mask="y">
-          <img class="ph" src="assets/img/therapy.jpg" alt="" data-parallax="-20" />
+        <figure class="split__img mask-img" data-mask="x-rev">
+          <img class="ph" src="assets/img/services-therapy-image.webp" alt="" data-parallax="-35" />
           <span class="split__img-gradient"></span>
         </figure>
-        
       </div>
-           <!--SERVICIOS DE ENFERMERIA-->
+    </section>
+
+    <!-- ============================================================
+         SERVICIOS — tarjetas que revelan imagen y descripción al
+         pasar el ratón.
+         ============================================================ -->
+    <section class="services" id="servicios">
+      <!--SERVICIOS DE ENFERMERIA-->
       <div class="cards-wrap">
         <div class="noise"></div>
         <div class="container">
@@ -216,54 +254,88 @@
           <div class="cards" data-cards>
             <article class="card" tabindex="0">
               <div class="card__bg"><img class="ph" src="assets/img/cuidado-en-casa-angeles-de-vida.jpg" alt="" /></div>
-              <p class="card__full">Es el acompañamiento de enfermería para el día a día del paciente. El personal de enfermería puede ayudar con la toma de signos vitales, con la administración de los medicamentos que el médico ordenó en los horarios correctos. También puede apoyar la higiene, la movilidad, la alimentación, y avisar a la familia si nota cambios en el estado de la persona.</p>
+              <p class="card__full">Es el acompañamiento de enfermería para el día a día del paciente. El personal de
+                enfermería puede ayudar con la toma de signos vitales, con la administración de los medicamentos que el
+                médico ordenó en los horarios correctos. También puede apoyar la higiene, la movilidad, la alimentación,
+                y avisar a la familia si nota cambios en el estado de la persona.</p>
               <div class="card__front">
-                <svg class="card__icon" viewBox="0 0 40 40"><path d="M20 33s-11-6.5-11-15a6 6 0 0 1 11-3.3A6 6 0 0 1 31 18c0 8.5-11 15-11 15Z"/></svg>
+                <svg class="card__icon" viewBox="0 0 40 40">
+                  <path d="M20 33s-11-6.5-11-15a6 6 0 0 1 11-3.3A6 6 0 0 1 31 18c0 8.5-11 15-11 15Z" />
+                </svg>
                 <h3 class="card__title">Cuidado en casa</h3>
                 <p class="card__sub">Cuidado experto, tranquilidad diaria.</p>
               </div>
             </article>
             <article class="card" tabindex="0">
-              <div class="card__bg"><img class="ph" src="assets/img/cuidado-de-adulto-mayor-angeles-de-vida.jpg" alt="" /></div>
-              <p class="card__full">El cuidado de adultos mayores a domicilio brinda seguridad, bienestar y compañía. Una enfermera ayuda con la higiene, la alimentación, la movilidad y la toma de medicamentos según la fórmula médica. También contribuye a prevenir caídas y observa cambios en la salud para informar oportunamente a la familia</p>
+              <div class="card__bg"><img class="ph" src="assets/img/cuidado-de-adulto-mayor-angeles-de-vida.jpg"
+                  alt="" /></div>
+              <p class="card__full">El cuidado de adultos mayores a domicilio brinda seguridad, bienestar y compañía.
+                Una enfermera ayuda con la higiene, la alimentación, la movilidad y la toma de medicamentos según la
+                fórmula médica. También contribuye a prevenir caídas y observa cambios en la salud para informar
+                oportunamente a la familia</p>
               <div class="card__front">
-                <svg class="card__icon" viewBox="0 0 40 40"><path d="M8 20c0-4 3-6 6-6 6 0 6 12 12 12 3 0 6-2 6-6s-3-6-6-6c-6 0-6 12-12 12-3 0-6-2-6-6Z"/></svg>
+                <svg class="card__icon" viewBox="0 0 40 40">
+                  <path d="M8 20c0-4 3-6 6-6 6 0 6 12 12 12 3 0 6-2 6-6s-3-6-6-6c-6 0-6 12-12 12-3 0-6-2-6-6Z" />
+                </svg>
                 <h3 class="card__title">Cuidado de adultos mayores</h3>
                 <p class="card__sub">Envejecer con cuidado y dignidad.</p>
               </div>
             </article>
             <article class="card" tabindex="0">
               <div class="card__bg"><img class="ph" src="assets/img/acompañamiento-a-citas-medicas.jpg" alt="" /></div>
-              <p class="card__full">Ir al médico puede ser agotador para una persona mayor o para alguien que se recupera de un procedimiento. Una enfermera puede acompañar al paciente a su cita o procedimiento; apoyando en el desarrollo eficiente, ayudando a moverse, estar atenta a sus necesidades y anotar las indicaciones del profesional para que la familia las tenga claras.</p>
+              <p class="card__full">Ir al médico puede ser agotador para una persona mayor o para alguien que se
+                recupera de un procedimiento. Una enfermera puede acompañar al paciente a su cita o procedimiento;
+                apoyando en el desarrollo eficiente, ayudando a moverse, estar atenta a sus necesidades y anotar las
+                indicaciones del profesional para que la familia las tenga claras.</p>
               <div class="card__front">
-                <svg class="card__icon" viewBox="0 0 40 40"><circle cx="18" cy="22" r="10"/><circle cx="29" cy="12" r="4"/></svg>
+                <svg class="card__icon" viewBox="0 0 40 40">
+                  <circle cx="18" cy="22" r="10" />
+                  <circle cx="29" cy="12" r="4" />
+                </svg>
                 <h3 class="card__title">Acompañamiento a citas médicas</h3>
                 <p class="card__sub">Acompañamiento médico seguro</p>
               </div>
             </article>
             <article class="card" tabindex="0">
-              <div class="card__bg"><img class="ph" src="assets/img/acompañamiento-hospitalario-angeles-de-vida.jpg" alt="" /></div>
-              <p class="card__full">Cuando un familiar está hospitalizado, la familia no siempre puede quedarse a su lado. El acompañamiento hospitalario ofrece a una persona capacitada que está con el paciente durante la estancia en la clínica u hospital, le da apoyo y mantiene informada a la familia.</p>
+              <div class="card__bg"><img class="ph" src="assets/img/acompañamiento-hospitalario-angeles-de-vida.jpg"
+                  alt="" /></div>
+              <p class="card__full">Cuando un familiar está hospitalizado, la familia no siempre puede quedarse a su
+                lado. El acompañamiento hospitalario ofrece a una persona capacitada que está con el paciente durante la
+                estancia en la clínica u hospital, le da apoyo y mantiene informada a la familia.</p>
               <div class="card__front">
-                <svg class="card__icon" viewBox="0 0 40 40"><path d="M20 33s-11-6.5-11-15a6 6 0 0 1 11-3.3A6 6 0 0 1 31 18c0 8.5-11 15-11 15Z"/></svg>
+                <svg class="card__icon" viewBox="0 0 40 40">
+                  <path d="M20 33s-11-6.5-11-15a6 6 0 0 1 11-3.3A6 6 0 0 1 31 18c0 8.5-11 15-11 15Z" />
+                </svg>
                 <h3 class="card__title">Acompañamiento hospitalario</h3>
                 <p class="card__sub">Acompañamiento que brinda tranquilidad</p>
               </div>
             </article>
             <article class="card" tabindex="0">
-              <div class="card__bg"><img class="ph" src="assets/img/cuidado-postoperatorio-angeles-de-vida.jpg" alt="" /></div>
-              <p class="card__full">Los primeros días después de una cirugía son clave. En casa, la enfermera ayuda a seguir las indicaciones del cirujano: dar los medicamentos en el horario indicado, apoyar los movimientos con cuidado, vigilar la herida y observar cómo se siente la persona.</p>
+              <div class="card__bg"><img class="ph" src="assets/img/cuidado-postoperatorio-angeles-de-vida.jpg"
+                  alt="" /></div>
+              <p class="card__full">Los primeros días después de una cirugía son clave. En casa, la enfermera ayuda a
+                seguir las indicaciones del cirujano: dar los medicamentos en el horario indicado, apoyar los
+                movimientos con cuidado, vigilar la herida y observar cómo se siente la persona.</p>
               <div class="card__front">
-                <svg class="card__icon" viewBox="0 0 40 40"><path d="M8 20c0-4 3-6 6-6 6 0 6 12 12 12 3 0 6-2 6-6s-3-6-6-6c-6 0-6 12-12 12-3 0-6-2-6-6Z"/></svg>
+                <svg class="card__icon" viewBox="0 0 40 40">
+                  <path d="M8 20c0-4 3-6 6-6 6 0 6 12 12 12 3 0 6-2 6-6s-3-6-6-6c-6 0-6 12-12 12-3 0-6-2-6-6Z" />
+                </svg>
                 <h3 class="card__title">Cuidado postoperatorio</h3>
                 <p class="card__sub">Recuperación segura en casa</p>
               </div>
             </article>
             <article class="card" tabindex="0">
               <div class="card__bg"><img class="ph" src="assets/img/curaciones-angeles-de-vida.jpg" alt="" /></div>
-              <p class="card__full">Una curación consiste en limpiar y cubrir una herida de manera adecuada para ayudar a que cierre bien y evitar infecciones. Puede ser necesaria después de una cirugía, por una úlcera o por una lesión que tarda en sanar. La enfermera realiza la curación con material limpio o estéril, según la indicación del médico, y revisa cómo evoluciona la herida. Si ve signos de infección, como calor, pus, mal olor o enrojecimiento que se extiende, lo informa para que el paciente sea valorado.</p>
+              <p class="card__full">Una curación consiste en limpiar y cubrir una herida de manera adecuada para ayudar
+                a que cierre bien y evitar infecciones. Puede ser necesaria después de una cirugía, por una úlcera o por
+                una lesión que tarda en sanar. La enfermera realiza la curación con material limpio o estéril, según la
+                indicación del médico, y revisa cómo evoluciona la herida. Si ve signos de infección, como calor, pus,
+                mal olor o enrojecimiento que se extiende, lo informa para que el paciente sea valorado.</p>
               <div class="card__front">
-                <svg class="card__icon" viewBox="0 0 40 40"><circle cx="18" cy="22" r="10"/><circle cx="29" cy="12" r="4"/></svg>
+                <svg class="card__icon" viewBox="0 0 40 40">
+                  <circle cx="18" cy="22" r="10" />
+                  <circle cx="29" cy="12" r="4" />
+                </svg>
                 <h3 class="card__title">Curaciones</h3>
                 <p class="card__sub">Curaciones seguras, cicatrización adecuada</p>
               </div>
@@ -284,8 +356,8 @@
           <div class="process__number" aria-hidden="true">
             <span>0</span>
             <span class="process__digits"><span class="process__digits-track" data-digits>
-              <span>1.</span><span>2.</span><span>3.</span><span>4.</span><span>5.</span><span>6.</span>
-            </span></span>
+                <span>1.</span><span>2.</span><span>3.</span><span>4.</span><span>5.</span><span>6.</span>
+              </span></span>
           </div>
         </div>
 
@@ -297,38 +369,75 @@
           <li class="step" data-step>
             <span class="step__dot"></span>
             <h3 class="step__title">Cuidado personal del paciente</h3>
-            <p>El cuidado personal incluye todo lo que ayuda a la persona a sentirse limpia, cómoda y cuidada. La enfermera apoya el baño en cama o en ducha, la higiene de la boca, el cambio de ropa, el cuidado de la piel, ayuda a moverse y a cambiar de posición. Esto es muy importante en las personas que pasan mucho tiempo en cama, porque los cambios de posición ayudan a prevenir las heridas que se forman por la presión sobre la piel, conocidas como úlceras por presión o escaras.  Todo se hace respetando la privacidad y la dignidad de la persona. Si la piel está enrojecida, hay una herida nueva o el paciente siente dolor al moverse, la enfermera lo registra y lo informa.</p>
+            <p>El cuidado personal incluye todo lo que ayuda a la persona a sentirse limpia, cómoda y cuidada. La
+              enfermera apoya el baño en cama o en ducha, la higiene de la boca, el cambio de ropa, el cuidado de la
+              piel, ayuda a moverse y a cambiar de posición. Esto es muy importante en las personas que pasan mucho
+              tiempo en cama, porque los cambios de posición ayudan a prevenir las heridas que se forman por la presión
+              sobre la piel, conocidas como úlceras por presión o escaras. Todo se hace respetando la privacidad y la
+              dignidad de la persona. Si la piel está enrojecida, hay una herida nueva o el paciente siente dolor al
+              moverse, la enfermera lo registra y lo informa.</p>
           </li>
           <li class="step" data-step>
             <span class="step__dot"></span>
             <h3 class="step__title">Alimentación</h3>
-            <p>Comer bien ayuda a recuperarse y a mantener las fuerzas. La enfermera apoya a la persona para que se alimente y se hidrate de acuerdo con la dieta que haya indicado el médico o el nutricionista. La cuidadora ayuda a sentarla en una posición segura, le da el tiempo necesario para comer y está atenta a señales como tos al tragar, atragantamientos o rechazo de los alimentos. Cuando la persona se alimenta por sonda, la enfermera se encarga de ese proceso siguiendo las indicaciones recibidas.</p>
+            <p>Comer bien ayuda a recuperarse y a mantener las fuerzas. La enfermera apoya a la persona para que se
+              alimente y se hidrate de acuerdo con la dieta que haya indicado el médico o el nutricionista. La cuidadora
+              ayuda a sentarla en una posición segura, le da el tiempo necesario para comer y está atenta a señales como
+              tos al tragar, atragantamientos o rechazo de los alimentos. Cuando la persona se alimenta por sonda, la
+              enfermera se encarga de ese proceso siguiendo las indicaciones recibidas.</p>
           </li>
           <li class="step" data-step>
             <span class="step__dot"></span>
             <h3 class="step__title">Toma de signos vitales</h3>
-            <p>Los signos vitales son medidas sencillas que muestran cómo está funcionando el cuerpo. Los más comunes son la temperatura, el pulso, la frecuencia respiratoria, la presión arterial y la saturación de oxígeno. La enfermera los toma en los momentos indicados, los anota con fecha y hora y compara los resultados con los anteriores. Así puede detectar a tiempo si algo cambia, por ejemplo una fiebre o una presión muy alta o muy baja, la enfermera avisará al médico y/o a la familia.</p>
+            <p>Los signos vitales son medidas sencillas que muestran cómo está funcionando el cuerpo. Los más comunes
+              son la temperatura, el pulso, la frecuencia respiratoria, la presión arterial y la saturación de oxígeno.
+              La enfermera los toma en los momentos indicados, los anota con fecha y hora y compara los resultados con
+              los anteriores. Así puede detectar a tiempo si algo cambia, por ejemplo una fiebre o una presión muy alta
+              o muy baja, la enfermera avisará al médico y/o a la familia.</p>
           </li>
           <li class="step" data-step>
             <span class="step__dot"></span>
             <h3 class="step__title">Administración de medicamentos</h3>
-            <p>Tomar los medicamentos en la dosis y el horario correctos es clave en cualquier tratamiento. La enfermera da los medicamentos que el médico formuló y lo hace con cuidado: verifica que sea el paciente correcto, el medicamento correcto, la dosis correcta, la vía correcta y la hora correcta. También observa cómo responde la persona. Si aparecen señales como sarpullido, vómito, mareo o dificultad para respirar después de un medicamento, lo informa de inmediato y busca atención médica.<br>La enfermera no cambia las dosis ni suspende medicamentos por su cuenta, y tampoco receta. Esas decisiones son del médico.</p>
+            <p>Tomar los medicamentos en la dosis y el horario correctos es clave en cualquier tratamiento. La enfermera
+              da los medicamentos que el médico formuló y lo hace con cuidado: verifica que sea el paciente correcto, el
+              medicamento correcto, la dosis correcta, la vía correcta y la hora correcta. También observa cómo responde
+              la persona. Si aparecen señales como sarpullido, vómito, mareo o dificultad para respirar después de un
+              medicamento, lo informa de inmediato y busca atención médica.<br>La enfermera no cambia las dosis ni
+              suspende medicamentos por su cuenta, y tampoco receta. Esas decisiones son del médico.</p>
           </li>
           <li class="step" data-step>
             <span class="step__dot"></span>
             <h3 class="step__title">Manejo de sondas</h3>
-            <p>Una sonda es un tubo delgado y flexible que ayuda al cuerpo a recibir alimento o a eliminar líquidos. En ÁNGELES DE VIDA atendemos pacientes con tres tipos de sonda. Sonda vesical: sale de la vejiga y permite eliminar la orina, Sonda nasogástrica: entra por la nariz y llega al estómago. Se usa para alimentar o dar medicamentos, Sonda de gastrostomía: entra por una pequeña abertura en el abdomen hacia el estómago. Se usa para alimentar a la persona cuando no puede hacerlo por la boca.<br>La enfermera cuida la sonda, mantiene la higiene y vigila su funcionamiento, siguiendo las indicaciones médicas. Ante señales como dolor, fiebre, sangrado, secreciones, vómitos o dificultad para respirar, es fundamental buscar atención médica de inmediato.<br>La colocación y el cambio de una sonda dependen de la orden médica y del perfil del profesional.</p>
+            <p>Una sonda es un tubo delgado y flexible que ayuda al cuerpo a recibir alimento o a eliminar líquidos. En
+              ÁNGELES DE VIDA atendemos pacientes con tres tipos de sonda. Sonda vesical: sale de la vejiga y permite
+              eliminar la orina, Sonda nasogástrica: entra por la nariz y llega al estómago. Se usa para alimentar o dar
+              medicamentos, Sonda de gastrostomía: entra por una pequeña abertura en el abdomen hacia el estómago. Se
+              usa para alimentar a la persona cuando no puede hacerlo por la boca.<br>La enfermera cuida la sonda,
+              mantiene la higiene y vigila su funcionamiento, siguiendo las indicaciones médicas. Ante señales como
+              dolor, fiebre, sangrado, secreciones, vómitos o dificultad para respirar, es fundamental buscar atención
+              médica de inmediato.<br>La colocación y el cambio de una sonda dependen de la orden médica y del perfil
+              del profesional.</p>
           </li>
           <li class="step" data-step>
             <span class="step__dot"></span>
             <h3 class="step__title">Curaciones</h3>
-            <p>La curación consiste en limpiar y proteger una herida para ayudar a que cierre bien y evitar infecciones. La enfermera la realiza según la indicación médica, con materiales limpios o estériles, y revisa cómo evoluciona la herida en cada visita.<br>Si observa signos de infección, como calor, pus, mal olor o enrojecimiento que se extiende, lo informa para que un médico valore al paciente.</p>
+            <p>La curación consiste en limpiar y proteger una herida para ayudar a que cierre bien y evitar infecciones.
+              La enfermera la realiza según la indicación médica, con materiales limpios o estériles, y revisa cómo
+              evoluciona la herida en cada visita.<br>Si observa signos de infección, como calor, pus, mal olor o
+              enrojecimiento que se extiende, lo informa para que un médico valore al paciente.</p>
           </li>
         </ol>
       </div>
+    </section>
 
-      <!-- Misión compartida (split con lista e imagen) -->
-      <div class="split split--mission">
+    <!-- ============================================================
+         PREGUNTAS FRECUENTES — sección independiente con el mismo
+         formato que EQUIPO (.split--wide): de lado a lado, texto ≈58%
+         alineado con el logo · imagen ≈42%, máscara horizontal de
+         entrada de derecha a izquierda (data-mask="x-rev") y parallax marcado (-35%).
+         ============================================================ -->
+    <section class="faq" id="preguntas">
+      <div class="split split--mission split--wide">
         <div class="split__text">
           <p class="eyebrow text-gold" data-reveal>RESOLVEMOS TUS DUDAS</p>
           <h3 class="split__title" data-reveal>Preguntas frecuentes<em> sobre enfermeras</em> a domicilio en Bogotá</h3>
@@ -342,32 +451,36 @@
             <li data-reveal>Hacer las paces con el pasado y mirar al futuro con esperanza</li>
           </ul>
         </div>
-        <figure class="split__img mask-img" data-mask="y">
-          <img class="ph" src="assets/img/mission.jpg" alt="" data-parallax="-20" />
+        <figure class="split__img mask-img" data-mask="x-rev">
+          <img class="ph" src="assets/img/preguntas-frecuentes-angeles-de-vida.jpg" alt="" data-parallax="-35" />
           <span class="split__img-gradient"></span>
         </figure>
       </div>
     </section>
-
     <!-- ============================================================
          PESTAÑAS AUTOMÁTICAS — imágenes que se funden y barra de
          progreso que avanza; al completarse pasa a la siguiente.
          ============================================================ -->
     <section class="care" data-care>
       <div class="care__media">
-        <div class="care__img is-active"><img class="ph" src="assets/img/care-1.jpg" alt="" /></div>
-        <div class="care__img"><img class="ph" src="assets/img/care-2.jpg" alt="" /></div>
-        <div class="care__img"><img class="ph" src="assets/img/care-3.jpg" alt="" /></div>
-        <div class="care__img"><img class="ph" src="assets/img/care-4.jpg" alt="" /></div>
+        <div class="care__img is-active"><img class="ph" src="assets/img/solicitar-servicio-de-angeles-de-vida.jpg"
+            alt="" /></div>
+        <div class="care__img"><img class="ph" src="assets/img/Cuéntanos-qué-necesita-el-paciente.jpg" alt="" /></div>
+        <div class="care__img"><img class="ph" src="assets/img/Define-los-horarios-y-el-lugar.jpg" alt="" /></div>
+        <div class="care__img"><img class="ph" src="assets/img/Confirma-y-asignamos-al-personal.jpg" alt="" /></div>
       </div>
       <div class="care__content">
         <div class="noise"></div>
         <p class="eyebrow text-gold">Cómo solicitar el servicio</p>
         <div class="care__tabs" role="tablist">
-          <button class="care__tab is-active" role="tab"><span>Flexible y basado en evidencia</span><i class="care__bar"><i></i></i></button>
-          <button class="care__tab" role="tab"><span>Sensible al trauma y a cada historia</span><i class="care__bar"><i></i></i></button>
-          <button class="care__tab" role="tab"><span>Cercano e inclusivo</span><i class="care__bar"><i></i></i></button>
-          <button class="care__tab" role="tab"><span>Basado en la dignidad y el respeto</span><i class="care__bar"><i></i></i></button>
+          <button class="care__tab is-active" role="tab"><span>Contáctanos</span><i
+              class="care__bar"><i></i></i></button>
+          <button class="care__tab" role="tab"><span>Cuéntanos qué necesita el paciente</span><i
+              class="care__bar"><i></i></i></button>
+          <button class="care__tab" role="tab"><span>Horarios y ubicación</span><i
+              class="care__bar"><i></i></i></button>
+          <button class="care__tab" role="tab"><span>Confirma y asignamos al personal</span><i
+              class="care__bar"><i></i></i></button>
         </div>
       </div>
     </section>
@@ -376,15 +489,17 @@
          POR QUÉ NOSOTROS — imagen grande, marca gigante y texto.
          ============================================================ -->
     <section class="why">
-      <div class="why__bg"><img class="ph" src="assets/img/why.jpg" alt="" data-parallax="-15" /></div>
+      <div class="why__bg"><img class="ph" src="assets/img/historias-de-familias.jpg" alt="" data-parallax="-15" />
+      </div>
       <div class="why__gradient"></div>
-      <p class="why__wordmark" aria-hidden="true">Historias <em>de</em> familias</p>
       <div class="container why__content">
         <div class="why__text">
           <h2 class="why__title" data-reveal>¿Por qué las familias <em>confían</em> en nosotros?</h2>
-          <p data-reveal>Cuidar a alguien en casa se construye con confianza. Estas son las palabras de familias que nos permitieron acompañarlas en uno de los momentos más importantes.</p>
+          <p data-reveal>Cuidar a alguien en casa se construye con confianza. Estas son las palabras de familias que nos
+            permitieron acompañarlas en uno de los momentos más importantes.</p>
         </div>
-        <p class="why__note" data-reveal>Atendemos de forma presencial y en línea. Consulta disponibilidad y modalidades en el formulario de contacto.</p>
+        <p class="why__note" data-reveal>Atendemos de forma presencial y en línea. Consulta disponibilidad y modalidades
+          en el formulario de contacto.</p>
       </div>
     </section>
   </main>
@@ -397,14 +512,19 @@
     <div class="cta__content">
       <p class="eyebrow text-gold">TU FAMILIA NO ESTÁ SOLA</p>
       <h2 class="cta__title" data-reveal>Tu familiar <em>merece cuidado </em> y tú descanso</h2>
-      <p class="cta__text" data-reveal>Cuéntanos qué necesita tu familiar y te ayudamos a organizar el cuidado en casa. Resolvemos tus dudas y pensemos juntos la mejor forma de empezar.</p>
+      <p class="cta__text" data-reveal>Cuéntanos qué necesita tu familiar y te ayudamos a organizar el cuidado en casa.
+        Resolvemos tus dudas y pensemos juntos la mejor forma de empezar.</p>
       <div data-reveal>
         <a href="mailto:hola@angelesdevida.example" class="cta-btn">
           <span class="cta-btn__text">Solicita tu servicio</span>
           <span class="cta-btn__arrow"><span class="cta-btn__circle"></span><span class="cta-btn__icons">
-            <svg class="cta-btn__icon cta-btn__icon--1" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg>
-            <svg class="cta-btn__icon cta-btn__icon--2" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg>
-          </span></span>
+              <svg class="cta-btn__icon cta-btn__icon--1" viewBox="0 0 24 24">
+                <path d="M7 17 17 7M8 7h9v9" />
+              </svg>
+              <svg class="cta-btn__icon cta-btn__icon--2" viewBox="0 0 24 24">
+                <path d="M7 17 17 7M8 7h9v9" />
+              </svg>
+            </span></span>
         </a>
       </div>
     </div>
@@ -424,7 +544,9 @@
 
   <!-- Botón volver arriba (aparece tras cierto scroll) -->
   <button class="to-top" data-to-top aria-label="Volver arriba">
-    <svg viewBox="0 0 24 24"><path d="m18 15-6-6-6 6"/></svg>
+    <svg viewBox="0 0 24 24">
+      <path d="m18 15-6-6-6 6" />
+    </svg>
   </button>
 
   <!-- Librerías: mismas que el original (GSAP 3.13 + ScrollTrigger + Lenis) -->
@@ -433,4 +555,5 @@
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
   <script src="main.js"></script>
 </body>
+
 </html>
