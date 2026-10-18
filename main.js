@@ -23,6 +23,22 @@ $$('img').forEach((img) => {
 $('[data-year]').textContent = new Date().getFullYear();
 
 /* -----------------------------------------------------------------
+   0b. AL RECARGAR, VOLVER ARRIBA
+   Por defecto el navegador restaura la posición de scroll al recargar
+   (o salta al ancla si la URL lleva #seccion). Lo desactivamos para que
+   la página empiece siempre en el hero, con su loader y animación de entrada.
+   - scrollRestoration = 'manual': el navegador deja de restaurar la posición.
+   - Se quita el #ancla de la URL (sin recargar) para que no salte a esa sección.
+   - scrollTo(0, 0) ahora y justo antes de salir de la página (refuerzo para
+     navegadores que guardan la posición en 'beforeunload').
+   Va ANTES de crear Lenis, para que Lenis arranque ya en la posición 0.
+   ----------------------------------------------------------------- */
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+window.scrollTo(0, 0);
+addEventListener('beforeunload', () => window.scrollTo(0, 0));
+
+/* -----------------------------------------------------------------
    1. SCROLL SUAVE (Lenis) sincronizado con ScrollTrigger
    Lenis interpola la posición (lerp 0.1) y emite 'scroll'; GSAP
    conduce el bucle de Lenis desde su ticker para que todo vaya
