@@ -68,8 +68,8 @@ h1, h2, h3, h4, p { margin: 0; }
 em { font-style: italic; }
 svg { stroke: currentColor; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
 
-.container { width: 100%; max-width: var(--container); margin: 0 auto; padding: 0 var(--gutter); }
 
+.container { width: 100%; max-width: var(--container); margin: 0 auto; padding: 0 var(--gutter);}
 /* Titulares: serif; la cursiva <em> es el acento tipográfico de la marca */
 h1, h2, h3, .serif { font-family: var(--font-serif); font-weight: 400; letter-spacing: -.02em; line-height: 1.08; }
 h1 em, h2 em, h3 em { font-weight: 400; }
@@ -92,11 +92,12 @@ h1 em, h2 em, h3 em { font-weight: 400; }
 .eyebrow--light { color: var(--gold-300); }
 
 /* Textura de grano: SVG feTurbulence en línea, muy baja opacidad */
-.noise {
+/*.noise {
+   
   position: absolute; inset: 0; pointer-events: none; z-index: 0;
   opacity: .08; mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
+}*/
 
 /* Imágenes: .ph las ajusta a su marco (object-fit: cover).
    main.js añade .is-missing cuando un archivo no carga y aquí se oculta la <img>
@@ -335,11 +336,15 @@ img.is-missing { visibility: hidden; }
 main > section, .cta, .footer { position: relative; z-index: 1; }
 
 /* ---------- 9. INTRO ---------- */
-.intro { background: var(--cream-50); padding: clamp(5rem, 10vw, 8rem) 0; overflow: hidden; }
+.intro { 
+  background: var(--cream-50); 
+  padding: clamp(5rem, 10vw, 8rem) 0; 
+  overflow: hidden;
+  background-image: url(assets/img/texture1.webp);
+  background-size: cover;
+  background-position: center; 
+}
 .intro .container { position: relative; z-index: 1; }
-.blob { position: absolute; width: 520px; height: 520px; border-radius: 50%; filter: blur(90px); opacity: .45; z-index: 0; }
-.blob--tl { top: -180px; left: -160px; background: var(--gold-300); }
-.blob--br { bottom: -200px; right: -160px; background: var(--plum-300); }
 .intro__title { font-size: var(--fs-h2); color: var(--plum-500); max-width: 18ch; margin-bottom: 4rem; }
 .intro__grid { display: grid; grid-template-columns: 1fr 1.2fr 1fr; grid-template-rows: auto auto; gap: 0; align-items: end; }
 .mask-img { position: relative; overflow: hidden; margin: 0; }
@@ -348,7 +353,7 @@ main > section, .cta, .footer { position: relative; z-index: 1; }
    Como no sobra imagen para moverla, main.js (6c) NO les aplica parallax: si lo
    hiciera aparecería un hueco vacío abajo. Para recuperar el parallax habría que
    volver a una foto más alta que el marco: alto ≥ 100 / (1 − 0.30) ≈ 143% → 145%. */
-.mask-img img { height: 100%; }
+.mask-img img { height: 145%; }
 /* Imagen izquierda: ocupa el 75% de su columna y su proporción es 344/670
    (≈ 1 : 1.95, alargada). A 1440px de pantalla mide ≈ 323×628px.
    Abarca las filas 1 y 2 de la grilla. */
@@ -411,14 +416,17 @@ main > section, .cta, .footer { position: relative; z-index: 1; }
   padding: 5rem max(var(--gutter), calc((100vw - var(--container)) / 2 + var(--gutter)));
   padding-right: 4rem;
   background: linear-gradient(160deg, #f4eef7 0%, var(--cream-50) 50%, #fbe9d3 100%);
+  background-image: url(assets/img/texture1.webp);
+  background-size: cover;
+  background-position: center;
   color: var(--ink-700);
 }
 .split__title { font-size: var(--fs-h3); color: var(--plum-700); margin-bottom: 2.5rem; max-width: 16ch; }
 /*.split__img { min-height: 100%; }*/
 .split__img-gradient { position: absolute; inset: 0;color: var(--cream-50); background: linear-gradient(90deg, rgba(43,21,48,.15), transparent 40%); }
 /* ---------- 11b. BLOQUE ANCHO TEXTO/IMAGEN (.split--wide) ----------
-   Modificador reutilizable. Lo usan las secciones independientes
-   EQUIPO (.team) y PREGUNTAS FRECUENTES (.faq).
+   Modificador reutilizable para bloques texto + imagen. Lo usa la sección
+   independiente EQUIPO (.team). (PREGUNTAS FRECUENTES ya no lo usa: no tiene imagen, ver 11c.)
    Alineación: el bloque va de lado a lado de la pantalla (fondo degradado e imagen
    tocan los bordes), pero el TEXTO arranca en el mismo punto que el logo del header
    y el resto del contenido (mismo --container y --gutter que .container).
@@ -432,7 +440,7 @@ main > section, .cta, .footer { position: relative; z-index: 1; }
      Para que no deje hueco abajo, la foto mide 160% de su marco
      (≥ 100 / (1 − 0.35) ≈ 154%). Solo afecta a los bloques .split--wide: la regla
      general .mask-img img { height: 100% } sigue igual para el resto. */
-.team, .faq { background: var(--cream-50); }
+.team { background: var(--cream-50); }
 .split--wide {
   grid-template-columns: 58fr 42fr;
   /* Al menos el 95% del alto de la ventana (y nunca menos de 560px en pantallas muy bajas).
@@ -450,6 +458,67 @@ main > section, .cta, .footer { position: relative; z-index: 1; }
 .split--wide .split__img img { position: absolute; top: 0; left: 0; width: 100%; height: 160%; }
 .split__body { display: grid; gap: 1rem; max-width: 52ch; }
 
+/* ---------- 11c. PREGUNTAS FRECUENTES (acordeón) ----------
+   Comportamiento tomado de la referencia (korawells.com/services, "FAQ"), con código propio:
+   - Tarjetas blancas separadas, esquinas suaves y sombra ligera al pasar el ratón.
+   - Toda la fila de la pregunta es clicable; al abrir, la pregunta toma un tinte suave.
+   - Icono "+" que gira 45° y se convierte en "×" al abrir.
+   - La respuesta se despliega animando su alto con grid-template-rows: 0fr → 1fr
+     (anima a la altura real del contenido sin calcularla en JS).
+   - Solo una abierta a la vez (main.js, bloque 9).
+   Cerrada, la respuesta además queda con visibility: hidden (tras la animación),
+   así su contenido no se alcanza con el teclado ni lo lee un lector de pantalla. */
+/* Sección sin imagen: el fondo degradado va de lado a lado de la pantalla
+   (mismo degradado que tenía el panel de texto) y el contenido queda centrado. */
+.faq {
+  background-image: url(assets/img/texture1.webp), linear-gradient(160deg, #f4eef7 0%, var(--cream-100) 50%, #fbe9d3 100%);
+  background-size: cover;
+  background-position: center;
+  padding: clamp(5rem, 9vw, 8rem) var(--gutter);
+}
+.faq__content { max-width: 50vw; margin: 0 auto; }   /* ancho de lectura del acordeón */
+.faq__inner { text-align: center; }                   /* centra etiqueta y título */
+.faq__inner .split__title { max-width: 20ch; margin-left: auto; margin-right: auto; }
+/* Sin max-width propio: el ancho del acordeón lo decide SOLO .faq__content (línea de arriba). */
+.faq-list { display: grid; gap: 1rem; margin: 0 auto; text-align: left; }
+.faq-item {
+  background: var(--white); border-radius: .5rem; overflow: hidden;
+  transition: box-shadow .3s ease;
+}
+.faq-item:hover { box-shadow: 0 6px 20px rgba(43,21,48,.08); }
+.faq-item__heading { margin: 0; font: inherit; }   /* el h4 solo aporta estructura */
+.faq-item__q {
+  width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem;
+  padding: 1.4rem 1.75rem; text-align: left;
+  font-family: var(--font-sans); font-size: var(--fs-body); line-height: 1.4; color: var(--plum-500);
+  transition: background-color .3s ease;
+}
+.faq-item__q:hover, .faq-item.is-open .faq-item__q { background: rgba(106,79,115,.04); }
+.faq-item__q:focus-visible { outline: 2px solid var(--plum-300); outline-offset: -2px; }
+.faq-item__icon { flex: none; width: 1.4rem; height: 1.4rem; transition: transform .35s cubic-bezier(.23,1,.32,1); }
+.faq-item__icon svg { width: 100%; height: 100%; stroke-width: 1.6; }
+.faq-item.is-open .faq-item__icon { transform: rotate(45deg); }   /* + → × */
+.faq-item__a {
+  display: grid; grid-template-rows: 0fr; visibility: hidden;
+  transition: grid-template-rows .35s cubic-bezier(.23,1,.32,1), visibility 0s linear .35s;
+}
+.faq-item.is-open .faq-item__a {
+  grid-template-rows: 1fr; visibility: visible;
+  transition: grid-template-rows .35s cubic-bezier(.23,1,.32,1), visibility 0s;
+}
+.faq-item__inner { overflow: hidden; min-height: 0; padding: 0 1.75rem; }
+/* El espacio inferior va como margen del último párrafo (dentro de la zona animada):
+   así se pliega junto con la respuesta y no hay salto al cerrar. */
+.faq-item__inner > :last-child { margin-bottom: 1.5rem; }
+.faq-item__inner > * + * { margin-top: .9rem; }
+.faq-item__inner p { color: var(--ink-700); }
+.faq-item__note { font-size: var(--fs-small); font-style: italic; color: var(--plum-500) !important; }
+@media (max-width: 640px) {
+  .faq-item__q { padding: 1.1rem 1.1rem; gap: 1rem; }
+  .faq-item__inner { padding: 0 1.1rem; }
+  .faq-item__inner > :last-child { margin-bottom: 1.25rem; }
+}
+
 .checklist { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; font-size: var(--fs-body);}
 .checklist li { position: relative; padding-left: 1.8rem; }
 .checklist li::before {
@@ -457,26 +526,79 @@ main > section, .cta, .footer { position: relative; z-index: 1; }
   border: 1px solid var(--gold-500); border-radius: 50% 50% 50% 0; transform: rotate(-45deg);
 }
 
+/* Fondo en 3 CAPAS apiladas (la primera de la lista queda ARRIBA):
+   1. textura (texture1.webp, con transparencia: deja ver lo de debajo)
+   2. mancha de luz radial a la izquierda
+   3. degradado vertical de base
+   Los degradados también son "imágenes de fondo": por eso una línea suelta
+   background-image: url(...) los borraba. Van todos en la misma lista, y
+   background-size / background-position llevan un valor por capa, en el mismo orden. */
 .cards-wrap { position: relative; overflow: hidden; padding: 6rem 0 7rem;
-  background: radial-gradient(ellipse at 15% 50%, #5a3f61 0%, transparent 60%), linear-gradient(180deg, var(--plum-700), var(--plum-800)); }
-.cards-wrap .container { position: relative; z-index: 1; }
-.cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
-/* Tarjeta: cara crema; al hover aparece la foto y la descripción completa */
-.card { position: relative; aspect-ratio: 5 / 6; overflow: hidden; background: var(--cream-50); color: var(--plum-900); outline: none; }
-.card__bg { position: absolute; inset: 0; opacity: 0; transform: scale(1.08); transition: opacity .6s, transform 1s var(--ease-out); }
-.card__bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(43,21,48,.35), rgba(23,6,25,.85)); }
-.card__full {
-  position: absolute; inset: 0; z-index: 2; padding: 2rem; display: flex; align-items: center;
-  font-size: var(--fs-small); color: var(--white);
-  opacity: 0; transform: translateY(20px); transition: opacity .5s .1s, transform .5s .1s var(--ease-out);
+  background-image:
+    radial-gradient(ellipse at 15% 50%, var(--plum-300) 0%, transparent 60%),
+    linear-gradient(180deg, var(--plum-700), var(--plum-800));
+  /*background-size: contain, auto, auto;
+  background-position: center, 0 0, 0 0;*/
+  background-repeat: no-repeat;
 }
-.card__front { position: absolute; inset: auto 0 0; z-index: 1; padding: 2rem; transition: opacity .4s, transform .5s var(--ease-out); }
-.card__icon { width: 34px; height: 34px; color: var(--gold-500); margin-bottom: 1.25rem; }
-.card__title { font-family: var(--font-sans); font-weight: 400; font-size: 1.25rem; margin: 0 0 .4rem; }
-.card__sub { font-size: var(--fs-small); color: var(--ink-700); }
-.card:hover .card__bg, .card:focus-visible .card__bg { opacity: 1; transform: scale(1); }
-.card:hover .card__full, .card:focus-visible .card__full { opacity: 1; transform: none; }
-.card:hover .card__front, .card:focus-visible .card__front { opacity: 0; transform: translateY(20px); }
+.cards-wrap .container { position: relative; z-index: 1;  }
+/* Tarjetas de servicios con foto (comportamiento tomado de korawells.com/services,
+   "Our areas of focus", con código propio):
+   - Cuadradas, 3 columnas; la foto ocupa toda la tarjeta.
+   - Degradado de transparente a ciruela en la parte baja para que el título se lea.
+   - Al pasar el ratón (o al enfocarla con teclado / tocarla en móvil):
+     · la foto se desenfoca y crece un poco,
+     · el título sube,
+     · debajo se despliega la descripción (alto 0fr → 1fr) y aparece con un fundido.
+   - En pantallas ≤1024px pasan a una sola columna (bloque RESPONSIVE). */
+.focus-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.focus-card {
+  position: relative; aspect-ratio: 1 / 1; overflow: hidden; cursor: pointer;
+  background: var(--plum-700);            /* se ve si la foto aún no ha cargado */
+  outline: none;
+}
+/* Colores de las tarjetas: SOLO variables azules del :root. Donde hace falta transparencia
+   se usa color-mix(... var(--plum-XXX) N%, transparent): mismo azul con opacidad N%. */
+.focus-card:focus-visible { box-shadow: 0 0 0 3px var(--plum-300); }
+.focus-card__img {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  transition: filter .5s ease, transform .6s var(--ease-out);
+}
+.focus-card__gradient {
+  position: absolute; inset: 0; pointer-events: none;
+  /* transparente arriba → azul oscuro (--plum-900) a media altura → azul de marca (--plum-700) abajo */
+  background: linear-gradient(185deg,
+    color-mix(in srgb, var(--plum-900) 0%, transparent) 10%,
+    color-mix(in srgb, var(--plum-900) 35%, transparent) 55%,
+    color-mix(in srgb, var(--plum-700) 95%, transparent) 100%);
+}
+.focus-card__overlay {
+  position: absolute; inset: 0; z-index: 1; padding: 2rem;
+  display: flex; flex-direction: column; color: var(--white);
+  /* Red de seguridad: "safe flex-end" pega el texto abajo, pero si no cabe lo alinea
+     arriba (el título nunca se corta) y la descripción se puede desplazar dentro. */
+  justify-content: safe flex-end;
+  overflow-y: auto; scrollbar-width: none;
+}
+.focus-card__overlay::-webkit-scrollbar { display: none; }
+.focus-card__title {
+  font-family: var(--font-sans); font-weight: 400; font-size: 1.5rem; line-height: 1.2;
+  letter-spacing: -.02em; color: var(--white); margin: 0;
+  transition: transform .5s var(--ease-out);
+}
+/* Descripción: plegada (fila 0fr) y transparente; al activar la tarjeta se despliega.
+   .focus-card__desc-in es el ÚNICO hijo de la fila: así 0fr → 1fr anima hasta su alto real. */
+.focus-card__desc {
+  display: grid; grid-template-rows: 0fr; opacity: 0;
+  font-size: var(--fs-small); line-height: 1.55; color: rgba(255,255,255,.9);
+  transition: grid-template-rows .6s var(--ease-out), opacity .5s ease, margin-top .5s ease;
+}
+.focus-card__desc-in { min-height: 0; overflow: hidden; display: grid; gap: .5rem; }
+.focus-card__sub { font-style: italic; color: var(--plum-200); }   /* azul claro, legible sobre el degradado */
+/* Estado activo: hover, foco con teclado o toque en móvil (tabindex="0" permite el foco) */
+.focus-card:is(:hover, :focus, :focus-within) .focus-card__img { filter: blur(8px); transform: scale(1.06); }
+.focus-card:is(:hover, :focus, :focus-within) .focus-card__title { transform: translateY(-.75rem); }
+.focus-card:is(:hover, :focus, :focus-within) .focus-card__desc { grid-template-rows: 1fr; opacity: 1; margin-top: .25rem; }
 
 /* ---------- 12. PROCESO ---------- */
 .process { background: linear-gradient(170deg, var(--cream-50) 0%, var(--cream-50) 30%, #f1def5 100%); padding-top: 7rem; }
@@ -582,6 +704,10 @@ main > section, .cta, .footer { position: relative; z-index: 1; }
   .header .cta-btn { font-size: .75rem; padding-left: calc(.8rem * var(--hs)); }
 }
 
+/* Tarjetas de servicios: 3 columnas solo en pantallas anchas. Por debajo de 1300px
+   cada tarjeta quedaría por debajo de ~390px y la descripción más larga no cabría. */
+@media (max-width: 1300px) { .focus-grid { grid-template-columns: repeat(2, 1fr); } }
+
 @media (max-width: 900px) {
   :root { --header-h: 96px; }   /* móvil: proporcional (→ ×0.7 = 67px al hacer scroll) */
   .hero__inner { grid-template-columns: 1fr; align-content: end; }
@@ -597,15 +723,30 @@ main > section, .cta, .footer { position: relative; z-index: 1; }
   .split__img, .care__media { min-height: 420px; }
   .split--mission .split__img { order: 0; }
   .split__text { padding: 4rem var(--gutter); }
-  .cards { grid-template-columns: 1fr; }
-  .card { aspect-ratio: 4 / 3; }
+  /* Tarjetas de servicios: 2 columnas en tablet (1 sola columna cuadrada sería altísima) */
+  .focus-grid { grid-template-columns: repeat(2, 1fr); }
+  .focus-card__overlay { padding: 1.5rem; }
+  /* Algo más altas que anchas (3:4): con menos ancho el texto ocupa más líneas y la
+     descripción más larga ("Curaciones") no cabría en un cuadrado. */
+  .focus-card { aspect-ratio: 3 / 4; }
   /* Proceso: línea a la izquierda y el número deja de ser sticky */
   .process__grid { grid-template-columns: 20px 1fr; gap: 0 1.5rem; }
   .process__sticky { position: relative; top: 0; grid-column: 1 / -1; margin-bottom: 3rem; }
   .process__steps { gap: 4rem; }
   .step__dot { left: calc(-1.5rem - 10px - 4px); }
   .why__content { flex-direction: column; align-items: flex-start; }
+  /* FAQ: en tablet y celular el acordeón usa todo el ancho (el 65vw de escritorio lo dejaría muy estrecho) */
+  .faq__content { max-width: 100%; }
 }
+
+/* Tarjetas de servicios en pantallas estrechas (va después del bloque de 900px para prevalecer):
+   - ≤760px: una sola columna; como la tarjeta es ancha, vuelve a ser cuadrada.
+   - ≤480px (celulares): algo más alta que ancha (3:4) para que quepa la descripción. */
+@media (max-width: 760px) {
+  .focus-grid { grid-template-columns: 1fr; }
+  .focus-card { aspect-ratio: 1 / 1; }
+}
+@media (max-width: 480px) { .focus-card { aspect-ratio: 3 / 4; } }
 
 /* Intro en celulares. Va DESPUÉS del bloque de 900px a propósito: en un celular
    se cumplen ambos y, a igual especificidad, gana la regla que va más abajo.
@@ -618,7 +759,11 @@ main > section, .cta, .footer { position: relative; z-index: 1; }
   .mask-img--left  { grid-column: 1; grid-row: 1; width: 100%; aspect-ratio: 4 / 5; }
   .mask-img--right { grid-column: 1; grid-row: 2; width: 100%; margin: .75rem 0 0; }
   .intro__body     { grid-row: 3; margin-top: 1.5rem; padding-top: 0; }
+  /* Tarjetas de servicios: una sola columna en celular */
+  .focus-grid { grid-template-columns: 1fr; }
 }
+/* Celulares muy estrechos: tarjetas un poco más altas (2:3) para el texto más largo */
+@media (max-width: 380px) { .focus-card { aspect-ratio: 2 / 3; } }
 
 /* Accesibilidad: sin movimiento si el usuario lo pide */
 @media (prefers-reduced-motion: reduce) {
