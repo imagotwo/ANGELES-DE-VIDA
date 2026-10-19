@@ -234,7 +234,7 @@ if (!reduceMotion) {
   });
 
   // 6d. Tarjetas de servicios en cascada
-  gsap.from('[data-cards] .card', {
+  gsap.from('[data-cards] .focus-card', {
     y: 60, autoAlpha: 0, duration: 0.8, stagger: 0.2, ease: 'power2.out',
     scrollTrigger: { trigger: '[data-cards]', start: 'top 80%', once: true },
   });
@@ -307,6 +307,38 @@ setStep(0);
   }, { threshold: 0.3 }).observe(root);
 
   select(0);
+})();
+
+/* -----------------------------------------------------------------
+   9. PREGUNTAS FRECUENTES (acordeón)
+   - Clic en una pregunta: la abre y cierra la que estuviera abierta
+     (solo una a la vez); clic en la abierta: la cierra.
+   - La animación de alto y el giro "+ → ×" están en CSS (.faq-item.is-open).
+   - aria-expanded informa a los lectores de pantalla del estado.
+   - Se quita el atributo hidden (solo sirve si el JS no carga) porque
+     impediría animar; desde aquí lo oculta el CSS con visibility.
+   - Al terminar de abrir/cerrar, la página cambia de alto: se avisa a
+     ScrollTrigger para que recalcule las animaciones de más abajo.
+   ----------------------------------------------------------------- */
+(function faqAccordion() {
+  const root = $('[data-faq]');
+  if (!root) return;
+  const items = $$('.faq-item', root);
+
+  function setOpen(item, open) {
+    item.classList.toggle('is-open', open);
+    $('.faq-item__q', item).setAttribute('aria-expanded', String(open));
+  }
+
+  items.forEach((item) => {
+    $('.faq-item__a', item).removeAttribute('hidden');
+    $('.faq-item__q', item).addEventListener('click', () => {
+      const willOpen = !item.classList.contains('is-open');
+      items.forEach((other) => other !== item && setOpen(other, false));
+      setOpen(item, willOpen);
+      setTimeout(() => ScrollTrigger.refresh(), 400); // tras la transición (.35s)
+    });
+  });
 })();
 
 /* Recalcular posiciones cuando terminan de cargar fuentes e imágenes */
