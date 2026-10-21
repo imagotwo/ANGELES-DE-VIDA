@@ -54,10 +54,15 @@ if (!reduceMotion) {
 const scrollToTarget = (target) => (lenis ? lenis.scrollTo(target, { offset: 0 }) : $(target)?.scrollIntoView({ behavior: 'smooth' }));
 
 // Anclas internas pasan por Lenis para mantener la suavidad
-$$('a[href^="#"]').forEach((a) => {
+// Excepciones:
+// - botones "Solicita tu servicio" ([data-open-solicitud]): abren el modal (bloque 10)
+// - enlaces de WhatsApp ([data-wa-link]): empiezan con href="#" pero main.js les pone
+//   la dirección de WhatsApp al enviar; no son anclas de la página.
+$$('a[href^="#"]:not([data-open-solicitud]):not([data-wa-link])').forEach((a) => {
   a.addEventListener('click', (e) => {
     const id = a.getAttribute('href');
-    if (id.length < 2 || !$(id)) return;
+    // Solo actúa si en el momento del clic sigue siendo un ancla "#seccion" que existe
+    if (!id.startsWith('#') || id.length < 2 || !$(id)) return;
     e.preventDefault();
     closeMenu();
     scrollToTarget(id === '#inicio' ? 0 : id);
@@ -338,6 +343,282 @@ setStep(0);
       setOpen(item, willOpen);
       setTimeout(() => ScrollTrigger.refresh(), 400); // tras la transición (.35s)
     });
+  });
+})();
+
+/* -----------------------------------------------------------------
+   10. MODAL "SOLICITA TU SERVICIO" + VALIDACIÓN DEL FORMULARIO
+   a) Abrir: botones con [data-open-solicitud]. Se pausa el scroll de la
+      página y el foco va al primer campo.
+   b) Cerrar: botón ×, tecla Esc o clic fuera de la ventana. Se reproduce
+      la animación de salida (.is-closing) y el foco vuelve al botón que
+      lo abrió. Los datos escritos se conservan por si se cerró sin querer.
+   c) Campos condicionales: según "Casa"/"Hospital" se muestran Dirección
+      y Nombre del hospital (data-si-lugar). Ocultos = desactivados: no se
+      validan ni se envían.
+   d) Rango de fechas: inicio y finalización, ninguna anterior a hoy; la final
+      se iguala al inicio si queda vacía o antes (servicio de 1 día).
+   e) Validación propia en español: al salir de cada campo, mientras se
+      corrige un campo con error, y al enviar (lleva al primer error).
+   f) Envío: manda los datos a enviar.php (correo a Gmail) sin recargar.
+      · Éxito → el formulario se sustituye por la confirmación, con botón
+        para enviar también la solicitud por WhatsApp (mensaje ya redactado).
+      · Error o sin servidor → aviso + enlace de WhatsApp como alternativa.
+      Al cerrar tras un envío correcto, el formulario se vacía.
+   ----------------------------------------------------------------- */
+(function solicitudModal() {
+  const modal = $('#solicitud');
+  const form = $('#form-solicitud');
+  if (!modal || !form) return;
+  const status = $('.form__status', form);
+  let lastTrigger = null;
+
+  // ---------- a) Abrir ----------
+  function openModal(trigger) {
+    lastTrigger = trigger || null;
+    closeMenu();                                   // por si se abre desde el menú
+    modal.showModal();
+    document.body.classList.add('modal-open');
+    lenis?.stop();
+    $('.modal__box', modal).scrollTop = 0;
+    setTimeout(() => $('#f-nombre').focus({ preventScroll: true }), 60);
+  }
+  $$('[data-open-solicitud]').forEach((btn) => {
+    btn.addEventListener('click', (e) => { e.preventDefault(); openModal(btn); });
+  });
+
+  // ---------- b) Cerrar ----------
+  function closeModal() {
+    if (!modal.open || modal.classList.contains('is-closing')) return;
+    const finish = () => {
+      modal.classList.remove('is-closing');
+      modal.close();
+      document.body.classList.remove('modal-open');
+      lenis?.start();
+      lastTrigger?.focus({ preventScroll: true });
+      if (enviado) resetForm();                    // tras un envío correcto, la próxima vez empieza vacío
+    };
+    if (reduceMotion) return finish();
+    modal.classList.add('is-closing');
+    setTimeout(finish, 300);                       // duración de la animación modal-out
+  }
+  $$('[data-modal-close]', modal).forEach((b) => b.addEventListener('click', closeModal));
+  // Esc: el navegador lanza 'cancel'; lo interceptamos para animar el cierre
+  modal.addEventListener('cancel', (e) => { e.preventDefault(); closeModal(); });
+  // Clic fuera de la ventana: el clic llega al propio <dialog> (su fondo), no a la caja
+  modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+
+  // ---------- c) Campos condicionales según el lugar ----------
+  const lugar = $('[data-lugar]', form);
+  function updateLugar() {
+    $$('[data-si-lugar]', form).forEach((wrap) => {
+      const show = wrap.dataset.siLugar.split(' ').includes(lugar.value);
+      wrap.hidden = !show;
+      $$('input, select, textarea', wrap).forEach((el) => {
+        el.disabled = !show;
+        if (!show) clearError(el);
+      });
+    });
+  }
+  lugar.addEventListener('change', updateLugar);
+
+  // ---------- d) Rango de fechas (inicio → finalización) ----------
+  // - Ninguna puede ser anterior a hoy (fecha local, formato AAAA-MM-DD).
+  // - Al elegir el inicio, si la final está vacía o queda antes, se iguala al inicio
+  //   (servicio de 1 día); su mínimo pasa a ser el inicio.
+  // - Debajo se muestra un resumen: "Servicio de 1 día" / "Servicio de N días (del … al …)".
+  const fechaIni = $('[data-fecha-inicio]', form);
+  const fechaFin = $('[data-fecha-fin]', form);
+  const resumen = $('[data-fecha-resumen]', form);
+  const hoy = new Date();
+  const hoyISO = `${hoy.getFullYear()}-${String(hoy.getMonth() + 1).padStart(2, '0')}-${String(hoy.getDate()).padStart(2, '0')}`;
+  fechaIni.min = hoyISO;
+  fechaFin.min = hoyISO;
+  // AAAA-MM-DD → DD/MM/AAAA
+  const fechaLegible = (v) => v.split('-').reverse().join('/');
+  // Días entre dos fechas, ambas incluidas (cálculo en UTC para evitar saltos de horario)
+  const diasServicio = (a, b) => Math.round((Date.parse(b + 'T00:00Z') - Date.parse(a + 'T00:00Z')) / 86400000) + 1;
+  function textoFechas() {
+    const a = fechaIni.value, b = fechaFin.value;
+    if (!a || !b || b < a) return '';
+    const n = diasServicio(a, b);
+    return n === 1 ? `${fechaLegible(a)} (1 día)` : `del ${fechaLegible(a)} al ${fechaLegible(b)} (${n} días)`;
+  }
+  function updateFechas() {
+    fechaFin.min = fechaIni.value || hoyISO;
+    if (fechaIni.value && (!fechaFin.value || fechaFin.value < fechaIni.value)) {
+      fechaFin.value = fechaIni.value;
+      if (fechaFin.getAttribute('aria-invalid')) validate(fechaFin);
+    }
+    const t = textoFechas();
+    resumen.textContent = t ? `Servicio ${t}.` : '';
+  }
+  fechaIni.addEventListener('change', updateFechas);
+  fechaFin.addEventListener('change', updateFechas);
+
+  // ---------- e) Validación ----------
+  // Mensaje de error en español para cada campo (vacío = sin error)
+  function errorMessage(el) {
+    if (el.disabled) return '';
+    const v = el.type === 'checkbox' ? el.checked : el.value.trim();
+    if (el.required && !v) {
+      if (el.type === 'checkbox') return 'Debes autorizar el tratamiento de datos para enviar la solicitud.';
+      if (el.tagName === 'SELECT') return 'Selecciona una opción.';
+      return 'Este campo es obligatorio.';
+    }
+    if (el.type === 'email' && !el.validity.valid) return 'Escribe un correo válido, por ejemplo nombre@correo.com.';
+    if (el.type === 'tel' && (el.value.replace(/\D/g, '').length < 7 || !el.validity.valid))
+      return 'Escribe un teléfono válido (al menos 7 números).';
+    if (el.type === 'date' && el.value && el.value < el.min)
+      return el === fechaFin && fechaIni.value ? 'La fecha de finalización no puede ser anterior a la de inicio.' : 'La fecha no puede ser anterior a hoy.';
+    if (el.type === 'number' && (!el.validity.valid))
+      return `Escribe una edad entre ${el.min} y ${el.max}.`;
+    return '';
+  }
+  // El contenedor donde se marca el error: .form__field o .form__check
+  const fieldBox = (el) => el.closest('.form__field, .form__check');
+
+  function showError(el, msg) {
+    const box = fieldBox(el);
+    let p = box.querySelector('.form__error');
+    if (!p) {
+      p = document.createElement('p');
+      p.className = 'form__error';
+      p.id = `${el.id}-error`;
+      box.appendChild(p);
+    }
+    p.textContent = msg;
+    box.classList.add('is-invalid');
+    el.setAttribute('aria-invalid', 'true');
+    el.setAttribute('aria-describedby', p.id);       // el lector de pantalla lee el error junto al campo
+  }
+  function clearError(el) {
+    const box = fieldBox(el);
+    box?.querySelector('.form__error')?.remove();
+    box?.classList.remove('is-invalid');
+    el.removeAttribute('aria-invalid');
+    el.removeAttribute('aria-describedby');
+  }
+  function validate(el) {
+    const msg = errorMessage(el);
+    msg ? showError(el, msg) : clearError(el);
+    return !msg;
+  }
+
+  const fields = () => $$('input, select, textarea', form).filter((el) => el.name && el.name !== 'web');
+  fields().forEach((el) => {
+    el.addEventListener('blur', () => { if (el.value || el.type === 'checkbox') validate(el); });
+    // Mientras se corrige un campo con error, el mensaje desaparece en cuanto queda bien
+    el.addEventListener(el.type === 'checkbox' || el.tagName === 'SELECT' ? 'change' : 'input', () => {
+      if (el.getAttribute('aria-invalid')) validate(el);
+    });
+  });
+
+  // ---------- f) Envío: correo (enviar.php) + WhatsApp ----------
+  const submitBtn = $('.form__submit', form);
+  const submitText = $('.cta-btn__text', submitBtn);
+  const done = $('[data-form-done]', modal);
+  const waAlt = $('.form__wa-alt', form);
+  let enviado = false;
+
+  // Texto visible de un <select> (p. ej. "Hospital" en vez de "hospital")
+  const opcion = (id) => { const s = $(id); return s.options[s.selectedIndex]?.text || ''; };
+
+  // Mensaje de WhatsApp con todos los datos, ya redactado
+  function whatsappUrl() {
+    const v = (id) => $(id).value.trim();
+    const lineas = [
+      '¡Hola, Ángeles de Vida! Quiero solicitar un servicio:',
+      '',
+      `*Solicitante:* ${v('#f-nombre')}`,
+      `*Teléfono:* ${v('#f-telefono')}`,
+      `*Correo:* ${v('#f-correo')}`,
+      '',
+      `*Servicio:* ${opcion('#f-servicio')}`,
+      `*Modalidad:* ${opcion('#f-modalidad')}`,
+      `*Fechas:* ${textoFechas()}`,
+      `*Lugar:* ${opcion('#f-lugar')}`,
+      `*Dirección:* ${v('#f-direccion')}`,
+      ...($('#f-lugar').value === 'hospital' ? [`*Hospital / clínica:* ${v('#f-hospital')}`] : []),
+      '',
+      `*Paciente:* ${v('#f-paciente')}, ${v('#f-edad')} años`,
+      `*Diagnóstico(s):* ${v('#f-diagnostico')}`,
+      `*Condición:* ${v('#f-condicion')}`,
+    ];
+    return `https://wa.me/${form.dataset.whatsapp}?text=${encodeURIComponent(lineas.join('\n'))}`;
+  }
+
+  function setStatus(msg, tipo = '') {
+    status.className = 'form__status' + (tipo ? ` is-${tipo}` : '');
+    status.textContent = msg;
+  }
+
+  function resetForm() {
+    form.reset();
+    fields().forEach(clearError);
+    updateLugar();                                // vuelve a ocultar dirección / hospital
+    updateFechas();                               // mínimo de la fecha final y resumen en blanco
+    setStatus('');
+    waAlt.hidden = true;
+    done.hidden = true;
+    form.hidden = false;
+    $('.modal__header', modal).hidden = false;
+    enviado = false;
+  }
+
+  // Al pulsar "Enviar por WhatsApp" (en la confirmación o el enlace alternativo si falló el correo):
+  // el enlace solo abre WhatsApp con el mensaje redactado; el modal sigue abierto y con los datos.
+  // Se marca la solicitud como enviada para que, CUANDO LA PERSONA CIERRE el modal, el formulario
+  // se vacíe (closeModal → resetForm). La página no puede saber si se pulsa "Enviar" dentro de
+  // WhatsApp (es otra aplicación): se toma el clic en el botón como "solicitud enviada".
+  $$('[data-wa-link]', modal).forEach((a) => {
+    a.addEventListener('click', () => { enviado = true; });
+  });
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const invalid = fields().filter((el) => !validate(el));
+    if (invalid.length) {
+      setStatus(`Revisa ${invalid.length === 1 ? 'el campo marcado' : `los ${invalid.length} campos marcados`} en rojo.`, 'error');
+      invalid[0].focus();                               // lleva al primer error (y hace scroll hasta él)
+      return;
+    }
+
+    // El enlace de WhatsApp se prepara ya: sirve tanto si el correo sale bien como si falla
+    const wa = whatsappUrl();
+    $$('[data-wa-link]', modal).forEach((a) => { a.href = wa; });
+
+    submitBtn.disabled = true;
+    submitText.textContent = 'Enviando…';
+    setStatus('Enviando tu solicitud…');
+    waAlt.hidden = true;
+
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),                   // incluye el campo trampa "web" (antispam)
+        headers: { Accept: 'application/json' },
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data.ok) throw new Error(data.error || `HTTP ${res.status}`);
+
+      // Éxito: se sustituye el formulario por la confirmación
+      enviado = true;
+      form.hidden = true;
+      $('.modal__header', modal).hidden = true;
+      done.hidden = false;
+      $('.modal__box', modal).scrollTop = 0;
+      done.focus();
+    } catch (err) {
+      // Sin servidor (p. ej. abriendo el archivo en el PC), sin conexión o error al enviar:
+      // se avisa y se ofrece WhatsApp para que la solicitud no se pierda.
+      console.warn('Envío del formulario:', err.message);
+      setStatus('No pudimos enviar la solicitud por correo. Inténtalo de nuevo o envíanosla por WhatsApp.', 'error');
+      waAlt.hidden = false;
+    } finally {
+      submitBtn.disabled = false;
+      submitText.textContent = 'Enviar solicitud';
+    }
   });
 })();
 

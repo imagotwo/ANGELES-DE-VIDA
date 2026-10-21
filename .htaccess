@@ -1,0 +1,18 @@
+# =================================================================
+# ÁNGELES DE VIDA — .htaccess (Hostinger lo respeta)
+# Impide abrir desde el navegador los archivos que solo usa el servidor.
+# =================================================================
+
+# config.php (contiene la contraseña del correo) y su plantilla
+<FilesMatch "^config(\.example)?\.php$">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+  </IfModule>
+</FilesMatch>
+
+# Ocultar el listado de carpetas (p. ej. /assets/img/)
+Options -Indexes
