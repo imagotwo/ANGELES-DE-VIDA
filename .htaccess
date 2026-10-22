@@ -3,8 +3,8 @@
 # Impide abrir desde el navegador los archivos que solo usa el servidor.
 # =================================================================
 
-# config.php (contiene la contraseña del correo) y su plantilla
-<FilesMatch "^config(\.example)?\.php$">
+# config.php (contiene la contraseña del correo), su plantilla y .user.ini (configuración de PHP)
+<FilesMatch "^(config(\.example)?\.php|\.user\.ini)$">
   <IfModule mod_authz_core.c>
     Require all denied
   </IfModule>

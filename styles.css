@@ -848,6 +848,95 @@ main > section, .cta, .footer { position: relative; z-index: 1; }
   .form__actions .form__submit { width: 100%; }   /* a todo el ancho; el texto sigue centrado */
 }
 
+/* ---------- 15c. PÁGINA "TRABAJA CON NOSOTROS" (trabaja-con-nosotros.html) ----------
+   Reutiliza los estilos del formulario (.form, .form__field, .form__check, .form-done…)
+   del modal "Solicita tu servicio". Aquí solo va lo propio de la página:
+   - .apply: sección con el mismo degradado de fondo que "Preguntas frecuentes".
+     El relleno superior deja sitio al header fijo (que en esta página es siempre
+     el compacto blanco: alto = --header-h × 0.7).
+   - .apply__card: caja blanca del formulario (mismo aspecto que la ventana del modal).
+   - .form__file: selector de PDF propio; el <input type="file"> real queda invisible
+     pero accesible (teclado y lectores de pantalla), y su <label> hace de botón. */
+/* Header con fondo claro debajo (data-header-dark en el <header>):
+   mismo comportamiento que en index.html (transparente y grande arriba → blanco y
+   compacto con scroll), pero mientras está transparente ya usa los colores de su
+   versión blanca: logo de color, textos y líneas en azul, borde inferior azul suave.
+   Con scroll (.is-scrolled) se aplican las reglas normales del header blanco. */
+.header[data-header-dark]:not(.is-scrolled) {
+  color: var(--plum-500);
+  border-bottom-color: color-mix(in srgb, var(--plum-500) 15%, transparent);
+}
+.header[data-header-dark]:not(.is-scrolled) .header__logo-mark--light { opacity: 0; }
+.header[data-header-dark]:not(.is-scrolled) .header__logo-mark--dark  { opacity: 1; }
+
+/* Fondo de la página: un solo degradado claro para la cabecera y el formulario
+   (si cada sección tuviera el suyo, se vería un corte entre ambas). */
+.page-apply main { background: linear-gradient(160deg, #f4eef7 0%, var(--cream-50) 50%, #fbe9d3 100%); }
+
+/* Cabecera de la página (sin foto): título y textos en azul sobre el fondo claro.
+   El relleno superior deja sitio al header grande (--header-h). */
+.apply-hero {
+  position: relative;
+  padding: calc(var(--header-h) + clamp(2rem, 5vw, 4rem)) var(--gutter) clamp(2rem, 4vw, 3rem);
+}
+.apply-hero__content { position: relative; z-index: 1; max-width: 760px; margin: 0 auto; }
+.apply__intro { text-align: center; }
+.apply__title { font-size: var(--fs-h2); color: var(--plum-700); max-width: 18ch; margin: 0 auto 1.25rem; }
+.apply__lead { max-width: 60ch; margin: 0 auto; }
+
+.apply {
+  position: relative;
+  padding: 0 var(--gutter) clamp(4rem, 8vw, 7rem);
+}
+.apply__content { position: relative; z-index: 1; max-width: 760px; margin: 0 auto; }
+.apply__card {
+  background: var(--cream-50); border-radius: 1rem;
+  padding: clamp(1.75rem, 4vw, 3rem);
+  box-shadow: 0 20px 60px color-mix(in srgb, var(--plum-950) 12%, transparent);
+}
+/* Tipo de documento algo más ancho que el número */
+.form__row--doc { grid-template-columns: 1.2fr 1fr; }
+
+/* Etiqueta escrita como <span> (la del archivo): mismo aspecto que los <label> */
+.form__label { font-size: var(--fs-small); font-weight: 500; color: var(--plum-700); }
+
+/* Selector de archivo PDF */
+/* Input real: invisible pero presente (recibe el foco y el archivo).
+   Selector ".form input.form__file-input" para ganar a la regla general
+   ".form input:not([type=checkbox]) { width: 100%; padding… }", que si no le
+   devolvía el ancho completo y lo hacía sobresalir 2px (scroll horizontal en celular). */
+.form__field:has(.form__file-input) { position: relative; }
+.form input.form__file-input {
+  position: absolute; left: 0; top: 0;
+  width: 1px; height: 1px; padding: 0; border: 0; margin: 0;
+  opacity: 0; overflow: hidden; pointer-events: none;
+}
+.form__file {
+  display: grid; grid-template-columns: auto 1fr; grid-template-rows: auto auto; column-gap: 1rem; align-items: center;
+  padding: 1.1rem 1.25rem; border-radius: .6rem; cursor: pointer;
+  background: var(--white);
+  border: 1.5px dashed color-mix(in srgb, var(--plum-500) 35%, transparent);
+  transition: border-color .2s, background-color .2s;
+}
+.form__file svg { grid-row: 1 / span 2; width: 28px; height: 28px; color: var(--plum-500); stroke-width: 1.6; }
+.form__file-cta { font-weight: 500; color: var(--plum-700); }
+.form__file-name { font-size: var(--fs-small); color: color-mix(in srgb, var(--ink-700) 65%, transparent); overflow-wrap: anywhere; }
+.form__file-name.has-file { color: var(--plum-500); font-weight: 500; }
+.form__file:hover { border-color: var(--plum-500); background: color-mix(in srgb, var(--plum-300) 6%, var(--white)); }
+/* Foco con teclado sobre el input invisible → se marca la zona visible */
+.form__field:has(.form__file-input:focus-visible) .form__file {
+  border-color: var(--plum-500); box-shadow: 0 0 0 3px color-mix(in srgb, var(--plum-300) 30%, transparent);
+}
+.form__field.is-invalid .form__file { border-color: #c0392b; }
+
+/* En esta página el botón de la confirmación es un enlace ("Volver al inicio") */
+a.form-done__close { display: inline-block; }
+
+@media (max-width: 640px) {
+  .apply__card { padding: 1.5rem 1.1rem; border-radius: .75rem; }
+  .form__row--doc { grid-template-columns: 1fr; }
+}
+
 /* ---------- 16. RESPONSIVE ---------- */
 /* Panel del menú: 50% → 75% en tablet → 100% en móvil (si no, quedaría demasiado estrecho) */
 @media (max-width: 1100px) { .menu__panel { width: 75vw; } }

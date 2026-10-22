@@ -21,8 +21,12 @@ return [
     // Nombre que verás como remitente
     'from_name'   => 'Ángeles de Vida · Web',
 
-    // Correo donde quieres RECIBIR las solicitudes (tu Gmail)
+    // Correo donde quieres RECIBIR las solicitudes de servicio (enviar.php)
     'to_email'    => 'tu-correo@gmail.com',
+
+    // Correo donde quieres RECIBIR las postulaciones con hoja de vida (aplicar.php,
+    // página "Trabaja con nosotros"). Puede ser distinto del anterior.
+    'to_email_empleo' => 'seleccion@tu-dominio.com',
 
     // true  = no envía correo: solo comprueba los datos y responde "ok" (para probar).
     // false = envía de verdad. Cámbialo a false cuando todo esté configurado.
