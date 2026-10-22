@@ -57,7 +57,7 @@
 
         <!-- Botón CTA reutilizable: la flecha sale por arriba-derecha y
              una copia entra desde abajo-izquierda; el círculo se expande. -->
-        <a href="#contacto" class="cta-btn">
+        <a href="#contacto" class="cta-btn" data-open-solicitud>
           <span class="cta-btn__text">Solicita tu servicio</span>
           <span class="cta-btn__arrow">
             <span class="cta-btn__circle"></span>
@@ -117,7 +117,7 @@
     <div class="hero-wrap" id="inicio">
       <section class="hero" data-hero>
         <div class="hero__bg">
-          <img class="hero__img" src="assets/img/atención-domiciliaria-angeles-de-vida.jpg" alt=""
+          <img class="hero__img" src="assets/img/atencion-domiciliaria-angeles-de-vida.jpg" alt=""
             fetchpriority="high" />
           <div class="hero__gradient"></div>
           <!-- Capa de textura: aparece al hacer scroll junto con la atenuación de la imagen -->
@@ -180,14 +180,13 @@
       </div>
     </section>
     
-
     <!-- ============================================================
          PROGRAMA DESTACADO — imagen de fondo con degradado y
          tarjeta clara con lista de "píldoras".
          ============================================================ -->
     <section class="feature" id="programa">
       <div class="feature__bg">
-        <img class="ph" src="assets/img/enfermería-en-casa-24-horas.jpg" alt="" data-parallax="-12" />
+        <img class="ph" src="assets/img/enfermeria-en-casa-24-horas.jpg" alt="" data-parallax="-12" />
         <div class="feature__gradient"></div>
       </div>
       <div class="container feature__hero">
@@ -195,7 +194,7 @@
         <p class="feature__text" data-reveal>Cuando alguien que amas necesita cuidados, toda la familia lo siente. Te
           acompañamos con enfermería en casa, las 24 horas. Atención a lo que cada persona necesita.</p>
         <div data-reveal>
-          <a href="#contacto" class="cta-btn cta-btn--glow">
+          <a href="#contacto" class="cta-btn cta-btn--glow" data-open-solicitud>
             <span class="cta-btn__text">Solicita tu servicio</span>
             <span class="cta-btn__arrow"><span class="cta-btn__circle"></span><span class="cta-btn__icons">
                 <svg class="cta-btn__icon cta-btn__icon--1" viewBox="0 0 24 24">
@@ -230,7 +229,7 @@
           </div>
         </div>
         <figure class="split__img mask-img" data-mask="x-rev">
-          <img class="ph" src="assets/img/services-therapy-image.webp" alt="" data-parallax="-35" />
+          <img class="ph" src="assets/img/nuestro-equipo-angeles-de-vida.jpg" alt="" data-parallax="-35" />
           <span class="split__img-gradient"></span>
         </figure>
       </div>
@@ -273,7 +272,7 @@
               </div>
             </article>
             <article class="focus-card" tabindex="0">
-              <img class="focus-card__img" src="assets/img/acompañamiento-a-citas-medicas.jpg" alt="" />
+              <img class="focus-card__img" src="assets/img/acompanamiento-a-citas-medicas.jpg" alt="" />
               <span class="focus-card__gradient" aria-hidden="true"></span>
               <div class="focus-card__overlay">
                 <h3 class="focus-card__title">Acompañamiento a citas médicas</h3>
@@ -286,7 +285,7 @@
               </div>
             </article>
             <article class="focus-card" tabindex="0">
-              <img class="focus-card__img" src="assets/img/acompañamiento-hospitalario-angeles-de-vida.jpg" alt="" />
+              <img class="focus-card__img" src="assets/img/acompanamiento-hospitalario-angeles-de-vida.jpg" alt="" />
               <span class="focus-card__gradient" aria-hidden="true"></span>
               <div class="focus-card__overlay">
                 <h3 class="focus-card__title">Acompañamiento hospitalario</h3>
@@ -559,7 +558,7 @@
       <p class="cta__text" data-reveal>Cuéntanos qué necesita tu familiar y te ayudamos a organizar el cuidado en casa.
         Resolvemos tus dudas y pensemos juntos la mejor forma de empezar.</p>
       <div data-reveal>
-        <a href="mailto:hola@angelesdevida.example" class="cta-btn">
+        <a href="#contacto" class="cta-btn" data-open-solicitud>
           <span class="cta-btn__text">Solicita tu servicio</span>
           <span class="cta-btn__arrow"><span class="cta-btn__circle"></span><span class="cta-btn__icons">
               <svg class="cta-btn__icon cta-btn__icon--1" viewBox="0 0 24 24">
@@ -581,10 +580,194 @@
         <span>© <span data-year>2026</span> · Todos los derechos reservados</span>
       </div>
       <nav class="footer__links">
-        <a href="#">Privacidad</a><a href="#">Términos</a><a href="#">Aviso legal</a><a href="#">Mapa del sitio</a>
+        <a href="#">Privacidad</a><a href="#">Términos</a><a href="#">Aviso legal</a><a href="trabaja-con-nosotros.html">Trabaja con nosotros</a>
       </nav>
     </div>
   </footer>
+
+  <!-- ============================================================
+       MODAL "SOLICITA TU SERVICIO"
+       <dialog> nativo: al abrirlo con showModal() (main.js, paso 4) el
+       navegador bloquea el resto de la página, mantiene el foco dentro,
+       se cierra con Esc y pinta un fondo oscurecido (::backdrop).
+       El formulario se enviará a enviar.php (servidor de Hostinger, paso 5);
+       data-whatsapp es el número al que se ofrecerá enviar la solicitud.
+       ============================================================ -->
+  <dialog class="modal" id="solicitud" aria-labelledby="solicitud-titulo">
+    <!-- Botón cerrar FUERA de .modal__box (que es la que hace scroll): así queda fijo
+         en la esquina y siempre visible, aunque se baje por el formulario. -->
+    <button class="modal__close" type="button" data-modal-close aria-label="Cerrar formulario">
+      <svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12" /></svg>
+    </button>
+    <div class="modal__box" data-lenis-prevent>  <!-- data-lenis-prevent: Lenis no bloquea la rueda aquí dentro -->
+
+      <header class="modal__header">
+        <h2 class="modal__title" id="solicitud-titulo">Solicita tu servicio de <em>enfermería</em> </h2>
+        <p class="modal__intro">Completa el formulario y te contactaremos para confirmar el servicio.</p>
+        <p class="modal__intro_2"><em>* campos obligatorios</em></p>
+      </header>
+
+      <form class="form" id="form-solicitud" action="enviar.php" method="post" novalidate data-whatsapp="573132957599">
+
+        <!-- 1. Quién solicita -->
+        <fieldset class="form__group">
+          <legend class="form__legend">Datos del solicitante</legend>
+          <div class="form__field">
+            <label for="f-nombre">Nombre y apellido <span class="form__req" aria-hidden="true">*</span></label>
+            <input id="f-nombre" name="nombre" type="text" autocomplete="name" required maxlength="80" />
+          </div>
+          <div class="form__row">
+            <div class="form__field">
+              <label for="f-telefono">Teléfono / WhatsApp <span class="form__req" aria-hidden="true">*</span></label>
+              <input id="f-telefono" name="telefono" type="tel" autocomplete="tel" inputmode="tel" required
+                     placeholder="300 123 4567" pattern="[0-9+\s()-]{7,20}" />
+            </div>
+            <div class="form__field">
+              <label for="f-correo">Correo <span class="form__req" aria-hidden="true">*</span></label>
+              <input id="f-correo" name="correo" type="email" autocomplete="email" required maxlength="120" />
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- 2. Qué servicio y cuándo -->
+        <fieldset class="form__group">
+          <legend class="form__legend">Datos del servicio</legend>
+          <div class="form__row">
+            <div class="form__field">
+              <label for="f-servicio">Tipo de servicio <span class="form__req" aria-hidden="true">*</span></label>
+              <select id="f-servicio" name="servicio" required>
+                <option value="">Selecciona…</option>
+                <option>Cuidado en casa</option>
+                <option>Adultos mayores</option>
+                <option>Citas médicas</option>
+                <option>Hospitalario</option>
+                <option>Postoperatorio</option>
+                <option>Curaciones</option>
+              </select>
+            </div>
+            <div class="form__field">
+              <label for="f-modalidad">Modalidad / horario <span class="form__req" aria-hidden="true">*</span></label>
+              <select id="f-modalidad" name="modalidad" required>
+                <option value="">Selecciona…</option>
+                <option>Turno de día</option>
+                <option>Turno de noche</option>
+                <option>24 horas</option>
+                <option>Por definir</option>
+              </select>
+            </div>
+          </div>
+          <!-- Rango de fechas: el servicio puede ser de un día o de varios.
+               type="date": en celular abre el selector tipo rueda del sistema; en PC, un calendario.
+               main.js (bloque 10 d): mínimo = hoy; al elegir el inicio, la fecha final se rellena
+               con el mismo día (servicio de 1 día) y no puede ser anterior al inicio. -->
+          <div class="form__row">
+            <div class="form__field">
+              <label for="f-fecha-inicio">Fecha de inicio <span class="form__req" aria-hidden="true">*</span></label>
+              <input id="f-fecha-inicio" name="fecha_inicio" type="date" required data-fecha-inicio />
+            </div>
+            <div class="form__field">
+              <label for="f-fecha-fin">Fecha de finalización <span class="form__req" aria-hidden="true">*</span></label>
+              <input id="f-fecha-fin" name="fecha_fin" type="date" required data-fecha-fin />
+            </div>
+          </div>
+          <p class="form__hint" data-fecha-resumen aria-live="polite"></p>
+          <div class="form__field">
+            <label for="f-lugar">El servicio se prestará en <span class="form__req" aria-hidden="true">*</span></label>
+            <select id="f-lugar" name="lugar" required data-lugar>
+              <option value="">Selecciona…</option>
+              <option value="casa">Casa</option>
+              <option value="hospital">Hospital</option>
+            </select>
+          </div>
+          <!-- Campos condicionales: ocultos y desactivados hasta elegir el lugar (main.js, paso 4).
+               "disabled" hace que no se validen ni se envíen mientras están ocultos. -->
+          <div class="form__field" data-si-lugar="casa hospital" hidden>
+            <label for="f-direccion">Dirección <span class="form__req" aria-hidden="true">*</span></label>
+            <input id="f-direccion" name="direccion" type="text" autocomplete="street-address" required disabled
+                   placeholder="Calle, número, barrio" maxlength="160" />
+          </div>
+          <div class="form__field" data-si-lugar="hospital" hidden>
+            <label for="f-hospital">Nombre del hospital o clínica <span class="form__req" aria-hidden="true">*</span></label>
+            <input id="f-hospital" name="hospital" type="text" required disabled maxlength="120" />
+          </div>
+        </fieldset>
+
+        <!-- 3. El paciente -->
+        <fieldset class="form__group">
+          <legend class="form__legend">El paciente</legend>
+          <div class="form__row">
+            <div class="form__field">
+              <label for="f-paciente">Nombre del paciente <span class="form__req" aria-hidden="true">*</span></label>
+              <input id="f-paciente" name="paciente" type="text" required maxlength="80" />
+            </div>
+            <div class="form__field form__field--short">
+              <label for="f-edad">Edad <span class="form__req" aria-hidden="true">*</span></label>
+              <input id="f-edad" name="edad" type="number" inputmode="numeric" min="0" max="120" required />
+            </div>
+          </div>
+          <div class="form__field">
+            <label for="f-diagnostico">Diagnóstico(s) <span class="form__req" aria-hidden="true">*</span></label>
+            <textarea id="f-diagnostico" name="diagnostico" rows="2" required maxlength="600"></textarea>
+          </div>
+          <div class="form__field">
+            <label for="f-condicion">Condición del paciente <span class="form__req" aria-hidden="true">*</span></label>
+            <textarea id="f-condicion" name="condicion" rows="3" required maxlength="800"
+                      placeholder="Ej.: camina con ayuda, permanece en cama, usa sonda, necesita apoyo para comer…"></textarea>
+          </div>
+        </fieldset>
+
+        <!-- Antispam: campo trampa invisible para personas; si llega relleno, enviar.php lo descarta -->
+        <div class="form__trap" aria-hidden="true">
+          <label for="f-web">No rellenes este campo</label>
+          <input id="f-web" name="web" type="text" tabindex="-1" autocomplete="off" />
+        </div>
+
+        <!-- Autorización de datos (Ley 1581 de 2012). El enlace apuntará a tu política cuando la publiques. -->
+        <div class="form__check">
+          <input id="f-acepto" name="acepto" type="checkbox" value="si" required />
+          <label for="f-acepto">Autorizo el tratamiento de mis datos personales y los del paciente, incluidos datos de salud, para gestionar esta solicitud, según la <a href="#" target="_blank" rel="noopener">política de tratamiento de datos</a>. <span class="form__req" aria-hidden="true">*</span></label>
+        </div>
+
+        <!-- Mensajes de estado (enviando / enviado / error). aria-live los anuncia a lectores de pantalla. -->
+        <p class="form__status" role="status" aria-live="polite"></p>
+
+        <div class="form__actions">
+          <!-- Alternativa si el correo falla: main.js le pone el enlace de WhatsApp con la solicitud redactada -->
+          <a class="form__wa-alt" data-wa-link href="#" target="_blank" rel="noopener" hidden>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.6A8.4 8.4 0 0 1 7.6 19L3 20.3l1.4-4.4A8.4 8.4 0 1 1 20 11.6Z" /></svg>
+            Enviar por WhatsApp
+          </a>
+          <button class="cta-btn form__submit" type="submit">
+            <span class="cta-btn__text">Enviar solicitud</span>
+            <span class="cta-btn__arrow"><span class="cta-btn__circle"></span><span class="cta-btn__icons">
+              <svg class="cta-btn__icon cta-btn__icon--1" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9" /></svg>
+              <svg class="cta-btn__icon cta-btn__icon--2" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9" /></svg>
+            </span></span>
+          </button>
+        </div>
+      </form>
+
+      <!-- Confirmación tras enviar con éxito: sustituye al formulario (main.js, bloque 10 f) -->
+      <div class="form-done" data-form-done hidden tabindex="-1">
+        <span class="form-done__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5" /></svg>
+        </span>
+        <h3 class="form-done__title">¡Solicitud <em>enviada</em>!</h3>
+        <p>Recibimos tus datos. Te contactaremos pronto para confirmar el servicio.</p>
+        <p class="form-done__hint">¿Quieres agilizarlo? Envíanos también la solicitud por WhatsApp; el mensaje ya está redactado.</p>
+        <div class="form-done__actions">
+          <a class="cta-btn form-done__wa" data-wa-link href="#" target="_blank" rel="noopener">
+            <span class="cta-btn__text">Enviar por WhatsApp</span>
+            <span class="cta-btn__arrow"><span class="cta-btn__circle"></span><span class="cta-btn__icons">
+              <svg class="cta-btn__icon cta-btn__icon--1" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9" /></svg>
+              <svg class="cta-btn__icon cta-btn__icon--2" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9" /></svg>
+            </span></span>
+          </a>
+          <button class="form-done__close" type="button" data-modal-close>Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </dialog>
 
   <!-- Botón volver arriba (aparece tras cierto scroll) -->
   <button class="to-top" data-to-top aria-label="Volver arriba">

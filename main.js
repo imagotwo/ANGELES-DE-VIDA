@@ -31,8 +31,15 @@ $('[data-year]').textContent = new Date().getFullYear();
    - Se quita el #ancla de la URL (sin recargar) para que no salte a esa sección.
    - scrollTo(0, 0) ahora y justo antes de salir de la página (refuerzo para
      navegadores que guardan la posición en 'beforeunload').
+   EXCEPCIÓN: si se LLEGA desde otra página con un ancla (p. ej. desde
+   "Trabaja con nosotros" → index.html#preguntas), no es una recarga: se
+   guarda el ancla en pendingHash y, cuando termina la entrada de la página
+   (evento 'app:ready'), se baja suavemente a esa sección.
+   El ancla especial #solicitar abre el modal "Solicita tu servicio" (bloque 10).
    Va ANTES de crear Lenis, para que Lenis arranque ya en la posición 0.
    ----------------------------------------------------------------- */
+const navType = performance.getEntriesByType('navigation')[0]?.type;   // 'navigate' | 'reload' | 'back_forward'
+const pendingHash = location.hash && navType !== 'reload' ? location.hash : null;
 if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 if (location.hash) history.replaceState(null, '', location.pathname + location.search);
 window.scrollTo(0, 0);
@@ -54,10 +61,15 @@ if (!reduceMotion) {
 const scrollToTarget = (target) => (lenis ? lenis.scrollTo(target, { offset: 0 }) : $(target)?.scrollIntoView({ behavior: 'smooth' }));
 
 // Anclas internas pasan por Lenis para mantener la suavidad
-$$('a[href^="#"]').forEach((a) => {
+// Excepciones:
+// - botones "Solicita tu servicio" ([data-open-solicitud]): abren el modal (bloque 10)
+// - enlaces de WhatsApp ([data-wa-link]): empiezan con href="#" pero main.js les pone
+//   la dirección de WhatsApp al enviar; no son anclas de la página.
+$$('a[href^="#"]:not([data-open-solicitud]):not([data-wa-link])').forEach((a) => {
   a.addEventListener('click', (e) => {
     const id = a.getAttribute('href');
-    if (id.length < 2 || !$(id)) return;
+    // Solo actúa si en el momento del clic sigue siendo un ancla "#seccion" que existe
+    if (!id.startsWith('#') || id.length < 2 || !$(id)) return;
     e.preventDefault();
     closeMenu();
     scrollToTarget(id === '#inicio' ? 0 : id);
@@ -74,23 +86,35 @@ const heroLines = $$('.hero .line__in');
 const heroBlur  = $$('[data-blur-in]');
 const tiltCard  = $('[data-tilt]');
 
-gsap.set(heroLines, { yPercent: 110 });
-gsap.set(heroBlur, { autoAlpha: 0, y: 40, filter: 'blur(16px)' });
-gsap.set(tiltCard, { autoAlpha: 0, y: 30 });
+// Solo si existen (en páginas sin hero GSAP avisaría "target not found")
+if (heroLines.length) gsap.set(heroLines, { yPercent: 110 });
+if (heroBlur.length) gsap.set(heroBlur, { autoAlpha: 0, y: 40, filter: 'blur(16px)' });
+if (tiltCard) gsap.set(tiltCard, { autoAlpha: 0, y: 30 });
 
 function playIntro() {
   const tl = gsap.timeline();
   tl.to('.hero__img', { scale: 1, duration: 1.5, ease: 'power2.out' }, 0)
     .to(heroLines, { yPercent: 0, duration: 1, ease: 'power3.out', stagger: 0.12 }, 0.3)
-    .to(heroBlur, { autoAlpha: 1, y: 0, filter: 'blur(0px)', duration: 1.2, ease: 'power2.out' }, 0.8)
-    .to(tiltCard, { autoAlpha: 1, y: 0, duration: 0.9, ease: 'power2.out' }, 1);
+    .to(heroBlur, { autoAlpha: 1, y: 0, filter: 'blur(0px)', duration: 1.2, ease: 'power2.out' }, 0.8);
+  if (tiltCard) tl.to(tiltCard, { autoAlpha: 1, y: 0, duration: 0.9, ease: 'power2.out' }, 1);   // la tarjeta 3D es opcional
   return tl;
+}
+
+/* Fin de la entrada de la página (con o sin loader): avisa a los demás bloques
+   con el evento 'app:ready' y, si se llegó con un ancla desde otra página, baja a ella. */
+function pageReady() {
+  document.dispatchEvent(new Event('app:ready'));
+  if (pendingHash && pendingHash !== '#solicitar' && $(pendingHash)) {
+    setTimeout(() => scrollToTarget(pendingHash), 150);
+  }
 }
 
 function runLoader() {
   const overlay = $('.loader__overlay');
   const wordmark = $('.loader__wordmark');
   const loader = $('.loader');
+  // Páginas sin loader (p. ej. "Trabaja con nosotros"): no hay animación de entrada
+  if (!loader) { pageReady(); return; }
   document.body.classList.add('is-loading');
   lenis?.stop();
 
@@ -100,6 +124,7 @@ function runLoader() {
     document.body.classList.remove('is-loading');
     lenis?.start();
     ScrollTrigger.refresh();
+    pageReady();
   };
 
   if (reduceMotion) { finish(); playIntro().progress(1); return; }
@@ -115,6 +140,7 @@ runLoader();
 /* Al hacer scroll, el contenido del hero se aleja (opacidad + desplazamiento),
    mientras la sección siguiente lo tapa como una cortina.
    Ojo: el hero es fixed, así que el espaciador empieza en top:0 → 'top top'. */
+if ($('[data-hero]')) {   // solo en páginas con hero (index.html)
 gsap.to('[data-hero-content]', {
   opacity: 0.1, y: 150, ease: 'none',
   scrollTrigger: { trigger: '.hero-spacer', start: 'top top', end: 'bottom top', scrub: 1 },
@@ -135,6 +161,7 @@ ScrollTrigger.create({
   onEnter: () => gsap.set('[data-hero]', { visibility: 'hidden' }),
   onLeaveBack: () => gsap.set('[data-hero]', { visibility: 'visible' }),
 });
+}
 
 /* -----------------------------------------------------------------
    3. CABECERA: siempre fija. En cuanto hay scroll pasa a su estado
@@ -144,10 +171,12 @@ ScrollTrigger.create({
    ----------------------------------------------------------------- */
 const header = $('[data-header]');
 const heroSection = $('[data-hero]');
+// data-header-solid: páginas SIN foto de fondo arriba → el header se ve siempre en su versión blanca
+const solidHeader = header.hasAttribute('data-header-solid');
 const SCROLL_THRESHOLD = 10; // px de margen para no parpadear en el tope
 function onScroll(y) {
-  header.classList.toggle('is-scrolled', y > SCROLL_THRESHOLD);
-  heroSection.classList.toggle('is-scrolled', y > SCROLL_THRESHOLD); // atenúa la imagen del hero
+  header.classList.toggle('is-scrolled', solidHeader || y > SCROLL_THRESHOLD);
+  heroSection?.classList.toggle('is-scrolled', y > SCROLL_THRESHOLD); // atenúa la imagen del hero
   $('[data-to-top]').classList.toggle('is-visible', y > innerHeight * 1.5);
 }
 if (lenis) lenis.on('scroll', ({ scroll }) => onScroll(scroll));
@@ -234,7 +263,7 @@ if (!reduceMotion) {
   });
 
   // 6d. Tarjetas de servicios en cascada
-  gsap.from('[data-cards] .focus-card', {
+  if ($('[data-cards]')) gsap.from('[data-cards] .focus-card', {
     y: 60, autoAlpha: 0, duration: 0.8, stagger: 0.2, ease: 'power2.out',
     scrollTrigger: { trigger: '[data-cards]', start: 'top 80%', once: true },
   });
@@ -251,7 +280,7 @@ if (!reduceMotion) {
 const steps = $$('[data-step]');
 const digits = $('[data-digits]');
 
-gsap.to('[data-line-fill]', {
+if ($('[data-line-fill]')) gsap.to('[data-line-fill]', {
   scaleY: 1, ease: 'none',
   scrollTrigger: { trigger: '.process__steps', start: 'top 55%', end: 'bottom 55%', scrub: true },
 });
@@ -260,14 +289,14 @@ function setStep(i) {
   steps.forEach((s, n) => s.classList.toggle('is-active', n <= i));
   digits.style.transform = `translateY(${-100 * i / steps.length}%)`;
 }
-steps.forEach((step, i) => {
+if (digits && steps.length) steps.forEach((step, i) => {
   ScrollTrigger.create({
     trigger: step, start: 'top 55%',
     onEnter: () => setStep(i),
     onLeaveBack: () => setStep(Math.max(0, i - 1)),
   });
 });
-setStep(0);
+if (digits && steps.length) setStep(0);
 
 /* -----------------------------------------------------------------
    8. PESTAÑAS AUTOMÁTICAS ("Nuestro cuidado es…")
@@ -338,6 +367,420 @@ setStep(0);
       setOpen(item, willOpen);
       setTimeout(() => ScrollTrigger.refresh(), 400); // tras la transición (.35s)
     });
+  });
+})();
+
+/* -----------------------------------------------------------------
+   UTILIDADES DE FORMULARIOS (compartidas por el bloque 10 y el 11)
+   - fieldError(el): mensaje de error en español para las reglas comunes
+     (obligatorio, correo, teléfono, casilla, archivo PDF y tamaño). '' = sin error.
+   - showFieldError / clearFieldError: pintan o quitan el error bajo el campo
+     (.form__field o .form__check), con aria-invalid y aria-describedby para
+     que los lectores de pantalla lo anuncien.
+   - liveValidation(form, validate): valida al salir de cada campo y, mientras
+     se corrige uno con error, lo quita en cuanto queda bien.
+   ----------------------------------------------------------------- */
+function fieldError(el) {
+  if (el.disabled) return '';
+  if (el.type === 'file') {
+    const file = el.files[0];
+    if (el.required && !file) return 'Adjunta tu hoja de vida en PDF.';
+    if (!file) return '';
+    const esPdf = file.type === 'application/pdf' || /\.pdf$/i.test(file.name);
+    // data-no-pdf lo pone el bloque 11 si el contenido no empieza por "%PDF-" (archivo renombrado)
+    if (!esPdf || el.dataset.noPdf === '1') return 'El archivo debe ser un PDF.';
+    const maxMb = Number(el.dataset.maxMb || 10);
+    if (file.size > maxMb * 1024 * 1024)
+      return `El archivo pesa ${(file.size / 1048576).toFixed(1)} MB; el máximo es ${maxMb} MB.`;
+    return '';
+  }
+  const v = el.type === 'checkbox' ? el.checked : el.value.trim();
+  if (el.required && !v) {
+    if (el.type === 'checkbox') return 'Debes autorizar el tratamiento de datos para continuar.';
+    if (el.tagName === 'SELECT') return 'Selecciona una opción.';
+    return 'Este campo es obligatorio.';
+  }
+  if (el.type === 'email' && !el.validity.valid) return 'Escribe un correo válido, por ejemplo nombre@correo.com.';
+  if (el.type === 'tel' && (el.value.replace(/\D/g, '').length < 7 || !el.validity.valid))
+    return 'Escribe un teléfono válido (al menos 7 números).';
+  return '';
+}
+const fieldBox = (el) => el.closest('.form__field, .form__check');
+function showFieldError(el, msg) {
+  const box = fieldBox(el);
+  let p = box.querySelector('.form__error');
+  if (!p) {
+    p = document.createElement('p');
+    p.className = 'form__error';
+    p.id = `${el.id}-error`;
+    box.appendChild(p);
+  }
+  p.textContent = msg;
+  box.classList.add('is-invalid');
+  el.setAttribute('aria-invalid', 'true');
+  el.setAttribute('aria-describedby', p.id);
+}
+function clearFieldError(el) {
+  const box = fieldBox(el);
+  box?.querySelector('.form__error')?.remove();
+  box?.classList.remove('is-invalid');
+  el.removeAttribute('aria-invalid');
+  el.removeAttribute('aria-describedby');
+}
+// Campos que se validan y envían (excluye el campo trampa antispam "web")
+const formFields = (form) => $$('input, select, textarea', form).filter((el) => el.name && el.name !== 'web');
+function liveValidation(form, validate) {
+  // Cuando ya no queda ningún campo con error, se borra el aviso "Revisa los N campos…"
+  const status = $('.form__status', form);
+  const limpiarAviso = () => {
+    if (status && status.textContent.startsWith('Revisa') && !$('.is-invalid', form)) {
+      status.textContent = '';
+      status.className = 'form__status';
+    }
+  };
+  form.addEventListener('input', () => setTimeout(limpiarAviso));
+  form.addEventListener('change', () => setTimeout(limpiarAviso));
+  form.addEventListener('focusout', () => setTimeout(limpiarAviso));
+
+  formFields(form).forEach((el) => {
+    el.addEventListener('blur', () => { if (el.value || el.type === 'checkbox') validate(el); });
+    // Los campos de archivo los valida su propio bloque al elegir (lectura asíncrona del archivo)
+    if (el.type === 'file') return;
+    const evento = el.type === 'checkbox' || el.tagName === 'SELECT' ? 'change' : 'input';
+    el.addEventListener(evento, () => { if (el.getAttribute('aria-invalid')) validate(el); });
+  });
+}
+
+/* -----------------------------------------------------------------
+   10. MODAL "SOLICITA TU SERVICIO" + VALIDACIÓN DEL FORMULARIO
+   a) Abrir: botones con [data-open-solicitud]. Se pausa el scroll de la
+      página y el foco va al primer campo.
+   b) Cerrar: botón ×, tecla Esc o clic fuera de la ventana. Se reproduce
+      la animación de salida (.is-closing) y el foco vuelve al botón que
+      lo abrió. Los datos escritos se conservan por si se cerró sin querer.
+   c) Campos condicionales: según "Casa"/"Hospital" se muestran Dirección
+      y Nombre del hospital (data-si-lugar). Ocultos = desactivados: no se
+      validan ni se envían.
+   d) Rango de fechas: inicio y finalización, ninguna anterior a hoy; la final
+      se iguala al inicio si queda vacía o antes (servicio de 1 día).
+   e) Validación propia en español: al salir de cada campo, mientras se
+      corrige un campo con error, y al enviar (lleva al primer error).
+   f) Envío: manda los datos a enviar.php (correo a Gmail) sin recargar.
+      · Éxito → el formulario se sustituye por la confirmación, con botón
+        para enviar también la solicitud por WhatsApp (mensaje ya redactado).
+      · Error o sin servidor → aviso + enlace de WhatsApp como alternativa.
+      Al cerrar tras un envío correcto, el formulario se vacía.
+   ----------------------------------------------------------------- */
+(function solicitudModal() {
+  const modal = $('#solicitud');
+  const form = $('#form-solicitud');
+  if (!modal || !form) return;
+  const status = $('.form__status', form);
+  let lastTrigger = null;
+
+  // ---------- a) Abrir ----------
+  function openModal(trigger) {
+    lastTrigger = trigger || null;
+    closeMenu();                                   // por si se abre desde el menú
+    modal.showModal();
+    document.body.classList.add('modal-open');
+    lenis?.stop();
+    $('.modal__box', modal).scrollTop = 0;
+    setTimeout(() => $('#f-nombre').focus({ preventScroll: true }), 60);
+  }
+  $$('[data-open-solicitud]').forEach((btn) => {
+    btn.addEventListener('click', (e) => { e.preventDefault(); openModal(btn); });
+  });
+  // Llegada desde otra página con index.html#solicitar (p. ej. el botón del header en
+  // "Trabaja con nosotros"): se abre el modal cuando termina la entrada de la página.
+  document.addEventListener('app:ready', () => { if (pendingHash === '#solicitar') openModal(); });
+
+  // ---------- b) Cerrar ----------
+  function closeModal() {
+    if (!modal.open || modal.classList.contains('is-closing')) return;
+    const finish = () => {
+      modal.classList.remove('is-closing');
+      modal.close();
+      document.body.classList.remove('modal-open');
+      lenis?.start();
+      lastTrigger?.focus({ preventScroll: true });
+      if (enviado) resetForm();                    // tras un envío correcto, la próxima vez empieza vacío
+    };
+    if (reduceMotion) return finish();
+    modal.classList.add('is-closing');
+    setTimeout(finish, 300);                       // duración de la animación modal-out
+  }
+  $$('[data-modal-close]', modal).forEach((b) => b.addEventListener('click', closeModal));
+  // Esc: el navegador lanza 'cancel'; lo interceptamos para animar el cierre
+  modal.addEventListener('cancel', (e) => { e.preventDefault(); closeModal(); });
+  // Clic fuera de la ventana: el clic llega al propio <dialog> (su fondo), no a la caja
+  modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+
+  // ---------- c) Campos condicionales según el lugar ----------
+  const lugar = $('[data-lugar]', form);
+  function updateLugar() {
+    $$('[data-si-lugar]', form).forEach((wrap) => {
+      const show = wrap.dataset.siLugar.split(' ').includes(lugar.value);
+      wrap.hidden = !show;
+      $$('input, select, textarea', wrap).forEach((el) => {
+        el.disabled = !show;
+        if (!show) clearError(el);
+      });
+    });
+  }
+  lugar.addEventListener('change', updateLugar);
+
+  // ---------- d) Rango de fechas (inicio → finalización) ----------
+  // - Ninguna puede ser anterior a hoy (fecha local, formato AAAA-MM-DD).
+  // - Al elegir el inicio, si la final está vacía o queda antes, se iguala al inicio
+  //   (servicio de 1 día); su mínimo pasa a ser el inicio.
+  // - Debajo se muestra un resumen: "Servicio de 1 día" / "Servicio de N días (del … al …)".
+  const fechaIni = $('[data-fecha-inicio]', form);
+  const fechaFin = $('[data-fecha-fin]', form);
+  const resumen = $('[data-fecha-resumen]', form);
+  const hoy = new Date();
+  const hoyISO = `${hoy.getFullYear()}-${String(hoy.getMonth() + 1).padStart(2, '0')}-${String(hoy.getDate()).padStart(2, '0')}`;
+  fechaIni.min = hoyISO;
+  fechaFin.min = hoyISO;
+  // AAAA-MM-DD → DD/MM/AAAA
+  const fechaLegible = (v) => v.split('-').reverse().join('/');
+  // Días entre dos fechas, ambas incluidas (cálculo en UTC para evitar saltos de horario)
+  const diasServicio = (a, b) => Math.round((Date.parse(b + 'T00:00Z') - Date.parse(a + 'T00:00Z')) / 86400000) + 1;
+  function textoFechas() {
+    const a = fechaIni.value, b = fechaFin.value;
+    if (!a || !b || b < a) return '';
+    const n = diasServicio(a, b);
+    return n === 1 ? `${fechaLegible(a)} (1 día)` : `del ${fechaLegible(a)} al ${fechaLegible(b)} (${n} días)`;
+  }
+  function updateFechas() {
+    fechaFin.min = fechaIni.value || hoyISO;
+    if (fechaIni.value && (!fechaFin.value || fechaFin.value < fechaIni.value)) {
+      fechaFin.value = fechaIni.value;
+      if (fechaFin.getAttribute('aria-invalid')) validate(fechaFin);
+    }
+    const t = textoFechas();
+    resumen.textContent = t ? `Servicio ${t}.` : '';
+  }
+  fechaIni.addEventListener('change', updateFechas);
+  fechaFin.addEventListener('change', updateFechas);
+
+  // ---------- e) Validación ----------
+  // Reglas propias de este formulario (fechas y edad) + reglas comunes (fieldError)
+  function errorMessage(el) {
+    if (el.disabled) return '';
+    if (el.type === 'date' && el.value && el.value < el.min)
+      return el === fechaFin && fechaIni.value ? 'La fecha de finalización no puede ser anterior a la de inicio.' : 'La fecha no puede ser anterior a hoy.';
+    if (el.type === 'number' && el.value && !el.validity.valid)
+      return `Escribe una edad entre ${el.min} y ${el.max}.`;
+    return fieldError(el);
+  }
+  const clearError = clearFieldError;
+  function validate(el) {
+    const msg = errorMessage(el);
+    msg ? showFieldError(el, msg) : clearFieldError(el);
+    return !msg;
+  }
+  const fields = () => formFields(form);
+  liveValidation(form, validate);
+
+  // ---------- f) Envío: correo (enviar.php) + WhatsApp ----------
+  const submitBtn = $('.form__submit', form);
+  const submitText = $('.cta-btn__text', submitBtn);
+  const done = $('[data-form-done]', modal);
+  const waAlt = $('.form__wa-alt', form);
+  let enviado = false;
+
+  // Texto visible de un <select> (p. ej. "Hospital" en vez de "hospital")
+  const opcion = (id) => { const s = $(id); return s.options[s.selectedIndex]?.text || ''; };
+
+  // Mensaje de WhatsApp con todos los datos, ya redactado
+  function whatsappUrl() {
+    const v = (id) => $(id).value.trim();
+    const lineas = [
+      '¡Hola, Ángeles de Vida! Quiero solicitar un servicio:',
+      '',
+      `*Solicitante:* ${v('#f-nombre')}`,
+      `*Teléfono:* ${v('#f-telefono')}`,
+      `*Correo:* ${v('#f-correo')}`,
+      '',
+      `*Servicio:* ${opcion('#f-servicio')}`,
+      `*Modalidad:* ${opcion('#f-modalidad')}`,
+      `*Fechas:* ${textoFechas()}`,
+      `*Lugar:* ${opcion('#f-lugar')}`,
+      `*Dirección:* ${v('#f-direccion')}`,
+      ...($('#f-lugar').value === 'hospital' ? [`*Hospital / clínica:* ${v('#f-hospital')}`] : []),
+      '',
+      `*Paciente:* ${v('#f-paciente')}, ${v('#f-edad')} años`,
+      `*Diagnóstico(s):* ${v('#f-diagnostico')}`,
+      `*Condición:* ${v('#f-condicion')}`,
+    ];
+    return `https://wa.me/${form.dataset.whatsapp}?text=${encodeURIComponent(lineas.join('\n'))}`;
+  }
+
+  function setStatus(msg, tipo = '') {
+    status.className = 'form__status' + (tipo ? ` is-${tipo}` : '');
+    status.textContent = msg;
+  }
+
+  function resetForm() {
+    form.reset();
+    fields().forEach(clearError);
+    updateLugar();                                // vuelve a ocultar dirección / hospital
+    updateFechas();                               // mínimo de la fecha final y resumen en blanco
+    setStatus('');
+    waAlt.hidden = true;
+    done.hidden = true;
+    form.hidden = false;
+    $('.modal__header', modal).hidden = false;
+    enviado = false;
+  }
+
+  // Al pulsar "Enviar por WhatsApp" (en la confirmación o el enlace alternativo si falló el correo):
+  // el enlace solo abre WhatsApp con el mensaje redactado; el modal sigue abierto y con los datos.
+  // Se marca la solicitud como enviada para que, CUANDO LA PERSONA CIERRE el modal, el formulario
+  // se vacíe (closeModal → resetForm). La página no puede saber si se pulsa "Enviar" dentro de
+  // WhatsApp (es otra aplicación): se toma el clic en el botón como "solicitud enviada".
+  $$('[data-wa-link]', modal).forEach((a) => {
+    a.addEventListener('click', () => { enviado = true; });
+  });
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const invalid = fields().filter((el) => !validate(el));
+    if (invalid.length) {
+      setStatus(`Revisa ${invalid.length === 1 ? 'el campo marcado' : `los ${invalid.length} campos marcados`} en rojo.`, 'error');
+      invalid[0].focus();                               // lleva al primer error (y hace scroll hasta él)
+      return;
+    }
+
+    // El enlace de WhatsApp se prepara ya: sirve tanto si el correo sale bien como si falla
+    const wa = whatsappUrl();
+    $$('[data-wa-link]', modal).forEach((a) => { a.href = wa; });
+
+    submitBtn.disabled = true;
+    submitText.textContent = 'Enviando…';
+    setStatus('Enviando tu solicitud…');
+    waAlt.hidden = true;
+
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),                   // incluye el campo trampa "web" (antispam)
+        headers: { Accept: 'application/json' },
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data.ok) throw new Error(data.error || `HTTP ${res.status}`);
+
+      // Éxito: se sustituye el formulario por la confirmación
+      enviado = true;
+      form.hidden = true;
+      $('.modal__header', modal).hidden = true;
+      done.hidden = false;
+      $('.modal__box', modal).scrollTop = 0;
+      done.focus();
+    } catch (err) {
+      // Sin servidor (p. ej. abriendo el archivo en el PC), sin conexión o error al enviar:
+      // se avisa y se ofrece WhatsApp para que la solicitud no se pierda.
+      console.warn('Envío del formulario:', err.message);
+      setStatus('No pudimos enviar la solicitud por correo. Inténtalo de nuevo o envíanosla por WhatsApp.', 'error');
+      waAlt.hidden = false;
+    } finally {
+      submitBtn.disabled = false;
+      submitText.textContent = 'Enviar solicitud';
+    }
+  });
+})();
+
+/* -----------------------------------------------------------------
+   11. FORMULARIO "TRABAJA CON NOSOTROS" (página trabaja-con-nosotros.html)
+   a) Validación con las utilidades comunes (obligatorios, correo, teléfono,
+      documento, PDF y tamaño máximo = data-max-mb del campo de archivo).
+   b) Al elegir el PDF se muestra su nombre y peso (o el error si no vale).
+   c) Envío a aplicar.php con XMLHttpRequest (permite mostrar el % de subida
+      del PDF). Éxito → confirmación en lugar del formulario. Error → aviso.
+   ----------------------------------------------------------------- */
+(function aplicarForm() {
+  const form = $('#form-aplicar');
+  if (!form) return;
+  const status = $('.form__status', form);
+  const file = $('#a-hoja', form);
+  const fileName = $('[data-file-name]', form);
+  const submitBtn = $('.form__submit', form);
+  const submitText = $('.cta-btn__text', submitBtn);
+  const done = $('[data-aplicar-done]');
+
+  // ---------- a) Validación ----------
+  function errorMessage(el) {
+    if (el.name === 'documento' && el.value.trim() && el.value.replace(/[^0-9a-z]/gi, '').length < 5)
+      return 'Escribe un número de documento válido.';
+    return fieldError(el);
+  }
+  function validate(el) {
+    const msg = errorMessage(el);
+    msg ? showFieldError(el, msg) : clearFieldError(el);
+    return !msg;
+  }
+  liveValidation(form, validate);
+
+  // ---------- b) Nombre y peso del PDF elegido + comprobación de que es un PDF real ----------
+  // El navegador solo mira la extensión; aquí se leen los 5 primeros bytes del archivo:
+  // todo PDF real empieza por "%PDF-". Si no, se marca (data-no-pdf) y se muestra el error ya.
+  // (El servidor lo vuelve a comprobar en aplicar.php.)
+  file.addEventListener('change', async () => {
+    const f = file.files[0];
+    fileName.textContent = f ? `${f.name} · ${(f.size / 1048576).toFixed(1)} MB` : 'Ningún archivo seleccionado';
+    fileName.classList.toggle('has-file', !!f);
+    file.dataset.noPdf = '';
+    if (f) {
+      const inicio = await f.slice(0, 5).text().catch(() => '');
+      file.dataset.noPdf = inicio === '%PDF-' ? '' : '1';
+    }
+    validate(file);
+  });
+
+  function setStatus(msg, tipo = '') {
+    status.className = 'form__status' + (tipo ? ` is-${tipo}` : '');
+    status.textContent = msg;
+  }
+
+  // ---------- c) Envío con % de subida ----------
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const invalid = formFields(form).filter((el) => !validate(el));
+    if (invalid.length) {
+      setStatus(`Revisa ${invalid.length === 1 ? 'el campo marcado' : `los ${invalid.length} campos marcados`} en rojo.`, 'error');
+      invalid[0].focus();
+      return;
+    }
+    submitBtn.disabled = true;
+    submitText.textContent = 'Enviando…';
+    setStatus('Subiendo tu hoja de vida… 0%');
+
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', form.action);
+    xhr.setRequestHeader('Accept', 'application/json');
+    xhr.upload.addEventListener('progress', (ev) => {
+      if (ev.lengthComputable) setStatus(`Subiendo tu hoja de vida… ${Math.round((ev.loaded / ev.total) * 100)}%`);
+    });
+    const fallo = (msg) => {
+      setStatus(msg || 'No pudimos enviar tu postulación. Revisa tu conexión e inténtalo de nuevo.', 'error');
+      submitBtn.disabled = false;
+      submitText.textContent = 'Enviar postulación';
+    };
+    xhr.addEventListener('load', () => {
+      let data = {};
+      try { data = JSON.parse(xhr.responseText); } catch { /* respuesta no JSON = error del servidor */ }
+      if (xhr.status >= 200 && xhr.status < 300 && data.ok) {
+        form.hidden = true;                       // la cabecera con foto e introducción se mantiene
+        done.hidden = false;
+        done.focus();
+        done.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } else {
+        fallo(data.error);
+      }
+    });
+    xhr.addEventListener('error', () => fallo());
+    xhr.send(new FormData(form));                 // incluye el PDF y el campo trampa "web"
   });
 })();
 

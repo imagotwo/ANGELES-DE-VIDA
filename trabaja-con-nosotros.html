@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Trabaja con nosotros — ÁNGELES DE VIDA, enfermeras a domicilio en Bogotá</title>
+  <meta name="description"
+    content="¿Eres auxiliar de enfermería, enfermera o cuidadora en Bogotá? Envía tu hoja de vida a Ángeles de Vida y únete a nuestro equipo de cuidado a domicilio." />
+
+  <!-- Mismas tipografías, librerías y estilos que index.html -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body class="page-apply">
+
+  <!-- ============================================================
+       HEADER (copia del de index.html, con el mismo comportamiento:
+       transparente y grande arriba, blanco y compacto al hacer scroll).
+       Diferencias en esta página:
+       - data-header-dark: como arriba no hay foto oscura sino fondo claro,
+         el header transparente usa ya el logo de color y textos/líneas en
+         azul (igual que cuando está blanco), para que se lean (styles.css).
+       - Los enlaces llevan a index.html#seccion; main.js de index.html
+         baja a esa sección al llegar.
+       - "Solicita tu servicio" lleva a index.html#solicitar, que abre allí
+         el modal del formulario de servicio.
+       ============================================================ -->
+  <header class="header" data-header data-header-dark>
+    <div class="header__bar">
+      <a href="index.html" class="header__logo" aria-label="Ángeles de Vida — inicio">
+        <img class="header__logo-mark header__logo-mark--light" src="assets/img/Angeles-de-vida-logo-blanco.svg"
+          alt="Ángeles de Vida" />
+        <img class="header__logo-mark header__logo-mark--dark" src="assets/img/Angeles-de-vida-logo.svg" alt="" />
+        <span class="header__logo-text"></span>
+      </a>
+      <nav class="header__nav">
+        <button class="menu-toggle" data-menu-open aria-expanded="false" aria-controls="menu">
+          <span class="menu-toggle__text">Ver menú</span>
+          <span class="menu-toggle__icon"><span></span><span></span></span>
+        </button>
+
+        <a href="index.html#solicitar" class="cta-btn">
+          <span class="cta-btn__text">Solicita tu servicio</span>
+          <span class="cta-btn__arrow">
+            <span class="cta-btn__circle"></span>
+            <span class="cta-btn__icons">
+              <svg class="cta-btn__icon cta-btn__icon--1" viewBox="0 0 24 24">
+                <path d="M7 17 17 7M8 7h9v9" />
+              </svg>
+              <svg class="cta-btn__icon cta-btn__icon--2" viewBox="0 0 24 24">
+                <path d="M7 17 17 7M8 7h9v9" />
+              </svg>
+            </span>
+          </span>
+        </a>
+      </nav>
+    </div>
+
+    <!-- Menú a pantalla completa (igual que en index.html, con enlaces a sus secciones) -->
+    <div class="menu" id="menu" aria-hidden="true">
+      <div class="menu__backdrop" data-menu-close></div>
+      <div class="menu__panel">
+        <button class="menu__close" data-menu-close aria-label="Cerrar menú">
+          <svg viewBox="0 0 24 24">
+            <path d="M18 6 6 18M6 6l12 12" />
+          </svg>
+        </button>
+        <nav class="menu__nav">
+          <a href="index.html" class="menu__link" style="--d:0s"><span
+              class="menu__roll"><span>Home</span><span>Home</span></span></a>
+          <a href="index.html#nosotros" class="menu__link" style="--d:.08s"><span
+              class="menu__roll"><span>Nosotros</span><span>Nosotros</span></span></a>
+          <a href="index.html#servicios" class="menu__link" style="--d:.16s"><span
+              class="menu__roll"><span>Servicios</span><span>Servicios</span></span></a>
+          <a href="index.html#testimonios" class="menu__link" style="--d:.24s"><span
+              class="menu__roll"><span>Testimonios</span><span>Testimonios</span></span></a>
+          <a href="index.html#preguntas" class="menu__link" style="--d:.32s"><span class="menu__roll"><span>Preguntas
+                frecuentes</span><span>Preguntas frecuentes</span></span></a>
+          <a href="index.html#contacto" class="menu__link" style="--d:.40s"><span
+              class="menu__roll"><span>Contacto</span><span>Contacto</span></span></a>
+        </nav>
+        <div class="menu__footer">
+          <p class="menu__brand">Ángeles <em>de</em> Vida</p>
+          <p class="menu__desc">Tus seres queridos en buenas manos, tu familia en tranquilidad. Cuidado profesional y
+            humano para quienes más amas.<br>• Atención 24/7</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============================================================
+         TRABAJA CON NOSOTROS
+         Formulario de postulación con hoja de vida en PDF (máx. 10 MB).
+         Mismos estilos que el formulario "Solicita tu servicio" (.form).
+         Se envía a aplicar.php, que valida y manda la hoja de vida como
+         adjunto al correo de selección (main.js, bloque 11).
+         ============================================================ -->
+    <!-- Cabecera de la página (sin foto): fondo claro, título y textos en azul.
+         El relleno superior deja sitio al header transparente. -->
+    <section class="apply-hero">
+      <header class="apply-hero__content apply__intro">
+        <p class="eyebrow text-gold">Trabaja con nosotros</p>
+        <h1 class="apply__title">Cuida con <em>vocación</em>, crece con nosotros</h1>
+        <p class="apply__lead">Buscamos auxiliares de enfermería, enfermeras y cuidadoras en Bogotá que
+          quieran acompañar a pacientes y familias con profesionalismo y calidez. Déjanos tus datos y tu hoja de
+          vida; si tu perfil encaja, te contactaremos. Todos los campos son obligatorios.</p>
+      </header>
+    </section>
+
+    <section class="apply" id="trabaja">
+      <div class="noise"></div>
+      <div class="apply__content">
+
+        <div class="apply__card" data-reveal>
+          <form class="form" id="form-aplicar" action="aplicar.php" method="post" enctype="multipart/form-data"
+            novalidate>
+
+            <fieldset class="form__group">
+              <legend class="form__legend">Tus datos</legend>
+              <div class="form__field">
+                <label for="a-nombre">Nombre y apellido <span class="form__req" aria-hidden="true">*</span></label>
+                <input id="a-nombre" name="nombre" type="text" autocomplete="name" required maxlength="80" />
+              </div>
+              <div class="form__row form__row--doc">
+                <div class="form__field">
+                  <label for="a-tipo-doc">Tipo de documento <span class="form__req" aria-hidden="true">*</span></label>
+                  <select id="a-tipo-doc" name="tipo_documento" required>
+                    <option value="">Selecciona…</option>
+                    <option>Cédula de ciudadanía</option>
+                    <option>Cédula de extranjería</option>
+                    <option>PPT (Permiso por Protección Temporal)</option>
+                    <option>Pasaporte</option>
+                  </select>
+                </div>
+                <div class="form__field">
+                  <label for="a-documento">Número de documento <span class="form__req" aria-hidden="true">*</span></label>
+                  <input id="a-documento" name="documento" type="text" inputmode="numeric" required maxlength="20" />
+                </div>
+              </div>
+              <div class="form__row">
+                <div class="form__field">
+                  <label for="a-telefono">Teléfono / WhatsApp <span class="form__req" aria-hidden="true">*</span></label>
+                  <input id="a-telefono" name="telefono" type="tel" autocomplete="tel" inputmode="tel" required
+                    placeholder="300 123 4567" pattern="[0-9+\s()-]{7,20}" />
+                </div>
+                <div class="form__field">
+                  <label for="a-correo">Correo <span class="form__req" aria-hidden="true">*</span></label>
+                  <input id="a-correo" name="correo" type="email" autocomplete="email" required maxlength="120" />
+                </div>
+              </div>
+              <div class="form__field">
+                <label for="a-localidad">Localidad y barrio <span class="form__req" aria-hidden="true">*</span></label>
+                <input id="a-localidad" name="localidad" type="text" required maxlength="120"
+                  placeholder="Ej.: Suba — barrio Pinar" />
+              </div>
+            </fieldset>
+
+            <fieldset class="form__group">
+              <legend class="form__legend">Tu experiencia</legend>
+              <div class="form__field">
+                <label for="a-mensaje">Cuéntanos sobre ti <span class="form__req" aria-hidden="true">*</span></label>
+                <textarea id="a-mensaje" name="mensaje" rows="5" required maxlength="1500"
+                  placeholder="Háblanos de tu experiencia en un mensaje breve: tu formación, dónde has trabajado, con qué tipo de pacientes y tu disponibilidad."></textarea>
+              </div>
+
+              <!-- Hoja de vida: el <input type="file"> real queda oculto a la vista pero accesible;
+                   el <label> grande hace de botón. data-max-mb lo usa la validación (main.js). -->
+              <div class="form__field">
+                <span class="form__label" id="a-hoja-label">Hoja de vida (PDF, máx. 10 MB) <span class="form__req"
+                    aria-hidden="true">*</span></span>
+                <label class="form__file" for="a-hoja">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 16V4M7 9l5-5 5 5M5 20h14" />
+                  </svg>
+                  <span class="form__file-cta">Elegir archivo PDF</span>
+                  <span class="form__file-name" data-file-name>Ningún archivo seleccionado</span>
+                </label>
+                <input class="form__file-input" id="a-hoja" name="hoja_vida" type="file"
+                  accept="application/pdf,.pdf" required data-max-mb="10" aria-labelledby="a-hoja-label" />
+              </div>
+            </fieldset>
+
+            <!-- Antispam: campo trampa invisible para personas; si llega relleno, aplicar.php lo descarta -->
+            <div class="form__trap" aria-hidden="true">
+              <label for="a-web">No rellenes este campo</label>
+              <input id="a-web" name="web" type="text" tabindex="-1" autocomplete="off" />
+            </div>
+
+            <!-- Autorización de datos (Ley 1581 de 2012), adaptada a procesos de selección -->
+            <div class="form__check">
+              <input id="a-acepto" name="acepto" type="checkbox" value="si" required />
+              <label for="a-acepto">Autorizo a Ángeles de Vida a tratar mis datos personales y mi hoja de vida para
+                procesos de selección, según la <a href="#" target="_blank" rel="noopener">política de tratamiento de
+                  datos</a>. <span class="form__req" aria-hidden="true">*</span></label>
+            </div>
+
+            <p class="form__status" role="status" aria-live="polite"></p>
+
+            <div class="form__actions">
+              <button class="cta-btn form__submit" type="submit">
+                <span class="cta-btn__text">Enviar postulación</span>
+                <span class="cta-btn__arrow"><span class="cta-btn__circle"></span><span class="cta-btn__icons">
+                    <svg class="cta-btn__icon cta-btn__icon--1" viewBox="0 0 24 24">
+                      <path d="M7 17 17 7M8 7h9v9" />
+                    </svg>
+                    <svg class="cta-btn__icon cta-btn__icon--2" viewBox="0 0 24 24">
+                      <path d="M7 17 17 7M8 7h9v9" />
+                    </svg>
+                  </span></span>
+              </button>
+            </div>
+          </form>
+
+          <!-- Confirmación tras enviar con éxito: sustituye al formulario (main.js, bloque 11) -->
+          <div class="form-done" data-aplicar-done hidden tabindex="-1">
+            <span class="form-done__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="m5 12.5 4.5 4.5L19 7.5" />
+              </svg>
+            </span>
+            <h2 class="form-done__title">¡Postulación <em>recibida</em>!</h2>
+            <p>Gracias por querer formar parte de Ángeles de Vida. Revisaremos tu hoja de vida y, si tu perfil encaja con
+              lo que buscamos, te contactaremos.</p>
+            <div class="form-done__actions">
+              <a class="form-done__close" href="index.html">Volver al inicio</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__left">
+        <span class="footer__brand">Ángeles de Vida</span>
+        <span>© <span data-year>2026</span> · Todos los derechos reservados</span>
+      </div>
+      <nav class="footer__links">
+        <a href="#">Privacidad</a><a href="#">Términos</a><a href="#">Aviso legal</a><a
+          href="trabaja-con-nosotros.html" aria-current="page">Trabaja con nosotros</a>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- Botón volver arriba (aparece tras cierto scroll) -->
+  <button class="to-top" data-to-top aria-label="Volver arriba">
+    <svg viewBox="0 0 24 24">
+      <path d="m18 15-6-6-6 6" />
+    </svg>
+  </button>
+
+  <!-- Mismas librerías y script que index.html: main.js solo activa en cada
+       página los bloques cuyos elementos existen. -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
+  <script src="main.js"></script>
+</body>
+
+</html>
