@@ -1,5 +1,5 @@
 # =================================================================
-# ÁNGELES DE VIDA — .htaccess (Hostinger lo respeta)
+# ÁNGELES DE VIDA — .htaccess (HostGator / cPanel lo respeta)
 # Impide abrir desde el navegador los archivos que solo usa el servidor.
 # =================================================================
 

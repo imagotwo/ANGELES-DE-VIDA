@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aviso Legal — ÁNGELES DE VIDA</title>
+  <meta name="description"
+    content="Aviso legal del sitio web de Ángeles de Vida: datos del titular, condiciones de uso, propiedad intelectual y responsabilidad." />
+
+  <!-- Mismas tipografías, librerías y estilos que index.html -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body class="page-legal">
+
+  <!-- ============================================================
+       HEADER (copia del de index.html, con el mismo comportamiento:
+       transparente y grande arriba, blanco y compacto al hacer scroll).
+       Diferencias en esta página:
+       - data-header-dark: como arriba no hay foto oscura sino fondo claro,
+         el header transparente usa ya el logo de color y textos/líneas en
+         azul (igual que cuando está blanco), para que se lean (styles.css).
+       - Los enlaces llevan a index.html#seccion; main.js de index.html
+         baja a esa sección al llegar.
+       - "Solicita tu servicio" lleva a index.html#solicitar, que abre allí
+         el modal del formulario de servicio.
+       ============================================================ -->
+  <header class="header" data-header data-header-dark>
+    <div class="header__bar">
+      <a href="index.html" class="header__logo" aria-label="Ángeles de Vida — inicio">
+        <img class="header__logo-mark header__logo-mark--light" src="assets/img/Angeles-de-vida-logo-blanco.svg"
+          alt="Ángeles de Vida" />
+        <img class="header__logo-mark header__logo-mark--dark" src="assets/img/Angeles-de-vida-logo.svg" alt="" />
+        <span class="header__logo-text"></span>
+      </a>
+      <nav class="header__nav">
+        <button class="menu-toggle" data-menu-open aria-expanded="false" aria-controls="menu">
+          <span class="menu-toggle__text">Ver menú</span>
+          <span class="menu-toggle__icon"><span></span><span></span></span>
+        </button>
+
+        <a href="index.html#solicitar" class="cta-btn">
+          <span class="cta-btn__text">Solicita tu servicio</span>
+          <span class="cta-btn__arrow">
+            <span class="cta-btn__circle"></span>
+            <span class="cta-btn__icons">
+              <svg class="cta-btn__icon cta-btn__icon--1" viewBox="0 0 24 24">
+                <path d="M7 17 17 7M8 7h9v9" />
+              </svg>
+              <svg class="cta-btn__icon cta-btn__icon--2" viewBox="0 0 24 24">
+                <path d="M7 17 17 7M8 7h9v9" />
+              </svg>
+            </span>
+          </span>
+        </a>
+      </nav>
+    </div>
+
+    <!-- Menú a pantalla completa (igual que en index.html, con enlaces a sus secciones) -->
+    <div class="menu" id="menu" aria-hidden="true">
+      <div class="menu__backdrop" data-menu-close></div>
+      <div class="menu__panel">
+        <button class="menu__close" data-menu-close aria-label="Cerrar menú">
+          <svg viewBox="0 0 24 24">
+            <path d="M18 6 6 18M6 6l12 12" />
+          </svg>
+        </button>
+        <nav class="menu__nav">
+          <a href="index.html" class="menu__link" style="--d:0s"><span
+              class="menu__roll"><span>Home</span><span>Home</span></span></a>
+          <a href="index.html#nosotros" class="menu__link" style="--d:.08s"><span
+              class="menu__roll"><span>Nosotros</span><span>Nosotros</span></span></a>
+          <a href="index.html#servicios" class="menu__link" style="--d:.16s"><span
+              class="menu__roll"><span>Servicios</span><span>Servicios</span></span></a>
+          <a href="index.html#testimonios" class="menu__link" style="--d:.24s"><span
+              class="menu__roll"><span>Testimonios</span><span>Testimonios</span></span></a>
+          <a href="index.html#preguntas" class="menu__link" style="--d:.32s"><span class="menu__roll"><span>Preguntas
+                frecuentes</span><span>Preguntas frecuentes</span></span></a>
+          <a href="index.html#contacto" class="menu__link" style="--d:.40s"><span
+              class="menu__roll"><span>Contacto</span><span>Contacto</span></span></a>
+        </nav>
+        <div class="menu__footer">
+          <p class="menu__brand">Ángeles <em>de</em> Vida</p>
+          <p class="menu__desc">Tus seres queridos en buenas manos, tu familia en tranquilidad. Cuidado profesional y
+            humano para quienes más amas.<br>• Atención 24/7</p>
+          <!-- Redes sociales (mismo bloque que en el pie; aquí en azul sobre el panel crema) -->
+          <nav class="social social--menu" aria-label="Redes sociales">
+            <a class="social__link" href="https://www.facebook.com/enfermerasangelesdevida" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 3H13a4 4 0 0 0-4 4v3H7v3h2v8h3v-8h2.5l.5-3h-3V7.5A1.5 1.5 0 0 1 13.5 6h1z" /></svg>
+              <span class="sr-only">Facebook de Ángeles de Vida (se abre en una pestaña nueva)</span>
+            </a>
+            <a class="social__link" href="https://www.instagram.com/enfermerasangelesdevida/" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r=".6" /></svg>
+              <span class="sr-only">Instagram de Ángeles de Vida (se abre en una pestaña nueva)</span>
+            </a>
+            <!-- YouTube: visible pero SIN canal todavía (data-pendiente: main.js evita que el clic haga algo).
+               Cuando exista el canal: pon su URL en href, añade target="_blank" rel="noopener" y quita data-pendiente. -->
+            <a class="social__link" href="#" data-pendiente title="Próximamente">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4" /><path d="m10 9 5 3-5 3z" /></svg>
+              <span class="sr-only">YouTube de Ángeles de Vida (próximamente)</span>
+            </a>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============================================================
+         AVISO LEGAL
+         Página generada a partir de Aviso_Legal.docx (mismo texto, solo formato).
+         Los campos entre corchetes resaltados (mark.legal__pendiente) están SIN
+         RELLENAR en el documento original: completarlos antes de publicar.
+         No se publican: la nota interna del documento ni la sección de anexos
+         ("textos listos para el sitio web").
+         Nota interna del documento (no visible en la página):
+         "Nota para el equipo de Ángeles de Vida: complete los campos entre corchetes [ ] antes de publicar. Este Aviso Legal complementa los Términos y Condiciones y la Política de Tratamiento de Datos Personales; procure que los tres documentos sean coherentes entre sí. Se recomienda una revisión final por parte de un abogado."
+         ============================================================ -->
+    <article class="legal">
+      <header class="legal__intro">
+        <p class="eyebrow text-gold">Ángeles de Vida</p>
+        <h1 class="legal__title">Aviso Legal</h1>
+        <p class="legal__meta">Versión 1.0  ·  Vigente desde: 23 de octubre de 2023 · Última actualización: 23 de octubre de 2023</p>
+      </header>
+
+      <div class="legal__body">
+        <!-- Índice: enlaces a cada apartado (main.js baja hasta él dejando sitio al header) -->
+        <nav class="legal__toc" aria-label="Contenido del documento" data-toc>
+          <p class="legal__toc-title">Contenido</p>
+          <ol>
+            <li><a href="#apartado-1-datos-de-identificacion-del-titular-del-sitio-web">Datos de identificación del titular del sitio web</a></li>
+            <li><a href="#apartado-2-objeto-del-sitio">Objeto del Sitio</a></li>
+            <li><a href="#apartado-3-condiciones-de-acceso-y-uso">Condiciones de acceso y uso</a></li>
+            <li><a href="#apartado-4-propiedad-intelectual-e-industrial">Propiedad intelectual e industrial</a></li>
+            <li><a href="#apartado-5-imagenes-y-testimonios">Imágenes y testimonios</a></li>
+            <li><a href="#apartado-6-aviso-sobre-contenidos-de-salud-y-cuidado">Aviso sobre contenidos de salud y cuidado</a></li>
+            <li><a href="#apartado-7-exclusion-de-garantias-y-de-responsabilidad">Exclusión de garantías y de responsabilidad</a></li>
+            <li><a href="#apartado-8-enlaces-e-hipervinculos">Enlaces e hipervínculos</a></li>
+            <li><a href="#apartado-9-proteccion-de-datos-personales">Protección de datos personales</a></li>
+            <li><a href="#apartado-10-cookies">Cookies</a></li>
+            <li><a href="#apartado-11-comunicaciones-electronicas">Comunicaciones electrónicas</a></li>
+            <li><a href="#apartado-12-derechos-del-consumidor-y-atencion-de-pqrs">Derechos del consumidor y atención de PQRS</a></li>
+            <li><a href="#apartado-13-modificaciones">Modificaciones</a></li>
+            <li><a href="#apartado-14-ley-aplicable-y-jurisdiccion">Ley aplicable y jurisdicción</a></li>
+            <li><a href="#apartado-15-contacto">Contacto</a></li>
+          </ol>
+        </nav>
+
+        <div class="legal__content">
+          <h2 id="apartado-1-datos-de-identificacion-del-titular-del-sitio-web">1. Datos de identificación del titular del sitio web</h2>
+          <p>En cumplimiento del deber de información y de transparencia frente a los usuarios y consumidores, se pone a disposición del público la siguiente información del titular del sitio web <mark class="legal__pendiente">[www.angelesdevida.com]</mark> (el “Sitio”):</p>
+          <div class="legal__tabla-wrap"><table class="legal__tabla"><tbody><tr><th scope="row">Razón social</th><td><mark class="legal__pendiente">[Razón social completa]</mark></td></tr><tr><th scope="row">Nombre comercial</th><td>Ángeles de Vida</td></tr><tr><th scope="row">NIT</th><td><mark class="legal__pendiente">[NIT]</mark></td></tr><tr><th scope="row">Matrícula mercantil</th><td><mark class="legal__pendiente">[Número de matrícula]</mark>, Cámara de Comercio de <mark class="legal__pendiente">[Bogotá]</mark></td></tr><tr><th scope="row">Representante legal</th><td><mark class="legal__pendiente">[Nombre del representante legal]</mark></td></tr><tr><th scope="row">Domicilio</th><td><mark class="legal__pendiente">[Dirección]</mark>, Bogotá D.C., Colombia</td></tr><tr><th scope="row">Correo electrónico</th><td><mark class="legal__pendiente">[correo@angelesdevida.com]</mark></td></tr><tr><th scope="row">Teléfono</th><td><mark class="legal__pendiente">[Teléfono]</mark></td></tr><tr><th scope="row">Actividad</th><td>Servicios de acompañamiento y cuidado de personas en casa y en instituciones de salud</td></tr></tbody></table></div>
+          <p>En adelante, “Ángeles de Vida”.</p>
+          <h2 id="apartado-2-objeto-del-sitio">2. Objeto del Sitio</h2>
+          <p>El Sitio tiene como finalidad dar a conocer a Ángeles de Vida, su historia, sus valores y sus servicios de cuidado, y ofrecer un canal de contacto para las familias que buscan apoyo en el cuidado de las personas que más aman.</p>
+          <p>Desde enero de 2010 acompañamos a las familias con cariño, respeto y dedicación. Este Sitio es una extensión de ese compromiso: queremos que encuentre información clara, confiable y fácil de entender.</p>
+          <h2 id="apartado-3-condiciones-de-acceso-y-uso">3. Condiciones de acceso y uso</h2>
+          <p>El acceso al Sitio es libre y gratuito, sin perjuicio del costo de la conexión a Internet que tenga contratada el usuario. La navegación por el Sitio atribuye la condición de usuario e implica la aceptación de este Aviso Legal y de los Términos y Condiciones.</p>
+          <p>El usuario se compromete a utilizar el Sitio, sus contenidos y servicios conforme a la ley colombiana, la moral, el orden público y las buenas costumbres, y a abstenerse de usarlos con fines ilícitos, lesivos de derechos de terceros o que puedan dañar, inutilizar o deteriorar el Sitio. Las conductas informáticas indebidas pueden constituir delitos conforme a la Ley 1273 de 2009.</p>
+          <h2 id="apartado-4-propiedad-intelectual-e-industrial">4. Propiedad intelectual e industrial</h2>
+          <p>Los contenidos del Sitio, incluidos textos, fotografías, imágenes, ilustraciones, videos, logotipos, marcas, nombres comerciales, diseño gráfico, estructura, código fuente y bases de datos, son propiedad de Ángeles de Vida o se usan con la debida autorización de sus titulares. Están protegidos por la Ley 23 de 1982 sobre derechos de autor, la Decisión Andina 486 de 2000 sobre propiedad industrial y demás normas aplicables.</p>
+          <p>El nombre y el logotipo de Ángeles de Vida son signos distintivos de la empresa. Ningún contenido del Sitio podrá ser reproducido, distribuido, comunicado públicamente, transformado ni utilizado con fines comerciales sin autorización previa y escrita de su titular. Se permite la visualización, la impresión y la copia de contenidos únicamente para uso personal y no comercial, sin modificar su contenido y conservando los avisos de derechos de autor.</p>
+          <p>Las marcas, nombres y logotipos de terceros que eventualmente aparezcan en el Sitio pertenecen a sus respectivos propietarios.</p>
+          <h2 id="apartado-5-imagenes-y-testimonios">5. Imágenes y testimonios</h2>
+          <p>Las imágenes de personas que aparecen en el Sitio se publican con la autorización de quienes en ellas figuran o de sus representantes legales, o corresponden a bancos de imágenes con licencia. <mark class="legal__pendiente">[Ajustar según el caso: si se usan fotografías reales de personas cuidadas, familiares o colaboradores, debe contarse con autorización escrita; no deben publicarse imágenes de personas cuidadas sin ella.]</mark></p>
+          <p>Los testimonios o comentarios de familias que se publiquen reflejan experiencias individuales con su consentimiento y no constituyen una garantía de resultados idénticos en cada caso.</p>
+          <h2 id="apartado-6-aviso-sobre-contenidos-de-salud-y-cuidado">6. Aviso sobre contenidos de salud y cuidado</h2>
+          <p>La información sobre cuidado, bienestar o salud contenida en el Sitio tiene un carácter exclusivamente informativo y general. <strong>No constituye consejo, diagnóstico ni tratamiento médico y no reemplaza la valoración de un profesional de la salud.</strong> Ante cualquier duda sobre la salud de una persona, consulte a su médico u otro profesional competente.</p>
+          <p><strong>En caso de emergencia, no utilice este Sitio.</strong> Llame al 123 o diríjase al servicio de urgencias más cercano.</p>
+          <h2 id="apartado-7-exclusion-de-garantias-y-de-responsabilidad">7. Exclusión de garantías y de responsabilidad</h2>
+          <p>En la medida permitida por la ley y sin perjuicio de los derechos irrenunciables de los consumidores:</p>
+          <ol class="legal__lista"><li><strong>Disponibilidad:</strong> Ángeles de Vida no garantiza la disponibilidad continua e ininterrumpida del Sitio, ni la ausencia de errores o virus. Podrá suspenderlo temporalmente por mantenimiento, actualización o causas ajenas a su control.</li><li><strong>Contenidos:</strong> Ángeles de Vida procura que la información publicada sea veraz y esté actualizada, pero no garantiza que esté libre de errores u omisiones, y puede modificarla sin previo aviso.</li><li><strong>Uso del Sitio:</strong> Ángeles de Vida no responde por los daños o perjuicios derivados del uso indebido del Sitio, de la información inexacta suministrada por los usuarios, ni de decisiones tomadas únicamente con base en los contenidos informativos.</li><li><strong>Servicios:</strong> la prestación de los servicios de cuidado se rige por el contrato o la propuesta aceptada por el cliente y por la ley colombiana, no por el contenido informativo del Sitio.</li><li><strong>Límites legales:</strong> nada en este Aviso Legal excluye ni limita la responsabilidad que no pueda excluirse o limitarse legalmente.</li></ol>
+          <h2 id="apartado-8-enlaces-e-hipervinculos">8. Enlaces e hipervínculos</h2>
+          <p><strong>Enlaces desde el Sitio hacia terceros:</strong> el Sitio puede incluir enlaces a páginas de terceros, como redes sociales, aliados o entidades de salud. Ángeles de Vida no controla esos sitios ni responde por sus contenidos, políticas o prácticas, y la inclusión de un enlace no implica recomendación ni vínculo con su titular.</p>
+          <p><strong>Enlaces desde terceros hacia el Sitio:</strong> quien desee incluir un enlace a este Sitio debe hacerlo hacia la página principal o hacia páginas específicas, sin crear confusión sobre su origen, sin sugerir una relación comercial o aprobación inexistente, sin presentar el contenido dentro de marcos (frames) y sin asociarlo a sitios de contenido ilícito, ofensivo o contrario a la ley. Ángeles de Vida podrá solicitar el retiro de cualquier enlace que no cumpla estas condiciones.</p>
+          <h2 id="apartado-9-proteccion-de-datos-personales">9. Protección de datos personales</h2>
+          <p>Ángeles de Vida es responsable del Tratamiento de los datos personales que se recolecten a través del Sitio y los trata conforme a la Ley Estatutaria 1581 de 2012 y sus decretos reglamentarios. Las finalidades del Tratamiento, los derechos de los titulares y los canales para ejercerlos se describen en nuestra Política de Tratamiento de Datos Personales.</p>
+          <p>Los titulares pueden conocer, actualizar, rectificar y solicitar la supresión de sus datos, o revocar su autorización, escribiendo a <mark class="legal__pendiente">[correo@angelesdevida.com]</mark>.</p>
+          <h2 id="apartado-10-cookies">10. Cookies</h2>
+          <p>El Sitio puede utilizar cookies y tecnologías similares para garantizar su funcionamiento, analizar su uso y mejorar la experiencia de navegación. El usuario puede aceptarlas, rechazarlas o configurarlas mediante el aviso de cookies del Sitio o desde su navegador. Encontrará más información en nuestra Política de Tratamiento de Datos Personales.</p>
+          <h2 id="apartado-11-comunicaciones-electronicas">11. Comunicaciones electrónicas</h2>
+          <p>Las comunicaciones que las partes realicen por medios electrónicos, incluido el correo electrónico, los formularios del Sitio y los mensajes de datos, son válidas y producen efectos jurídicos conforme a la Ley 527 de 1999. Ángeles de Vida podrá enviar comunicaciones comerciales únicamente a quienes las hayan autorizado, y el usuario podrá retirar su consentimiento en cualquier momento.</p>
+          <h2 id="apartado-12-derechos-del-consumidor-y-atencion-de-pqrs">12. Derechos del consumidor y atención de PQRS</h2>
+          <p>Ángeles de Vida respeta los derechos de los consumidores previstos en la Ley 1480 de 2011 (Estatuto del Consumidor). Las peticiones, quejas, reclamos y sugerencias pueden presentarse en:</p>
+          <ul class="legal__lista"><li><strong>Correo electrónico:</strong> <mark class="legal__pendiente">[correo@angelesdevida.com]</mark></li><li><strong>Teléfono / WhatsApp:</strong> <mark class="legal__pendiente">[Teléfono]</mark></li><li><strong>Dirección:</strong> <mark class="legal__pendiente">[Dirección]</mark>, Bogotá D.C.</li></ul>
+          <p>Si no está conforme con la respuesta, puede acudir a la Superintendencia de Industria y Comercio (SIC), autoridad nacional de protección al consumidor y de protección de datos personales.</p>
+          <h2 id="apartado-13-modificaciones">13. Modificaciones</h2>
+          <p>Ángeles de Vida podrá modificar este Aviso Legal en cualquier momento para adaptarlo a cambios normativos o a la evolución del Sitio. La versión vigente estará siempre publicada con su fecha de actualización. El uso del Sitio con posterioridad a la publicación de los cambios implica su aceptación.</p>
+          <h2 id="apartado-14-ley-aplicable-y-jurisdiccion">14. Ley aplicable y jurisdicción</h2>
+          <p>Este Aviso Legal se rige por las leyes de la República de Colombia. Para cualquier controversia relacionada con el Sitio, las partes procurarán una solución directa y amistosa y, de no lograrse, se someterán a las autoridades colombianas competentes, sin perjuicio de las competencias que la ley otorga a la Superintendencia de Industria y Comercio y a los jueces del domicilio del consumidor cuando así corresponda.</p>
+          <h2 id="apartado-15-contacto">15. Contacto</h2>
+          <p>Si tiene dudas sobre este Aviso Legal, escríbanos a <mark class="legal__pendiente">[correo@angelesdevida.com]</mark> o llámanos al <mark class="legal__pendiente">[Teléfono]</mark>. Estaremos felices de escucharle y acompañarle.</p>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__left">
+        <span class="footer__brand">Ángeles de Vida</span>
+        <span>© <span data-year>2026</span> · Todos los derechos reservados</span>
+      </div>
+      <!-- Redes sociales (en blanco sobre el pie azul oscuro) -->
+      <nav class="social" aria-label="Redes sociales">
+        <a class="social__link" href="https://www.facebook.com/enfermerasangelesdevida" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 3H13a4 4 0 0 0-4 4v3H7v3h2v8h3v-8h2.5l.5-3h-3V7.5A1.5 1.5 0 0 1 13.5 6h1z" /></svg>
+          <span class="sr-only">Facebook de Ángeles de Vida (se abre en una pestaña nueva)</span>
+        </a>
+        <a class="social__link" href="https://www.instagram.com/enfermerasangelesdevida/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r=".6" /></svg>
+          <span class="sr-only">Instagram de Ángeles de Vida (se abre en una pestaña nueva)</span>
+        </a>
+        <!-- YouTube: visible pero SIN canal todavía (data-pendiente: main.js evita que el clic haga algo).
+               Cuando exista el canal: pon su URL en href, añade target="_blank" rel="noopener" y quita data-pendiente. -->
+        <a class="social__link" href="#" data-pendiente title="Próximamente">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4" /><path d="m10 9 5 3-5 3z" /></svg>
+          <span class="sr-only">YouTube de Ángeles de Vida (próximamente)</span>
+        </a>
+      </nav>
+      <nav class="footer__links">
+        <a href="privacidad.html">Privacidad</a><a href="terminos.html">Términos</a><a href="aviso-legal.html" aria-current="page">Aviso legal</a><a
+          href="trabaja-con-nosotros.html">Trabaja con nosotros</a>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- Botón volver arriba (aparece tras cierto scroll) -->
+  <button class="to-top" data-to-top aria-label="Volver arriba">
+    <svg viewBox="0 0 24 24">
+      <path d="m18 15-6-6-6 6" />
+    </svg>
+  </button>
+
+  <!-- Mismas librerías y script que index.html: main.js solo activa en cada
+       página los bloques cuyos elementos existen. -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
+  <script src="main.js"></script>
+</body>
+
+</html>

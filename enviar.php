@@ -2,7 +2,7 @@
 /* =================================================================
    ÁNGELES DE VIDA — enviar.php
    Recibe el formulario "Solicita tu servicio" (main.js, bloque 10) y
-   envía la solicitud por correo usando el SMTP de Hostinger.
+   envía la solicitud por correo usando el SMTP configurado en config.php.
 
    Flujo:
    1. Solo acepta POST y siempre responde en JSON: { ok: true|false, error?: "..." }.
@@ -103,7 +103,7 @@ if (!empty($config['modo_prueba'])) {
     responder(200, ['ok' => true, 'prueba' => true]);
 }
 
-// ---------- 5. Envío con PHPMailer (SMTP de Hostinger) ----------
+// ---------- 5. Envío con PHPMailer (SMTP de config.php) ----------
 $mail = crearMailer($config);
 try {
     $mail->addAddress($config['to_email']);
@@ -114,6 +114,6 @@ try {
     $mail->send();
     responder(200, ['ok' => true]);
 } catch (MailException $e) {
-    error_log('enviar.php: error al enviar — ' . $mail->ErrorInfo);   // queda en el registro de errores de Hostinger
+    error_log('enviar.php: error al enviar — ' . $mail->ErrorInfo);   // queda en el registro de errores del servidor (cPanel → Errores)
     responder(500, ['ok' => false, 'error' => 'No pudimos enviar la solicitud en este momento.']);
 }

@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Política de Tratamiento de Datos Personales — ÁNGELES DE VIDA</title>
+  <meta name="description"
+    content="Política de tratamiento de datos personales de Ángeles de Vida: cómo recolectamos, usamos y protegemos tus datos, y cómo ejercer tus derechos (Ley 1581 de 2012)." />
+
+  <!-- Mismas tipografías, librerías y estilos que index.html -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body class="page-legal">
+
+  <!-- ============================================================
+       HEADER (copia del de index.html, con el mismo comportamiento:
+       transparente y grande arriba, blanco y compacto al hacer scroll).
+       Diferencias en esta página:
+       - data-header-dark: como arriba no hay foto oscura sino fondo claro,
+         el header transparente usa ya el logo de color y textos/líneas en
+         azul (igual que cuando está blanco), para que se lean (styles.css).
+       - Los enlaces llevan a index.html#seccion; main.js de index.html
+         baja a esa sección al llegar.
+       - "Solicita tu servicio" lleva a index.html#solicitar, que abre allí
+         el modal del formulario de servicio.
+       ============================================================ -->
+  <header class="header" data-header data-header-dark>
+    <div class="header__bar">
+      <a href="index.html" class="header__logo" aria-label="Ángeles de Vida — inicio">
+        <img class="header__logo-mark header__logo-mark--light" src="assets/img/Angeles-de-vida-logo-blanco.svg"
+          alt="Ángeles de Vida" />
+        <img class="header__logo-mark header__logo-mark--dark" src="assets/img/Angeles-de-vida-logo.svg" alt="" />
+        <span class="header__logo-text"></span>
+      </a>
+      <nav class="header__nav">
+        <button class="menu-toggle" data-menu-open aria-expanded="false" aria-controls="menu">
+          <span class="menu-toggle__text">Ver menú</span>
+          <span class="menu-toggle__icon"><span></span><span></span></span>
+        </button>
+
+        <a href="index.html#solicitar" class="cta-btn">
+          <span class="cta-btn__text">Solicita tu servicio</span>
+          <span class="cta-btn__arrow">
+            <span class="cta-btn__circle"></span>
+            <span class="cta-btn__icons">
+              <svg class="cta-btn__icon cta-btn__icon--1" viewBox="0 0 24 24">
+                <path d="M7 17 17 7M8 7h9v9" />
+              </svg>
+              <svg class="cta-btn__icon cta-btn__icon--2" viewBox="0 0 24 24">
+                <path d="M7 17 17 7M8 7h9v9" />
+              </svg>
+            </span>
+          </span>
+        </a>
+      </nav>
+    </div>
+
+    <!-- Menú a pantalla completa (igual que en index.html, con enlaces a sus secciones) -->
+    <div class="menu" id="menu" aria-hidden="true">
+      <div class="menu__backdrop" data-menu-close></div>
+      <div class="menu__panel">
+        <button class="menu__close" data-menu-close aria-label="Cerrar menú">
+          <svg viewBox="0 0 24 24">
+            <path d="M18 6 6 18M6 6l12 12" />
+          </svg>
+        </button>
+        <nav class="menu__nav">
+          <a href="index.html" class="menu__link" style="--d:0s"><span
+              class="menu__roll"><span>Home</span><span>Home</span></span></a>
+          <a href="index.html#nosotros" class="menu__link" style="--d:.08s"><span
+              class="menu__roll"><span>Nosotros</span><span>Nosotros</span></span></a>
+          <a href="index.html#servicios" class="menu__link" style="--d:.16s"><span
+              class="menu__roll"><span>Servicios</span><span>Servicios</span></span></a>
+          <a href="index.html#testimonios" class="menu__link" style="--d:.24s"><span
+              class="menu__roll"><span>Testimonios</span><span>Testimonios</span></span></a>
+          <a href="index.html#preguntas" class="menu__link" style="--d:.32s"><span class="menu__roll"><span>Preguntas
+                frecuentes</span><span>Preguntas frecuentes</span></span></a>
+          <a href="index.html#contacto" class="menu__link" style="--d:.40s"><span
+              class="menu__roll"><span>Contacto</span><span>Contacto</span></span></a>
+        </nav>
+        <div class="menu__footer">
+          <p class="menu__brand">Ángeles <em>de</em> Vida</p>
+          <p class="menu__desc">Tus seres queridos en buenas manos, tu familia en tranquilidad. Cuidado profesional y
+            humano para quienes más amas.<br>• Atención 24/7</p>
+          <!-- Redes sociales (mismo bloque que en el pie; aquí en azul sobre el panel crema) -->
+          <nav class="social social--menu" aria-label="Redes sociales">
+            <a class="social__link" href="https://www.facebook.com/enfermerasangelesdevida" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 3H13a4 4 0 0 0-4 4v3H7v3h2v8h3v-8h2.5l.5-3h-3V7.5A1.5 1.5 0 0 1 13.5 6h1z" /></svg>
+              <span class="sr-only">Facebook de Ángeles de Vida (se abre en una pestaña nueva)</span>
+            </a>
+            <a class="social__link" href="https://www.instagram.com/enfermerasangelesdevida/" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r=".6" /></svg>
+              <span class="sr-only">Instagram de Ángeles de Vida (se abre en una pestaña nueva)</span>
+            </a>
+            <!-- YouTube: visible pero SIN canal todavía (data-pendiente: main.js evita que el clic haga algo).
+               Cuando exista el canal: pon su URL en href, añade target="_blank" rel="noopener" y quita data-pendiente. -->
+            <a class="social__link" href="#" data-pendiente title="Próximamente">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4" /><path d="m10 9 5 3-5 3z" /></svg>
+              <span class="sr-only">YouTube de Ángeles de Vida (próximamente)</span>
+            </a>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============================================================
+         POLÍTICA DE TRATAMIENTO DE DATOS PERSONALES
+         Página generada a partir de Privacidad.docx (mismo texto, solo formato).
+         Los campos entre corchetes resaltados (mark.legal__pendiente) están SIN
+         RELLENAR en el documento original: completarlos antes de publicar.
+         No se publican: la nota interna del documento ni la sección de anexos
+         ("textos listos para el sitio web").
+         Nota interna del documento (no visible en la página):
+         "Nota para el equipo de Ángeles de Vida: complete los campos entre corchetes [ ] antes de publicar (razón social, NIT, dirección, correo, teléfono y fecha). Se recomienda que un abogado especialista en protección de datos revise este texto antes de su publicación, ya que esta política debe reflejar fielmente la operación real de la empresa."
+         ============================================================ -->
+    <article class="legal">
+      <header class="legal__intro">
+        <p class="eyebrow text-gold">Ángeles de Vida</p>
+        <h1 class="legal__title">Política de Tratamiento de Datos Personales</h1>
+        <p class="legal__meta">Versión 1.0  ·  Vigente desde: 23 de octubre de 2023 · Última actualización: 23 de octubre de 2023</p>
+      </header>
+
+      <div class="legal__body">
+        <!-- Índice: enlaces a cada apartado (main.js baja hasta él dejando sitio al header) -->
+        <nav class="legal__toc" aria-label="Contenido del documento" data-toc>
+          <p class="legal__toc-title">Contenido</p>
+          <ol>
+            <li><a href="#apartado-1-introduccion">Introducción</a></li>
+            <li><a href="#apartado-2-identificacion-del-responsable-del-tratamiento">Identificación del Responsable del Tratamiento</a></li>
+            <li><a href="#apartado-3-marco-normativo">Marco normativo</a></li>
+            <li><a href="#apartado-4-ambito-de-aplicacion">Ámbito de aplicación</a></li>
+            <li><a href="#apartado-5-definiciones">Definiciones</a></li>
+            <li><a href="#apartado-6-principios-rectores">Principios rectores</a></li>
+            <li><a href="#apartado-7-datos-personales-que-recolectamos">Datos personales que recolectamos</a></li>
+            <li><a href="#apartado-8-finalidades-del-tratamiento">Finalidades del Tratamiento</a></li>
+            <li><a href="#apartado-9-tratamiento-de-datos-sensibles">Tratamiento de datos sensibles</a></li>
+            <li><a href="#apartado-10-tratamiento-de-datos-de-ninos-ninas-y-adolescentes">Tratamiento de datos de niños, niñas y adolescentes</a></li>
+            <li><a href="#apartado-11-autorizacion-del-titular">Autorización del Titular</a></li>
+            <li><a href="#apartado-12-derechos-de-los-titulares">Derechos de los Titulares</a></li>
+            <li><a href="#apartado-13-deberes-de-angeles-de-vida-como-responsable-del-tratamien">Deberes de Ángeles de Vida como Responsable del Tratamiento</a></li>
+            <li><a href="#apartado-14-procedimiento-para-ejercer-sus-derechos-consultas-y-recla">Procedimiento para ejercer sus derechos: consultas y reclamos</a></li>
+            <li><a href="#apartado-15-transferencia-y-transmision-de-datos-personales">Transferencia y transmisión de datos personales</a></li>
+            <li><a href="#apartado-16-medidas-de-seguridad">Medidas de seguridad</a></li>
+            <li><a href="#apartado-17-confidencialidad">Confidencialidad</a></li>
+            <li><a href="#apartado-18-cookies-y-tecnologias-similares">Cookies y tecnologías similares</a></li>
+            <li><a href="#apartado-19-conservacion-de-los-datos">Conservación de los datos</a></li>
+            <li><a href="#apartado-20-registro-nacional-de-bases-de-datos">Registro Nacional de Bases de Datos</a></li>
+            <li><a href="#apartado-21-autoridad-de-proteccion-de-datos">Autoridad de protección de datos</a></li>
+            <li><a href="#apartado-22-modificaciones-a-la-politica">Modificaciones a la Política</a></li>
+            <li><a href="#apartado-23-vigencia">Vigencia</a></li>
+          </ol>
+        </nav>
+
+        <div class="legal__content">
+          <h2 id="apartado-1-introduccion">1. Introducción</h2>
+          <p>En enero de 2010 nació Ángeles de Vida con un sueño: ayudar a las familias a cuidar de las personas que más aman. Durante más de 16 años hemos acompañado a familias con cariño, respeto y dedicación, brindando cuidado en casa o en el hospital. Sabemos que confiarnos el cuidado de un ser querido implica también confiarnos información muy valiosa y, en muchos casos, muy íntima.</p>
+          <p>Por eso, protegemos los datos personales de nuestros usuarios, familiares, cuidadores y colaboradores con el mismo compromiso con el que cuidamos a las personas. Esta Política explica, de forma clara y transparente, qué datos recolectamos, para qué los usamos, cómo los protegemos y cómo puede ejercer sus derechos.</p>
+          <p>Esta Política se expide en cumplimiento del artículo 15 de la Constitución Política de Colombia, la Ley Estatutaria 1581 de 2012 y sus decretos reglamentarios.</p>
+          <h2 id="apartado-2-identificacion-del-responsable-del-tratamiento">2. Identificación del Responsable del Tratamiento</h2>
+          <div class="legal__tabla-wrap"><table class="legal__tabla"><tbody><tr><th scope="row">Razón social</th><td><mark class="legal__pendiente">[Razón social completa]</mark>, en adelante “Ángeles de Vida”</td></tr><tr><th scope="row">NIT</th><td><mark class="legal__pendiente">[NIT]</mark></td></tr><tr><th scope="row">Domicilio principal</th><td><mark class="legal__pendiente">[Dirección]</mark>, Bogotá D.C., Colombia</td></tr><tr><th scope="row">Correo para asuntos de datos personales</th><td><mark class="legal__pendiente">[correo@angelesdevida.com]</mark></td></tr><tr><th scope="row">Teléfono</th><td><mark class="legal__pendiente">[Teléfono]</mark></td></tr><tr><th scope="row">Sitio web</th><td><mark class="legal__pendiente">[www.angelesdevida.com]</mark></td></tr><tr><th scope="row">Área responsable de consultas y reclamos</th><td><mark class="legal__pendiente">[Nombre del área o cargo, por ejemplo: Oficial de Protección de Datos / Coordinación Administrativa]</mark></td></tr></tbody></table></div>
+          <h2 id="apartado-3-marco-normativo">3. Marco normativo</h2>
+          <p>Esta Política se fundamenta en:</p>
+          <ul class="legal__lista"><li>Artículos 15 y 20 de la Constitución Política de Colombia (derecho a la intimidad, al buen nombre, hábeas data y acceso a la información).</li><li>Ley Estatutaria 1581 de 2012, por la cual se dictan disposiciones generales para la protección de datos personales.</li><li>Decreto 1377 de 2013, compilado en el Decreto 1074 de 2015, y demás normas que lo modifiquen, adicionen o complementen.</li><li>Sentencia C-748 de 2011 de la Corte Constitucional, que efectuó el control de constitucionalidad de la Ley 1581 de 2012.</li><li>Circulares e instrucciones de la Superintendencia de Industria y Comercio (SIC), autoridad de protección de datos personales en Colombia.</li></ul>
+          <h2 id="apartado-4-ambito-de-aplicacion">4. Ámbito de aplicación</h2>
+          <p>Esta Política aplica a todos los datos personales registrados en las bases de datos de Ángeles de Vida que sean objeto de Tratamiento, y se aplica a las personas que se relacionen con la empresa, entre ellas:</p>
+          <ul class="legal__lista"><li>Clientes, familiares y personas que solicitan nuestros servicios de cuidado.</li><li>Pacientes o personas cuidadas.</li><li>Personal de cuidado, auxiliares, enfermeros y demás colaboradores, así como candidatos a vinculación.</li><li>Proveedores, aliados y contratistas.</li><li>Visitantes del sitio web y personas que nos contactan por cualquier canal.</li></ul>
+          <h2 id="apartado-5-definiciones">5. Definiciones</h2>
+          <p>De conformidad con el artículo 3 de la Ley 1581 de 2012, se entiende por:</p>
+          <ul class="legal__lista"><li><strong>Autorización:</strong> consentimiento previo, expreso e informado del Titular para llevar a cabo el Tratamiento de datos personales.</li><li><strong>Base de datos:</strong> conjunto organizado de datos personales que sea objeto de Tratamiento.</li><li><strong>Dato personal:</strong> cualquier información vinculada o que pueda asociarse a una o varias personas naturales determinadas o determinables.</li><li><strong>Dato sensible:</strong> aquel que afecta la intimidad del Titular o cuyo uso indebido puede generar su discriminación, como los datos relativos a la salud, la vida sexual, el origen racial o étnico, la orientación política, las convicciones religiosas o filosóficas, la pertenencia a sindicatos u organizaciones sociales, y los datos biométricos.</li><li><strong>Encargado del Tratamiento:</strong> persona natural o jurídica, pública o privada, que por sí misma o en asocio con otros, realice el Tratamiento de datos personales por cuenta del Responsable.</li><li><strong>Responsable del Tratamiento:</strong> persona natural o jurídica, pública o privada, que por sí misma o en asocio con otros, decida sobre la base de datos y/o el Tratamiento de los datos.</li><li><strong>Titular:</strong> persona natural cuyos datos personales sean objeto de Tratamiento.</li><li><strong>Tratamiento:</strong> cualquier operación o conjunto de operaciones sobre datos personales, tales como la recolección, almacenamiento, uso, circulación o supresión.</li><li><strong>Transferencia:</strong> envío de datos personales por parte del Responsable o Encargado ubicado en Colombia a un receptor que, a su vez, es Responsable del Tratamiento y se encuentra dentro o fuera del país.</li><li><strong>Transmisión:</strong> comunicación de datos personales dentro o fuera de Colombia cuando tenga por objeto la realización de un Tratamiento por el Encargado por cuenta del Responsable.</li></ul>
+          <h2 id="apartado-6-principios-rectores">6. Principios rectores</h2>
+          <p>En el Tratamiento de datos personales, Ángeles de Vida aplica de manera armónica e integral los principios del artículo 4 de la Ley 1581 de 2012:</p>
+          <ol class="legal__lista"><li><strong>Legalidad:</strong> el Tratamiento es una actividad reglada que se sujeta a la ley y a las normas que la desarrollan.</li><li><strong>Finalidad:</strong> el Tratamiento obedece a una finalidad legítima, que es informada al Titular.</li><li><strong>Libertad:</strong> el Tratamiento sólo se ejerce con el consentimiento previo, expreso e informado del Titular, salvo mandato legal o judicial.</li><li><strong>Veracidad o calidad:</strong> la información sujeta a Tratamiento debe ser veraz, completa, exacta, actualizada, comprobable y comprensible.</li><li><strong>Transparencia:</strong> se garantiza al Titular el derecho de obtener, en cualquier momento y sin restricciones, información sobre la existencia de datos que le conciernan.</li><li><strong>Acceso y circulación restringida:</strong> el Tratamiento sólo se hace por personas autorizadas por el Titular o por la ley. Los datos personales, salvo la información pública, no estarán disponibles en Internet u otros medios masivos, salvo que el acceso sea técnicamente controlable.</li><li><strong>Seguridad:</strong> la información se maneja con las medidas técnicas, humanas y administrativas necesarias para evitar su adulteración, pérdida, consulta, uso o acceso no autorizado o fraudulento.</li><li><strong>Confidencialidad:</strong> todas las personas que intervienen en el Tratamiento de datos que no sean públicos están obligadas a garantizar su reserva, incluso después de finalizada su relación con la empresa.</li></ol>
+          <h2 id="apartado-7-datos-personales-que-recolectamos">7. Datos personales que recolectamos</h2>
+          <p>Según la relación que usted tenga con Ángeles de Vida, podemos tratar las siguientes categorías de datos:</p>
+          <p><strong>Datos de identificación y contacto:</strong> nombres y apellidos, tipo y número de documento de identidad, fecha de nacimiento, dirección de residencia, teléfono, correo electrónico, parentesco con la persona cuidada.</p>
+          <p><strong>Datos de la persona cuidada:</strong> nombre, edad, documento de identidad, dirección donde se prestará el servicio, entidad de salud (EPS, medicina prepagada), contacto de familiares y personas autorizadas, hábitos, rutinas y preferencias necesarias para su cuidado.</p>
+          <p><strong>Datos sensibles (salud):</strong> diagnósticos, condiciones médicas, tratamientos, medicamentos, alergias, discapacidades, antecedentes, recomendaciones médicas, historia clínica y reportes de evolución, en la medida en que sean necesarios para prestar un cuidado seguro y adecuado.</p>
+          <p><strong>Datos de personal y candidatos:</strong> hoja de vida, formación académica, experiencia, certificaciones, referencias laborales y personales, afiliaciones al sistema de seguridad social, datos bancarios, resultados de exámenes médicos ocupacionales y, cuando aplique, antecedentes que la ley permita consultar.</p>
+          <p><strong>Datos financieros y de facturación:</strong> información necesaria para la contratación, facturación, cobro y pago de los servicios.</p>
+          <p><strong>Datos de navegación:</strong> dirección IP, tipo de dispositivo y navegador, páginas visitadas y datos recopilados mediante cookies, conforme a la sección 18 de esta Política.</p>
+          <p><strong>Imágenes y grabaciones:</strong> registros de video de seguridad en nuestras instalaciones, si las hubiere, y fotografías o videos únicamente con autorización expresa del Titular.</p>
+          <h2 id="apartado-8-finalidades-del-tratamiento">8. Finalidades del Tratamiento</h2>
+          <p>Ángeles de Vida tratará los datos personales para las siguientes finalidades, las cuales son informadas al Titular al momento de solicitar su autorización:</p>
+          <h3 id="apartado-8-1-usuarios-clientes-y-familiares">8.1 Usuarios, clientes y familiares</h3>
+          <ol class="legal__lista"><li>Atender solicitudes de información, cotización, contacto y asesoría sobre nuestros servicios de cuidado en casa o en el hospital.</li><li>Evaluar las necesidades de cuidado de la persona a atender y asignar el personal idóneo.</li><li>Celebrar, ejecutar y hacer seguimiento al contrato de prestación de servicios.</li><li>Coordinar con familiares, representantes y personas autorizadas la comunicación sobre el estado y la evolución del cuidado.</li><li>Gestionar la facturación, el cobro, el recaudo y la atención de pagos.</li><li>Atender peticiones, quejas, reclamos, sugerencias y encuestas de satisfacción.</li><li>Enviar información sobre nuestros servicios, novedades y contenidos de interés, siempre que usted lo haya autorizado, con la posibilidad de retirar su consentimiento en cualquier momento.</li><li>Cumplir obligaciones legales, contractuales y requerimientos de autoridades competentes.</li><li>Realizar análisis estadísticos y de mejora de la calidad del servicio, preferiblemente con datos anonimizados.</li></ol>
+          <h3 id="apartado-8-2-personas-cuidadas-datos-sensibles-de-salud">8.2 Personas cuidadas (datos sensibles de salud)</h3>
+          <ol class="legal__lista"><li>Prestar un servicio de cuidado seguro, personalizado y acorde con las condiciones de salud de la persona.</li><li>Informar al personal asignado sobre las necesidades, restricciones y cuidados específicos que debe tener en cuenta.</li><li>Llevar registros del cuidado brindado y de la evolución de la persona.</li><li>Comunicarse con familiares, médicos tratantes, entidades de salud o instituciones hospitalarias cuando sea necesario para el cuidado o ante una emergencia.</li><li>Proteger el interés vital de la persona cuidada en situaciones de urgencia médica.</li></ol>
+          <h3 id="apartado-8-3-personal-candidatos-y-colaboradores">8.3 Personal, candidatos y colaboradores</h3>
+          <ol class="legal__lista"><li>Adelantar procesos de selección, verificación de referencias y vinculación.</li><li>Administrar la relación laboral o contractual, incluyendo nómina, seguridad social, capacitaciones y evaluaciones.</li><li>Cumplir las obligaciones en materia de seguridad y salud en el trabajo.</li><li>Asignar servicios y comunicar información operativa necesaria para el cuidado.</li><li>Dar cumplimiento a obligaciones legales y atender requerimientos de autoridades.</li></ol>
+          <h3 id="apartado-8-4-proveedores-y-aliados">8.4 Proveedores y aliados</h3>
+          <ol class="legal__lista"><li>Evaluar, seleccionar, contratar y gestionar la relación comercial.</li><li>Gestionar pagos, facturación y cumplimiento de obligaciones contractuales y tributarias.</li></ol>
+          <h3 id="apartado-8-5-visitantes-del-sitio-web">8.5 Visitantes del sitio web</h3>
+          <ol class="legal__lista"><li>Responder consultas enviadas a través de formularios de contacto.</li><li>Mejorar la experiencia de navegación, medir el uso del sitio y personalizar contenidos, según la sección de cookies.</li></ol>
+          <p>Si Ángeles de Vida requiere usar los datos para una finalidad distinta a las aquí descritas, solicitará previamente una nueva autorización al Titular.</p>
+          <h2 id="apartado-9-tratamiento-de-datos-sensibles">9. Tratamiento de datos sensibles</h2>
+          <p>De acuerdo con el artículo 6 de la Ley 1581 de 2012, el Tratamiento de datos sensibles está prohibido, salvo en los casos previstos en la ley. Ángeles de Vida sólo tratará datos sensibles, como los datos de salud, cuando:</p>
+          <ul class="legal__lista"><li>El Titular haya dado su autorización explícita para dicho Tratamiento.</li><li>El Tratamiento sea necesario para salvaguardar el interés vital del Titular y este se encuentre física o jurídicamente incapacitado, caso en el cual la autorización la otorgan sus representantes legales.</li><li>El Tratamiento sea necesario para el reconocimiento, ejercicio o defensa de un derecho en un proceso judicial.</li><li>El Tratamiento tenga una finalidad histórica, estadística o científica, caso en el cual se adoptarán medidas para suprimir la identidad de los Titulares.</li></ul>
+          <p><strong>Carácter facultativo de la respuesta:</strong> conforme al artículo 12 de la Ley 1581 de 2012, ninguna persona está obligada a responder preguntas sobre datos sensibles. Sin embargo, tenga en cuenta que sin información de salud suficiente puede no ser posible prestar un cuidado seguro y adecuado.</p>
+          <p>Adicionalmente, Ángeles de Vida se compromete a:</p>
+          <ul class="legal__lista"><li>Informar de manera explícita qué datos son sensibles y la finalidad de su Tratamiento.</li><li>No condicionar ninguna actividad a que el Titular suministre datos sensibles, salvo cuando sean indispensables para la prestación del servicio.</li><li>Restringir el acceso a estos datos únicamente al personal que lo requiera para cuidar a la persona o gestionar el servicio.</li></ul>
+          <h2 id="apartado-10-tratamiento-de-datos-de-ninos-ninas-y-adolescentes">10. Tratamiento de datos de niños, niñas y adolescentes</h2>
+          <p>El artículo 7 de la Ley 1581 de 2012 dispone que en el Tratamiento se asegurará el respeto a los derechos prevalentes de los niños, niñas y adolescentes, y proscribe el Tratamiento de sus datos personales, salvo aquellos que sean de naturaleza pública. En desarrollo de lo anterior y de la reglamentación aplicable:</p>
+          <ul class="legal__lista"><li>Ángeles de Vida sólo tratará datos de menores de edad cuando ello responda y respete su interés superior y asegure el respeto de sus derechos fundamentales, y siempre que sea necesario para la prestación de un servicio de cuidado solicitado por sus representantes legales.</li><li>En estos casos, la autorización será otorgada por el representante legal del menor, previo ejercicio del derecho del niño, niña o adolescente a ser escuchado, valorando su opinión según su madurez y capacidad de entendimiento.</li><li>Es facultativo responder preguntas sobre datos de menores, y así se informará al representante legal.</li><li>Nuestro sitio web no está dirigido a menores de edad y no recolectamos de manera intencional datos de menores a través de él sin autorización de sus representantes legales.</li></ul>
+          <h2 id="apartado-11-autorizacion-del-titular">11. Autorización del Titular</h2>
+          <p>Conforme a los artículos 4 (literal c) y 9 de la Ley 1581 de 2012, Ángeles de Vida solicita la autorización previa, expresa e informada del Titular para tratar sus datos personales. La autorización se obtiene por cualquier medio que permita su consulta posterior, por ejemplo:</p>
+          <ul class="legal__lista"><li>Casilla de aceptación en los formularios del sitio web.</li><li>Documento físico o electrónico firmado.</li><li>Mensaje de correo electrónico o conversación escrita verificable.</li><li>Conductas inequívocas del Titular que permitan concluir razonablemente que otorgó la autorización, de acuerdo con la reglamentación aplicable.</li></ul>
+          <p>Al solicitar la autorización, Ángeles de Vida informa al Titular, de manera clara y expresa (artículo 12 de la Ley 1581 de 2012): (a) el Tratamiento al que serán sometidos sus datos y su finalidad; (b) el carácter facultativo de las respuestas sobre datos sensibles o de niños, niñas y adolescentes; (c) los derechos que le asisten; y (d) la identificación, dirección física o electrónica y teléfono del Responsable.</p>
+          <p>Ángeles de Vida conserva prueba de las autorizaciones otorgadas y de su cumplimiento del deber de informar, y entregará copia al Titular cuando este lo solicite.</p>
+          <p><strong>Casos en que no se requiere autorización</strong> (artículo 10 de la Ley 1581 de 2012): información requerida por una entidad pública o administrativa en ejercicio de sus funciones legales o por orden judicial; datos de naturaleza pública; casos de urgencia médica o sanitaria; tratamiento autorizado por la ley para fines históricos, estadísticos o científicos; y datos relacionados con el Registro Civil de las Personas.</p>
+          <h2 id="apartado-12-derechos-de-los-titulares">12. Derechos de los Titulares</h2>
+          <p>De acuerdo con el artículo 8 de la Ley 1581 de 2012, usted como Titular tiene derecho a:</p>
+          <ol class="legal__lista"><li>Conocer, actualizar y rectificar sus datos personales frente a Ángeles de Vida, incluso frente a datos parciales, inexactos, incompletos, fraccionados, que induzcan a error, o cuyo Tratamiento esté prohibido o no haya sido autorizado.</li><li>Solicitar prueba de la autorización otorgada, salvo cuando la ley exceptúe este requisito.</li><li>Ser informado, previa solicitud, del uso que se ha dado a sus datos personales.</li><li>Presentar ante la Superintendencia de Industria y Comercio quejas por infracciones a la normativa de protección de datos.</li><li>Revocar la autorización y/o solicitar la supresión del dato cuando en el Tratamiento no se respeten los principios, derechos y garantías constitucionales y legales. La revocatoria y/o supresión procederá cuando la Superintendencia de Industria y Comercio haya determinado que el Responsable o Encargado incurrió en conductas contrarias a la ley y a la Constitución.</li><li>Acceder en forma gratuita a sus datos personales que hayan sido objeto de Tratamiento.</li></ol>
+          <p>Estos derechos pueden ser ejercidos por el Titular, sus causahabientes, sus representantes legales o apoderados, o por terceros autorizados por el Titular o por la ley (artículo 13 de la Ley 1581 de 2012).</p>
+          <h2 id="apartado-13-deberes-de-angeles-de-vida-como-responsable-del-tratamien">13. Deberes de Ángeles de Vida como Responsable del Tratamiento</h2>
+          <p>En cumplimiento del artículo 17 de la Ley 1581 de 2012, Ángeles de Vida se compromete a:</p>
+          <ol class="legal__lista"><li>Garantizar al Titular, en todo tiempo, el pleno y efectivo ejercicio del derecho de hábeas data.</li><li>Solicitar y conservar copia de la autorización otorgada por el Titular.</li><li>Informar debidamente al Titular sobre la finalidad de la recolección y sus derechos.</li><li>Conservar la información bajo condiciones de seguridad que impidan su adulteración, pérdida, consulta, uso o acceso no autorizado o fraudulento.</li><li>Garantizar que la información suministrada a los Encargados sea veraz, completa, exacta, actualizada, comprobable y comprensible, y mantenerla actualizada.</li><li>Rectificar la información cuando sea incorrecta y comunicarlo a los Encargados.</li><li>Suministrar a los Encargados únicamente datos cuyo Tratamiento esté previamente autorizado, y exigirles el respeto a las condiciones de seguridad y privacidad.</li><li>Tramitar las consultas y reclamos en los términos de ley.</li><li>Adoptar y mantener este manual interno de políticas y procedimientos para garantizar el cumplimiento de la ley y, en especial, la atención de consultas y reclamos.</li><li>Informar al Encargado cuando determinada información esté en discusión por parte del Titular.</li><li>Informar a solicitud del Titular sobre el uso dado a sus datos.</li><li>Informar a la autoridad de protección de datos cuando se presenten violaciones a los códigos de seguridad y existan riesgos en la administración de la información de los Titulares.</li><li>Cumplir las instrucciones y requerimientos de la Superintendencia de Industria y Comercio.</li></ol>
+          <p>Cuando Ángeles de Vida actúe además como Encargado del Tratamiento, cumplirá los deberes del artículo 18 de la Ley 1581 de 2012.</p>
+          <h2 id="apartado-14-procedimiento-para-ejercer-sus-derechos-consultas-y-recla">14. Procedimiento para ejercer sus derechos: consultas y reclamos</h2>
+          <h3 id="apartado-14-1-canales-de-atencion">14.1 Canales de atención</h3>
+          <p>Puede presentar sus consultas y reclamos a través de:</p>
+          <ul class="legal__lista"><li><strong>Correo electrónico:</strong> <mark class="legal__pendiente">[correo@angelesdevida.com]</mark></li><li><strong>Dirección física:</strong> <mark class="legal__pendiente">[Dirección]</mark>, Bogotá D.C.</li><li><strong>Teléfono:</strong> <mark class="legal__pendiente">[Teléfono]</mark></li><li><strong>Formulario web:</strong> <mark class="legal__pendiente">[enlace al formulario de la página web, si aplica]</mark></li></ul>
+          <p>Para proteger su información, Ángeles de Vida verificará la identidad del solicitante o la calidad con la que actúa (causahabiente, representante legal o apoderado) antes de suministrar datos personales.</p>
+          <h3 id="apartado-14-2-consultas">14.2 Consultas</h3>
+          <p>El Titular o sus causahabientes pueden consultar la información personal que repose en nuestras bases de datos. Ángeles de Vida suministrará toda la información contenida en el registro individual o vinculada con la identificación del Titular (artículo 14 de la Ley 1581 de 2012).</p>
+          <ul class="legal__lista"><li><strong>Plazo de respuesta:</strong> máximo diez (10) días hábiles contados a partir de la fecha de recibo de la consulta.</li><li><strong>Prórroga:</strong> si no es posible atenderla en ese término, informaremos al interesado los motivos de la demora y la fecha en que se atenderá, que en ningún caso podrá superar cinco (5) días hábiles adicionales al vencimiento del primer término.</li></ul>
+          <h3 id="apartado-14-3-reclamos">14.3 Reclamos</h3>
+          <p>El Titular o sus causahabientes que consideren que la información contenida en nuestras bases de datos debe ser corregida, actualizada o suprimida, o que adviertan un presunto incumplimiento de los deberes de la ley, podrán presentar un reclamo (artículo 15 de la Ley 1581 de 2012), conforme a las siguientes reglas:</p>
+          <ol class="legal__lista"><li><strong>Contenido del reclamo:</strong> debe dirigirse a Ángeles de Vida e incluir la identificación del Titular, la descripción de los hechos que dan lugar al reclamo, la dirección o medio de notificación y los documentos que se quieran hacer valer.</li><li><strong>Reclamo incompleto:</strong> si el reclamo está incompleto, se requerirá al interesado dentro de los cinco (5) días siguientes a su recepción para que subsane las fallas. Si transcurridos dos (2) meses desde el requerimiento el solicitante no presenta la información requerida, se entenderá que ha desistido del reclamo.</li><li><strong>Falta de competencia:</strong> si quien recibe el reclamo no es competente para resolverlo, dará traslado a quien corresponda en un máximo de dos (2) días hábiles e informará al interesado.</li><li><strong>Leyenda “reclamo en trámite”:</strong> una vez recibido el reclamo completo, se incluirá en la base de datos la leyenda “reclamo en trámite” y el motivo del mismo, en un término no mayor a dos (2) días hábiles. Esta leyenda se mantendrá hasta que el reclamo sea decidido.</li><li><strong>Plazo de respuesta:</strong> máximo quince (15) días hábiles contados a partir del día siguiente a la fecha de recibo del reclamo completo. Si no es posible atenderlo en ese término, se informarán los motivos de la demora y la fecha de atención, que en ningún caso podrá superar ocho (8) días hábiles adicionales al vencimiento del primer término.</li></ol>
+          <h3 id="apartado-14-4-supresion-de-datos-y-revocatoria-de-la-autorizacion">14.4 Supresión de datos y revocatoria de la autorización</h3>
+          <p>El Titular puede solicitar en cualquier momento la supresión de sus datos o la revocatoria de la autorización, a través del procedimiento de reclamos. La solicitud no procederá cuando el Titular tenga un deber legal o contractual de permanecer en la base de datos, o cuando la conservación de la información sea necesaria para cumplir obligaciones legales (por ejemplo, la conservación de historias clínicas, libros de comercio, soportes laborales o tributarios) o para la defensa de derechos en procesos judiciales. En todo caso, Ángeles de Vida informará al Titular los motivos de la decisión.</p>
+          <h3 id="apartado-14-5-requisito-de-procedibilidad">14.5 Requisito de procedibilidad</h3>
+          <p>De acuerdo con el artículo 16 de la Ley 1581 de 2012, el Titular o causahabiente sólo podrá elevar queja ante la Superintendencia de Industria y Comercio una vez haya agotado el trámite de consulta o reclamo ante Ángeles de Vida.</p>
+          <h2 id="apartado-15-transferencia-y-transmision-de-datos-personales">15. Transferencia y transmisión de datos personales</h2>
+          <p>Ángeles de Vida podrá compartir datos personales, siempre dentro de los límites de la ley, con:</p>
+          <ul class="legal__lista"><li><strong>Encargados del Tratamiento</strong> que actúen por cuenta de la empresa, como proveedores de tecnología, alojamiento web, correo electrónico, facturación, nómina, seguridad y soporte, quienes estarán obligados contractualmente a proteger la información y a tratarla únicamente conforme a nuestras instrucciones.</li><li><strong>Entidades de salud, médicos tratantes e instituciones hospitalarias</strong>, cuando sea necesario para el cuidado de la persona atendida o ante una urgencia médica o sanitaria.</li><li><strong>Familiares, representantes y personas autorizadas</strong> por el Titular o por la ley.</li><li><strong>Autoridades públicas o administrativas</strong> en ejercicio de sus funciones legales o por orden judicial.</li><li><strong>Aseguradoras, entidades de seguridad social y entidades financieras</strong>, cuando sea necesario para la ejecución del servicio o el cumplimiento de obligaciones legales.</li></ul>
+          <p><strong>Transferencias internacionales:</strong> conforme al artículo 26 de la Ley 1581 de 2012, se prohíbe la transferencia de datos personales a países que no proporcionen niveles adecuados de protección de datos, según los estándares fijados por la Superintendencia de Industria y Comercio. Esta prohibición no aplica, entre otros casos, cuando el Titular haya otorgado su autorización expresa e inequívoca para la transferencia, cuando se trate de intercambio de datos médicos exigido por razones de salud o higiene pública, cuando sea necesaria para la ejecución de un contrato entre el Titular y el Responsable (con autorización del Titular), o cuando esté legalmente exigida para la salvaguardia del interés público o la defensa de un derecho en un proceso judicial. Si Ángeles de Vida utiliza servicios tecnológicos cuyos servidores se encuentren fuera de Colombia, adoptará las garantías necesarias para el cumplimiento de la ley.</p>
+          <p>Ángeles de Vida <strong>no vende</strong> datos personales a terceros.</p>
+          <h2 id="apartado-16-medidas-de-seguridad">16. Medidas de seguridad</h2>
+          <p>En aplicación del principio de seguridad, Ángeles de Vida adopta medidas técnicas, humanas y administrativas razonables para proteger la información, entre ellas:</p>
+          <ul class="legal__lista"><li>Control de acceso a la información por perfiles, de modo que sólo el personal autorizado acceda a los datos que necesita.</li><li>Cláusulas de confidencialidad en los contratos con colaboradores, proveedores y aliados.</li><li>Uso de canales cifrados (HTTPS) en el sitio web y herramientas de almacenamiento con medidas de seguridad.</li><li>Custodia segura de documentos físicos y copias de respaldo de la información digital.</li><li>Capacitación periódica del personal sobre protección de datos personales y confidencialidad.</li><li>Procedimiento de atención de incidentes de seguridad, incluyendo la notificación a la Superintendencia de Industria y Comercio cuando se presenten violaciones a los códigos de seguridad y existan riesgos en la administración de la información de los Titulares.</li></ul>
+          <p>A pesar de estas medidas, ningún sistema es completamente infalible. Le recomendamos no compartir datos sensibles a través de canales no seguros.</p>
+          <h2 id="apartado-17-confidencialidad">17. Confidencialidad</h2>
+          <p>Todas las personas que intervienen en el Tratamiento de datos personales que no tengan naturaleza pública están obligadas a garantizar la reserva de la información, incluso después de finalizada su relación con Ángeles de Vida. Esta obligación es especialmente rigurosa respecto de la información de salud y de la vida privada de las personas que cuidamos y de sus familias.</p>
+          <h2 id="apartado-18-cookies-y-tecnologias-similares">18. Cookies y tecnologías similares</h2>
+          <p>Nuestro sitio web puede utilizar cookies y tecnologías similares para:</p>
+          <ul class="legal__lista"><li><strong>Cookies necesarias:</strong> permiten el funcionamiento básico del sitio y la seguridad.</li><li><strong>Cookies de análisis:</strong> nos ayudan a entender cómo se usa el sitio para mejorarlo (por ejemplo, páginas visitadas y tiempo de navegación).</li><li><strong>Cookies de funcionalidad o marketing:</strong> si se implementan, sólo se activarán con su consentimiento.</li></ul>
+          <p>Usted puede configurar su navegador para rechazar o eliminar cookies, aunque algunas funciones del sitio podrían verse afectadas. <mark class="legal__pendiente">[Ajustar esta sección a las herramientas realmente utilizadas, por ejemplo Google Analytics, Meta Pixel, etc.]</mark></p>
+          <h2 id="apartado-19-conservacion-de-los-datos">19. Conservación de los datos</h2>
+          <p>Los datos personales se conservarán durante el tiempo que sea necesario para cumplir las finalidades para las que fueron recolectados y las obligaciones legales, contractuales, contables, tributarias, laborales o de salud aplicables. Una vez cumplida la finalidad y vencidos los plazos legales de conservación, los datos serán suprimidos, anonimizados o archivados de forma segura.</p>
+          <h2 id="apartado-20-registro-nacional-de-bases-de-datos">20. Registro Nacional de Bases de Datos</h2>
+          <p>Ángeles de Vida inscribirá y mantendrá actualizadas sus bases de datos en el Registro Nacional de Bases de Datos (RNBD) administrado por la Superintendencia de Industria y Comercio, en los términos y plazos que establezca la reglamentación vigente, aportando esta Política de Tratamiento de la información cuando corresponda. <mark class="legal__pendiente">[Verificar con el asesor jurídico si la empresa está obligada a la inscripción según los criterios vigentes.]</mark></p>
+          <h2 id="apartado-21-autoridad-de-proteccion-de-datos">21. Autoridad de protección de datos</h2>
+          <p>La Superintendencia de Industria y Comercio (SIC), a través de su Delegatura para la Protección de Datos Personales, es la autoridad que vigila el cumplimiento de la normativa de protección de datos personales en Colombia. Una vez agotado el trámite de consulta o reclamo ante Ángeles de Vida, el Titular podrá presentar queja ante esta entidad.</p>
+          <h2 id="apartado-22-modificaciones-a-la-politica">22. Modificaciones a la Política</h2>
+          <p>Ángeles de Vida podrá modificar esta Política para adaptarla a cambios normativos, jurisprudenciales o en sus procesos internos. Cualquier cambio sustancial será comunicado a los Titulares mediante publicación en nuestro sitio web y, cuando sea necesario, por medios directos como el correo electrónico. La versión vigente y la fecha de la última actualización estarán siempre indicadas al inicio de este documento.</p>
+          <h2 id="apartado-23-vigencia">23. Vigencia</h2>
+          <p>Esta Política rige a partir de <mark class="legal__pendiente">[DD de MES de AAAA]</mark> y permanecerá vigente mientras Ángeles de Vida realice Tratamiento de datos personales. Las bases de datos se mantendrán vigentes por el tiempo que dure la finalidad para la cual fueron creadas y las obligaciones legales aplicables.</p>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__left">
+        <span class="footer__brand">Ángeles de Vida</span>
+        <span>© <span data-year>2026</span> · Todos los derechos reservados</span>
+      </div>
+      <!-- Redes sociales (en blanco sobre el pie azul oscuro) -->
+      <nav class="social" aria-label="Redes sociales">
+        <a class="social__link" href="https://www.facebook.com/enfermerasangelesdevida" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 3H13a4 4 0 0 0-4 4v3H7v3h2v8h3v-8h2.5l.5-3h-3V7.5A1.5 1.5 0 0 1 13.5 6h1z" /></svg>
+          <span class="sr-only">Facebook de Ángeles de Vida (se abre en una pestaña nueva)</span>
+        </a>
+        <a class="social__link" href="https://www.instagram.com/enfermerasangelesdevida/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r=".6" /></svg>
+          <span class="sr-only">Instagram de Ángeles de Vida (se abre en una pestaña nueva)</span>
+        </a>
+        <!-- YouTube: visible pero SIN canal todavía (data-pendiente: main.js evita que el clic haga algo).
+               Cuando exista el canal: pon su URL en href, añade target="_blank" rel="noopener" y quita data-pendiente. -->
+        <a class="social__link" href="#" data-pendiente title="Próximamente">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4" /><path d="m10 9 5 3-5 3z" /></svg>
+          <span class="sr-only">YouTube de Ángeles de Vida (próximamente)</span>
+        </a>
+      </nav>
+      <nav class="footer__links">
+        <a href="privacidad.html" aria-current="page">Privacidad</a><a href="terminos.html">Términos</a><a href="aviso-legal.html">Aviso legal</a><a
+          href="trabaja-con-nosotros.html">Trabaja con nosotros</a>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- Botón volver arriba (aparece tras cierto scroll) -->
+  <button class="to-top" data-to-top aria-label="Volver arriba">
+    <svg viewBox="0 0 24 24">
+      <path d="m18 15-6-6-6 6" />
+    </svg>
+  </button>
+
+  <!-- Mismas librerías y script que index.html: main.js solo activa en cada
+       página los bloques cuyos elementos existen. -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
+  <script src="main.js"></script>
+</body>
+
+</html>

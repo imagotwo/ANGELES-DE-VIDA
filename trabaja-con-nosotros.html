@@ -90,6 +90,23 @@
           <p class="menu__brand">Ángeles <em>de</em> Vida</p>
           <p class="menu__desc">Tus seres queridos en buenas manos, tu familia en tranquilidad. Cuidado profesional y
             humano para quienes más amas.<br>• Atención 24/7</p>
+          <!-- Redes sociales (mismo bloque que en el pie; aquí en azul sobre el panel crema) -->
+          <nav class="social social--menu" aria-label="Redes sociales">
+            <a class="social__link" href="https://www.facebook.com/enfermerasangelesdevida" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 3H13a4 4 0 0 0-4 4v3H7v3h2v8h3v-8h2.5l.5-3h-3V7.5A1.5 1.5 0 0 1 13.5 6h1z" /></svg>
+              <span class="sr-only">Facebook de Ángeles de Vida (se abre en una pestaña nueva)</span>
+            </a>
+            <a class="social__link" href="https://www.instagram.com/enfermerasangelesdevida/" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r=".6" /></svg>
+              <span class="sr-only">Instagram de Ángeles de Vida (se abre en una pestaña nueva)</span>
+            </a>
+            <!-- YouTube: visible pero SIN canal todavía (data-pendiente: main.js evita que el clic haga algo).
+               Cuando exista el canal: pon su URL en href, añade target="_blank" rel="noopener" y quita data-pendiente. -->
+            <a class="social__link" href="#" data-pendiente title="Próximamente">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4" /><path d="m10 9 5 3-5 3z" /></svg>
+              <span class="sr-only">YouTube de Ángeles de Vida (próximamente)</span>
+            </a>
+          </nav>
         </div>
       </div>
     </div>
@@ -198,7 +215,7 @@
             <div class="form__check">
               <input id="a-acepto" name="acepto" type="checkbox" value="si" required />
               <label for="a-acepto">Autorizo a Ángeles de Vida a tratar mis datos personales y mi hoja de vida para
-                procesos de selección, según la <a href="#" target="_blank" rel="noopener">política de tratamiento de
+                procesos de selección, según la <a href="privacidad.html" target="_blank" rel="noopener">política de tratamiento de
                   datos</a>. <span class="form__req" aria-hidden="true">*</span></label>
             </div>
 
@@ -245,8 +262,25 @@
         <span class="footer__brand">Ángeles de Vida</span>
         <span>© <span data-year>2026</span> · Todos los derechos reservados</span>
       </div>
+      <!-- Redes sociales (en blanco sobre el pie azul oscuro) -->
+      <nav class="social" aria-label="Redes sociales">
+        <a class="social__link" href="https://www.facebook.com/enfermerasangelesdevida" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 3H13a4 4 0 0 0-4 4v3H7v3h2v8h3v-8h2.5l.5-3h-3V7.5A1.5 1.5 0 0 1 13.5 6h1z" /></svg>
+          <span class="sr-only">Facebook de Ángeles de Vida (se abre en una pestaña nueva)</span>
+        </a>
+        <a class="social__link" href="https://www.instagram.com/enfermerasangelesdevida/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r=".6" /></svg>
+          <span class="sr-only">Instagram de Ángeles de Vida (se abre en una pestaña nueva)</span>
+        </a>
+        <!-- YouTube: visible pero SIN canal todavía (data-pendiente: main.js evita que el clic haga algo).
+               Cuando exista el canal: pon su URL en href, añade target="_blank" rel="noopener" y quita data-pendiente. -->
+        <a class="social__link" href="#" data-pendiente title="Próximamente">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4" /><path d="m10 9 5 3-5 3z" /></svg>
+          <span class="sr-only">YouTube de Ángeles de Vida (próximamente)</span>
+        </a>
+      </nav>
       <nav class="footer__links">
-        <a href="#">Privacidad</a><a href="#">Términos</a><a href="#">Aviso legal</a><a
+        <a href="privacidad.html">Privacidad</a><a href="terminos.html">Términos</a><a href="aviso-legal.html">Aviso legal</a><a
           href="trabaja-con-nosotros.html" aria-current="page">Trabaja con nosotros</a>
       </nav>
     </div>
