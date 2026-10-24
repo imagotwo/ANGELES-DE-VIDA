@@ -1,2 +1,7 @@
 # Contiene la contraseña del correo: no se sube al repositorio
 config.php
+
+# Documentos de Word (originales de los textos legales): no se suben al repositorio
+*.docx
+*.doc
+~$*

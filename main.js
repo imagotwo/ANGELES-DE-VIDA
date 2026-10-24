@@ -58,21 +58,38 @@ if (!reduceMotion) {
   gsap.ticker.add((time) => lenis.raf(time * 1000));
   gsap.ticker.lagSmoothing(0);
 }
-const scrollToTarget = (target) => (lenis ? lenis.scrollTo(target, { offset: 0 }) : $(target)?.scrollIntoView({ behavior: 'smooth' }));
+// offset: píxeles a dejar arriba (negativo = se detiene antes). Lo usan los índices de
+// las páginas legales para que el header fijo no tape el título del apartado.
+const scrollToTarget = (target, offset = 0) => (lenis
+  ? lenis.scrollTo(target, { offset })
+  : (typeof target === 'number' ? window.scrollTo({ top: target, behavior: 'smooth' }) : $(target)?.scrollIntoView({ behavior: 'smooth' })));
+// Alto del header compacto (+ margen): --header-h × 0.7 + 24px
+const headerOffset = () => -(parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-h')) * 0.7 + 24);
+// Busca la sección de un ancla "#id" por su id (sin pasar por querySelector, que falla con
+// ids que empiezan por número, como "#5-definiciones"). Devuelve el elemento o null.
+const byHash = (hash) => {
+  if (!hash || !hash.startsWith('#') || hash.length < 2) return null;
+  try { return document.getElementById(decodeURIComponent(hash.slice(1))); } catch { return null; }
+};
 
 // Anclas internas pasan por Lenis para mantener la suavidad
 // Excepciones:
 // - botones "Solicita tu servicio" ([data-open-solicitud]): abren el modal (bloque 10)
 // - enlaces de WhatsApp ([data-wa-link]): empiezan con href="#" pero main.js les pone
 //   la dirección de WhatsApp al enviar; no son anclas de la página.
-$$('a[href^="#"]:not([data-open-solicitud]):not([data-wa-link])').forEach((a) => {
+// - enlaces pendientes ([data-pendiente], p. ej. YouTube sin canal todavía): se ven pero
+//   el clic no hace nada (sin esto, href="#" saltaría arriba de la página).
+$$('[data-pendiente]').forEach((a) => a.addEventListener('click', (e) => e.preventDefault()));
+$$('a[href^="#"]:not([data-open-solicitud]):not([data-wa-link]):not([data-pendiente])').forEach((a) => {
   a.addEventListener('click', (e) => {
     const id = a.getAttribute('href');
     // Solo actúa si en el momento del clic sigue siendo un ancla "#seccion" que existe
-    if (!id.startsWith('#') || id.length < 2 || !$(id)) return;
+    const destino = byHash(id);
+    if (!destino) return;
     e.preventDefault();
     closeMenu();
-    scrollToTarget(id === '#inicio' ? 0 : id);
+    // En los índices de las páginas legales ([data-toc]) se deja sitio al header fijo
+    scrollToTarget(id === '#inicio' ? 0 : destino, a.closest('[data-toc]') ? headerOffset() : 0);
   });
 });
 
@@ -104,8 +121,10 @@ function playIntro() {
    con el evento 'app:ready' y, si se llegó con un ancla desde otra página, baja a ella. */
 function pageReady() {
   document.dispatchEvent(new Event('app:ready'));
-  if (pendingHash && pendingHash !== '#solicitar' && $(pendingHash)) {
-    setTimeout(() => scrollToTarget(pendingHash), 150);
+  const destino = pendingHash !== '#solicitar' ? byHash(pendingHash) : null;
+  if (destino) {
+    // En páginas legales se deja sitio al header fijo para que no tape el título del apartado
+    setTimeout(() => scrollToTarget(destino, document.querySelector('.legal') ? headerOffset() : 0), 150);
   }
 }
 
