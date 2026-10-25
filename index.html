@@ -4,13 +4,12 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ÁNGELES DE VIDA - enfermeras a domicilio en Bogotá</title>
-  <link rel="icon" type="image/png" href="/assets/img/ENFERMERAS-ANGELES-DE-VIDA-FAVICON.png ">
+  <title>Enfermeras a domicilio en Bogotá | Ángeles de vida</title>
+  <link rel="icon" type="image/png" href="assets/img/favicon-enfermeras-angeles-de-vida.png">
   <meta name="description"
-    content="Ángeles de Vida: terapia y acompañamiento emocional para atravesar el duelo, el trauma y los cambios de vida en un espacio seguro." />
+    content="Servicio de enfermeras a domicilio en Bogotá, cuidado profesional en casa para pacientes y adultos mayores. Solicita tu servicio." />
 
-  <!-- Tipografías: Inter (texto) + Playfair Display (titulares con cursiva de acento).
-       Sustituyen a Inter + Merchant + Times Italic del original. -->
+  <!-- Tipografías: Inter (texto) + Playfair Display (titulares con cursiva de acento)-->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -20,6 +19,8 @@
   <!-- Lenis: hoja base recomendada por la librería (scroll suave) -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.css" />
   <link rel="stylesheet" href="styles.css" />
+    <!-- Asistente de solicitudes (chat estilo WhatsApp) -->
+  <link rel="stylesheet" href="assets/chat/chat.css" />
 </head>
 
 <body>
@@ -45,9 +46,10 @@
              --light (blanco) se ve al inicio, sobre el hero; --dark (color) se ve al
              hacer scroll, cuando el header es blanco. El cambio lo hace el CSS con
              .header.is-scrolled. El segundo lleva alt="" para no leer el nombre dos veces. -->
-        <img class="header__logo-mark header__logo-mark--light" src="assets/img/Angeles-de-vida-logo-blanco.svg"
-          alt="Ángeles de Vida" />
-        <img class="header__logo-mark header__logo-mark--dark" src="assets/img/Angeles-de-vida-logo.svg" alt="" />
+        <img class="header__logo-mark header__logo-mark--light" src="assets/img/angeles-de-vida-logo-blanco.svg"
+          alt="Logotipo blanco de Ángeles de vida - Enfermeras a domicilio en Bogotá" />
+        <img class="header__logo-mark header__logo-mark--dark" src="assets/img/angeles-de-vida-logo.svg"
+          alt="Logotipo azúl de Ángeles de vida - Enfermeras a domicilio en Bogotá" />
         <span class="header__logo-text"></span>
       </a>
       <nav class="header__nav">
@@ -104,18 +106,29 @@
           <p class="menu__brand">Ángeles <em>de</em> Vida</p>
           <!-- Redes sociales -->
           <nav class="social social--menu" aria-label="Redes sociales">
-            <a class="social__link" href="https://www.facebook.com/enfermerasangelesdevida" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 3H13a4 4 0 0 0-4 4v3H7v3h2v8h3v-8h2.5l.5-3h-3V7.5A1.5 1.5 0 0 1 13.5 6h1z" /></svg>
+            <a class="social__link" href="https://www.facebook.com/enfermerasangelesdevida" target="_blank"
+              rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M14.5 3H13a4 4 0 0 0-4 4v3H7v3h2v8h3v-8h2.5l.5-3h-3V7.5A1.5 1.5 0 0 1 13.5 6h1z" />
+              </svg>
               <span class="sr-only">Facebook de Ángeles de Vida (se abre en una pestaña nueva)</span>
             </a>
-            <a class="social__link" href="https://www.instagram.com/enfermerasangelesdevida/" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r=".6" /></svg>
+            <a class="social__link" href="https://www.instagram.com/enfermerasangelesdevida/" target="_blank"
+              rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="3" y="3" width="18" height="18" rx="5" />
+                <circle cx="12" cy="12" r="4" />
+                <circle cx="17.5" cy="6.5" r=".6" />
+              </svg>
               <span class="sr-only">Instagram de Ángeles de Vida (se abre en una pestaña nueva)</span>
             </a>
             <!-- YouTube: visible pero SIN canal todavía (data-pendiente: main.js evita que el clic haga algo).
                Cuando exista el canal: pon su URL en href, añade target="_blank" rel="noopener" y quita data-pendiente. -->
             <a class="social__link" href="#" data-pendiente title="Próximamente">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4" /><path d="m10 9 5 3-5 3z" /></svg>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="2" y="5" width="20" height="14" rx="4" />
+                <path d="m10 9 5 3-5 3z" />
+              </svg>
               <span class="sr-only">YouTube de Ángeles de Vida (próximamente)</span>
             </a>
           </nav>
@@ -133,7 +146,8 @@
     <div class="hero-wrap" id="inicio">
       <section class="hero" data-hero>
         <div class="hero__bg">
-          <img class="hero__img" src="assets/img/atencion-domiciliaria-angeles-de-vida.jpg" alt=""
+          <img class="hero__img" src="assets/img/atencion-enfermera-domiciliaria-bogota.jpg"
+            alt="Servicio de atención domiciliaria en Bogotá con enfermera asistiendo a un adulto mayor en silla de ruedas."
             fetchpriority="high" />
           <div class="hero__gradient"></div>
           <!-- Capa de textura: aparece al hacer scroll junto con la atenuación de la imagen -->
@@ -142,14 +156,17 @@
 
         <div class="hero__inner" data-hero-content>
           <div class="hero__main">
-            <h1 class="hero__title">
-              <span class="line"><span class="line__in">Ángeles de Vida,</span></span>
-              <span class="line"><span class="line__in">cuidados que dan </span></span> <span class="line">
-                <span class="line__in"> <em>tranquilidad.</em></span></span>
-            </h1>
-            <p class="hero__lead" data-blur-in>Cuidamos a quienes más amas con profesionalismo y cariño, para que tu ser
-              querido reciba la atención que merece y tu familia disfrute de la tranquilidad de saber que está en buenas
-              manos.</p>
+            <h1 class="eyebrow text-gold" data-reveal>Enfermeras a domicilio en Bogotá</h1>
+            <h2 class="hero__title" aria-label="Enfermeras Ángeles de Vida, cuidados que dan tranquilidad">
+              
+              <span class="line"><span class="line__in">Cuidados que dan </span></span> <span class="line">
+                <span class="line__in"> <em>tranquilidad</em></span></span>
+            </h2>
+            <p class="hero__lead" data-blur-in>
+              En Enfermeras Ángeles de vida cuidamos a quienes más amas con <strong>profesionalismo y cariño</strong>, para que tu ser querido reciba
+              la <strong>atención médica que merece</strong> y tu familia disfrute de la tranquilidad de saber que está
+              en las mejores manos.
+            </p>
           </div>
           <div class="hero__scroll">
             <svg viewBox="0 0 24 24">
@@ -169,48 +186,69 @@
 
     <section class="intro" id="nosotros">
       <div class="container">
-        <h2 class="eyebrow text-gold" data-reveal>Cuidado especializado</h2>
-        <h3 class="intro__title" data-reveal>Nadie debería <em>cuidar</em> a <em>un ser querido</em> en soledad</h3>
-
+        <h2 class="eyebrow text-gold" data-reveal>
+          Cuidado especializado de enfermería en Bogotá
+        </h2>
+    
+        <!-- Tu frase más fuerte sube a H2 para ser el título principal de la sección "Nosotros" -->
+        <h3 class="intro__title" data-reveal>
+          Nadie debería <em>cuidar</em> a <em>un ser querido</em> en soledad
+        </h3>
         <div class="intro__grid">
           <figure class="mask-img mask-img--left" data-mask="x">
-            <img class="ph" src="assets/img/Nosotros-angeles-de-vida.jpg" alt="" data-parallax="-30" />
+            <img class="ph" data-parallax="-30" src="assets/img/maryi-trujillo-fundadora-angeles-de-vida.jpg"
+              alt="Maryi Trujillo, enfermera profesional y fundadora de Ángeles de Vida en Bogotá." loading="lazy" />
           </figure>
           <figure class="mask-img mask-img--right" data-mask="x-rev">
-            <img class="ph" src="assets/img/Cuidado-especializado-en-casa-angeles-de-vida.jpg" alt="" data-parallax="-30" />
+            <img class="ph" data-parallax="-30" src="assets/img/cuidado-especializado-enfermera-en-casa-bogota.jpg"
+              alt="Enfermera a domicilio realizando control de signos vitales y cuidado especializado en casa."
+              loading="lazy" />
           </figure>
           <div class="intro__body">
             <div class="spotlight"></div>
-            <p data-reveal>En enero de 2010 nació Ángeles de Vida con un sueño: ayudar a las familias a cuidar de las
-              personas que más aman. Durante varios años hemos entendido y comprendido que cuidar a alguien que amas no
-              siempre es fácil. A veces, tienes muchas cosas por hacer y no puedes estar a su lado todo el tiempo. Por
-              eso, es normal que te preocupes y te preguntes: ¿quién cuidará de esa persona que tanto amo cuando yo no
-              pueda estar ahí?<br>En Ángeles de Vida te escuchamos, comprendemos lo que necesitas y te acompañamos con
-              cariño, respeto y dedicación. Brindamos cuidado en casa o en el hospital, para que tu ser querido esté
-              acompañado y tú puedas sentirte más tranquilo.<br>Llevamos más de 16 años acompañando a familias y sabemos
-              algo muy importante: pedir ayuda no significa amar menos. Significa encontrar nuevas formas de cuidar
-              mejor.<br>Porque tú también mereces descansar, sentir tranquilidad y saber que la persona que amas está en
-              buenas manos.</p>
+            <p>
+              En enero de 2010 nació <strong>Enfermeras Ángeles de Vida</strong> con un sueño: ayudar a las familias a cuidar de
+              las personas que más aman. Durante estos 16 años, hemos entendido que el cuidado de un ser querido en el
+              hogar no siempre es fácil. A veces, las obligaciones diarias impiden estar a su lado todo el tiempo, y es
+              normal que te preguntes quién le brindará el apoyo que necesita cuando tú no puedas estar ahí.
+            </p>
+
+            <p>
+              Te escuchamos, comprendemos tus necesidades y te acompañamos con cariño, respeto y dedicación. Brindamos
+              un servicio profesional de <strong>enfermeras a domicilio en Bogotá</strong>, ofreciendo asistencia
+              integral tanto en casa como en entornos hospitalarios, para que tu familiar esté protegido y tú puedas
+              recuperar tu tranquilidad.
+            </p>
+
+            <p>
+              Sabemos algo muy importante: pedir ayuda no significa amar menos; significa encontrar nuevas formas de
+              cuidar mejor. Porque tú también mereces descansar, sentir alivio y tener la certeza de que la persona que
+              amas está en las mejores manos.
+            </p>
           </div>
         </div>
       </div>
     </section>
-    
+
     <!-- ============================================================
          PROGRAMA DESTACADO — imagen de fondo con degradado y
          tarjeta clara con lista de "píldoras".
          ============================================================ -->
     <section class="feature" id="programa">
       <div class="feature__bg">
-        <img class="ph" src="assets/img/enfermeria-en-casa-24-horas.jpg" alt="" data-parallax="-12" />
+        <img class="ph" data-parallax="-12" src="assets/img/enfermera-a-domicilio-24-horas-bogota.jpg"
+          alt="Servicio de enfermería a domicilio 24 horas en Bogotá." loading="lazy" />
         <div class="feature__gradient"></div>
       </div>
       <div class="container feature__hero">
-        <h2 class="feature__title" data-reveal>Enfermería <em>en casa,</em><br>día y noche</h2>
-        <p class="feature__text" data-reveal>Cuando alguien que amas necesita cuidados, toda la familia lo siente. Te
-          acompañamos con enfermería en casa, las 24 horas. Atención a lo que cada persona necesita.</p>
+        <h2 class="feature__title" data-reveal><em>Enfermería en casa,</em><span class="title-break">día y noche</span></h2>
+        <p class="feature__text" data-reveal>
+          Cuando alguien que amas necesita cuidados especiales, toda la familia lo siente. En <strong> Enfermeras
+            Ángeles de Vida</strong> te acompañamos con nuestro servicio de <strong>enfermería en casa las 24
+            horas</strong>, asegurando el cuidado que cada persona necesita.
+        </p>
         <div data-reveal>
-          <a href="#contacto" class="cta-btn cta-btn--glow" data-open-solicitud>
+          <a href="#solicitud" class="cta-btn cta-btn--glow" data-open-solicitud aria-label="Solicitar servicio de enfermería">
             <span class="cta-btn__text">Solicita tu servicio</span>
             <span class="cta-btn__arrow"><span class="cta-btn__circle"></span><span class="cta-btn__icons">
                 <svg class="cta-btn__icon cta-btn__icon--1" viewBox="0 0 24 24">
@@ -234,18 +272,25 @@
     <section class="team" id="equipo">
       <div class="split split--wide">
         <div class="split__text">
-          <p class="eyebrow text-gold" data-reveal>Nuestro equipo</p>
-          <h3 class="split__title" data-reveal>Personas que <em>cuidan como</em> cuidarías tú.</h3>
-          <div class="split__body">
-            <p data-reveal>Detrás de cada visita hay una persona que llega a tu casa para acompañar a alguien que
-              quieres. Por eso, en ÁNGELES DE VIDA no pensamos solo en tareas: pensamos en tu familiar, en sus rutinas,
-              en sus tiempos y en lo que lo hace sentir tranquilo.<br>Nuestro equipo de enfermería trabaja siguiendo las
-              indicaciones médicas de cada paciente. Escucha, observa, te mantiene informado y te avisa cuando algo
-              cambia. Así puedes confiar en que hay alguien atento incluso cuando tú no puedes estar.</p>
+          <h2 class="eyebrow text-gold" data-reveal>Nuestro equipo de enfermería en Bogotá</h2>
+          <h3 class="split__title" data-reveal>Personas que cuidan como <em>cuidarías tú.</em></h3>
+          <div class="split__body" data-reveal>
+            <p>
+              Detrás de cada visita hay un profesional que llega a tu hogar para acompañar y proteger a quien más
+              quieres. Por eso, en <strong>Enfermeras Ángeles de Vida</strong> no nos limitamos a cumplir tareas: nos enfocamos en
+              tu familiar, respetando sus rutinas, sus tiempos y todo aquello que lo hace sentir seguro y tranquilo.
+            </p>
+            <p>
+              Nuestro <strong>equipo de enfermería en Bogotá</strong> trabaja estrictamente bajo las indicaciones
+              médicas de cada paciente. Cada enfermero escucha, observa, te mantiene informado en tiempo real y te
+              alerta ante cualquier cambio. Así puedes tener la total confianza de que hay alguien calificado atento de
+              su salud, incluso cuando tú no puedes estar presente.
+            </p>
           </div>
         </div>
         <figure class="split__img mask-img" data-mask="x-rev">
-          <img class="ph" src="assets/img/nuestro-equipo-angeles-de-vida.jpg" alt="" data-parallax="-35" />
+          <img class="ph" data-parallax="-35" src="assets/img/equipo-enfermeras-a-domicilio-bogota.jpg"
+            alt="Equipo de auxiliares de enfermería a domicilio de Enfermeras Ángeles de Vida en Bogotá." loading="lazy"/>
           <span class="split__img-gradient"></span>
         </figure>
       </div>
@@ -259,76 +304,120 @@
       <!--SERVICIOS DE ENFERMERIA-->
       <div class="cards-wrap">
         <div class="container">
-          <h2 class="services__quote-title" data-reveal>Nuestros servicios <br><em>incluyen</em></h2>
+          <h2 class="services__quote-title" data-reveal>
+            <em>Nuestros servicios de enfermería</em> <span class="title-break">en Bogotá incluyen:</span>
+          </h2>
           <div class="focus-grid" data-cards>
             <article class="focus-card" tabindex="0">
-              <img class="focus-card__img" src="assets/img/cuidado-en-casa-angeles-de-vida.jpg" alt="" />
+              <img class="focus-card__img" src="assets/img/cuidado-en-casa-enfermeras-bogota.jpg"
+                alt="Servicio de cuidado en casa para pacientes y adultos mayores en Bogotá." loading="lazy"/>
               <span class="focus-card__gradient" aria-hidden="true"></span>
               <div class="focus-card__overlay">
+                <!-- H3 perfecto para estructurar la sección de servicios -->
                 <h3 class="focus-card__title">Cuidado en casa</h3>
                 <div class="focus-card__desc">
                   <div class="focus-card__desc-in">
-                    <p>Es el acompañamiento de enfermería para el día a día del paciente. El personal de enfermería puede ayudar con la toma de signos vitales, con la administración de los medicamentos que el médico ordenó en los horarios correctos. También puede apoyar la higiene, la movilidad, la alimentación, y avisar a la familia si nota cambios en el estado de la persona.</p>
+                    <p>
+                      Acompañamiento integral de <strong>enfermería en el hogar</strong> para el día a día del paciente.
+                      Nuestro personal se encarga del control de signos vitales y la administración estricta de
+                      medicamentos ordenados por el médico. También brindamos apoyo profesional en higiene, movilidad y
+                      alimentación, manteniendo informada a la familia ante cualquier cambio.
+                    </p>
                   </div>
                 </div>
               </div>
             </article>
+
             <article class="focus-card" tabindex="0">
-              <img class="focus-card__img" src="assets/img/cuidado-de-adulto-mayor-angeles-de-vida.jpg" alt="" />
+              <img class="focus-card__img" src="assets/img/cuidado-adulto-mayor-domicilio-bogota.jpg"
+                alt="Servicio de cuidado de adultos mayores a domicilio en Bogotá con enfermeras profesionales." loading="lazy"/>
               <span class="focus-card__gradient" aria-hidden="true"></span>
               <div class="focus-card__overlay">
                 <h3 class="focus-card__title">Cuidado de adultos mayores</h3>
                 <div class="focus-card__desc">
                   <div class="focus-card__desc-in">
-                    <p>El cuidado de adultos mayores a domicilio brinda seguridad, bienestar y compañía. Una enfermera ayuda con la higiene, la alimentación, la movilidad y la toma de medicamentos según la fórmula médica. También contribuye a prevenir caídas y observa cambios en la salud para informar oportunamente a la familia</p>
+                    <p>
+                      Brindamos seguridad, bienestar y compañía con nuestro servicio especializado de <strong>cuidado de adultos
+                      mayores a domicilio</strong>. Nuestro personal asiste en higiene, alimentación, movilidad y administración
+                      rigurosa de medicamentos según la fórmula médica. Además, nos enfocamos en la prevención de caídas y en el
+                      monitoreo constante de la salud para mantener informada a la familia.
+                    </p>
                   </div>
                 </div>
               </div>
             </article>
+
             <article class="focus-card" tabindex="0">
-              <img class="focus-card__img" src="assets/img/acompanamiento-a-citas-medicas.jpg" alt="" />
+              <img class="focus-card__img" src="assets/img/enfermera-acompanamiento-citas-medicas-bogota.jpg"
+                alt="Enfermera de Ángeles de Vida acompañando a un adulto mayor a su cita médica en Bogotá."
+                loading="lazy" />
               <span class="focus-card__gradient" aria-hidden="true"></span>
               <div class="focus-card__overlay">
                 <h3 class="focus-card__title">Acompañamiento a citas médicas</h3>
                 <div class="focus-card__desc">
                   <div class="focus-card__desc-in">
-                    <p>Ir al médico puede ser agotador para una persona mayor o para alguien que se recupera de un procedimiento. Una enfermera puede acompañar al paciente a su cita o procedimiento; apoyando en el desarrollo eficiente, ayudando a moverse, estar atenta a sus necesidades y anotar las indicaciones del profesional para que la familia las tenga claras.</p>
+                    <p>
+                      Asistir al médico puede ser agotador para un adulto mayor o para pacientes en recuperación. Nuestro servicio de
+                      <strong>acompañamiento a citas médicas</strong> brinda apoyo integral durante todo el proceso: asistimos en la
+                      movilidad, velamos por las necesidades del paciente y registramos minuciosamente las indicaciones del profesional de
+                      salud para total claridad de la familia.
+                    </p>
                   </div>
                 </div>
               </div>
             </article>
+
             <article class="focus-card" tabindex="0">
-              <img class="focus-card__img" src="assets/img/acompanamiento-hospitalario-angeles-de-vida.jpg" alt="" />
+              <img class="focus-card__img" src="assets/img/acompanamiento-hospitalario-enfermeras-bogota.jpg"
+                alt="Servicio de acompañamiento hospitalario en clínicas y hospitales de Bogotá." loading="lazy"/>
               <span class="focus-card__gradient" aria-hidden="true"></span>
               <div class="focus-card__overlay">
                 <h3 class="focus-card__title">Acompañamiento hospitalario</h3>
                 <div class="focus-card__desc">
                   <div class="focus-card__desc-in">
-                    <p>Cuando un familiar está hospitalizado, la familia no siempre puede quedarse a su lado. El acompañamiento hospitalario ofrece a una persona capacitada que está con el paciente durante la estancia en la clínica u hospital, le da apoyo y mantiene informada a la familia.</p>
+                    <p>
+                      Cuando un familiar requiere internación, las obligaciones diarias impiden estar a su lado a tiempo completo.
+                      Nuestro servicio de <strong>acompañamiento hospitalario en Bogotá</strong> asigna personal calificado para
+                      cuidar al paciente durante su estancia en la clínica u hospital, brindándole asistencia inmediata y
+                      manteniendo a la familia informada minuto a minuto.
+                    </p>
                   </div>
                 </div>
               </div>
             </article>
             <article class="focus-card" tabindex="0">
-              <img class="focus-card__img" src="assets/img/cuidado-postoperatorio-angeles-de-vida.jpg" alt="" />
+              <img class="focus-card__img" src="assets/img/cuidado-postoperatorio-enfermeras-bogota.jpg"
+                alt="Servicio de cuidado postoperatorio en casa en Bogotá con enfermeras profesionales." loading="lazy"/>
               <span class="focus-card__gradient" aria-hidden="true"></span>
               <div class="focus-card__overlay">
                 <h3 class="focus-card__title">Cuidado postoperatorio</h3>
                 <div class="focus-card__desc">
                   <div class="focus-card__desc-in">
-                    <p>Los primeros días después de una cirugía son clave. En casa, la enfermera ayuda a seguir las indicaciones del cirujano: dar los medicamentos en el horario indicado, apoyar los movimientos con cuidado, vigilar la herida y observar cómo se siente la persona.</p>
+                    <p>
+                      Las primeras semanas tras una cirugía son críticas para una recuperación exitosa. Nuestro servicio de
+                      <strong>cuidado postoperatorio en Bogotá</strong> garantiza el estricto cumplimiento de las indicaciones del
+                      cirujano: administración puntual de medicamentos, asistencia segura en la movilidad, monitoreo de la herida
+                      quirúrgica y evaluación constante de la evolución del paciente.
+                    </p>
                   </div>
                 </div>
               </div>
             </article>
             <article class="focus-card" tabindex="0">
-              <img class="focus-card__img" src="assets/img/curaciones-angeles-de-vida.jpg" alt="" />
+              <img class="focus-card__img" src="assets/img/curaciones-heridas-enfermeras-bogota.jpg" alt="Servicio de enfermería para curación de heridas y úlceras a domicilio en Bogotá.
+            " loading="lazy" />
               <span class="focus-card__gradient" aria-hidden="true"></span>
               <div class="focus-card__overlay">
-                <h3 class="focus-card__title">Curaciones</h3>
+                <h3 class="focus-card__title">Curación de heridas</h3>
                 <div class="focus-card__desc">
                   <div class="focus-card__desc-in">
-                    <p>Una curación consiste en limpiar y cubrir una herida de manera adecuada para ayudar a que cierre bien y evitar infecciones. Puede ser necesaria después de una cirugía, por una úlcera o por una lesión que tarda en sanar. La enfermera realiza la curación con material limpio o estéril, según la indicación del médico, y revisa cómo evoluciona la herida. Si ve signos de infección, como calor, pus, mal olor o enrojecimiento que se extiende, lo informa para que el paciente sea valorado.</p>
+                    <p>
+                      Ofrecemos el servicio especializado de <strong>curación de heridas a domicilio en Bogotá</strong> para
+                      garantizar una cicatrización óptima y prevenir infecciones. Atendemos pacientes postquirúrgicos, úlceras por
+                      presión o lesiones de difícil sanación. Nuestro personal realiza el procedimiento bajo estrictas técnicas
+                      asépticas y material estéril según indicación médica, monitoreando la evolución clínica e informando
+                      oportunamente cualquier signo de alerta.
+                    </p>
                   </div>
                 </div>
               </div>
@@ -427,17 +516,25 @@
          POR QUÉ NOSOTROS — imagen grande, marca gigante y texto.
          ============================================================ -->
     <section class="why" id="testimonios">
-      <div class="why__bg"><img class="ph" src="assets/img/historias-de-familias.jpg" alt="" data-parallax="-15" />
+      <div class="why__bg"><img class="ph" data-parallax="-15" src="assets/img/historias-de-familias-bogota.jpg"
+          alt="Familias en Bogotá que confían en el cuidado de enfermería de Enfermeras de Vida." />
       </div>
       <div class="why__gradient"></div>
       <div class="container why__content">
         <div class="why__text">
-          <h2 class="why__title" data-reveal>¿Por qué las familias <em>confían</em> en nosotros?</h2>
-          <p data-reveal>Cuidar a alguien en casa se construye con confianza. Estas son las palabras de familias que nos
-            permitieron acompañarlas en uno de los momentos más importantes.</p>
+          <h2 class="why__title" data-reveal>
+            ¿Por qué las familias <em>confían</em> en Enfermeras Ángeles de Vida en Bogotá?
+          </h2>
+          <p data-reveal>
+            El cuidado de un ser querido en el hogar se construye sobre la confianza absoluta. Estas son las opiniones de
+            familias reales que nos permitieron acompañarlas y brindarles tranquilidad en los momentos en que más lo
+            necesitaban.
+          </p>
         </div>
-        <p class="why__note" data-reveal>Atendemos de forma presencial y en línea. Consulta disponibilidad y modalidades
-          en el formulario de contacto.</p>
+        <p class="why__note" data-reveal>
+          Brindamos atención presencial y personalizada en toda la ciudad. Consulta nuestra disponibilidad inmediata y
+          agenda tu servicio a través de nuestro formulario de contacto.
+        </p>
       </div>
     </section>
 
@@ -448,113 +545,121 @@
          entrada de derecha a izquierda (data-mask="x-rev") y parallax marcado (-35%).
          ============================================================ -->
     <section class="faq" id="preguntas">
-      <div class="faq__content">  <!-- sin imagen: bloque centrado (antes split de 2 columnas) -->
-        <div class="faq__inner">
-          <p class="eyebrow text-gold" data-reveal>RESOLVEMOS TUS DUDAS</p>
-          <h3 class="split__title" data-reveal>Preguntas frecuentes<em> sobre enfermeras</em> a domicilio en Bogotá</h3>
-          <!-- Acordeón de preguntas frecuentes (main.js, bloque 9).
-               Cada pregunta es un <button> con aria-expanded; la respuesta se
-               despliega animando su alto (grid-template-rows 0fr → 1fr).
-               Solo una abierta a la vez; todas empiezan cerradas.
-               Para añadir una pregunta, copiar un .faq-item completo y cambiar
-               los id (faq-q-N / faq-a-N) para que sigan siendo únicos. -->
-          <div class="faq-list" data-faq data-reveal>
-            <div class="faq-item">
-              <h4 class="faq-item__heading">
-                <button class="faq-item__q" id="faq-q-1" aria-expanded="false" aria-controls="faq-a-1">
-                  <span>¿Qué hace una enfermera a domicilio?</span>
-                  <span class="faq-item__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
-                </button>
-              </h4>
-              <div class="faq-item__a" id="faq-a-1" role="region" aria-labelledby="faq-q-1" hidden>
-                <div class="faq-item__inner">
-                  <p>Acompaña el día a día del paciente en casa: toma de signos vitales, administración de los medicamentos que ordenó el médico en sus horarios, apoyo en la higiene, la alimentación y la movilidad, y curaciones cuando se necesitan.</p>
-                  <p class="faq-item__note">→ Siempre trabaja siguiendo las indicaciones médicas de cada paciente.</p>
-                </div>
-              </div>
+  <div class="faq__content">
+    <div class="faq__inner">
+      <!-- 1. El eyebrow pasa a párrafo para limpiar la jerarquía superior -->
+      <p class="eyebrow text-gold" data-reveal>Resolvemos tus dudas</p>
+      
+      <!-- 2. Sube a H2: Ahora es el título principal oficial de la sección -->
+      <h2 class="split__title" data-reveal>
+        Preguntas frecuentes<em> sobre enfermeras</em> a domicilio en Bogotá
+      </h2>
+      
+      <div class="faq-list" data-faq data-reveal>
+        
+        <!-- PREGUNTA 1 (Modificada a H3) -->
+        <div class="faq-item">
+          <h3 class="faq-item__heading">
+            <button class="faq-item__q" id="faq-q-1" aria-expanded="false" aria-controls="faq-a-1">
+              <span>¿Qué hace una enfermera a domicilio en Bogotá?</span>
+              <span class="faq-item__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" /></svg></span>
+            </button>
+          </h3>
+          <div class="faq-item__a" id="faq-a-1" role="region" aria-labelledby="faq-q-1" hidden>
+            <div class="faq-item__inner">
+              <p>Acompaña el día a día del paciente en el hogar realizando control de signos vitales, administración estricta de medicamentos bajo orden médica, apoyo en higiene, movilidad, alimentación y curaciones técnicas cuando se requieren.</p>
+              <p class="faq-item__note">→ El personal de Enfermeras Ángeles de Vida trabaja siempre bajo indicaciones médicas estrictas.</p>
             </div>
+          </div>
+        </div>
 
-            <div class="faq-item">
-              <h4 class="faq-item__heading">
-                <button class="faq-item__q" id="faq-q-2" aria-expanded="false" aria-controls="faq-a-2">
-                  <span>¿Prestan el servicio las 24 horas?</span>
-                  <span class="faq-item__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
-                </button>
-              </h4>
-              <div class="faq-item__a" id="faq-a-2" role="region" aria-labelledby="faq-q-2" hidden>
-                <div class="faq-item__inner">
-                  <p>Sí. Puedes contratar turnos de día, de noche o acompañamiento continuo de 24 horas, según lo que necesite tu familiar.</p>
-                  <p class="faq-item__note">→ Cuéntanos la rutina del paciente y te proponemos el turno que mejor se adapta.</p>
-                </div>
-              </div>
+        <!-- PREGUNTA 2 (Modificada a H3) -->
+        <div class="faq-item">
+          <h3 class="faq-item__heading">
+            <button class="faq-item__q" id="faq-q-2" aria-expanded="false" aria-controls="faq-a-2">
+              <span>¿Prestan el servicio de enfermería las 24 horas?</span>
+              <span class="faq-item__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" /></svg></span>
+            </button>
+          </h3>
+          <div class="faq-item__a" id="faq-a-2" role="region" aria-labelledby="faq-q-2" hidden>
+            <div class="faq-item__inner">
+              <p>Sí. Ofrecemos cobertura completa mediante turnos diurnos, nocturnos o acompañamiento continuo de 24 horas, adaptándonos por completo a las necesidades y rutinas de tu familiar.</p>
+              <p class="faq-item__note">→ Evaluamos el caso del paciente para sugerir la modalidad de turno más adecuada.</p>
             </div>
+          </div>
+        </div>
 
-            <div class="faq-item">
-              <h4 class="faq-item__heading">
-                <button class="faq-item__q" id="faq-q-3" aria-expanded="false" aria-controls="faq-a-3">
-                  <span>¿Pueden acompañar a mi familiar en el hospital?</span>
-                  <span class="faq-item__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
-                </button>
-              </h4>
-              <div class="faq-item__a" id="faq-a-3" role="region" aria-labelledby="faq-q-3" hidden>
-                <div class="faq-item__inner">
-                  <p>Sí. Durante una hospitalización, una persona capacitada se queda con el paciente, lo apoya en lo que necesite y mantiene informada a la familia. También acompañamos a citas médicas y procedimientos.</p>
-                </div>
-              </div>
+        <!-- PREGUNTA 3 (Modificada a H3) -->
+        <div class="faq-item">
+          <h3 class="faq-item__heading">
+            <button class="faq-item__q" id="faq-q-3" aria-expanded="false" aria-controls="faq-a-3">
+              <span>¿Realizan acompañamiento hospitalario en clínicas de Bogotá?</span>
+              <span class="faq-item__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" /></svg></span>
+            </button>
+          </h3>
+          <div class="faq-item__a" id="faq-a-3" role="region" aria-labelledby="faq-q-3" hidden>
+            <div class="faq-item__inner">
+              <p>Sí. Durante una internación, nuestro personal calificado permanece junto al paciente en la clínica u hospital para asistirlo y mantener informada a la familia. También brindamos apoyo y asistencia en citas médicas o procedimientos programados.</p>
             </div>
+          </div>
+        </div>
 
-            <div class="faq-item">
-              <h4 class="faq-item__heading">
-                <button class="faq-item__q" id="faq-q-4" aria-expanded="false" aria-controls="faq-a-4">
-                  <span>¿Qué pasa si la enfermera nota un cambio en la salud del paciente?</span>
-                  <span class="faq-item__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
-                </button>
-              </h4>
-              <div class="faq-item__a" id="faq-a-4" role="region" aria-labelledby="faq-q-4" hidden>
-                <div class="faq-item__inner">
-                  <p>Te avisa de inmediato. Observar y comunicar cualquier cambio —en los signos vitales, el ánimo, el apetito o el estado de una herida— es parte esencial de su trabajo, para que el paciente pueda ser valorado a tiempo.</p>
-                </div>
-              </div>
+        <!-- PREGUNTA 4 (Modificada a H3) -->
+        <div class="faq-item">
+          <h3 class="faq-item__heading">
+            <button class="faq-item__q" id="faq-q-4" aria-expanded="false" aria-controls="faq-a-4">
+              <span>¿Qué pasa si la enfermera detecta un cambio en la salud del paciente?</span>
+              <span class="faq-item__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" /></svg></span>
+            </button>
+          </h3>
+          <div class="faq-item__a" id="faq-a-4" role="region" aria-labelledby="faq-q-4" hidden>
+            <div class="faq-item__inner">
+              <p>Se te notificará de inmediato. El monitoreo continuo de signos vitales, estado de ánimo, apetito o evolución de heridas quirúrgicas es parte crucial de nuestro protocolo, garantizando una valoración médica oportuna ante cualquier signo de alerta.</p>
             </div>
+          </div>
+        </div>
 
-            <div class="faq-item">
-              <h4 class="faq-item__heading">
-                <button class="faq-item__q" id="faq-q-5" aria-expanded="false" aria-controls="faq-a-5">
-                  <span>¿Con cuánta anticipación debo solicitar el servicio?</span>
-                  <span class="faq-item__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
-                </button>
-              </h4>
-              <div class="faq-item__a" id="faq-a-5" role="region" aria-labelledby="faq-q-5" hidden>
-                <div class="faq-item__inner">
-                  <p>Lo ideal es escribirnos en cuanto sepas que lo vas a necesitar, por ejemplo antes de una cirugía programada. Si es algo urgente, contáctanos igualmente y buscamos la forma de ayudarte lo antes posible.</p>
-                </div>
-              </div>
+        <!-- PREGUNTA 5 (Modificada a H3) -->
+        <div class="faq-item">
+          <h3 class="faq-item__heading">
+            <button class="faq-item__q" id="faq-q-5" aria-expanded="false" aria-controls="faq-a-5">
+              <span>¿Con cuánta anticipación debo solicitar el servicio de cuidado?</span>
+              <span class="faq-item__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" /></svg></span>
+            </button>
+          </h3>
+          <div class="faq-item__a" id="faq-a-5" role="region" aria-labelledby="faq-q-5" hidden>
+            <div class="faq-item__inner">
+              <p>Lo ideal es coordinar el servicio con antelación, especialmente para cuidados postoperatorios programados. En situaciones de urgencia médica en el hogar, comunícate con nosotros inmediatamente para gestionar la asignación de personal lo antes posible.</p>
             </div>
+          </div>
+        </div>
 
-            <div class="faq-item">
-              <h4 class="faq-item__heading">
-                <button class="faq-item__q" id="faq-q-6" aria-expanded="false" aria-controls="faq-a-6">
-                  <span>¿Cómo empiezo?</span>
-                  <span class="faq-item__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
-                </button>
-              </h4>
-              <div class="faq-item__a" id="faq-a-6" role="region" aria-labelledby="faq-q-6" hidden>
-                <div class="faq-item__inner">
-                  <p>Contáctanos y cuéntanos qué necesita el paciente. Definimos juntos los horarios y el lugar, confirmamos el servicio y asignamos al personal.</p>
-                  <p class="faq-item__note">→ Pedir ayuda no significa amar menos; significa cuidar mejor.</p>
-                </div>
-              </div>
+        <!-- PREGUNTA 6 (Modificada a H3) -->
+        <div class="faq-item">
+          <h3 class="faq-item__heading">
+            <button class="faq-item__q" id="faq-q-6" aria-expanded="false" aria-controls="faq-a-6">
+              <span>¿Cómo iniciar el proceso con Enfermeras Ángeles de Vida?</span>
+              <span class="faq-item__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" /></svg></span>
+            </button>
+          </h3>
+          <div class="faq-item__a" id="faq-a-6" role="region" aria-labelledby="faq-q-6" hidden>
+            <div class="faq-item__inner">
+              <p>Ponte en contacto con nuestro equipo y cuéntanos la condición actual del paciente. Estructuramos juntos los horarios, la modalidad en casa u hospital y asignamos al profesional idóneo para tu tranquilidad.</p>
+              <p class="faq-item__note">→ Pedir ayuda profesional no significa amar menos; significa cuidar con mayor responsabilidad.</p>
             </div>
           </div>
         </div>
 
       </div>
-    </section>
+    </div>
+  </div>
+</section>
+
     <!-- ============================================================
          PESTAÑAS AUTOMÁTICAS — imágenes que se funden y barra de
          progreso que avanza; al completarse pasa a la siguiente.
          ============================================================ -->
-    
+
   </main>
 
   <!-- ============================================================
@@ -564,11 +669,12 @@
     <div class="noise"></div>
     <div class="cta__content">
       <p class="eyebrow text-gold">TU FAMILIA NO ESTÁ SOLA</p>
-      <h2 class="cta__title" data-reveal>Tu familiar <em>merece cuidado </em> y tú descanso</h2>
-      <p class="cta__text" data-reveal>Cuéntanos qué necesita tu familiar y te ayudamos a organizar el cuidado en casa.
-        Resolvemos tus dudas y pensemos juntos la mejor forma de empezar.</p>
+      <h2 class="cta__title" data-reveal>Tu familiar <em>merece el mejor cuidado</em> y tú, descansar</h2>
+       <p class="cta__text" data-reveal>
+      Cuéntanos qué asistencia necesita tu ser querido y te ayudamos a organizar su servicio de enfermería en casa. Resolvemos todas tus dudas de inmediato para diseñar juntos la mejor forma de empezar.
+    </p>
       <div data-reveal>
-        <a href="#contacto" class="cta-btn" data-open-solicitud>
+        <a href="#solicitud" class="cta-btn" data-open-solicitud aria-label="Solicitar servicio de enfermería a domicilio">
           <span class="cta-btn__text">Solicita tu servicio</span>
           <span class="cta-btn__arrow"><span class="cta-btn__circle"></span><span class="cta-btn__icons">
               <svg class="cta-btn__icon cta-btn__icon--1" viewBox="0 0 24 24">
@@ -584,35 +690,67 @@
   </section>
 
   <footer class="footer">
-    <div class="footer__inner">
+  <div class="footer__inner">
+    
+    <!-- 1. Ruta del logotipo en minúsculas y marca completa en el alt -->
     <div class="img_footer_center">
-       <img src="assets/img/Angeles-de-vida-logo-blanco.svg" alt="Ángeles de Vida">
+      <img 
+        src="assets/img/angeles-de-vida-logo-blanco.svg" 
+        alt="Logotipo de Enfermeras Ángeles de Vida en Bogotá."
+        width="REEMPLAZAR_ANCHO_REAL"
+        height="REEMPLAZAR_ALTO_REAL"
+        loading="lazy"
+      />
     </div>
-      <nav class="footer__links">
-          <a href="privacidad.html">Privacidad</a><a href="terminos.html">Términos</a><a href="aviso-legal.html">Aviso legal</a><a href="trabaja-con-nosotros.html">Trabaja con nosotros</a>
-      </nav>     
-      <!-- Redes sociales (en blanco sobre el pie azul oscuro) -->
-      <nav class="social" aria-label="Redes sociales">
-        <a class="social__link" href="https://www.facebook.com/enfermerasangelesdevida" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 3H13a4 4 0 0 0-4 4v3H7v3h2v8h3v-8h2.5l.5-3h-3V7.5A1.5 1.5 0 0 1 13.5 6h1z" /></svg>
-          <span class="sr-only">Facebook de Ángeles de Vida (se abre en una pestaña nueva)</span>
-        </a>
-        <a class="social__link" href="https://www.instagram.com/enfermerasangelesdevida/" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r=".6" /></svg>
-          <span class="sr-only">Instagram de Ángeles de Vida (se abre en una pestaña nueva)</span>
-        </a>
-        <!-- YouTube: visible pero SIN canal todavía (data-pendiente: main.js evita que el clic haga algo).
-               Cuando exista el canal: pon su URL en href, añade target="_blank" rel="noopener" y quita data-pendiente. -->
-        <a class="social__link" href="#" data-pendiente title="Próximamente">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4" /><path d="m10 9 5 3-5 3z" /></svg>
-          <span class="sr-only">YouTube de Ángeles de Vida (próximamente)</span>
-        </a>
-      </nav>
-      <div class="footer__left">
-        <span>© <span data-year>2026</span> · Todos los derechos reservados</span>
-      </div>
+
+    <!-- 2. Información de contacto y localización para potenciar el SEO Local -->
+    <div class="footer__contact-info" aria-label="Información de contacto">
+      <p><strong>Enfermeras Ángeles de Vida</strong></p>
+      <p>Servicio de enfermería a domicilio las 24 horas en Bogotá, Colombia.</p>
+      <p>Contacto inmediato: <a href="https://wa.me" target="_blank" rel="noopener">WhatsApp +57 313 295 7599</a></p>
     </div>
-  </footer>
+
+    <nav class="footer__links" aria-label="Enlaces institucionales">
+      <a href="privacidad.html">Privacidad</a><a href="terminos.html">Términos</a><a href="aviso-legal.html">Aviso legal</a><a href="trabaja-con-nosotros.html">Trabaja con nosotros</a>
+    </nav>
+
+    <!-- Redes sociales (Actualizadas con tu marca completa en sr-only) -->
+    <nav class="social" aria-label="Redes sociales">
+      <a class="social__link" href="https://www.facebook.com/enfermerasangelesdevida" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M14.5 3H13a4 4 0 0 0-4 4v3H7v3h2v8h3v-8h2.5l.5-3h-3V7.5A1.5 1.5 0 0 1 13.5 6h1z" />
+        </svg>
+        <span class="sr-only">Facebook de Enfermeras Ángeles de Vida (se abre en una pestaña nueva)</span>
+      </a>
+      <a class="social__link" href="https://www.instagram.com/enfermerasangelesdevida/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="3" y="3" width="18" height="18" rx="5" />
+          <circle cx="12" cy="12" r="4" />
+          <circle cx="17.5" cy="6.5" r=".6" />
+        </svg>
+        <span class="sr-only">Instagram de Enfermeras Ángeles de Vida (se abre en una pestaña nueva)</span>
+      </a>
+      <a class="social__link" href="#" data-pendiente title="Próximamente">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="2" y="5" width="20" height="14" rx="4" />
+          <path d="m10 9 5 3-5 3z" />
+        </svg>
+        <span class="sr-only">YouTube de Enfermeras Ángeles de Vida (próximamente)</span>
+      </a>
+    </nav>
+
+    <!-- 4. Derechos de autor con marca completa y año vigente (2026) -->
+    <div class="footer__left">
+  <span>
+    © <span data-year>2026</span> Enfermeras Ángeles de Vida. Todos los derechos reservados. 
+    | Desarrollado por <a href="https://tu-enlace-de-desarrollador.com" target="_blank" rel="noopener" aria-label="Visitar el sitio web del desarrollador (se abre en una pestaña nueva)">Tu Nombre o Agencia</a>
+  </span>
+</div>
+
+
+  </div>
+</footer>
+
 
   <!-- ============================================================
        MODAL "SOLICITA TU SERVICIO"
@@ -626,14 +764,20 @@
     <!-- Botón cerrar FUERA de .modal__box (que es la que hace scroll): así queda fijo
          en la esquina y siempre visible, aunque se baje por el formulario. -->
     <button class="modal__close" type="button" data-modal-close aria-label="Cerrar formulario">
-      <svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12" /></svg>
+      <svg viewBox="0 0 24 24">
+        <path d="M18 6 6 18M6 6l12 12" />
+      </svg>
     </button>
-    <div class="modal__box" data-lenis-prevent>  <!-- data-lenis-prevent: Lenis no bloquea la rueda aquí dentro -->
+    <div class="modal__box" data-lenis-prevent> <!-- data-lenis-prevent: Lenis no bloquea la rueda aquí dentro -->
 
       <header class="modal__header">
-        <h2 class="modal__title" id="solicitud-titulo">Solicita tu servicio de <em>enfermería</em> </h2>
-        <p class="modal__intro">Completa el formulario y te contactaremos para confirmar el servicio.</p>
-        <p class="modal__intro_2"><em>* campos obligatorios</em></p>
+        <h3 class="modal__title" id="solicitud-titulo">
+          Solicita tu servicio de <em>enfermería</em> en Bogotá
+        </h3>
+        <p class="modal__intro">
+          Completa el formulario y te contactaremos a la brevedad para confirmar el servicio.
+        </p>      
+        <p class="modal__intro_2"><small>* Campos obligatorios</small></p>
       </header>
 
       <form class="form" id="form-solicitud" action="enviar.php" method="post" novalidate data-whatsapp="573132957599">
@@ -649,7 +793,7 @@
             <div class="form__field">
               <label for="f-telefono">Teléfono / WhatsApp <span class="form__req" aria-hidden="true">*</span></label>
               <input id="f-telefono" name="telefono" type="tel" autocomplete="tel" inputmode="tel" required
-                     placeholder="300 123 4567" pattern="[0-9+\s()-]{7,20}" />
+                placeholder="300 123 4567" pattern="[0-9+\s()-]{7,20}" />
             </div>
             <div class="form__field">
               <label for="f-correo">Correo <span class="form__req" aria-hidden="true">*</span></label>
@@ -713,10 +857,11 @@
           <div class="form__field" data-si-lugar="casa hospital" hidden>
             <label for="f-direccion">Dirección <span class="form__req" aria-hidden="true">*</span></label>
             <input id="f-direccion" name="direccion" type="text" autocomplete="street-address" required disabled
-                   placeholder="Calle, número, barrio" maxlength="160" />
+              placeholder="Calle, número, barrio" maxlength="160" />
           </div>
           <div class="form__field" data-si-lugar="hospital" hidden>
-            <label for="f-hospital">Nombre del hospital o clínica <span class="form__req" aria-hidden="true">*</span></label>
+            <label for="f-hospital">Nombre del hospital o clínica <span class="form__req"
+                aria-hidden="true">*</span></label>
             <input id="f-hospital" name="hospital" type="text" required disabled maxlength="120" />
           </div>
         </fieldset>
@@ -741,7 +886,7 @@
           <div class="form__field">
             <label for="f-condicion">Condición del paciente <span class="form__req" aria-hidden="true">*</span></label>
             <textarea id="f-condicion" name="condicion" rows="3" required maxlength="800"
-                      placeholder="Ej.: camina con ayuda, permanece en cama, usa sonda, necesita apoyo para comer…"></textarea>
+              placeholder="Ej.: camina con ayuda, permanece en cama, usa sonda, necesita apoyo para comer…"></textarea>
           </div>
         </fieldset>
 
@@ -754,8 +899,12 @@
         <!-- Autorización de datos (Ley 1581 de 2012). El enlace apuntará a tu política cuando la publiques. -->
         <div class="form__check">
           <input id="f-acepto" name="acepto" type="checkbox" value="si" required />
-          <label for="f-acepto">Autorizo el tratamiento de mis datos personales y los del paciente, incluidos datos de salud, para gestionar esta solicitud, según la <a href="privacidad.html" target="_blank" rel="noopener">política de tratamiento de datos</a>. <span class="form__req" aria-hidden="true">*</span></label>
+          <label for="f-acepto">
+            Acepto la <a href="politica-privacidad.html" target="_blank">Política de Tratamiento de Datos Personales</a> de
+            acuerdo con la Ley 1581 de 2012. <span class="form__req" aria-hidden="true">*</span>
+          </label>
         </div>
+
 
         <!-- Mensajes de estado (enviando / enviado / error). aria-live los anuncia a lectores de pantalla. -->
         <p class="form__status" role="status" aria-live="polite"></p>
@@ -763,15 +912,21 @@
         <div class="form__actions">
           <!-- Alternativa si el correo falla: main.js le pone el enlace de WhatsApp con la solicitud redactada -->
           <a class="form__wa-alt" data-wa-link href="#" target="_blank" rel="noopener" hidden>
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.6A8.4 8.4 0 0 1 7.6 19L3 20.3l1.4-4.4A8.4 8.4 0 1 1 20 11.6Z" /></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M20 11.6A8.4 8.4 0 0 1 7.6 19L3 20.3l1.4-4.4A8.4 8.4 0 1 1 20 11.6Z" />
+            </svg>
             Enviar por WhatsApp
           </a>
           <button class="cta-btn form__submit" type="submit">
             <span class="cta-btn__text">Enviar solicitud</span>
             <span class="cta-btn__arrow"><span class="cta-btn__circle"></span><span class="cta-btn__icons">
-              <svg class="cta-btn__icon cta-btn__icon--1" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9" /></svg>
-              <svg class="cta-btn__icon cta-btn__icon--2" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9" /></svg>
-            </span></span>
+                <svg class="cta-btn__icon cta-btn__icon--1" viewBox="0 0 24 24">
+                  <path d="M7 17 17 7M8 7h9v9" />
+                </svg>
+                <svg class="cta-btn__icon cta-btn__icon--2" viewBox="0 0 24 24">
+                  <path d="M7 17 17 7M8 7h9v9" />
+                </svg>
+              </span></span>
           </button>
         </div>
       </form>
@@ -779,18 +934,25 @@
       <!-- Confirmación tras enviar con éxito: sustituye al formulario (main.js, bloque 10 f) -->
       <div class="form-done" data-form-done hidden tabindex="-1">
         <span class="form-done__icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5" /></svg>
+          <svg viewBox="0 0 24 24">
+            <path d="m5 12.5 4.5 4.5L19 7.5" />
+          </svg>
         </span>
-        <h3 class="form-done__title">¡Solicitud <em>enviada</em>!</h3>
-        <p>Recibimos tus datos. Te contactaremos pronto para confirmar el servicio.</p>
-        <p class="form-done__hint">¿Quieres agilizarlo? Envíanos también la solicitud por WhatsApp; el mensaje ya está redactado.</p>
+        <h3 class="form-done__title">¡Solicitud <em>enviada</em> con éxito!</h3>
+        <p>Recibimos tus datos. Nuestro equipo de enfermería en Bogotá te contactará pronto para confirmar el servicio.</p>
+        <p class="form-done__hint">¿Quieres agilizar el proceso? Envíanos también la solicitud por WhatsApp; el mensaje ya está
+          redactado.</p>
         <div class="form-done__actions">
           <a class="cta-btn form-done__wa" data-wa-link href="#" target="_blank" rel="noopener">
             <span class="cta-btn__text">Enviar por WhatsApp</span>
             <span class="cta-btn__arrow"><span class="cta-btn__circle"></span><span class="cta-btn__icons">
-              <svg class="cta-btn__icon cta-btn__icon--1" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9" /></svg>
-              <svg class="cta-btn__icon cta-btn__icon--2" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9" /></svg>
-            </span></span>
+                <svg class="cta-btn__icon cta-btn__icon--1" viewBox="0 0 24 24">
+                  <path d="M7 17 17 7M8 7h9v9" />
+                </svg>
+                <svg class="cta-btn__icon cta-btn__icon--2" viewBox="0 0 24 24">
+                  <path d="M7 17 17 7M8 7h9v9" />
+                </svg>
+              </span></span>
           </a>
           <button class="form-done__close" type="button" data-modal-close>Cerrar</button>
         </div>
@@ -810,6 +972,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
   <script src="main.js"></script>
+  <script type="module" src="assets/chat/chat.js"></script>
 </body>
 
 </html>
