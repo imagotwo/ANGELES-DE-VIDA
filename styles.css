@@ -131,10 +131,13 @@ img.is-missing { visibility: hidden; }
     calc(50% - 170px) calc(50% + 240px), calc(50% - 170px) 100%, 100% 100%, 100% 0);
   transform-origin: 50% 50%;
 }
+/* "Enfermeras Ángeles de Vida": en una línea si cabe (escritorio); si no (celular) se parte
+   en líneas centradas y equilibradas, sin salirse nunca de la pantalla (máx. 92% del ancho). */
 .loader__wordmark {
   position: absolute; left: 50%; bottom: 8vh; transform: translateX(-50%);
-  font-family: var(--font-serif); font-size: clamp(2.5rem, 7vw, 6rem);
-  color: var(--cream-50); white-space: nowrap;
+  font-family: var(--font-serif); font-size: clamp(2.5rem, 7vw, 6rem); line-height: 1.05;
+  color: var(--cream-50);
+  width: max-content; max-width: 92vw; text-align: center; text-wrap: balance;
 }
 
 /* ---------- 4. CABECERA ---------- */

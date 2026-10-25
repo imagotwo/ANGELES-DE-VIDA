@@ -99,18 +99,22 @@ $$('a[href^="#"]:not([data-open-solicitud]):not([data-wa-link]):not([data-pendie
    necesario para que el hueco cubra la ventana (×1.2 de margen);
    a la vez la imagen del hero pasa de scale 1.15 a 1.
    ----------------------------------------------------------------- */
-const heroLines = $$('.hero .line__in');
-const heroBlur  = $$('[data-blur-in]');
-const tiltCard  = $('[data-tilt]');
+const heroLines  = $$('.hero .line__in');
+const heroBlur   = $$('[data-blur-in]');
+const heroKicker = $$('[data-hero-kicker]');   // <h1> pequeño sobre el título ("Enfermeras a domicilio en Bogotá")
+const tiltCard   = $('[data-tilt]');
 
 // Solo si existen (en páginas sin hero GSAP avisaría "target not found")
 if (heroLines.length) gsap.set(heroLines, { yPercent: 110 });
 if (heroBlur.length) gsap.set(heroBlur, { autoAlpha: 0, y: 40, filter: 'blur(16px)' });
+if (heroKicker.length) gsap.set(heroKicker, { autoAlpha: 0, y: 20, filter: 'blur(8px)' });
 if (tiltCard) gsap.set(tiltCard, { autoAlpha: 0, y: 30 });
 
 function playIntro() {
   const tl = gsap.timeline();
   tl.to('.hero__img', { scale: 1, duration: 1.5, ease: 'power2.out' }, 0)
+    // 1.º el <h1> pequeño (sube y pasa de borroso a nítido), 2.º las líneas del título, 3.º el párrafo
+    .to(heroKicker, { autoAlpha: 1, y: 0, filter: 'blur(0px)', duration: 0.9, ease: 'power2.out' }, 0.15)
     .to(heroLines, { yPercent: 0, duration: 1, ease: 'power3.out', stagger: 0.12 }, 0.3)
     .to(heroBlur, { autoAlpha: 1, y: 0, filter: 'blur(0px)', duration: 1.2, ease: 'power2.out' }, 0.8);
   if (tiltCard) tl.to(tiltCard, { autoAlpha: 1, y: 0, duration: 0.9, ease: 'power2.out' }, 1);   // la tarjeta 3D es opcional
