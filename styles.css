@@ -311,6 +311,10 @@ img.is-missing { visibility: hidden; }
 .line { display: block; overflow: hidden; padding-bottom: .06em; }
 .line__in { display: block; }
 .hero__lead { max-width: 52ch; font-size: var(--fs-body); color: rgba(255,255,255,.85); }
+/* Botón "Ver servicios de enfermería" bajo el párrafo del hero */
+.hero__actions { margin-top: 2rem; }
+.hero__actions .cta-btn { font-size: 1rem; padding: .65rem .65rem .65rem 1.5rem; }
+.hero__actions .cta-btn__arrow { width: 36px; height: 36px; }
 .hero__scroll { grid-column: 1 / -1; display: flex; align-items: center; gap: .6rem; font-size: var(--fs-small); }
 .hero__scroll svg { width: 16px; height: 16px; animation: nudge 2s ease-in-out infinite; }
 @keyframes nudge { 50% { transform: translateY(4px); } }
