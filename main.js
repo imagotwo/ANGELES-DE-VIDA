@@ -93,6 +93,23 @@ $$('a[href^="#"]:not([data-open-solicitud]):not([data-wa-link]):not([data-pendie
   });
 });
 
+// -------------------------------------------------------------
+// Evento de seguimiento para Meta Pixel (Clientes potenciales)
+// -------------------------------------------------------------
+document.addEventListener('DOMContentLoaded', () => {
+  // Buscar todos los botones de solicitud
+  const btnSolicitud = document.querySelectorAll('[data-open-solicitud]');
+
+  btnSolicitud.forEach(button => {
+    button.addEventListener('click', () => {
+      // Verificar si la función de Facebook ya cargó antes de llamarla
+      if (typeof fbq === 'function') {
+        fbq('track', 'Lead');
+      }
+    });
+  });
+});
+
 /* -----------------------------------------------------------------
    2. LOADER + ENTRADA DEL HERO
    La capa morada tiene un hueco de 340×480 px. La escalamos lo
