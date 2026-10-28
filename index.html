@@ -682,11 +682,75 @@
             necesitaban.
           </p>
         </div>
-        <p class="why__note" data-reveal>
-          Brindamos atención presencial y personalizada en toda la ciudad. Consulta nuestra disponibilidad inmediata y
-          agenda tu servicio a través de nuestro formulario de contacto.
-        </p>
+
+        <!-- Columna derecha (sobre la zona del parque, sin tapar a las personas de la foto):
+             carrusel de reseñas de Google + nota. -->
+        <div class="why__side">
+          <!-- CARRUSEL DE RESEÑAS DE GOOGLE (main.js, bloque 12)
+               Las tarjetas las crea main.js con los datos de resenas.php (data-src).
+               Si resenas.php no responde (Live Server, GitHub Pages: no ejecutan PHP), se usan
+               las reseñas de EJEMPLO de data-demo, solo en pruebas y con el aviso visible.
+               Queda oculto (hidden) hasta que hay reseñas que mostrar. -->
+          <div class="reviews" data-reviews data-src="resenas.php" data-demo="assets/data/resenas-demo.json"
+            role="region" aria-roledescription="carrusel" aria-label="Reseñas de nuestros clientes en Google" hidden>
+            <div class="reviews__head">
+              <span class="reviews__source">
+                <svg class="reviews__g" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.5a5.6 5.6 0 0 1-2.4 3.6v3h3.9c2.2-2.1 3.5-5.1 3.5-8.8z" />
+                  <path fill="#34A853" d="M12 24c3.2 0 6-1.1 7.9-2.9l-3.9-3c-1 .7-2.4 1.1-4 1.1-3.1 0-5.7-2.1-6.6-4.9h-4v3.1A12 12 0 0 0 12 24z" />
+                  <path fill="#FBBC05" d="M5.4 14.3a7.2 7.2 0 0 1 0-4.6V6.6h-4a12 12 0 0 0 0 10.8z" />
+                  <path fill="#EA4335" d="M12 4.8c1.8 0 3.3.6 4.6 1.8l3.4-3.4A12 12 0 0 0 1.4 6.6l4 3.1C6.3 6.9 8.9 4.8 12 4.8z" />
+                </svg>
+                Reseñas de Google
+              </span>
+              <span class="reviews__summary" data-reviews-summary></span>
+              <span class="reviews__demo" data-reviews-demo hidden>Reseñas de ejemplo · Google aún no está conectado</span>
+            </div>
+
+            <div class="reviews__stage">
+              <button type="button" class="reviews__arrow reviews__arrow--prev" data-reviews-prev aria-label="Reseña anterior">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m15 18-6-6 6-6" /></svg>
+              </button>
+              <div class="reviews__viewport" data-reviews-viewport>
+                <ul class="reviews__track" data-reviews-track></ul>
+              </div>
+              <button type="button" class="reviews__arrow reviews__arrow--next" data-reviews-next aria-label="Reseña siguiente">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m9 18 6-6-6-6" /></svg>
+              </button>
+            </div>
+
+            <div class="reviews__foot">
+              <div class="reviews__dots" data-reviews-dots></div>
+              <a class="reviews__all" data-reviews-all href="#" target="_blank" rel="noopener" hidden>Ver todas en Google</a>
+            </div>
+          </div>
+
+          <p class="why__note" data-reveal>
+            Brindamos atención presencial y personalizada en toda la ciudad. Consulta nuestra disponibilidad inmediata y
+            agenda tu servicio a través de nuestro formulario de contacto.
+          </p>
+        </div>
       </div>
+
+      <!-- Molde de una tarjeta de reseña: main.js lo copia y rellena con textContent
+           (el texto de las reseñas nunca se inserta como HTML). -->
+      <template id="review-tpl">
+        <li class="review" role="group" aria-roledescription="reseña">
+          <svg class="review__g" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path fill="currentColor" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.5a5.6 5.6 0 0 1-2.4 3.6v3h3.9c2.2-2.1 3.5-5.1 3.5-8.8zM12 24c3.2 0 6-1.1 7.9-2.9l-3.9-3c-1 .7-2.4 1.1-4 1.1-3.1 0-5.7-2.1-6.6-4.9h-4v3.1A12 12 0 0 0 12 24zM5.4 14.3a7.2 7.2 0 0 1 0-4.6V6.6h-4a12 12 0 0 0 0 10.8zM12 4.8c1.8 0 3.3.6 4.6 1.8l3.4-3.4A12 12 0 0 0 1.4 6.6l4 3.1C6.3 6.9 8.9 4.8 12 4.8z" />
+          </svg>
+          <div class="review__author">
+            <span class="review__avatar" data-r-avatar></span>
+            <div>
+              <p class="review__name" data-r-name></p>
+              <p class="review__time" data-r-time></p>
+            </div>
+          </div>
+          <div class="review__stars" data-r-stars></div>
+          <p class="review__text" data-r-text></p>
+          <button type="button" class="review__more" data-r-more>…leer más</button>
+        </li>
+      </template>
     </section>
 
     <!-- ============================================================
@@ -1162,6 +1226,31 @@
           <button class="form-done__close" type="button" data-modal-close>Cerrar</button>
         </div>
       </div>
+    </div>
+  </dialog>
+
+  <!-- ============================================================
+       RESEÑA COMPLETA — se abre con "…leer más" en una tarjeta del
+       carrusel de #testimonios (main.js, bloque 12). Usa los mismos
+       estilos y animaciones del modal del formulario (.modal).
+       ============================================================ -->
+  <dialog class="modal modal--review" id="resena-completa" aria-labelledby="resena-nombre">
+    <button class="modal__close" type="button" data-review-close aria-label="Cerrar reseña">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M18 6 6 18M6 6l12 12" />
+      </svg>
+    </button>
+    <div class="modal__box" data-lenis-prevent>
+      <div class="review__author">
+        <span class="review__avatar" data-r-avatar></span>
+        <div>
+          <p class="review__name" id="resena-nombre" data-r-name></p>
+          <p class="review__time" data-r-time></p>
+        </div>
+      </div>
+      <div class="review__stars" data-r-stars></div>
+      <p class="review-full__text" data-r-text></p>
+      <a class="review-full__link" data-r-link href="#" target="_blank" rel="noopener" hidden>Ver en Google</a>
     </div>
   </dialog>
 

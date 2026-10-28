@@ -1,0 +1,30 @@
+{
+  "_nota": "RESEÑAS DE EJEMPLO para ver el diseño del carrusel mientras no está conectada la API de Google. No son reseñas reales: el carrusel muestra el aviso «Reseñas de ejemplo». hace_dias se convierte en fecha a partir de hoy.",
+  "promedio": 4.9,
+  "total": 11,
+  "url": "",
+  "resenas": [
+    { "nombre": "Ejemplo · Laura M.", "foto": "", "enlace": "", "estrellas": 5, "hace_dias": 2,
+      "texto": "La enfermera que acompañó a mi mamá después de la cirugía fue puntual, muy amable y estuvo pendiente de cada medicamento. Nos dio mucha tranquilidad." },
+    { "nombre": "Ejemplo · Andrés P.", "foto": "", "enlace": "", "estrellas": 5, "hace_dias": 6,
+      "texto": "Contratamos el servicio de 24 horas para mi abuelo y la experiencia ha sido excelente. El equipo es muy profesional, nos explicaron todo con paciencia y siempre respondieron rápido cuando tuvimos dudas. Además llevan un registro diario de signos vitales que compartimos con el médico, lo cual nos ha ayudado muchísimo en las citas de control. Totalmente recomendados." },
+    { "nombre": "Ejemplo · Carolina R.", "foto": "", "enlace": "", "estrellas": 4, "hace_dias": 12,
+      "texto": "Muy buen acompañamiento en las citas médicas. La auxiliar fue muy atenta con mi papá." },
+    { "nombre": "Ejemplo · Jorge L.", "foto": "", "enlace": "", "estrellas": 5, "hace_dias": 19,
+      "texto": "Excelente servicio de curaciones a domicilio. La herida de mi esposa sanó muy bien gracias al cuidado constante y a las recomendaciones que nos dieron para los días sin visita." },
+    { "nombre": "Ejemplo · Patricia G.", "foto": "", "enlace": "", "estrellas": 3, "hace_dias": 25,
+      "texto": "Reseña de 3 estrellas: el filtro la oculta (solo se muestran 4 y 5)." },
+    { "nombre": "Ejemplo · Felipe V.", "foto": "", "enlace": "", "estrellas": 5, "hace_dias": 33,
+      "texto": "Mi mamá estuvo hospitalizada dos semanas y la enfermera de Ángeles de Vida la acompañó en las noches. Saber que alguien de confianza estaba con ella nos permitió descansar. Muy agradecidos con todo el equipo por su calidez y profesionalismo durante un momento tan difícil para la familia." },
+    { "nombre": "Ejemplo · Sofía T.", "foto": "", "enlace": "", "estrellas": 5, "hace_dias": 47,
+      "texto": "" },
+    { "nombre": "Ejemplo · Natalia C.", "foto": "", "enlace": "", "estrellas": 5, "hace_dias": 64,
+      "texto": "Atención cálida y humana. Se nota la vocación de servicio." },
+    { "nombre": "Ejemplo · Ricardo H.", "foto": "", "enlace": "", "estrellas": 4, "hace_dias": 98,
+      "texto": "Buen servicio para el cuidado de mi tía, adulta mayor con movilidad reducida. La enfermera le ayudaba con los ejercicios que dejó el fisioterapeuta y siempre estaba de buen ánimo." },
+    { "nombre": "Ejemplo · Diana Q.", "foto": "", "enlace": "", "estrellas": 5, "hace_dias": 160,
+      "texto": "Nos ayudaron en el postoperatorio de mi hijo. Profesionales, puntuales y muy organizadas con los horarios de medicamentos." },
+    { "nombre": "Ejemplo · Manuel O.", "foto": "", "enlace": "", "estrellas": 5, "hace_dias": 410,
+      "texto": "Llevamos más de un año con ellos y siempre han respondido. Recomendados para cualquier familia que necesite apoyo en casa con un ser querido." }
+  ]
+}

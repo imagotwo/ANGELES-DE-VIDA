@@ -5,3 +5,6 @@ config.php
 *.docx
 *.doc
 ~$*
+
+# Copia de las reseñas de Google que guarda resenas.php
+php/cache/
