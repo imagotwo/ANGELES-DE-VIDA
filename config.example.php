@@ -53,4 +53,46 @@ return [
     // Usa una clave larga y difícil (mínimo 16 caracteres). Déjala vacía ('') para
     // desactivar la página, y bórrala del servidor cuando todo funcione.
     'diag_clave'  => '',
+
+    // ---------- Reseñas de Google (carrusel de #testimonios, resenas.php) ----------
+    // 'fuente': de dónde salen las reseñas
+    //   'demo'     → reseñas de EJEMPLO (assets/data/resenas-demo.json). El carrusel avisa que son de ejemplo.
+    //   'places'   → Places API (New). Fácil: solo API key + Place ID. Límite de Google: 5 reseñas,
+    //                elegidas por relevancia (no por fecha).
+    //   'business' → Google Business Profile API. Hasta 9 reseñas, las más recientes primero.
+    //                Requiere aprobación de Google y autorización (OAuth) del dueño del perfil.
+    // Siempre se muestran solo reseñas con comentario y de 4-5 estrellas.
+    'resenas' => [
+        'fuente'        => 'demo',
+        // Cada cuánto se vuelve a preguntar a Google (minutos). Entre medias se usa la copia guardada
+        // en php/cache/. 60 = las reseñas nuevas aparecen como mucho 1 hora después.
+        'cache_minutos' => 60,
+        // Enlace "Ver todas en Google" (Google Maps de la ficha). Vacío = en 'places' se usa el de Google.
+        'url_perfil'    => '',
+
+        // PLACES: Google Cloud Console → crea un proyecto → "APIs y servicios" → habilita
+        // "Places API (New)" → Credenciales → Crear clave de API. Restringe la clave a esa API.
+        // Place ID: búscalo en https://developers.google.com/maps/documentation/places/web-service/place-id
+        'places' => [
+            'api_key'  => '',
+            'place_id' => '',
+        ],
+
+        // BUSINESS PROFILE (una sola vez):
+        // 1. Google Cloud Console → solicita acceso a la "Business Profile API" (formulario de Google,
+        //    gratis, tarda unos días). Cuando lo aprueben, habilita "Google My Business API".
+        // 2. Credenciales → ID de cliente OAuth (tipo "Aplicación web"), con URI de redirección
+        //    https://developers.google.com/oauthplayground  → copia client_id y client_secret.
+        // 3. En https://developers.google.com/oauthplayground (engranaje → "Use your own OAuth
+        //    credentials") autoriza el permiso https://www.googleapis.com/auth/business.manage
+        //    CON LA CUENTA DUEÑA DEL PERFIL y canjea el código → copia el refresh_token.
+        // 4. account_id y location_id: solo los números (accounts/123… y locations/456…).
+        'business' => [
+            'client_id'     => '',
+            'client_secret' => '',
+            'refresh_token' => '',
+            'account_id'    => '',
+            'location_id'   => '',
+        ],
+    ],
 ];

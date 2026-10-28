@@ -14,7 +14,7 @@ export const CHAT_CONFIG = {
   privacyUrl: 'privacidad.html',
 
   /* Avatar del encabezado (si no carga, se muestran las iniciales «AV»). */
-  avatarUrl: 'assets/img/ENFERMERAS-ANGELES-DE-VIDA-FAVICON.png',
+  avatarUrl: 'assets/img/favicon-enfermeras-angeles-de-vida.png',
 
   /* Opciones copiadas del formulario real de index.html.
      value = lo que viaja en el mensaje · label = lo que ve la persona. */

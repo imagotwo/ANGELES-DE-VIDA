@@ -93,6 +93,23 @@ $$('a[href^="#"]:not([data-open-solicitud]):not([data-wa-link]):not([data-pendie
   });
 });
 
+// -------------------------------------------------------------
+// Evento de seguimiento para Meta Pixel (Clientes potenciales)
+// -------------------------------------------------------------
+document.addEventListener('DOMContentLoaded', () => {
+  // Buscar todos los botones de solicitud
+  const btnSolicitud = document.querySelectorAll('[data-open-solicitud]');
+
+  btnSolicitud.forEach(button => {
+    button.addEventListener('click', () => {
+      // Verificar si la función de Facebook ya cargó antes de llamarla
+      if (typeof fbq === 'function') {
+        fbq('track', 'Lead');
+      }
+    });
+  });
+});
+
 /* -----------------------------------------------------------------
    2. LOADER + ENTRADA DEL HERO
    La capa morada tiene un hueco de 340×480 px. La escalamos lo
@@ -809,6 +826,275 @@ function liveValidation(form, validate) {
     xhr.addEventListener('error', () => fallo());
     xhr.send(new FormData(form));                 // incluye el PDF y el campo trampa "web"
   });
+})();
+
+/* -----------------------------------------------------------------
+   12. RESEÑAS DE GOOGLE (carrusel de la sección #testimonios)
+   a) Pide las reseñas a resenas.php (que habla con Google y guarda caché).
+      Si no responde y estamos en pruebas (archivo local, localhost, Live Server
+      o GitHub Pages, donde no hay PHP), usa las reseñas de EJEMPLO con su aviso.
+   b) Crea una tarjeta por reseña con el molde <template id="review-tpl">:
+      foto (o inicial), nombre, "hace X días/meses", estrellas y texto.
+   c) Coloca las tarjetas en anillo: cada una se desplaza (translate) según su
+      distancia a la reseña actual, así el carrusel gira sin fin.
+      3 visibles en escritorio (la del centro se adelanta), 2 en tablet, 1 en celular
+      (con las vecinas asomando).
+   d) Texto limitado a 4 líneas (CSS); si no cabe aparece "…leer más", que abre
+      la reseña completa en una ventana (#resena-completa).
+   e) Gira solo cada 5 s; se pausa con el ratón o el foco encima, con la ventana
+      abierta, fuera de pantalla o en otra pestaña. Flechas, puntos, teclado
+      (← →) y deslizar con el dedo.
+   ----------------------------------------------------------------- */
+(function resenas() {
+  const root = $('[data-reviews]');
+  const tpl = $('#review-tpl');
+  if (!root || !tpl) return;
+  const viewport = $('[data-reviews-viewport]', root);
+  const track = $('[data-reviews-track]', root);
+  const dotsBox = $('[data-reviews-dots]', root);
+  const prevBtn = $('[data-reviews-prev]', root);
+  const nextBtn = $('[data-reviews-next]', root);
+  const dialog = $('#resena-completa');
+  const INTERVALO = 5000;                          // ms entre giros automáticos
+  const esPrueba = location.protocol === 'file:' || location.hostname === 'localhost' ||
+    location.hostname === '127.0.0.1' || location.hostname.endsWith('github.io');
+
+  let resenas = [], cards = [], dots = [];
+  let actual = 0, visibles = 3, timer = null;
+  const pausas = new Set();                        // motivos activos de pausa (hover, foco, ventana…)
+
+  // ---------- a) Datos ----------
+  async function pedir(url) {
+    const r = await fetch(url, { headers: { Accept: 'application/json' } });
+    const d = await r.json();                      // si llega el código PHP sin ejecutar, falla aquí
+    if (!r.ok || d.ok === false) throw new Error(d.error || r.status);
+    return d;
+  }
+  async function cargar() {
+    try { return await pedir(root.dataset.src); }
+    catch (err) {
+      if (!esPrueba) throw err;
+      const d = await pedir(root.dataset.demo);
+      d.demo = true;
+      d.resenas.forEach((r) => { r.fecha ??= new Date(Date.now() - r.hace_dias * 864e5).toISOString(); });
+      return d;
+    }
+  }
+
+  // "hace 3 días", "ayer", "hace 2 meses"… calculado con la fecha de hoy
+  const rtf = new Intl.RelativeTimeFormat('es', { numeric: 'auto' });
+  function hace(iso) {
+    const seg = (Date.now() - new Date(iso)) / 1000;
+    const dias = Math.floor(seg / 86400);
+    if (dias < 1) return seg < 3600 ? 'hace un momento' : rtf.format(-Math.floor(seg / 3600), 'hour');
+    if (dias < 30) return rtf.format(-dias, 'day');
+    if (dias < 365) return rtf.format(-Math.floor(dias / 30), 'month');
+    return rtf.format(-Math.floor(dias / 365), 'year');
+  }
+
+  // ---------- b) Tarjetas ----------
+  const STAR = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m12 2.5 2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg>';
+  function rellenar(el, r) {
+    const avatar = $('[data-r-avatar]', el);
+    avatar.replaceChildren();
+    const inicial = () => {
+      avatar.replaceChildren(document.createTextNode((r.nombre.replace(/^Ejemplo · /, '').trim()[0] || '?').toUpperCase()));
+      avatar.classList.add('is-initial');
+    };
+    if (r.foto) {
+      const img = new Image();
+      img.alt = ''; img.loading = 'lazy'; img.referrerPolicy = 'no-referrer';   // las fotos de Google fallan con referrer
+      img.addEventListener('error', inicial);
+      img.src = r.foto;
+      avatar.classList.remove('is-initial');
+      avatar.append(img);
+    } else inicial();
+    const nombre = $('[data-r-name]', el);
+    if (r.enlace) {
+      const a = Object.assign(document.createElement('a'), { href: r.enlace, target: '_blank', rel: 'noopener', textContent: r.nombre });
+      nombre.replaceChildren(a);
+    } else nombre.textContent = r.nombre;
+    $('[data-r-time]', el).textContent = hace(r.fecha);
+    const stars = $('[data-r-stars]', el);
+    stars.innerHTML = Array.from({ length: 5 }, (_, i) => STAR.replace('<svg', `<svg class="${i < r.estrellas ? 'is-on' : ''}"`)).join('');
+    stars.setAttribute('role', 'img');
+    stars.setAttribute('aria-label', `${r.estrellas} de 5 estrellas`);
+    $('[data-r-text]', el).textContent = r.texto;
+  }
+
+  function construir(datos) {
+    // Por si la fuente no las filtra: con comentario, 4-5 estrellas, más nuevas primero, máx. 9
+    resenas = (datos.resenas || [])
+      .filter((r) => r.texto?.trim() && r.estrellas >= 4)
+      .sort((a, b) => new Date(b.fecha) - new Date(a.fecha))
+      .slice(0, 9);
+    if (!resenas.length) return false;
+
+    cards = resenas.map((r, i) => {
+      const li = tpl.content.firstElementChild.cloneNode(true);
+      rellenar(li, r);
+      li.setAttribute('aria-label', `Reseña ${i + 1} de ${resenas.length}`);
+      $('[data-r-more]', li).addEventListener('click', () => abrirResena(r, li));
+      track.append(li);
+      return li;
+    });
+    dots = resenas.map((_, i) => {
+      const b = Object.assign(document.createElement('button'), { type: 'button', className: 'reviews__dot' });
+      b.setAttribute('aria-label', `Ir a la reseña ${i + 1}`);
+      b.addEventListener('click', () => ir(i));
+      dotsBox.append(b);
+      return b;
+    });
+
+    // Cabecera: promedio y total, enlace a Google y aviso de ejemplo
+    if (datos.promedio) {
+      const prom = Number(datos.promedio).toLocaleString('es-CO', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+      $('[data-reviews-summary]', root).textContent = `${prom} ★` + (datos.total ? ` · ${datos.total} reseñas` : '');
+    }
+    const todas = $('[data-reviews-all]', root);
+    if (datos.url) { todas.href = datos.url; todas.hidden = false; }
+    $('[data-reviews-demo]', root).hidden = !datos.demo;
+    return true;
+  }
+
+  // ---------- c) Colocación en anillo ----------
+  const n = () => resenas.length;
+  const segunAncho = () => (innerWidth > 1024 ? 3 : innerWidth > 640 ? 2 : 1);
+
+  function colocar() {
+    const total = n();
+    visibles = Math.min(segunAncho(), total);
+    const gap = parseFloat(getComputedStyle(track).columnGap) || 16;
+    const W = track.clientWidth;                   // ancho útil (sin el relleno del visor)
+    // 1 visible: la tarjeta ocupa el 80% y las vecinas asoman a los lados
+    const cw = visibles === 1 && total > 1 ? W * 0.8 : (W - gap * (visibles - 1)) / visibles;
+    const paso = cw + gap;
+    const centro = visibles % 2 ? 0 : 0.5;         // con 2 visibles el centro queda entre ambas
+    const desde = visibles % 2 ? -(visibles - 1) / 2 : 0;
+    const hasta = desde + visibles - 1;
+    track.style.setProperty('--cw', `${cw}px`);
+
+    cards.forEach((card, i) => {
+      // distancia de la tarjeta a la actual, dentro del anillo (p. ej. de -4 a 4 con 9)
+      let o = (((i - actual) % total) + total) % total;
+      if (o > total / 2) o -= total;
+      // Al dar la vuelta (de un extremo al otro) se mueve sin animación: va oculta
+      const salto = card.dataset.o !== undefined && Math.abs(o - card.dataset.o) > 1;
+      if (salto) card.style.transition = 'none';
+      card.dataset.o = o;
+      card.style.translate = `${(W - cw) / 2 + (o - centro) * paso}px 0`;
+      const visible = o >= desde && o <= hasta;
+      card.classList.toggle('is-visible', visible);
+      card.classList.toggle('is-peek', visibles === 1 && Math.abs(o) === 1);
+      card.classList.toggle('is-active', visibles % 2 === 1 && o === 0 && total > 1);
+      card.inert = !visible;                       // las ocultas no reciben foco ni clics
+      if (salto) { card.offsetWidth; card.style.transition = ''; }
+    });
+    dots.forEach((d, i) => d.classList.toggle('is-active', i === actual));
+    dots.forEach((d, i) => d.setAttribute('aria-current', i === actual ? 'true' : 'false'));
+    const gira = total > visibles;
+    prevBtn.hidden = nextBtn.hidden = dotsBox.hidden = !gira;
+    medirTextos();
+  }
+
+  // ---------- d) "…leer más" solo si el texto no cabe en 4 líneas ----------
+  function medirTextos() {
+    cards.forEach((card) => {
+      const p = $('[data-r-text]', card);
+      card.classList.toggle('is-clamped', p.scrollHeight > p.clientHeight + 1);
+    });
+  }
+
+  function ir(i) {
+    actual = (i + n()) % n();
+    colocar();
+    programar();
+  }
+  const siguiente = () => ir(actual + 1);
+  const anterior = () => ir(actual - 1);
+
+  // ---------- e) Giro automático y pausas ----------
+  function programar() {
+    clearTimeout(timer);
+    if (reduceMotion || pausas.size || n() <= visibles) return;
+    timer = setTimeout(siguiente, INTERVALO);
+  }
+  const pausar = (motivo) => { pausas.add(motivo); clearTimeout(timer); };
+  const seguir = (motivo) => { pausas.delete(motivo); programar(); };
+
+  root.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') pausar('hover'); });
+  root.addEventListener('pointerleave', () => seguir('hover'));
+  root.addEventListener('focusin', () => pausar('foco'));
+  root.addEventListener('focusout', (e) => { if (!root.contains(e.relatedTarget)) seguir('foco'); });
+  document.addEventListener('visibilitychange', () => (document.hidden ? pausar('pestaña') : seguir('pestaña')));
+  new IntersectionObserver(([e]) => (e.isIntersecting ? seguir('fuera') : pausar('fuera'))).observe(root);
+
+  prevBtn.addEventListener('click', anterior);
+  nextBtn.addEventListener('click', siguiente);
+  root.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') { e.preventDefault(); siguiente(); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); anterior(); }
+  });
+  // Deslizar con el dedo (o arrastrar): más de 40px en horizontal cambia de reseña
+  let x0 = null;
+  viewport.addEventListener('pointerdown', (e) => { x0 = e.clientX; });
+  viewport.addEventListener('pointerup', (e) => {
+    if (x0 === null) return;
+    const dx = e.clientX - x0;
+    x0 = null;
+    if (Math.abs(dx) > 40) (dx < 0 ? siguiente : anterior)();
+  });
+  viewport.addEventListener('pointercancel', () => { x0 = null; });
+
+  let rz;
+  addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(() => cards.length && colocar(), 150); });
+
+  // ---------- Ventana con la reseña completa ----------
+  let origen = null;
+  function abrirResena(r, card) {
+    if (!dialog) return;
+    origen = $('[data-r-more]', card);
+    rellenar(dialog, r);
+    const link = $('[data-r-link]', dialog);
+    link.hidden = !r.enlace;
+    if (r.enlace) link.href = r.enlace;
+    pausar('ventana');
+    dialog.showModal();
+    document.body.classList.add('modal-open');
+    lenis?.stop();
+  }
+  function cerrarResena() {
+    if (!dialog.open || dialog.classList.contains('is-closing')) return;
+    const fin = () => {
+      dialog.classList.remove('is-closing');
+      dialog.close();
+      document.body.classList.remove('modal-open');
+      lenis?.start();
+      origen?.focus({ preventScroll: true });
+      seguir('ventana');
+    };
+    if (reduceMotion) return fin();
+    dialog.classList.add('is-closing');
+    setTimeout(fin, 300);                          // duración de la animación modal-out
+  }
+  if (dialog) {
+    $('[data-review-close]', dialog).addEventListener('click', cerrarResena);
+    dialog.addEventListener('cancel', (e) => { e.preventDefault(); cerrarResena(); });
+    dialog.addEventListener('click', (e) => { if (e.target === dialog) cerrarResena(); });
+  }
+
+  // ---------- Inicio ----------
+  cargar()
+    .then((datos) => {
+      if (!construir(datos)) return;               // sin reseñas que mostrar: el carrusel sigue oculto
+      root.hidden = false;
+      colocar();
+      requestAnimationFrame(() => root.classList.add('is-ready'));   // activa las transiciones tras colocar
+      document.fonts?.ready.then(medirTextos);
+      ScrollTrigger.refresh();
+      programar();
+    })
+    .catch((err) => console.warn('Reseñas de Google no disponibles:', err));
 })();
 
 /* Recalcular posiciones cuando terminan de cargar fuentes e imágenes */
