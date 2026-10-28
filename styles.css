@@ -684,6 +684,30 @@ main > section, .cta, .footer { position: relative; z-index: 1; }
    queda por debajo de los enlaces del pie y no los tapa al llegar al final de la página */
 .footer__inner { padding-bottom: calc(1.75rem + 56px); }
 
+/* Pie por columnas (index.html). Las demás páginas siguen con el pie en una fila.
+   Tres filas separadas por líneas finas: logo · columnas + redes · derechos. */
+.footer__inner--grid { display: block; padding-top: 3rem; }
+.footer__top { padding-bottom: 2.5rem; border-bottom: 1px solid rgba(255,255,255,.25); }
+/* 3 columnas de ancho fijo a la izquierda; la 4.ª (redes) ocupa el resto y se pega a la derecha */
+.footer__grid {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 14rem)) 1fr; gap: 2.5rem 2rem;
+  padding: 2.75rem 0; border-bottom: 1px solid rgba(255,255,255,.25);
+}
+.footer__col { display: flex; flex-direction: column; align-items: flex-start; gap: .9rem; }
+.footer__heading {
+  font-family: var(--font-sans); font-size: var(--fs-smaller); font-weight: 600;
+  letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.6); margin-bottom: .4rem;
+}
+.footer__col a { color: var(--white); font-weight: 500; line-height: 1.15; }
+.footer__col p { line-height: 1.5; }
+.footer__col strong { color: var(--white); font-weight: 600; }
+/* Mismo efecto "rodillo" del menú (.menu__roll) */
+.footer__col a:hover .menu__roll span, .footer__col a:focus-visible .menu__roll span { transform: translateY(-100%); }
+.footer__social { justify-self: end; align-self: start; }
+.footer__bottom { display: flex; justify-content: flex-end; text-align: right; padding-top: 1.75rem; }
+.footer__bottom a { color: var(--white); }
+.footer__bottom a:hover { color: var(--gold-500); }
+
 /* Texto solo para lectores de pantalla (invisible pero accesible) */
 .sr-only {
   position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
@@ -1130,6 +1154,18 @@ a.form-done__close { display: inline-block; }
   .faq__content { max-width: 100%; }
 }
 
+/* Testimonios (#testimonios) en tablet y celular: se ocultan los párrafos para dejar
+   espacio al carrusel de opiniones (pendiente). Solo queda el título. */
+@media (max-width: 1024px) {
+  .why__text p, .why__note { display: none; }
+}
+
+/* Pie por columnas en tablet: las 3 columnas se reparten el ancho y las redes bajan a su propia fila */
+@media (max-width: 900px) {
+  .footer__grid { grid-template-columns: repeat(3, 1fr); }
+  .footer__social { grid-column: 1 / -1; justify-self: start; }
+}
+
 /* Tarjetas de servicios en pantallas estrechas (va después del bloque de 900px para prevalecer):
    - ≤760px: una sola columna; como la tarjeta es ancha, vuelve a ser cuadrada.
    - ≤480px (celulares): algo más alta que ancha (3:4) para que quepa la descripción. */
@@ -1171,6 +1207,12 @@ a.form-done__close { display: inline-block; }
   .footer__inner, .footer__left, .footer__links { justify-content: center; text-align: center; }
   .img_footer_center { flex: 0 0 100%; display: flex; justify-content: center; }
   .img_footer_center img {width: 50%;}
+  /* Pie por columnas: Navegación y Legal lado a lado; Empresa y redes a todo el ancho */
+  .footer__grid { grid-template-columns: 1fr 1fr; gap: 2.25rem 1rem; }
+  .footer__col { align-items: center; }
+  .footer__col--empresa { grid-column: 1 / -1; grid-row: 2; }
+  .footer__social { grid-column: 1 / -1; justify-self: center; }
+  .footer__bottom { justify-content: center; text-align: center; }
 }
 
 

@@ -878,58 +878,74 @@
     </div>
   </section>
 
- <footer class="footer" id="contacto">
-  <div class="footer__inner">
+<footer class="footer" id="contacto">
+  <!-- Pie en 3 filas separadas por líneas finas:
+       1. logo · 2. columnas (Navegación / Empresa / Legal) + redes a la derecha · 3. derechos -->
+  <div class="footer__inner footer__inner--grid">
 
     <!-- 1. Logotipo -->
-    <div class="img_footer_center">
+    <div class="footer__top img_footer_center">
       <img src="assets/img/angeles-de-vida-logo-blanco.svg" alt="Logotipo de Enfermeras Ángeles de Vida en Bogotá."
         loading="lazy" />
     </div>
 
-    <!-- 2. Información de contacto y localización (SEO Local sin WhatsApp) -->
-    <div class="footer__contact-info" aria-label="Información de contacto">
-      <p><strong>Enfermeras Ángeles de Vida</strong></p>
-      <p>Servicio de enfermería a domicilio las 24 horas en Bogotá, Colombia.</p>
+    <!-- 2. Columnas de enlaces + redes sociales -->
+    <div class="footer__grid">
+      <nav class="footer__col" aria-labelledby="footer-nav-titulo">
+        <h2 class="footer__heading" id="footer-nav-titulo">Navegación</h2>
+        <a href="#inicio"><span class="menu__roll"><span>Home</span><span>Home</span></span></a>
+        <a href="#nosotros"><span class="menu__roll"><span>Nosotros</span><span>Nosotros</span></span></a>
+        <a href="#servicios"><span class="menu__roll"><span>Servicios</span><span>Servicios</span></span></a>
+        <a href="#testimonios"><span class="menu__roll"><span>Testimonios</span><span>Testimonios</span></span></a>
+        <a href="#preguntas"><span class="menu__roll"><span>Preguntas frecuentes</span><span>Preguntas frecuentes</span></span></a>
+        <a href="#contacto"><span class="menu__roll"><span>Contacto</span><span>Contacto</span></span></a>
+      </nav>
+
+      <!-- Información de contacto y localización (SEO local) + empleo -->
+      <div class="footer__col footer__col--empresa">
+        <h2 class="footer__heading">Empresa</h2>
+        <p><strong>Enfermeras Ángeles de Vida</strong></p>
+        <p>Servicio de enfermería a domicilio las 24 horas en Bogotá, Colombia.</p>
+        <a href="trabaja-con-nosotros.html"><span class="menu__roll"><span>Trabaja con nosotros</span><span>Trabaja con nosotros</span></span></a>
+      </div>
+
+      <nav class="footer__col" aria-labelledby="footer-legal-titulo">
+        <h2 class="footer__heading" id="footer-legal-titulo">Legal</h2>
+        <a href="privacidad.html"><span class="menu__roll"><span>Privacidad</span><span>Privacidad</span></span></a>
+        <a href="terminos.html"><span class="menu__roll"><span>Términos</span><span>Términos</span></span></a>
+        <a href="aviso-legal.html"><span class="menu__roll"><span>Aviso legal</span><span>Aviso legal</span></span></a>
+      </nav>
+
+      <!-- Redes sociales (YouTube pendiente) -->
+      <nav class="social footer__social" aria-label="Redes sociales">
+        <a class="social__link" href="https://www.facebook.com/enfermerasangelesdevida" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M14.5 3H13a4 4 0 0 0-4 4v3H7v3h2v8h3v-8h2.5l.5-3h-3V7.5A1.5 1.5 0 0 1 13.5 6h1z" />
+          </svg>
+          <span class="sr-only">Facebook de Enfermeras Ángeles de Vida (se abre en una pestaña nueva)</span>
+        </a>
+
+        <a class="social__link" href="https://www.instagram.com/enfermerasangelesdevida/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <rect x="3" y="3" width="18" height="18" rx="5" />
+            <circle cx="12" cy="12" r="4" />
+            <circle cx="17.5" cy="6.5" r=".6" />
+          </svg>
+          <span class="sr-only">Instagram de Enfermeras Ángeles de Vida (se abre en una pestaña nueva)</span>
+        </a>
+
+        <a class="social__link" href="#" data-pendiente title="Próximamente">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <rect x="2" y="5" width="20" height="14" rx="4" />
+            <path d="m10 9 5 3-5 3z" />
+          </svg>
+          <span class="sr-only">YouTube de Enfermeras Ángeles de Vida</span>
+        </a>
+      </nav>
     </div>
 
-    <!-- 3. Enlaces institucionales -->
-    <nav class="footer__links" aria-label="Enlaces institucionales">
-      <a href="privacidad.html">Privacidad</a>
-      <a href="terminos.html">Términos</a>
-      <a href="aviso-legal.html">Aviso legal</a>
-      <a href="trabaja-con-nosotros.html">Trabaja con nosotros</a>
-    </nav>
-
-    <!-- 4. Redes sociales (Con YouTube temporal) -->
-    <nav class="social" aria-label="Redes sociales">
-      <a class="social__link" href="https://www.facebook.com/enfermerasangelesdevida" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-          <path d="M14.5 3H13a4 4 0 0 0-4 4v3H7v3h2v8h3v-8h2.5l.5-3h-3V7.5A1.5 1.5 0 0 1 13.5 6h1z" />
-        </svg>
-        <span class="sr-only">Facebook de Enfermeras Ángeles de Vida (se abre en una pestaña nueva)</span>
-      </a>
-
-      <a class="social__link" href="https://www.instagram.com/enfermerasangelesdevida/" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-          <rect x="3" y="3" width="18" height="18" rx="5" />
-          <circle cx="12" cy="12" r="4" />
-          <circle cx="17.5" cy="6.5" r=".6" />
-        </svg>
-        <span class="sr-only">Instagram de Enfermeras Ángeles de Vida (se abre en una pestaña nueva)</span>
-      </a>
-
-      <a class="social__link" href="#" data-pendiente title="Próximamente">
-        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-          <rect x="2" y="5" width="20" height="14" rx="4" />
-          <path d="m10 9 5 3-5 3z" />
-        </svg>
-        <span class="sr-only">YouTube de Enfermeras Ángeles de Vida</span>
-      </a>
-    </nav>
-
-    <!-- 5. Derechos de autor y créditos -->
-    <div class="footer__left">
+    <!-- 3. Derechos de autor y créditos -->
+    <div class="footer__bottom">
       <span>
         © <span data-year>2026</span> Enfermeras Ángeles de Vida. Todos los derechos reservados.
         | Desarrollado por <a href="https://botkor.com" target="_blank" rel="noopener"
@@ -1088,7 +1104,7 @@
         <div class="form__check">
           <input id="f-acepto" name="acepto" type="checkbox" value="si" required />
           <label for="f-acepto">
-            Acepto la <a href="politica-privacidad.html" target="_blank">Política de Tratamiento de Datos Personales</a>
+            Acepto la <a href="privacidad.html" target="_blank">Política de Tratamiento de Datos Personales</a>
             de
             acuerdo con la Ley 1581 de 2012. <span class="form__req" aria-hidden="true">*</span>
           </label>
