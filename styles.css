@@ -67,7 +67,7 @@ body.is-loading, body.menu-open, body.modal-open { overflow: hidden; }   /* sin 
 [hidden] { display: none !important; }
 img { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
-button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; padding: 0; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; padding: 0; color: var(--plum-800); font-weight: bold; }
 h1, h2, h3, h4, p { margin: 0; }
 em { font-style: italic; }
 svg { stroke: currentColor; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
@@ -1249,7 +1249,7 @@ a.form-done__close { display: inline-block; }
 .cookie-btn {
   padding: 0.5rem 1.25rem;
   border-radius: 4px;
-  font-weight: 500;
+  font-weight: bold;
   cursor: pointer;
   border: none;
   transition: opacity 0.2s;
@@ -1257,7 +1257,7 @@ a.form-done__close { display: inline-block; }
 
 .cookie-btn--accept {
   background-color: #ad8d58;
-  color: #fff;
+  color:var(--plum-950);
 }
 
 .cookie-btn--reject {
