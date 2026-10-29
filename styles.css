@@ -65,9 +65,9 @@ body.is-loading, body.menu-open, body.modal-open { overflow: hidden; }   /* sin 
 /* El atributo hidden SIEMPRE oculta, aunque la clase del elemento le dé display (grid, flex…).
    Sin esto, p. ej. .form { display: grid } hacía que el formulario siguiera visible al ocultarlo. */
 [hidden] { display: none !important; }
-img { display: block; max-width: 100%; }
+img { display: block; max-width: 100%; height: auto; } /* height:auto: los atributos width/height solo reservan la proporción */
 a { color: inherit; text-decoration: none; }
-button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; padding: 0; color: var(--plum-800); font-weight: bold; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; padding: 0; }
 h1, h2, h3, h4, p { margin: 0; }
 em { font-style: italic; }
 svg { stroke: currentColor; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
@@ -124,7 +124,9 @@ img.is-missing { visibility: hidden; }
 .loader { position: fixed; inset: 0; z-index: 100; pointer-events: none; }
 .loader__overlay {
   position: absolute; inset: 0;
-  background: var(--plum-800);
+  /* Azul profundo de marca (mismo del pie y del final del degradado del hero):
+     algo más claro alrededor del hueco central y más oscuro hacia los bordes */
+  background: radial-gradient(ellipse 80% 70% at 50% 45%, var(--plum-900) 0%, var(--plum-950) 75%);
   /* Polígono con un "agujero" central de 340×480 px: así se ve el hero detrás */
   clip-path: polygon(0 0, 0 100%, calc(50% - 170px) 100%, calc(50% - 170px) calc(50% - 240px),
     calc(50% + 170px) calc(50% - 240px), calc(50% + 170px) calc(50% + 240px),
@@ -163,6 +165,18 @@ img.is-missing { visibility: hidden; }
   border-bottom-color: rgba(106,79,115,.15);
   box-shadow: 0 6px 24px rgba(43,21,48,.06);
 }
+/* Sobre el hero: velo ciruela oscuro semitransparente + desenfoque suave, para que
+   "Ver menú", sus líneas y el logo blancos tengan contraste sobre cualquier zona de la foto.
+   Va en ::before y NO en el propio .header: un backdrop-filter en .header convertiría al
+   header en el marco de sus hijos fijos y el menú (.menu, position: fixed, que está dentro
+   del <header>) quedaría recortado al alto del header en vez de cubrir la pantalla. */
+.header::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: color-mix(in srgb, var(--plum-950) 40%, transparent);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  transition: opacity .45s ease;
+}
+.header.is-scrolled::before { opacity: 0; }
 .header__bar {
   max-width: var(--container); margin: 0 auto; height: 100%;
   padding: 0 var(--gutter);
@@ -174,6 +188,9 @@ img.is-missing { visibility: hidden; }
    proporción del logo (1775×737 ≈ 2.4:1), así nunca se deforma.
    Cambio de versión: fundido de opacidad sincronizado con el header (.45s). */
 .header__logo { display: grid; align-items: center; gap: calc(.75rem * var(--hs)); }
+/* Cada logo va en un <picture> (en celular carga el logo cuadrado del ángel);
+   display: contents hace que la <img> siga siendo la celda de la grilla */
+.header__logo picture { display: contents; }
 .header__logo-mark {
   grid-area: 1 / 1;
   height: calc(var(--header-h) * var(--hs) * .55); width: auto; max-width: none;
@@ -822,17 +839,19 @@ main > section, .cta, .footer { position: relative; z-index: 1; }
 .img_footer_center img {width: 20%; max-width: 220px}
 .footer__brand { font-family: var(--font-serif); font-size: 1.1rem; color: var(--white); }
 .footer__links a:hover { color: var(--white); }
-/* Espacio extra abajo: el botón flotante "volver arriba" (46px a 1.5rem del borde)
-   queda por debajo de los enlaces del pie y no los tapa al llegar al final de la página */
-.footer__inner { padding-bottom: calc(1.75rem + 56px); }
+/* Espacio extra abajo: los botones flotantes apilados ("volver arriba" + WhatsApp,
+   2 × 46px a 1.5rem del borde) quedan por debajo de los enlaces y los derechos del pie
+   y no los tapan al llegar al final de la página */
+.footer__inner { padding-bottom: calc(1.75rem + 116px); }
 
-/* Pie por columnas (index.html). Las demás páginas siguen con el pie en una fila.
+/* Pie por columnas (mismo pie en todas las páginas).
    Tres filas separadas por líneas finas: logo · columnas + redes · derechos. */
 .footer__inner--grid { display: block; padding-top: 3rem; }
 .footer__top { padding-bottom: 2.5rem; border-bottom: 1px solid rgba(255,255,255,.25); }
-/* 3 columnas de ancho fijo a la izquierda; la 4.ª (redes) ocupa el resto y se pega a la derecha */
+/* Las 3 columnas se reparten el ancho (con buen aire entre ellas); la 4.ª (redes)
+   solo ocupa lo que miden sus iconos y queda pegada a la derecha */
 .footer__grid {
-  display: grid; grid-template-columns: repeat(3, minmax(0, 14rem)) 1fr; gap: 2.5rem 2rem;
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)) auto; gap: 2.5rem clamp(2rem, 5vw, 5rem);
   padding: 2.75rem 0; border-bottom: 1px solid rgba(255,255,255,.25);
 }
 .footer__col { display: flex; flex-direction: column; align-items: flex-start; gap: .9rem; }
@@ -893,6 +912,37 @@ main > section, .cta, .footer { position: relative; z-index: 1; }
 }
 .to-top svg { width: 20px; height: 20px; stroke-width: 2; }
 .to-top.is-visible { opacity: 1; transform: none; pointer-events: auto; }
+
+/* Botón flotante de WhatsApp: mismas medidas que .to-top, justo encima (donde estaba el chat).
+   Aparece a la vez que .to-top (main.js, onScroll).
+   - Verde oscuro de WhatsApp (#128C7E): el icono blanco tiene contraste ≥ 4:1 (con el verde
+     claro #25D366 quedaría en 2:1 y no pasaría accesibilidad).
+   - Luz: sombra oscura suave + halo verde que late, así se ve también sobre fondos claros.
+   - Rebote: usa la propiedad "translate" (no "transform"), para no pisar la transición de entrada. */
+.wa-float {
+  position: fixed; right: 1.5rem; bottom: calc(1.5rem + 46px + .75rem); z-index: 40;
+  width: 46px; height: 46px; border-radius: 50%;
+  display: grid; place-items: center; background: #128C7E; color: var(--white);
+  box-shadow: 0 4px 14px rgba(23,6,25,.22), 0 0 0 0 rgba(37,211,102,.55);
+  opacity: 0; transform: translateY(20px); transition: opacity .4s, transform .4s var(--ease-out), background-color .3s; pointer-events: none;
+}
+.wa-float svg { width: 24px; height: 24px; fill: currentColor; stroke: none; }
+.wa-float.is-visible {
+  opacity: 1; transform: none; pointer-events: auto;
+  animation: wa-glow 2.4s ease-out infinite, wa-bounce 4s ease-in-out 1s infinite;
+}
+.wa-float:hover, .wa-float:focus-visible { background: #0e7368; animation-play-state: paused; }
+@keyframes wa-glow {
+  0%   { box-shadow: 0 4px 14px rgba(23,6,25,.22), 0 0 0 0 rgba(37,211,102,.55), 0 0 18px 2px rgba(37,211,102,.45); }
+  70%  { box-shadow: 0 4px 14px rgba(23,6,25,.22), 0 0 0 14px rgba(37,211,102,0), 0 0 26px 6px rgba(37,211,102,.25); }
+  100% { box-shadow: 0 4px 14px rgba(23,6,25,.22), 0 0 0 0 rgba(37,211,102,0), 0 0 18px 2px rgba(37,211,102,.45); }
+}
+/* Rebote suave: dos saltos cortos y luego quieto el resto del ciclo */
+@keyframes wa-bounce {
+  0%, 30%, 100% { translate: 0 0; }
+  10% { translate: 0 -8px; }
+  20% { translate: 0 -3px; }
+}
 
 /* ---------- 15b. MODAL "SOLICITA TU SERVICIO" + FORMULARIO ----------
    Estructura: <dialog class="modal"> → .modal__box (caja blanca con scroll propio)
@@ -1087,6 +1137,7 @@ main > section, .cta, .footer { position: relative; z-index: 1; }
   color: var(--plum-500);
   border-bottom-color: color-mix(in srgb, var(--plum-500) 15%, transparent);
 }
+.header[data-header-dark]::before { display: none; }  /* fondo claro: sin velo oscuro */
 .header[data-header-dark]:not(.is-scrolled) .header__logo-mark--light { opacity: 0; }
 .header[data-header-dark]:not(.is-scrolled) .header__logo-mark--dark  { opacity: 1; }
 
@@ -1222,9 +1273,10 @@ a.form-done__close { display: inline-block; }
   z-index: 9999;
   box-shadow: 0 -4px 20px rgba(0,0,0,0.2);
   font-family: var(--font-sans);
-  padding: 3vh;
-  
 }
+
+/* El aviso es texto secundario: --fs-small (15.3px en PC, 13.6px en celular) */
+.cookie-banner__text { font-size: var(--fs-small); line-height: 1.45; }
 
 .cookie-banner__inner {
   max-width: 1200px;
@@ -1247,6 +1299,7 @@ a.form-done__close { display: inline-block; }
 }
 
 .cookie-btn {
+  font-size: var(--fs-small);
   padding: 0.5rem 1.25rem;
   border-radius: 4px;
   font-weight: bold;
@@ -1268,6 +1321,15 @@ a.form-done__close { display: inline-block; }
 
 .cookie-btn:hover {
   opacity: 0.85;
+}
+
+/* Celular: menos relleno y botones lado a lado a todo el ancho,
+   con 44px de alto mínimo para tocarlos bien. */
+@media (max-width: 640px) {
+  .cookie-banner { padding: 1rem; }
+  .cookie-banner__inner { gap: .75rem; }
+  .cookie-banner__actions { width: 100%; gap: .5rem; }
+  .cookie-btn { flex: 1; min-height: 44px; padding: .5rem 1rem; }
 }
 
 @media (max-width: 900px) {
@@ -1306,10 +1368,13 @@ a.form-done__close { display: inline-block; }
   .header__nav .cta-btn { order: 3; }
 }
 /* Celulares: rayas más cortas, logo y CTA más compactos para que todo quepa en una línea.
-   El logo pasa del 55% al 36% del alto del header (96px → 35px arriba · 67px → 24px con scroll)
-   y el botón no se parte en dos líneas (nowrap). */
+   El logo es el ángel cuadrado (enfermeras-angeles-de-vida-logo-movil.webp, a color: sirve
+   igual sobre el velo oscuro y sobre el header blanco). Mide el 60% del alto del header
+   (96px → 58px arriba · 67px → 40px con scroll). Las dos <img> muestran la misma imagen,
+   así que el cambio entre ellas es instantáneo (sin fundido que la haga parpadear).
+   El botón no se parte en dos líneas (nowrap). */
 @media (max-width: 640px) {
-  .header__logo-mark { height: calc(var(--header-h) * var(--hs) * .36); }
+  .header__logo-mark { height: calc(var(--header-h) * var(--hs) * .6); transition: height .45s var(--ease-out); }
   .menu-toggle { margin-left: .75rem; }
   .menu-toggle__icon { width: 44px; gap: 8px; }
   .header .cta-btn { font-size: .8rem; white-space: nowrap; padding-left: calc(1rem * var(--hs)); gap: .5rem; }
@@ -1317,7 +1382,7 @@ a.form-done__close { display: inline-block; }
 }
 /* Celulares muy estrechos (≤350px, p. ej. iPhone SE 1.ª gen.): un poco más compacto */
 @media (max-width: 350px) {
-  .header__logo-mark { height: calc(var(--header-h) * var(--hs) * .32); }
+  .header__logo-mark { height: calc(var(--header-h) * var(--hs) * .52); }
   .menu-toggle { margin-left: .5rem; }
   .menu-toggle__icon { width: 34px; }
   .header .cta-btn { font-size: .75rem; padding-left: calc(.8rem * var(--hs)); }
@@ -1351,11 +1416,37 @@ a.form-done__close { display: inline-block; }
   /* Proceso: línea a la izquierda y el número deja de ser sticky */
   .process__grid { grid-template-columns: 20px 1fr; gap: 0 1.5rem; }
   .process__sticky { position: relative; top: 0; grid-column: 1 / -1; margin-bottom: 3rem; }
+  /* Tablet vertical y celular: sin el contador grande 01.–06. (sin columna fija no aporta) */
+  .process__number { display: none; }
   .process__steps { gap: 4rem; }
   .step__dot { left: calc(-1.5rem - 10px - 4px); }
   .why__content { flex-direction: column; align-items: flex-start; }
   /* FAQ: en tablet y celular el acordeón usa todo el ancho (el 65vw de escritorio lo dejaría muy estrecho) */
   .faq__content { max-width: 100%; }
+}
+
+/* Celular: escala tipográfica recomendada para móvil en TODO el sitio
+   (párrafos 16px, títulos 36/32/26px, etiquetas 14px). Como todos los textos usan
+   estas variables, --fs-small (13.6px) y --fs-smaller (12px) se ajustan solos. */
+@media (max-width: 640px) {
+  :root {
+    --fs-display: 2.25rem;
+    --fs-h2: 2rem;
+    --fs-h3: 1.625rem;
+    --fs-body: 1rem;
+    --fs-eyebrow: .875rem;
+  }
+  .eyebrow { letter-spacing: .1em; margin-bottom: .75rem; }
+  .step__title { letter-spacing: .1em; }
+
+  /* Hero: menos espacio arriba, para que el texto y el botón quepan sin
+     empujar el bloque hacia el borde superior */
+  .hero__main { padding-top: 0; }
+  .hero__title { line-height: 1.15; margin-bottom: 1rem; }
+  .hero__lead { line-height: 1.5; }
+  .hero__actions { margin-top: 1.25rem; }
+  .hero__actions .cta-btn { font-size: .9rem; padding: .5rem .5rem .5rem 1.25rem; }
+  .hero__actions .cta-btn__arrow { width: 32px; height: 32px; }
 }
 
 /* Testimonios (#testimonios) en tablet y celular: se ocultan los párrafos para dejar
