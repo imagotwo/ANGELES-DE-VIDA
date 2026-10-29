@@ -164,7 +164,10 @@ function runLoader() {
 
   const scale = Math.max(innerWidth / 340, innerHeight / 480) * 1.2;
   const finish = () => {
-    loader.remove();
+    // No borrar de golpe, añadimos una clase que lo apague o lo oculte
+    loader.style.pointerEvents = 'none';
+    loader.style.display = 'none'; // Oculta instantáneamente del flujo sin romper el DOM de golpe
+    
     document.body.classList.remove('is-loading');
     lenis?.start();
     ScrollTrigger.refresh();

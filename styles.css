@@ -1382,6 +1382,8 @@ a.form-done__close { display: inline-block; }
 }
 @media (max-width: 480px) { .focus-card { aspect-ratio: 3 / 4; } }
 
+
+
 /* Intro en celulares. Va DESPUÉS del bloque de 900px a propósito: en un celular
    se cumplen ambos y, a igual especificidad, gana la regla que va más abajo.
    Una sola columna: izquierda, derecha debajo (sin solaparse) y luego el texto.
