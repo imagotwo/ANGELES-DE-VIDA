@@ -32,9 +32,7 @@
   <!-- ========================================= -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
   
   <!-- Lenis: hoja base recomendada por la librería (scroll suave) -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.css" media="print"
@@ -42,9 +40,8 @@
   
   <link rel="preload" href="styles.css" as="style">
   <link rel="stylesheet" href="styles.css">
+  <link rel="preload" href="assets/img/atencion-enfermera-domiciliaria-bogota.webp" as="image" type="image/webp">
   
-  
-
   <!-- ========================================= -->
   <!-- 4. DATOS ESTRUCTURADOS (JSON-LD)          -->
   <!-- ========================================= -->
@@ -124,9 +121,7 @@
   }
 
   // Si el usuario ya aceptó antes en una visita anterior, lo cargamos de inmediato
-  if (localStorage.getItem('cookieConsent') === 'accepted') {
-    loadMetaPixel();
-  }
+  if (localStorage.getItem('cookieConsent') === 'accepted') {loadMetaPixel();}
 </script>
 <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=5051395198337590&ev=PageView&noscript=1" /></noscript>
