@@ -12,7 +12,7 @@
   <meta name="description"
     content="Servicio de enfermeras a domicilio en Bogotá, cuidado profesional en casa para pacientes y adultos mayores. Solicita tu servicio." />
   <link rel="canonical" href="https://www.enfermerasangelesdevida.com/" />
-  <link rel="icon" type="image/png" href="./assets/img/favicon-enfermeras-angeles-de-vida.png">
+  <link rel="icon" type="image/png" href="./assets/img/enfermeras-angeles-de-vida-favicon.webp">
 
   <!-- ========================================= -->
   <!-- 2. REDES SOCIALES (Open Graph)            -->
@@ -24,7 +24,7 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.enfermerasangelesdevida.com/">
   <meta property="og:image"
-    content="https://www.enfermerasangelesdevida.com/assets/img/favicon-enfermeras-angeles-de-vida.png">
+    content="https://www.enfermerasangelesdevida.com/assets/img/enfermeras-angeles-de-vida-favicon.webp">
 
   <!-- ========================================= -->
   <!-- 3. TIPOGRAFÍAS Y ESTILOS CSS              -->
@@ -49,7 +49,7 @@
     "@context": "https://schema.org",
     "@type": "MedicalBusiness",
     "name": "Enfermeras Ángeles de Vida",
-    "image": "https://www.enfermerasangelesdevida.com/assets/img/favicon-enfermeras-angeles-de-vida.png",
+    "image": "https://www.enfermerasangelesdevida.com/assets/img/enfermeras-angeles-de-vida-favicon.webp",
     "url": "https://www.enfermerasangelesdevida.com",
     "telephone": "+573203473040",
     "address": {
@@ -98,8 +98,12 @@
   }
   </script>
   
-  <!-- Meta Pixel Code -->
-  <script>
+  <!-- Meta Pixel Code (Modificado para carga condicional por consentimiento) -->
+<script>
+  function loadMetaPixel() {
+    if (window.metaPixelLoaded) return;
+    window.metaPixelLoaded = true;
+
     !function (f, b, e, v, n, t, s) {
       if (f.fbq) return; n = f.fbq = function () {
         n.callMethod ?
@@ -113,10 +117,16 @@
       'https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', '5051395198337590');
     fbq('track', 'PageView');
-  </script>
-  <noscript><img height="1" width="1" style="display:none"
-      src="https://www.facebook.com/tr?id=5051395198337590&ev=PageView&noscript=1" /></noscript>
-  <!-- End Meta Pixel Code -->
+  }
+
+  // Si el usuario ya aceptó antes en una visita anterior, lo cargamos de inmediato
+  if (localStorage.getItem('cookieConsent') === 'accepted') {
+    loadMetaPixel();
+  }
+</script>
+<noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=5051395198337590&ev=PageView&noscript=1" /></noscript>
+<!-- End Meta Pixel Code -->
   </head>
 
 <body>
@@ -142,9 +152,9 @@
              --light (blanco) se ve al inicio, sobre el hero; --dark (color) se ve al
              hacer scroll, cuando el header es blanco. El cambio lo hace el CSS con
              .header.is-scrolled. -->
-        <img class="header__logo-mark header__logo-mark--light" src="./assets/img/angeles-de-vida-logo-blanco.svg"
+        <img class="header__logo-mark header__logo-mark--light" src="./assets/img/angeles-de-vida-logo-blanco.webp"
           alt="Logotipo blanco de Ángeles de vida - Enfermeras a domicilio en Bogotá" />
-        <img class="header__logo-mark header__logo-mark--dark" src="./assets/img/angeles-de-vida-logo.svg"
+        <img class="header__logo-mark header__logo-mark--dark" src="./assets/img/angeles-de-vida-logo.webp"
           alt="Logotipo azúl de Ángeles de vida - Enfermeras a domicilio en Bogotá" />
         <span class="header__logo-text"></span>
       </a>
@@ -243,7 +253,7 @@
     <div class="hero-wrap" id="inicio">
       <section class="hero" data-hero>
         <div class="hero__bg">
-          <img class="hero__img" src="assets/img/atencion-enfermera-domiciliaria-bogota.jpg"
+          <img class="hero__img" src="assets/img/atencion-enfermera-domiciliaria-bogota.webp"
             alt="Servicio de atención domiciliaria en Bogotá con enfermera asistiendo a un adulto mayor en silla de ruedas."
             fetchpriority="high" />
           <div class="hero__gradient"></div>
@@ -686,7 +696,7 @@
          POR QUÉ NOSOTROS — imagen grande, marca gigante y texto.
          ============================================================ -->
     <section class="why" id="testimonios">
-      <div class="why__bg"><img class="ph" data-parallax="-15" src="assets/img/historias-de-familias-bogota.jpg"
+      <div class="why__bg"><img class="ph" data-parallax="-15" src="assets/img/historias-de-familias-bogota.webp"
           alt="Familias en Bogotá que confían en el cuidado de enfermería de Enfermeras de Vida." />
       </div>
       <div class="why__gradient"></div>
@@ -969,7 +979,7 @@
 
     <!-- 1. Logotipo -->
     <div class="footer__top img_footer_center">
-      <img src="assets/img/angeles-de-vida-logo-blanco.svg" alt="Logotipo de Enfermeras Ángeles de Vida en Bogotá."
+      <img src="assets/img/angeles-de-vida-logo-blanco.webp" alt="Logotipo de Enfermeras Ángeles de Vida en Bogotá."
         loading="lazy" />
     </div>
 
@@ -986,12 +996,17 @@
       </nav>
 
       <!-- Información de contacto y localización (SEO local) + empleo -->
-      <div class="footer__col footer__col--empresa">
-        <h2 class="footer__heading">Empresa</h2>
+      <section class="footer__col footer__col--empresa" aria-labelledby="footer-empresa-titulo">
+        <h2 class="footer__heading" id="footer-empresa-titulo">Empresa</h2>
         <p><strong>Enfermeras Ángeles de Vida</strong></p>
         <p>Servicio de enfermería a domicilio las 24 horas en Bogotá, Colombia.</p>
-        <a href="trabaja-con-nosotros.html"><span class="menu__roll"><span>Trabaja con nosotros</span><span>Trabaja con nosotros</span></span></a>
-      </div>
+        <a href="trabaja-con-nosotros.html">
+          <span class="menu__roll">
+            <span>Trabaja con nosotros</span>
+            <span>Trabaja con nosotros</span>
+          </span>
+        </a>
+      </section>
 
       <nav class="footer__col" aria-labelledby="footer-legal-titulo">
         <h2 class="footer__heading" id="footer-legal-titulo">Legal</h2>
@@ -1032,7 +1047,7 @@
     <div class="footer__bottom">
       <span>
         © <span data-year>2026</span> Enfermeras Ángeles de Vida. Todos los derechos reservados.
-        | Desarrollado por <a href="https://botkor.com" target="_blank" rel="noopener"
+        | Desarrollado por <a href="https://botkor.com" target="_blank" rel="noopener noreferrer"
           aria-label="Visitar el sitio web del desarrollador (se abre en una pestaña nueva)">Botkor</a>
       </span>
     </div>
@@ -1274,6 +1289,20 @@
     </div>
   </dialog>
 
+  <!-- Banner de Cookies -->
+<div class="cookie-banner" id="cookie-banner" role="region" aria-label="Aviso de cookies" hidden>
+  <div class="cookie-banner__inner">
+    <p class="cookie-banner__text">
+      Utilizamos cookies propias y de terceros para mejorar tu experiencia y medir analíticas. 
+      Puedes consultar más detalles en nuestra <a href="privacidad.html" target="_blank">Política de Privacidad</a>.
+    </p>
+    <div class="cookie-banner__actions">
+      <button class="cookie-btn cookie-btn--accept" type="button" data-cookie-accept>Aceptar</button>
+      <button class="cookie-btn cookie-btn--reject" type="button" data-cookie-reject>Rechazar</button>
+    </div>
+  </div>
+</div>
+
   <!-- Botón volver arriba (aparece tras cierto scroll) -->
   <button class="to-top" data-to-top aria-label="Volver arriba">
     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
@@ -1287,5 +1316,4 @@
   <script src="main.js"></script>
   <script type="module" src="assets/chat/chat.js"></script>
 </body>
-
 </html>

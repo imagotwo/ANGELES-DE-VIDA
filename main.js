@@ -1097,6 +1097,39 @@ function liveValidation(form, validate) {
     .catch((err) => console.warn('Reseñas de Google no disponibles:', err));
 })();
 
+// -------------------------------------------------------------
+// GESTIÓN DEL BANNER DE COOKIES Y CONSENTIMIENTO
+// -------------------------------------------------------------
+document.addEventListener('DOMContentLoaded', () => {
+  const banner = document.getElementById('cookie-banner');
+  if (!banner) return;
+
+  const consent = localStorage.getItem('cookieConsent');
+
+  // Si no ha tomado una decisión, mostramos el banner
+  if (!consent) {
+    banner.hidden = false;
+  }
+
+  const btnAccept = banner.querySelector('[data-cookie-accept]');
+  const btnReject = banner.querySelector('[data-cookie-reject]');
+
+  btnAccept?.addEventListener('click', () => {
+    localStorage.setItem('cookieConsent', 'accepted');
+    banner.hidden = true;
+    // Activamos el Píxel en el momento exacto de la aceptación
+    if (typeof loadMetaPixel === 'function') {
+      loadMetaPixel();
+    }
+  });
+
+  btnReject?.addEventListener('click', () => {
+    localStorage.setItem('cookieConsent', 'rejected');
+    banner.hidden = true;
+    // No se carga el píxel de Meta
+  });
+});
+
 /* Recalcular posiciones cuando terminan de cargar fuentes e imágenes */
 addEventListener('load', () => ScrollTrigger.refresh());
 document.fonts?.ready.then(() => ScrollTrigger.refresh());
