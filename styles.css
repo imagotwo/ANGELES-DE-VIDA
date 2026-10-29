@@ -755,17 +755,47 @@ main > section, .cta, .footer { position: relative; z-index: 1; }
 .reviews__arrow:hover { background: var(--white); transform: scale(1.08); }
 .reviews__arrow:focus-visible { outline: 2px solid var(--gold-300); outline-offset: 2px; }
 
-/* Puntos (uno por reseña) + enlace a Google */
+/* Puntos (uno por reseña) + enlace a Google (Optimizado para Accesibilidad y Áreas Táctiles) */
 .reviews__foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .75rem 1rem; }
-.reviews__dots { display: flex; }
-.reviews__dot { width: 20px; height: 24px; display: grid; place-items: center; transition: width .3s var(--ease-out); }
-.reviews__dot::before {
-  content: ""; width: 8px; height: 8px; border-radius: 4px; background: rgba(255,255,255,.45);
+.reviews__dots { display: flex; align-items: center; }
+
+.reviews__dot { 
+  /* Convertimos el botón en un área táctil amplia (mínimo recomendado para móviles) */
+  width: 44px; 
+  height: 44px; 
+  display: inline-flex; 
+  align-items: center; 
+  justify-content: center; 
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  position: relative;
+}
+
+/* Contenedor visual interno que mantiene tu animación y diseño original */
+.reviews__dot-inner {
+  width: 20px;
+  height: 24px;
+  display: grid;
+  place-items: center;
+  transition: width .3s var(--ease-out);
+}
+
+.reviews__dot-inner::before {
+  content: ""; 
+  width: 8px; 
+  height: 8px; 
+  border-radius: 4px; 
+  background: rgba(255,255,255,.45);
   transition: width .3s var(--ease-out), background-color .3s;
 }
-.reviews__dot.is-active { width: 32px; }
-.reviews__dot.is-active::before { width: 22px; background: var(--white); }
+
+.reviews__dot.is-active .reviews__dot-inner { width: 32px; }
+.reviews__dot.is-active .reviews__dot-inner::before { width: 22px; background: var(--white); }
+
 .reviews__dot:focus-visible { outline: 2px solid var(--gold-300); border-radius: 4px; }
+
 .reviews__all { font-size: var(--fs-small); font-weight: 600; color: var(--white); text-decoration: underline; text-underline-offset: 3px; }
 .reviews__all:hover { color: var(--gold-300); }
 
