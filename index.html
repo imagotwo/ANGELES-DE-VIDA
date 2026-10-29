@@ -998,7 +998,7 @@
       <!-- Información de contacto y localización (SEO local) + empleo -->
       <section class="footer__col footer__col--empresa" aria-labelledby="footer-empresa-titulo">
         <h2 class="footer__heading" id="footer-empresa-titulo">Empresa</h2>
-        <p><strong>Enfermeras Ángeles de Vida</strong></p>
+        <p>Enfermeras Ángeles de Vida</p>
         <p>Servicio de enfermería a domicilio las 24 horas en Bogotá, Colombia.</p>
         <a href="trabaja-con-nosotros.html">
           <span class="menu__roll">
@@ -1047,7 +1047,7 @@
     <div class="footer__bottom">
       <span>
         © <span data-year>2026</span> Enfermeras Ángeles de Vida. Todos los derechos reservados.
-        | Desarrollado por <a href="https://botkor.com" target="_blank" rel="noopener noreferrer"
+        | Desarrollado por <a class="link__botkor" href="https://botkor.com" target="_blank" rel="noopener noreferrer"
           aria-label="Visitar el sitio web del desarrollador (se abre en una pestaña nueva)">Botkor</a>
       </span>
     </div>
@@ -1290,15 +1290,26 @@
   </dialog>
 
   <!-- Banner de Cookies -->
+<!-- Banner de Cookies Optimizado para Accesibilidad -->
 <div class="cookie-banner" id="cookie-banner" role="region" aria-label="Aviso de cookies" hidden>
   <div class="cookie-banner__inner">
     <p class="cookie-banner__text">
-      Utilizamos cookies propias y de terceros para mejorar tu experiencia y medir analíticas. 
-      Puedes consultar más detalles en nuestra <a href="privacidad.html" target="_blank">Política de Privacidad</a>.
+      Utilizamos cookies propias y de terceros para mejorar tu experiencia y medir analíticas.
+      Puedes consultar más detalles en nuestra <a href="privacidad.html" target="_blank" rel="noopener">Política de
+        Privacidad</a>.
     </p>
     <div class="cookie-banner__actions">
-      <button class="cookie-btn cookie-btn--accept" type="button" data-cookie-accept>Aceptar</button>
-      <button class="cookie-btn cookie-btn--reject" type="button" data-cookie-reject>Rechazar</button>
+      <!-- Botón Aceptar con estructura interna de texto accesible -->
+      <button class="cookie-btn cookie-btn--accept" type="button" data-cookie-accept
+        aria-label="Aceptar el uso de cookies">
+        <span class="cookie-btn__text">Aceptar</span>
+      </button>
+
+      <!-- Botón Rechazar con estructura interna de texto accesible -->
+      <button class="cookie-btn cookie-btn--reject" type="button" data-cookie-reject
+        aria-label="Rechazar el uso de cookies">
+        <span class="cookie-btn__text">Rechazar</span>
+      </button>
     </div>
   </div>
 </div>

@@ -719,7 +719,10 @@ main > section, .cta, .footer { position: relative; z-index: 1; }
 .review__name { font-size: var(--fs-small); font-weight: 600; line-height: 1.25; color: var(--plum-700); }
 .review__name a { color: inherit; }
 .review__name a:hover { text-decoration: underline; }
-.review__time { font-size: var(--fs-smaller); color: color-mix(in srgb, var(--ink-700) 65%, transparent); }
+.review__time {
+  font-size: var(--fs-smaller);
+  color: var(--ink-700); /* O puedes usar un gris sólido como #555555 o #666666 */
+}
 .review__stars { display: flex; gap: 2px; }
 .review__stars svg { width: 18px; height: 18px; stroke: none; fill: var(--sand-200); }
 .review__stars svg.is-on { fill: var(--gold-500); }
@@ -807,7 +810,7 @@ main > section, .cta, .footer { position: relative; z-index: 1; }
   font-family: var(--font-sans); font-size: var(--fs-smaller); font-weight: 600;
   letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.6); margin-bottom: .4rem;
 }
-.footer__col a { color: var(--white); font-weight: 500; line-height: 1.15; }
+.footer__col a { color: var(--white); font-weight: 500; line-height: 1.15;}
 .footer__col p { line-height: 1.5; }
 .footer__col strong { color: var(--white); font-weight: 600; }
 /* Mismo efecto "rodillo" del menú (.menu__roll) */
@@ -816,6 +819,9 @@ main > section, .cta, .footer { position: relative; z-index: 1; }
 .footer__bottom { display: flex; justify-content: flex-end; text-align: right; padding-top: 1.75rem; }
 .footer__bottom a { color: var(--white); }
 .footer__bottom a:hover { color: var(--gold-500); }
+/* Selector directo y específico para que el color dorado gane prioridad */
+.footer__bottom a.link__botkor { color: var(--gold-700); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+.footer__bottom a.link__botkor:hover { opacity: 0.85; }
 
 /* Texto solo para lectores de pantalla (invisible pero accesible) */
 .sr-only {
