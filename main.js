@@ -225,6 +225,7 @@ function onScroll(y) {
   header.classList.toggle('is-scrolled', solidHeader || y > SCROLL_THRESHOLD);
   heroSection?.classList.toggle('is-scrolled', y > SCROLL_THRESHOLD); // atenúa la imagen del hero
   $('[data-to-top]').classList.toggle('is-visible', y > innerHeight * 1.5);
+  $('[data-wa-float]')?.classList.toggle('is-visible', y > innerHeight * 1.5); // WhatsApp: a la vez que "volver arriba"
 }
 if (lenis) lenis.on('scroll', ({ scroll }) => onScroll(scroll));
 else addEventListener('scroll', () => onScroll(scrollY), { passive: true });

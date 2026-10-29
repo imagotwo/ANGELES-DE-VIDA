@@ -150,11 +150,12 @@
         <!-- Dos versiones del logo:
              --light (blanco) se ve al inicio, sobre el hero; --dark (color) se ve al
              hacer scroll, cuando el header es blanco. El cambio lo hace el CSS con
-             .header.is-scrolled. -->
-        <img class="header__logo-mark header__logo-mark--light" src="./assets/img/angeles-de-vida-logo-blanco.webp"
-          alt="Logotipo blanco de Ángeles de vida - Enfermeras a domicilio en Bogotá" />
-        <img class="header__logo-mark header__logo-mark--dark" src="./assets/img/angeles-de-vida-logo.webp"
-          alt="Logotipo azúl de Ángeles de vida - Enfermeras a domicilio en Bogotá" />
+             .header.is-scrolled. En celular (≤640px) el <source> de cada <picture>
+             carga en su lugar el logo cuadrado del ángel. -->
+        <picture><source media="(max-width: 640px)" srcset="assets/img/enfermeras-angeles-de-vida-logo-movil.webp" width="250" height="250" /><img class="header__logo-mark header__logo-mark--light" src="./assets/img/angeles-de-vida-logo-blanco.webp" width="268" height="120"
+          alt="Logotipo blanco de Ángeles de vida - Enfermeras a domicilio en Bogotá" /></picture>
+        <picture><source media="(max-width: 640px)" srcset="assets/img/enfermeras-angeles-de-vida-logo-movil.webp" width="250" height="250" /><img class="header__logo-mark header__logo-mark--dark" src="./assets/img/angeles-de-vida-logo.webp" width="268" height="120"
+          alt="Logotipo azúl de Ángeles de vida - Enfermeras a domicilio en Bogotá" /></picture>
         <span class="header__logo-text"></span>
       </a>
       <nav class="header__nav">
@@ -252,7 +253,7 @@
     <div class="hero-wrap" id="inicio">
       <section class="hero" data-hero>
         <div class="hero__bg">
-          <img class="hero__img" src="assets/img/atencion-enfermera-domiciliaria-bogota.webp"
+          <img class="hero__img" src="assets/img/atencion-enfermera-domiciliaria-bogota.webp" width="1440" height="927"
             alt="Servicio de atención domiciliaria en Bogotá con enfermera asistiendo a un adulto mayor en silla de ruedas."
             fetchpriority="high" />
           <div class="hero__gradient"></div>
@@ -317,15 +318,15 @@
 
         <!-- Tu frase más fuerte sube a H2 para ser el título principal de la sección "Nosotros" -->
         <h3 class="intro__title" data-reveal>
-          Nadie debería <em>cuidar</em> a <em>un ser querido</em> en soledad
+          Nadie debería <em>cuidar a un ser querido</em> en soledad
         </h3>
         <div class="intro__grid">
           <figure class="mask-img mask-img--left" data-mask="x">
-            <img class="ph" data-parallax="-30" src="assets/img/maryi-trujillo-fundadora-angeles-de-vida.jpg"
+            <img class="ph" data-parallax="-30" src="assets/img/maryi-trujillo-fundadora-angeles-de-vida.jpg" width="338" height="670"
               alt="Maryi Trujillo, enfermera profesional y fundadora de Ángeles de Vida en Bogotá." loading="lazy" />
           </figure>
           <figure class="mask-img mask-img--right" data-mask="x-rev">
-            <img class="ph" data-parallax="-30" src="assets/img/cuidado-especializado-enfermera-en-casa-bogota.jpg"
+            <img class="ph" data-parallax="-30" src="assets/img/cuidado-especializado-enfermera-en-casa-bogota.jpg" width="496" height="519"
               alt="Enfermera a domicilio realizando control de signos vitales y cuidado especializado en casa."
               loading="lazy" />
           </figure>
@@ -362,7 +363,7 @@
          ============================================================ -->
     <section class="feature" id="programa">
       <div class="feature__bg">
-        <img class="ph" data-parallax="-12" src="assets/img/enfermera-a-domicilio-24-horas-bogota.jpg"
+        <img class="ph" data-parallax="-12" src="assets/img/enfermera-a-domicilio-24-horas-bogota.jpg" width="1232" height="928"
           alt="Servicio de enfermería a domicilio 24 horas en Bogotá." loading="lazy" />
         <div class="feature__gradient"></div>
       </div>
@@ -418,7 +419,7 @@
           </div>
         </div>
         <figure class="split__img mask-img" data-mask="x-rev">
-          <img class="ph" data-parallax="-35" src="assets/img/equipo-enfermeras-a-domicilio-bogota.jpg"
+          <img class="ph" data-parallax="-35" src="assets/img/equipo-enfermeras-a-domicilio-bogota.jpg" width="880" height="1360"
             alt="Equipo de auxiliares de enfermería a domicilio de Enfermeras Ángeles de Vida en Bogotá."
             loading="lazy" />
           <span class="split__img-gradient"></span>
@@ -439,7 +440,7 @@
           </h2>
           <div class="focus-grid" data-cards>
             <article class="focus-card" tabindex="0">
-              <img class="focus-card__img" src="assets/img/cuidado-en-casa-enfermeras-bogota.jpg"
+              <img class="focus-card__img" src="assets/img/cuidado-en-casa-enfermeras-bogota.jpg" width="928" height="1232"
                 alt="Servicio de cuidado en casa para pacientes y adultos mayores en Bogotá." loading="lazy" />
               <span class="focus-card__gradient" aria-hidden="true"></span>
               <div class="focus-card__overlay">
@@ -459,7 +460,7 @@
             </article>
 
             <article class="focus-card" tabindex="0">
-              <img class="focus-card__img" src="assets/img/cuidado-adulto-mayor-domicilio-bogota.jpg"
+              <img class="focus-card__img" src="assets/img/cuidado-adulto-mayor-domicilio-bogota.jpg" width="928" height="1232"
                 alt="Servicio de cuidado de adultos mayores a domicilio en Bogotá con enfermeras profesionales."
                 loading="lazy" />
               <span class="focus-card__gradient" aria-hidden="true"></span>
@@ -482,7 +483,7 @@
             </article>
 
             <article class="focus-card" tabindex="0">
-              <img class="focus-card__img" src="assets/img/enfermera-acompanamiento-citas-medicas-bogota.jpg"
+              <img class="focus-card__img" src="assets/img/enfermera-acompanamiento-citas-medicas-bogota.jpg" width="928" height="1232"
                 alt="Enfermera de Ángeles de Vida acompañando a un adulto mayor a su cita médica en Bogotá."
                 loading="lazy" />
               <span class="focus-card__gradient" aria-hidden="true"></span>
@@ -505,7 +506,7 @@
             </article>
 
             <article class="focus-card" tabindex="0">
-              <img class="focus-card__img" src="assets/img/acompanamiento-hospitalario-enfermeras-bogota.jpg"
+              <img class="focus-card__img" src="assets/img/acompanamiento-hospitalario-enfermeras-bogota.jpg" width="928" height="1232"
                 alt="Servicio de acompañamiento hospitalario en clínicas y hospitales de Bogotá." loading="lazy" />
               <span class="focus-card__gradient" aria-hidden="true"></span>
               <div class="focus-card__overlay">
@@ -526,7 +527,7 @@
               </div>
             </article>
             <article class="focus-card" tabindex="0">
-              <img class="focus-card__img" src="assets/img/cuidado-postoperatorio-enfermeras-bogota.jpg"
+              <img class="focus-card__img" src="assets/img/cuidado-postoperatorio-enfermeras-bogota.jpg" width="928" height="1232"
                 alt="Servicio de cuidado postoperatorio en casa en Bogotá con enfermeras profesionales."
                 loading="lazy" />
               <span class="focus-card__gradient" aria-hidden="true"></span>
@@ -548,7 +549,7 @@
               </div>
             </article>
             <article class="focus-card" tabindex="0">
-              <img class="focus-card__img" src="assets/img/curaciones-heridas-enfermeras-bogota.jpg" alt="Servicio de enfermería para curación de heridas y úlceras a domicilio en Bogotá.
+              <img class="focus-card__img" src="assets/img/curaciones-heridas-enfermeras-bogota.jpg" width="928" height="1232" alt="Servicio de enfermería para curación de heridas y úlceras a domicilio en Bogotá.
             " loading="lazy" />
               <span class="focus-card__gradient" aria-hidden="true"></span>
               <div class="focus-card__overlay">
@@ -695,7 +696,7 @@
          POR QUÉ NOSOTROS — imagen grande, marca gigante y texto.
          ============================================================ -->
     <section class="why" id="testimonios">
-      <div class="why__bg"><img class="ph" data-parallax="-15" src="assets/img/historias-de-familias-bogota.webp"
+      <div class="why__bg"><img class="ph" data-parallax="-15" src="assets/img/historias-de-familias-bogota.webp" width="1920" height="1266"
           alt="Familias en Bogotá que confían en el cuidado de enfermería de Enfermeras de Vida." />
       </div>
       <div class="why__gradient"></div>
@@ -978,7 +979,7 @@
 
     <!-- 1. Logotipo -->
     <div class="footer__top img_footer_center">
-      <img src="assets/img/angeles-de-vida-logo-blanco.webp" alt="Logotipo de Enfermeras Ángeles de Vida en Bogotá."
+      <img src="assets/img/angeles-de-vida-logo-blanco.webp" width="268" height="120" alt="Logotipo de Enfermeras Ángeles de Vida en Bogotá."
         loading="lazy" />
     </div>
 
@@ -994,6 +995,13 @@
         <a href="#contacto"><span class="menu__roll"><span>Contacto</span><span>Contacto</span></span></a>
       </nav>
 
+      <nav class="footer__col" aria-labelledby="footer-legal-titulo">
+        <h2 class="footer__heading" id="footer-legal-titulo">Legal</h2>
+        <a href="privacidad.html"><span class="menu__roll"><span>Privacidad</span><span>Privacidad</span></span></a>
+        <a href="terminos.html"><span class="menu__roll"><span>Términos</span><span>Términos</span></span></a>
+        <a href="aviso-legal.html"><span class="menu__roll"><span>Aviso legal</span><span>Aviso legal</span></span></a>
+      </nav>
+
       <!-- Información de contacto y localización (SEO local) + empleo -->
       <section class="footer__col footer__col--empresa" aria-labelledby="footer-empresa-titulo">
         <h2 class="footer__heading" id="footer-empresa-titulo">Empresa</h2>
@@ -1006,13 +1014,6 @@
           </span>
         </a>
       </section>
-
-      <nav class="footer__col" aria-labelledby="footer-legal-titulo">
-        <h2 class="footer__heading" id="footer-legal-titulo">Legal</h2>
-        <a href="privacidad.html"><span class="menu__roll"><span>Privacidad</span><span>Privacidad</span></span></a>
-        <a href="terminos.html"><span class="menu__roll"><span>Términos</span><span>Términos</span></span></a>
-        <a href="aviso-legal.html"><span class="menu__roll"><span>Aviso legal</span><span>Aviso legal</span></span></a>
-      </nav>
 
       <!-- Redes sociales (YouTube pendiente) -->
       <nav class="social footer__social" aria-label="Redes sociales">
@@ -1312,6 +1313,16 @@
     </div>
   </div>
 </div>
+
+  <!-- WhatsApp flotante: encima de "volver arriba", con sus mismas medidas.
+       Aparece a la vez que ese botón (main.js, onScroll). -->
+  <a class="wa-float" data-wa-float
+    href="https://wa.me/573132957599?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20los%20servicios%20de%20enfermer%C3%ADa%20a%20domicilio."
+    target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp (se abre en una pestaña nueva)">
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z" />
+    </svg>
+  </a>
 
   <!-- Botón volver arriba (aparece tras cierto scroll) -->
   <button class="to-top" data-to-top aria-label="Volver arriba">

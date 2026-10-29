@@ -35,9 +35,9 @@
   <header class="header" data-header data-header-dark>
     <div class="header__bar">
       <a href="index.html" class="header__logo" aria-label="Ángeles de Vida — inicio">
-        <img class="header__logo-mark header__logo-mark--light" src="assets/img/angeles-de-vida-logo-blanco.svg"
-          alt="Ángeles de Vida" />
-        <img class="header__logo-mark header__logo-mark--dark" src="assets/img/angeles-de-vida-logo.svg" alt="" />
+        <picture><source media="(max-width: 640px)" srcset="assets/img/enfermeras-angeles-de-vida-logo-movil.webp" width="250" height="250" /><img class="header__logo-mark header__logo-mark--light" src="assets/img/angeles-de-vida-logo-blanco.webp" width="268" height="120"
+          alt="Ángeles de Vida" /></picture>
+        <picture><source media="(max-width: 640px)" srcset="assets/img/enfermeras-angeles-de-vida-logo-movil.webp" width="250" height="250" /><img class="header__logo-mark header__logo-mark--dark" src="assets/img/angeles-de-vida-logo.webp" width="268" height="120" alt="" /></picture>
         <span class="header__logo-text"></span>
       </a>
       <nav class="header__nav">
@@ -257,34 +257,96 @@
   </main>
 
   <footer class="footer">
-    <div class="footer__inner">
-      <div class="footer__left">
-        <span class="footer__brand">Ángeles de Vida</span>
-        <span>© <span data-year>2026</span> · Todos los derechos reservados</span>
+    <!-- Pie en 3 filas separadas por líneas finas:
+         1. logo · 2. columnas (Navegación / Empresa / Legal) + redes a la derecha · 3. derechos -->
+    <div class="footer__inner footer__inner--grid">
+
+      <!-- 1. Logotipo -->
+      <div class="footer__top img_footer_center">
+        <img src="assets/img/angeles-de-vida-logo-blanco.webp" width="268" height="120" alt="Logotipo de Enfermeras Ángeles de Vida en Bogotá."
+          loading="lazy" />
       </div>
-      <!-- Redes sociales (en blanco sobre el pie azul oscuro) -->
-      <nav class="social" aria-label="Redes sociales">
-        <a class="social__link" href="https://www.facebook.com/enfermerasangelesdevida" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 3H13a4 4 0 0 0-4 4v3H7v3h2v8h3v-8h2.5l.5-3h-3V7.5A1.5 1.5 0 0 1 13.5 6h1z" /></svg>
-          <span class="sr-only">Facebook de Ángeles de Vida (se abre en una pestaña nueva)</span>
-        </a>
-        <a class="social__link" href="https://www.instagram.com/enfermerasangelesdevida/" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r=".6" /></svg>
-          <span class="sr-only">Instagram de Ángeles de Vida (se abre en una pestaña nueva)</span>
-        </a>
-        <!-- YouTube: visible pero SIN canal todavía (data-pendiente: main.js evita que el clic haga algo).
-               Cuando exista el canal: pon su URL en href, añade target="_blank" rel="noopener" y quita data-pendiente. -->
-        <a class="social__link" href="#" data-pendiente title="Próximamente">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4" /><path d="m10 9 5 3-5 3z" /></svg>
-          <span class="sr-only">YouTube de Ángeles de Vida (próximamente)</span>
-        </a>
-      </nav>
-      <nav class="footer__links">
-        <a href="privacidad.html">Privacidad</a><a href="terminos.html">Términos</a><a href="aviso-legal.html">Aviso legal</a><a
-          href="trabaja-con-nosotros.html" aria-current="page">Trabaja con nosotros</a>
-      </nav>
+
+      <!-- 2. Columnas de enlaces + redes sociales -->
+      <div class="footer__grid">
+        <nav class="footer__col" aria-labelledby="footer-nav-titulo">
+          <h2 class="footer__heading" id="footer-nav-titulo">Navegación</h2>
+          <a href="index.html#inicio"><span class="menu__roll"><span>Home</span><span>Home</span></span></a>
+          <a href="index.html#nosotros"><span class="menu__roll"><span>Nosotros</span><span>Nosotros</span></span></a>
+          <a href="index.html#servicios"><span class="menu__roll"><span>Servicios</span><span>Servicios</span></span></a>
+          <a href="index.html#testimonios"><span class="menu__roll"><span>Testimonios</span><span>Testimonios</span></span></a>
+          <a href="index.html#preguntas"><span class="menu__roll"><span>Preguntas frecuentes</span><span>Preguntas frecuentes</span></span></a>
+          <a href="index.html#contacto"><span class="menu__roll"><span>Contacto</span><span>Contacto</span></span></a>
+        </nav>
+
+        <nav class="footer__col" aria-labelledby="footer-legal-titulo">
+          <h2 class="footer__heading" id="footer-legal-titulo">Legal</h2>
+          <a href="privacidad.html"><span class="menu__roll"><span>Privacidad</span><span>Privacidad</span></span></a>
+          <a href="terminos.html"><span class="menu__roll"><span>Términos</span><span>Términos</span></span></a>
+          <a href="aviso-legal.html"><span class="menu__roll"><span>Aviso legal</span><span>Aviso legal</span></span></a>
+        </nav>
+
+        <!-- Información de contacto y localización (SEO local) + empleo -->
+        <section class="footer__col footer__col--empresa" aria-labelledby="footer-empresa-titulo">
+          <h2 class="footer__heading" id="footer-empresa-titulo">Empresa</h2>
+          <p>Enfermeras Ángeles de Vida</p>
+          <p>Servicio de enfermería a domicilio las 24 horas en Bogotá, Colombia.</p>
+          <a href="trabaja-con-nosotros.html" aria-current="page">
+            <span class="menu__roll">
+              <span>Trabaja con nosotros</span>
+              <span>Trabaja con nosotros</span>
+            </span>
+          </a>
+        </section>
+
+        <!-- Redes sociales (YouTube pendiente) -->
+        <nav class="social footer__social" aria-label="Redes sociales">
+          <a class="social__link" href="https://www.facebook.com/enfermerasangelesdevida" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M14.5 3H13a4 4 0 0 0-4 4v3H7v3h2v8h3v-8h2.5l.5-3h-3V7.5A1.5 1.5 0 0 1 13.5 6h1z" />
+            </svg>
+            <span class="sr-only">Facebook de Enfermeras Ángeles de Vida (se abre en una pestaña nueva)</span>
+          </a>
+
+          <a class="social__link" href="https://www.instagram.com/enfermerasangelesdevida/" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <rect x="3" y="3" width="18" height="18" rx="5" />
+              <circle cx="12" cy="12" r="4" />
+              <circle cx="17.5" cy="6.5" r=".6" />
+            </svg>
+            <span class="sr-only">Instagram de Enfermeras Ángeles de Vida (se abre en una pestaña nueva)</span>
+          </a>
+
+          <a class="social__link" href="#" data-pendiente title="Próximamente">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <rect x="2" y="5" width="20" height="14" rx="4" />
+              <path d="m10 9 5 3-5 3z" />
+            </svg>
+            <span class="sr-only">YouTube de Enfermeras Ángeles de Vida</span>
+          </a>
+        </nav>
+      </div>
+
+      <!-- 3. Derechos de autor y créditos -->
+      <div class="footer__bottom">
+        <span>
+          © <span data-year>2026</span> Enfermeras Ángeles de Vida. Todos los derechos reservados.
+          | Desarrollado por <a class="link__botkor" href="https://botkor.com" target="_blank" rel="noopener noreferrer"
+            aria-label="Visitar el sitio web del desarrollador (se abre en una pestaña nueva)">Botkor</a>
+        </span>
+      </div>
     </div>
   </footer>
+
+  <!-- WhatsApp flotante: encima de "volver arriba", con sus mismas medidas.
+       Aparece a la vez que ese botón (main.js, onScroll). -->
+  <a class="wa-float" data-wa-float
+    href="https://wa.me/573132957599?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20los%20servicios%20de%20enfermer%C3%ADa%20a%20domicilio."
+    target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp (se abre en una pestaña nueva)">
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z" />
+    </svg>
+  </a>
 
   <!-- Botón volver arriba (aparece tras cierto scroll) -->
   <button class="to-top" data-to-top aria-label="Volver arriba">
