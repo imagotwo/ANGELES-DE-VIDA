@@ -326,11 +326,6 @@ img.is-missing { visibility: hidden; }
   display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 2rem;
 }
 .hero__main { max-width: 640px; align-self: center; padding-top: 5rem;}
-/* Invisible hasta que llegan las fuentes (main.js, esperarFuentes): las fuentes cargan sin
-   bloquear y, si el texto se viera antes con la del sistema, al cambiar de fuente cambiaría
-   de alto y el bloque se movería (CLS). Lo invisible no cuenta como cambio de diseño. */
-.hero__main { visibility: hidden; }
-.hero__main.is-fonts-ready { visibility: visible; }
 .hero__title { font-size: var(--fs-display); margin-bottom: 1.75rem;}
 /* Cada línea es una ventana con overflow:hidden; GSAP sube el texto interior */
 .line { display: block; overflow: hidden; padding-bottom: .06em; }
