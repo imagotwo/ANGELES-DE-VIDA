@@ -153,29 +153,12 @@ function pageReady() {
   }
 }
 
-/* Espera a que estén las fuentes de Google (Inter y Playfair Display) antes de mostrar el
-   texto del hero. Se cargan sin bloquear (index.html, <link data-fonts>), así que primero hay
-   que esperar a su hoja de estilos y luego a los archivos de cada fuente. Nunca más de
-   `max` ms: si la red va lenta, el hero aparece igualmente con la fuente del sistema. */
-function esperarFuentes(max = 2500) {
-  const link = $('link[data-fonts]');
-  if (!link || !document.fonts) return Promise.resolve();
-  const hoja = link.sheet ? Promise.resolve()
-    : new Promise((ok) => { link.addEventListener('load', ok, { once: true }); link.addEventListener('error', ok, { once: true }); });
-  const fuentes = hoja.then(() => Promise.all(
-    ['400 1em Inter', '500 1em Inter', '400 1em "Playfair Display"', 'italic 400 1em "Playfair Display"']
-      .map((f) => document.fonts.load(f).catch(() => {})),
-  ));
-  return Promise.race([fuentes, new Promise((ok) => setTimeout(ok, max))]);
-}
-
 function runLoader() {
   const overlay = $('.loader__overlay');
   const wordmark = $('.loader__wordmark');
   const loader = $('.loader');
-  const heroMain = $('.hero__main');
   // Páginas sin loader (p. ej. "Trabaja con nosotros"): no hay animación de entrada
-  if (!loader) { heroMain?.classList.add('is-fonts-ready'); pageReady(); return; }
+  if (!loader) { pageReady(); return; }
   document.body.classList.add('is-loading');
   lenis?.stop();
 
@@ -191,19 +174,13 @@ function runLoader() {
     pageReady();
   };
 
-  // La entrada arranca cuando están las fuentes: el texto del hero se hace visible ya con su
-  // fuente definitiva (sin saltos). La pausa inicial de 0.4 s cuenta desde la carga, no desde ahí.
-  const inicio = performance.now();
-  esperarFuentes().then(() => {
-    heroMain?.classList.add('is-fonts-ready');
-    if (reduceMotion) { finish(); playIntro().progress(1); return; }
-    const delay = Math.max(0, 0.4 - (performance.now() - inicio) / 1000);
-    gsap.timeline({ delay, onComplete: finish })
-      .to(overlay, { scale, duration: 0.9, ease: 'power2.inOut' })
-      .to(wordmark, { y: -260, autoAlpha: 0, duration: 0.6, ease: 'power2.in' }, 0)
-      .to(overlay, { autoAlpha: 0, duration: 0.3 }, '-=0.1')
-      .add(playIntro(), '-=0.6');
-  });
+  if (reduceMotion) { finish(); playIntro().progress(1); return; }
+
+  gsap.timeline({ delay: 0.4, onComplete: finish })
+    .to(overlay, { scale, duration: 0.9, ease: 'power2.inOut' })
+    .to(wordmark, { y: -260, autoAlpha: 0, duration: 0.6, ease: 'power2.in' }, 0)
+    .to(overlay, { autoAlpha: 0, duration: 0.3 }, '-=0.1')
+    .add(playIntro(), '-=0.6');
 }
 runLoader();
 
