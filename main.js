@@ -1088,7 +1088,7 @@ function liveValidation(form, validate) {
   }
 
   // ---------- Inicio ----------
-  cargar()
+  const iniciar = () => cargar()
     .then((datos) => {
       if (!construir(datos)) return;               // sin reseñas que mostrar: el carrusel sigue oculto
       root.hidden = false;
@@ -1099,6 +1099,20 @@ function liveValidation(form, validate) {
       programar();
     })
     .catch((err) => console.warn('Reseñas de Google no disponibles:', err));
+
+  // Las reseñas se piden cuando la sección se acerca a la pantalla (≈1 pantalla y media antes),
+  // no al cargar la página: así no alargan la cadena de peticiones críticas (PageSpeed) y
+  // ya están listas cuando el usuario llega. Se observa la sección y no el carrusel, porque
+  // este sigue oculto (hidden) hasta tener datos y un elemento oculto nunca "entra" en pantalla.
+  const seccion = root.closest('section') || root.parentElement;
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entradas) => {
+      if (!entradas.some((e) => e.isIntersecting)) return;
+      io.disconnect();
+      iniciar();
+    }, { rootMargin: '150% 0px' });
+    io.observe(seccion);
+  } else iniciar();
 })();
 
 // -------------------------------------------------------------
