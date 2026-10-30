@@ -191,6 +191,9 @@ img.is-missing { visibility: hidden; }
 /* Cada logo va en un <picture> (en celular carga el logo cuadrado del ángel);
    display: contents hace que la <img> siga siendo la celda de la grilla */
 .header__logo picture { display: contents; }
+/* ...pero entonces los <source> también contarían como celdas: cada uno añadiría una fila
+   vacía + el gap (24px de más) y el logo quedaría descentrado hacia arriba */
+.header__logo source { display: none; }
 .header__logo-mark {
   grid-area: 1 / 1;
   height: calc(var(--header-h) * var(--hs) * .55); width: auto; max-width: none;
@@ -213,7 +216,7 @@ img.is-missing { visibility: hidden; }
    En celulares las líneas miden 44px (ver bloque RESPONSIVE). */
 .menu-toggle { display: flex; align-items: center; gap: .75rem; font-size: var(--fs-body); }
 .menu-toggle__icon { display: grid; gap: 11px; width: 95px; }
-.menu-toggle__icon span { height: 1px; background: currentColor; transform-origin: left center; transition: transform .4s var(--ease-out); }
+.menu-toggle__icon span { height: 2px; border-radius: 2px; background: currentColor; transform-origin: left center; transition: transform .4s var(--ease-out); }
 .menu-toggle:hover .menu-toggle__icon span:last-child,
 .menu-toggle:focus-visible .menu-toggle__icon span:last-child { transform: scaleX(.5); }
 
@@ -1375,6 +1378,13 @@ a.form-done__close { display: inline-block; }
    El botón no se parte en dos líneas (nowrap). */
 @media (max-width: 640px) {
   .header__logo-mark { height: calc(var(--header-h) * var(--hs) * .6); transition: height .45s var(--ease-out); }
+  /* El ángel es más alto que el botón "Solicita tu servicio": centrado quedaría ~4px por
+     debajo de él. Se sube la mitad de la diferencia de altos para que ambas BASES coincidan.
+     Alto del botón = flecha (30px) + relleno vertical (2 × .6rem), todo × --hs. */
+  .header__logo {
+    translate: 0 calc((var(--header-h) * .6 - 30px - 1.2rem) * var(--hs) / -2);
+    transition: translate .45s var(--ease-out);
+  }
   .menu-toggle { margin-left: .75rem; }
   .menu-toggle__icon { width: 44px; gap: 8px; }
   .header .cta-btn { font-size: .8rem; white-space: nowrap; padding-left: calc(1rem * var(--hs)); gap: .5rem; }
@@ -1383,6 +1393,7 @@ a.form-done__close { display: inline-block; }
 /* Celulares muy estrechos (≤350px, p. ej. iPhone SE 1.ª gen.): un poco más compacto */
 @media (max-width: 350px) {
   .header__logo-mark { height: calc(var(--header-h) * var(--hs) * .52); }
+  .header__logo { translate: 0 calc((var(--header-h) * .52 - 30px - 1.2rem) * var(--hs) / -2); }
   .menu-toggle { margin-left: .5rem; }
   .menu-toggle__icon { width: 34px; }
   .header .cta-btn { font-size: .75rem; padding-left: calc(.8rem * var(--hs)); }
@@ -1434,7 +1445,7 @@ a.form-done__close { display: inline-block; }
     --fs-h2: 2rem;
     --fs-h3: 1.625rem;
     --fs-body: 1rem;
-    --fs-eyebrow: .875rem;
+    --fs-eyebrow: 1rem;
   }
   .eyebrow { letter-spacing: .1em; margin-bottom: .75rem; }
   .step__title { letter-spacing: .1em; }
