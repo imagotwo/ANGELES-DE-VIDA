@@ -1361,10 +1361,17 @@ a.form-done__close { display: inline-block; }
 /* Header en tablets y celulares (≤1024px):
    [icono logo][rayas del menú] ............ [Reserva una consulta]
    - Se oculta el texto del logo y el texto "Ver menú".
+     "Ver menú" se oculta SOLO a la vista (igual que .sr-only), no con display: none:
+     es el nombre accesible del botón y sin él los lectores de pantalla dirían solo "botón".
    - .header__nav pasa a display: contents, así el botón de menú y el CTA se
      convierten en hijos directos de la barra y se pueden reordenar con flex. */
 @media (max-width: 1024px) {
-  .header__logo-text, .menu-toggle__text { display: none; }
+  .header__logo-text { display: none; }
+  .menu-toggle__text {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+  }
+  .menu-toggle { position: relative; }   /* el texto oculto (absolute) queda dentro del botón */
   .header__nav { display: contents; }
   .header__logo { order: 1; }
   .menu-toggle  { order: 2; margin-left: calc(1rem * var(--hs)); margin-right: auto; }
