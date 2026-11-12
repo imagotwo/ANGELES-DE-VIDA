@@ -4,37 +4,37 @@
   <!-- 1. Página Principal (Home) -->
   <url>
     <loc>https://www.enfermerasangelesdevida.com/</loc>
-    <lastmod>2026-10-28</lastmod>
+    <lastmod>2026-11-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <!-- 2. Sección de empleo -->
   <url>
-    <loc>https://www.enfermerasangelesdevida.com/trabaja-con-nosotros.html</loc>
-    <lastmod>2026-10-28</lastmod>
+    <loc>https://www.enfermerasangelesdevida.com/trabaja-con-nosotros</loc>
+    <lastmod>2026-11-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
 
   <!-- 3. Páginas Legales e Institucionales -->
   <url>
-    <loc>https://www.enfermerasangelesdevida.com/privacidad.html</loc>
-    <lastmod>2026-10-28</lastmod>
+    <loc>https://www.enfermerasangelesdevida.com/privacidad</loc>
+    <lastmod>2026-11-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
 
   <url>
-    <loc>https://www.enfermerasangelesdevida.com/terminos.html</loc>
-    <lastmod>2026-10-28</lastmod>
+    <loc>https://www.enfermerasangelesdevida.com/terminos</loc>
+    <lastmod>2026-11-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
 
   <url>
-    <loc>https://www.enfermerasangelesdevida.com/aviso-legal.html</loc>
-    <lastmod>2026-10-28</lastmod>
+    <loc>https://www.enfermerasangelesdevida.com/aviso-legal</loc>
+    <lastmod>2026-11-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>

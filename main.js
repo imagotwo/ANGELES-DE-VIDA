@@ -93,23 +93,6 @@ $$('a[href^="#"]:not([data-open-solicitud]):not([data-wa-link]):not([data-pendie
   });
 });
 
-// -------------------------------------------------------------
-// Evento de seguimiento para Meta Pixel (Clientes potenciales)
-// -------------------------------------------------------------
-document.addEventListener('DOMContentLoaded', () => {
-  // Buscar todos los botones de solicitud
-  const btnSolicitud = document.querySelectorAll('[data-open-solicitud]');
-
-  btnSolicitud.forEach(button => {
-    button.addEventListener('click', () => {
-      // Verificar si la función de Facebook ya cargó antes de llamarla
-      if (typeof fbq === 'function') {
-        fbq('track', 'Lead');
-      }
-    });
-  });
-});
-
 /* -----------------------------------------------------------------
    2. LOADER + ENTRADA DEL HERO
    La capa morada tiene un hueco de 340×480 px. La escalamos lo
@@ -437,7 +420,7 @@ function fieldError(el) {
     const esPdf = file.type === 'application/pdf' || /\.pdf$/i.test(file.name);
     // data-no-pdf lo pone el bloque 11 si el contenido no empieza por "%PDF-" (archivo renombrado)
     if (!esPdf || el.dataset.noPdf === '1') return 'El archivo debe ser un PDF.';
-    const maxMb = Number(el.dataset.maxMb || 10);
+    const maxMb = Number(el.dataset.maxMb || 2);
     if (file.size > maxMb * 1024 * 1024)
       return `El archivo pesa ${(file.size / 1048576).toFixed(1)} MB; el máximo es ${maxMb} MB.`;
     return '';
@@ -506,11 +489,12 @@ function liveValidation(form, validate) {
    b) Cerrar: botón ×, tecla Esc o clic fuera de la ventana. Se reproduce
       la animación de salida (.is-closing) y el foco vuelve al botón que
       lo abrió. Los datos escritos se conservan por si se cerró sin querer.
-   c) Campos condicionales: según "Casa"/"Hospital" se muestran Dirección
-      y Nombre del hospital (data-si-lugar). Ocultos = desactivados: no se
-      validan ni se envían.
-   d) Rango de fechas: inicio y finalización, ninguna anterior a hoy; la final
-      se iguala al inicio si queda vacía o antes (servicio de 1 día).
+   c) Campo condicional: "Nombre del hospital o clínica" solo aparece si el
+      tipo de servicio es "Hospitalario" (data-si-servicio). Oculto = desactivado:
+      no se valida ni se envía. La dirección es siempre obligatoria.
+   d) Fechas y hora de inicio: horas en punto de 6 a. m. a 8 p. m., mínimo 6 horas
+      de anticipación; los turnos de 4, 6 y 8 horas terminan a más tardar a las
+      8 p. m. y el de 12 horas inicia a las 6, 7 u 8 (a. m. o p. m.). La fecha final se iguala al inicio si queda vacía o antes (1 día).
    e) Validación propia en español: al salir de cada campo, mientras se
       corrige un campo con error, y al enviar (lleva al primer error).
    f) Envío: manda los datos a enviar.php (correo a Gmail) sin recargar.
@@ -534,6 +518,7 @@ function liveValidation(form, validate) {
     document.body.classList.add('modal-open');
     lenis?.stop();
     $('.modal__box', modal).scrollTop = 0;
+    updateFechas();                                // horas disponibles según la hora actual (bloque d)
     setTimeout(() => $('#f-nombre').focus({ preventScroll: true }), 60);
   }
   $$('[data-open-solicitud]').forEach((btn) => {
@@ -564,11 +549,11 @@ function liveValidation(form, validate) {
   // Clic fuera de la ventana: el clic llega al propio <dialog> (su fondo), no a la caja
   modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
 
-  // ---------- c) Campos condicionales según el lugar ----------
-  const lugar = $('[data-lugar]', form);
-  function updateLugar() {
-    $$('[data-si-lugar]', form).forEach((wrap) => {
-      const show = wrap.dataset.siLugar.split(' ').includes(lugar.value);
+  // ---------- c) Campo condicional según el tipo de servicio ----------
+  const servicio = $('#f-servicio', form);
+  function updateServicio() {
+    $$('[data-si-servicio]', form).forEach((wrap) => {
+      const show = wrap.dataset.siServicio === servicio.value;
       wrap.hidden = !show;
       $$('input, select, textarea', wrap).forEach((el) => {
         el.disabled = !show;
@@ -576,20 +561,54 @@ function liveValidation(form, validate) {
       });
     });
   }
-  lugar.addEventListener('change', updateLugar);
+  servicio.addEventListener('change', updateServicio);
 
-  // ---------- d) Rango de fechas (inicio → finalización) ----------
-  // - Ninguna puede ser anterior a hoy (fecha local, formato AAAA-MM-DD).
+  // ---------- d) Fechas y hora de inicio ----------
+  // Hora de inicio (las mismas reglas están en enviar.php):
+  // - Horas en punto de 6:00 a. m. a 8:00 p. m. (opciones de #f-hora).
+  // - Cada turno lleva en su opción las horas de inicio permitidas (data-horas, p. ej.
+  //   "6-16" o "6-8,18-20"; sin el atributo, de 6 a. m. a 8 p. m.): los de 4, 6 y 8 horas
+  //   terminan a más tardar a las 8:00 p. m.; el de 12 horas inicia a las 6, 7 u 8 (a. m. o p. m.).
+  // - Mínimo 6 horas de anticipación. Las horas que no cumplen se desactivan.
+  // - "Por definir" (sin hora) no se valida contra estas reglas.
+  // Fechas:
+  // - El inicio no puede ser antes de la primera fecha con alguna hora disponible
+  //   (hoy, o mañana si hoy ya no queda ninguna para el turno elegido).
   // - Al elegir el inicio, si la final está vacía o queda antes, se iguala al inicio
   //   (servicio de 1 día); su mínimo pasa a ser el inicio.
-  // - Debajo se muestra un resumen: "Servicio de 1 día" / "Servicio de N días (del … al …)".
+  // - Debajo se muestra un resumen: "Servicio 05/11/2026 (1 día), desde las 7:00 a. m.".
   const fechaIni = $('[data-fecha-inicio]', form);
   const fechaFin = $('[data-fecha-fin]', form);
   const resumen = $('[data-fecha-resumen]', form);
-  const hoy = new Date();
-  const hoyISO = `${hoy.getFullYear()}-${String(hoy.getMonth() + 1).padStart(2, '0')}-${String(hoy.getDate()).padStart(2, '0')}`;
-  fechaIni.min = hoyISO;
-  fechaFin.min = hoyISO;
+  const modalidad = $('#f-modalidad', form);
+  const hora = $('#f-hora', form);
+  const ANTICIPACION_H = 6;
+  // Fecha local → AAAA-MM-DD
+  const isoLocal = (d) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+  // Horas de inicio del turno elegido: "6-8,18-20" → [6, 7, 8, 18, 19, 20]
+  function horasTurno() {
+    const horas = [];
+    (modalidad.selectedOptions[0]?.dataset.horas || '6-20').split(',').forEach((tramo) => {
+      const [a, b = a] = tramo.split('-').map(Number);
+      for (let h = a; h <= b; h++) horas.push(h);
+    });
+    return horas;
+  }
+  const horaDe = (opt) => Number(opt.value.slice(0, 2));     // "14:00" → 14
+  const esHora = (opt) => /^\d{2}:00$/.test(opt.value);     // false para "" y "Por definir"
+  // ¿Se puede iniciar a la hora h en la fecha f (AAAA-MM-DD; vacía = solo se mira el turno)?
+  function horaPermitida(f, h) {
+    if (!horasTurno().includes(h)) return false;
+    if (!f) return true;
+    const [a, m, d] = f.split('-').map(Number);
+    return new Date(a, m - 1, d, h) >= new Date(Date.now() + ANTICIPACION_H * 3600000);
+  }
+  // Primera fecha con alguna hora disponible: hoy o, si ya no queda ninguna, mañana
+  function fechaMinima() {
+    const hoy = new Date();
+    const manana = new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate() + 1);
+    return horaPermitida(isoLocal(hoy), Math.max(...horasTurno())) ? isoLocal(hoy) : isoLocal(manana);
+  }
   // AAAA-MM-DD → DD/MM/AAAA
   const fechaLegible = (v) => v.split('-').reverse().join('/');
   // Días entre dos fechas, ambas incluidas (cálculo en UTC para evitar saltos de horario)
@@ -600,22 +619,48 @@ function liveValidation(form, validate) {
     const n = diasServicio(a, b);
     return n === 1 ? `${fechaLegible(a)} (1 día)` : `del ${fechaLegible(a)} al ${fechaLegible(b)} (${n} días)`;
   }
-  function updateFechas() {
-    fechaFin.min = fechaIni.value || hoyISO;
+  // Se recalcula al cambiar fechas, turno u hora, y al abrir el modal (la hora actual avanza)
+  // Ojo: al teclear la fecha en PC, el navegador lanza 'change' a medio escribir (año "0002").
+  // Reasignar min o validar ese campo en ese momento reinicia lo que se está escribiendo,
+  // por eso min solo se toca si cambia y la fecha de inicio no se valida mientras se teclea.
+  function updateFechas(e) {
+    const min = fechaMinima();
+    const finMin = fechaIni.value || min;
+    if (fechaIni.min !== min) fechaIni.min = min;
+    if (fechaFin.min !== finMin) fechaFin.min = finMin;
     if (fechaIni.value && (!fechaFin.value || fechaFin.value < fechaIni.value)) {
       fechaFin.value = fechaIni.value;
       if (fechaFin.getAttribute('aria-invalid')) validate(fechaFin);
     }
+    $$('option', hora).forEach((o) => { if (esHora(o)) o.disabled = !horaPermitida(fechaIni.value, horaDe(o)); });
+    // Si el cambio deja inválida la fecha o la hora ya elegidas, se avisa enseguida
+    if (fechaIni.value && e?.target !== fechaIni) validate(fechaIni);
+    if (hora.value) validate(hora);
     const t = textoFechas();
-    resumen.textContent = t ? `Servicio ${t}.` : '';
+    const h = esHora(hora) ? `, desde las ${hora.selectedOptions[0].text}` : hora.value ? ', hora de inicio por definir' : '';
+    resumen.textContent = t ? `Servicio ${t}${h}`.replace(/\.?$/, '.') : '';   // sin doble punto tras "p. m."
   }
-  fechaIni.addEventListener('change', updateFechas);
-  fechaFin.addEventListener('change', updateFechas);
+  [fechaIni, fechaFin, modalidad, hora].forEach((el) => el.addEventListener('change', updateFechas));
 
   // ---------- e) Validación ----------
   // Reglas propias de este formulario (fechas y edad) + reglas comunes (fieldError)
   function errorMessage(el) {
     if (el.disabled) return '';
+    if (el.id === 'f-titular' && !el.checked)
+      return 'Debes confirmar que eres el paciente o que cuentas con su autorización o representación legal.';
+    if (el === hora && esHora(el) && !horaPermitida(fechaIni.value, horaDe(el))) {
+      const horas = horasTurno();
+      if (!horas.includes(horaDe(el))) {
+        const texto = (h) => $(`option[value="${String(h).padStart(2, '0')}:00"]`, hora).text;
+        const continuas = horas.length === horas.at(-1) - horas[0] + 1;   // sin huecos, p. ej. de 6 a 14
+        return continuas
+          ? `Este turno debe terminar a más tardar a las 8:00 p. m.; la última hora de inicio es ${texto(horas.at(-1))}`
+          : `Este turno solo puede iniciar a las ${horas.map(texto).join(', ').replace(/, ([^,]*)$/, ' o $1')}`;
+      }
+      return `Necesitamos mínimo ${ANTICIPACION_H} horas de anticipación: elige una hora más tarde u otro día.`;
+    }
+    if (el === fechaIni && el.value && el.value < el.min && el.value >= isoLocal(new Date()))
+      return `Para hoy ya no hay horarios con ${ANTICIPACION_H} horas de anticipación: elige desde mañana.`;
     if (el.type === 'date' && el.value && el.value < el.min)
       return el === fechaFin && fechaIni.value ? 'La fecha de finalización no puede ser anterior a la de inicio.' : 'La fecha no puede ser anterior a hoy.';
     if (el.type === 'number' && el.value && !el.validity.valid)
@@ -654,9 +699,9 @@ function liveValidation(form, validate) {
       `*Servicio:* ${opcion('#f-servicio')}`,
       `*Modalidad:* ${opcion('#f-modalidad')}`,
       `*Fechas:* ${textoFechas()}`,
-      `*Lugar:* ${opcion('#f-lugar')}`,
+      `*Hora de inicio:* ${opcion('#f-hora')}`,
       `*Dirección:* ${v('#f-direccion')}`,
-      ...($('#f-lugar').value === 'hospital' ? [`*Hospital / clínica:* ${v('#f-hospital')}`] : []),
+      ...(servicio.value === 'Hospitalario' ? [`*Hospital / clínica:* ${v('#f-hospital')}`] : []),
       '',
       `*Paciente:* ${v('#f-paciente')}, ${v('#f-edad')} años`,
       `*Diagnóstico(s):* ${v('#f-diagnostico')}`,
@@ -673,7 +718,7 @@ function liveValidation(form, validate) {
   function resetForm() {
     form.reset();
     fields().forEach(clearError);
-    updateLugar();                                // vuelve a ocultar dirección / hospital
+    updateServicio();                             // vuelve a ocultar el nombre del hospital
     updateFechas();                               // mínimo de la fecha final y resumen en blanco
     setStatus('');
     waAlt.hidden = true;
@@ -721,6 +766,7 @@ function liveValidation(form, validate) {
 
       // Éxito: se sustituye el formulario por la confirmación
       enviado = true;
+      registrarLead();                             // evento "Lead" de Meta, solo con consentimiento (bloque 13)
       form.hidden = true;
       $('.modal__header', modal).hidden = true;
       done.hidden = false;
@@ -743,6 +789,8 @@ function liveValidation(form, validate) {
    11. FORMULARIO "TRABAJA CON NOSOTROS" (página trabaja-con-nosotros.html)
    a) Validación con las utilidades comunes (obligatorios, correo, teléfono,
       documento, PDF y tamaño máximo = data-max-mb del campo de archivo).
+      La lista de localidades depende de la ciudad elegida. "Cuéntanos sobre ti"
+      pide un mínimo de caracteres (minlength) y muestra un contador.
    b) Al elegir el PDF se muestra su nombre y peso (o el error si no vale).
    c) Envío a aplicar.php con XMLHttpRequest (permite mostrar el % de subida
       del PDF). Éxito → confirmación en lugar del formulario. Error → aviso.
@@ -758,7 +806,40 @@ function liveValidation(form, validate) {
   const done = $('[data-aplicar-done]');
 
   // ---------- a) Validación ----------
+  // Ciudad → localidad: Bogotá muestra sus localidades; otra ciudad, solo "No aplica" (ya elegida);
+  // sin ciudad, la lista queda desactivada. Las opciones salen del propio <select> del HTML.
+  const ciudad = $('#a-ciudad', form);
+  const localidad = $('#a-localidad', form);
+  const opcionesLocalidad = [...localidad.options];
+  const sinLocalidad = opcionesLocalidad[0];
+  const noAplica = opcionesLocalidad.find((o) => o.value === 'No aplica');
+  const delDistrito = opcionesLocalidad.filter((o) => o !== sinLocalidad && o !== noAplica);
+  function actualizarLocalidad() {
+    const esBogota = ciudad.value === 'Bogotá';
+    sinLocalidad.textContent = ciudad.value ? 'Selecciona…' : 'Primero elige la ciudad';
+    localidad.replaceChildren(...(ciudad.value && !esBogota ? [noAplica] : esBogota ? [sinLocalidad, ...delDistrito] : [sinLocalidad]));
+    localidad.selectedIndex = 0;
+    localidad.disabled = !ciudad.value;
+    clearFieldError(localidad);
+  }
+  ciudad.addEventListener('change', actualizarLocalidad);
+  actualizarLocalidad();                           // por si el navegador conserva la ciudad al recargar
+
+  // "Cuéntanos sobre ti": mínimo y máximo salen de minlength y maxlength del HTML.
+  // El contador se muestra bajo el campo y dice cuánto falta para el mínimo.
+  const mensaje = $('#a-mensaje', form);
+  const contador = $('[data-contador]', form);
+  const largo = () => mensaje.value.trim().length;
+  function contar() {
+    const n = largo(), min = mensaje.minLength;
+    contador.textContent = `${n} / ${mensaje.maxLength} caracteres` + (n < min ? ` · faltan ${min - n} para el mínimo` : '');
+  }
+  mensaje.addEventListener('input', contar);
+  contar();
+
   function errorMessage(el) {
+    if (el === mensaje && largo() && largo() < mensaje.minLength)
+      return `Escribe al menos ${mensaje.minLength} caracteres (llevas ${largo()}).`;
     if (el.name === 'documento' && el.value.trim() && el.value.replace(/[^0-9a-z]/gi, '').length < 5)
       return 'Escribe un número de documento válido.';
     return fieldError(el);
@@ -834,6 +915,8 @@ function liveValidation(form, validate) {
 
 /* -----------------------------------------------------------------
    12. RESEÑAS DE GOOGLE (carrusel de la sección #testimonios)
+   Botón "Déjanos tu reseña en Google" [data-review-write]: se muestra solo si
+   su href (index.html) ya tiene el enlace real de la ficha.
    a) Pide las reseñas a resenas.php (que habla con Google y guarda caché).
       Si no responde y estamos en pruebas (archivo local, localhost, Live Server
       o GitHub Pages, donde no hay PHP), usa las reseñas de EJEMPLO con su aviso.
@@ -850,6 +933,10 @@ function liveValidation(form, validate) {
       (← →) y deslizar con el dedo.
    ----------------------------------------------------------------- */
 (function resenas() {
+  // Botón "Déjanos tu reseña en Google": visible solo cuando su href ya tiene el enlace real
+  const escribir = $('[data-review-write]');
+  if (escribir) escribir.hidden = !/^https:\/\//.test(escribir.getAttribute('href') || '');
+
   const root = $('[data-reviews]');
   const tpl = $('#review-tpl');
   if (!root || !tpl) return;
@@ -1092,6 +1179,7 @@ function liveValidation(form, validate) {
     .then((datos) => {
       if (!construir(datos)) return;               // sin reseñas que mostrar: el carrusel sigue oculto
       root.hidden = false;
+      root.closest('.why')?.classList.add('has-reviews');   // en tablet y celular oculta los párrafos (CSS)
       colocar();
       requestAnimationFrame(() => root.classList.add('is-ready'));   // activa las transiciones tras colocar
       document.fonts?.ready.then(medirTextos);
@@ -1115,38 +1203,74 @@ function liveValidation(form, validate) {
   } else iniciar();
 })();
 
-// -------------------------------------------------------------
-// GESTIÓN DEL BANNER DE COOKIES Y CONSENTIMIENTO
-// -------------------------------------------------------------
-document.addEventListener('DOMContentLoaded', () => {
-  const banner = document.getElementById('cookie-banner');
+/* -----------------------------------------------------------------
+   13. COOKIES: CONSENTIMIENTO Y META PIXEL (todas las páginas)
+   Cumple lo que dice la Política de Datos (apartado 18. Cookies):
+   - El Meta Pixel (cookies de terceros de Meta: _fbp, _fbc) NO se carga hasta
+     que la persona pulsa "Aceptar". Sin decisión o con "Rechazar", nada sale hacia Meta.
+   - La decisión se guarda en este navegador (localStorage 'cookieConsent':
+     'accepted' | 'rejected'); mientras no haya decisión se muestra el aviso.
+   - "Preferencias de cookies" (pie de página, [data-cookie-settings]) vuelve a
+     abrir el aviso para cambiarla. Si retira el consentimiento, se revoca el
+     Pixel y se borran sus cookies.
+   - registrarLead(): evento "Lead" al ENVIAR bien una solicitud (bloque 10),
+     sin ningún dato del formulario (la política prohíbe enviar datos de salud).
+   ----------------------------------------------------------------- */
+const META_PIXEL_ID = '5051395198337590';
+const CONSENTIMIENTO = 'cookieConsent';
+
+function leerConsentimiento() {
+  try { return localStorage.getItem(CONSENTIMIENTO); } catch { return null; }   // navegación privada estricta
+}
+function cargarMetaPixel() {
+  if (window.fbq) { fbq('consent', 'grant'); return; }
+  /* Código oficial de Meta (fbevents.js) */
+  !function (f, b, e, v, n, t, s) {
+    if (f.fbq) return; n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
+    if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = [];
+    t = b.createElement(e); t.async = !0; t.src = v; s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s);
+  }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', META_PIXEL_ID);
+  fbq('track', 'PageView');
+}
+// Borra las cookies de Meta en este dominio y en el dominio principal (.enfermerasangelesdevida.com)
+function borrarCookiesMeta() {
+  const partes = location.hostname.split('.');
+  const dominios = ['', location.hostname, '.' + partes.slice(-2).join('.')];
+  ['_fbp', '_fbc'].forEach((nombre) => dominios.forEach((d) => {
+    document.cookie = `${nombre}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/${d ? '; domain=' + d : ''}`;
+  }));
+}
+function registrarLead() {
+  if (leerConsentimiento() === 'accepted' && typeof fbq === 'function') fbq('track', 'Lead');
+}
+
+(function cookies() {
+  if (leerConsentimiento() === 'accepted') cargarMetaPixel();     // ya aceptó en una visita anterior
+
+  const banner = $('#cookie-banner');
   if (!banner) return;
+  const guardar = (valor) => {
+    try { localStorage.setItem(CONSENTIMIENTO, valor); } catch { /* sin almacenamiento: vale solo para esta visita */ }
+    banner.hidden = true;
+  };
+  if (!leerConsentimiento()) banner.hidden = false;
 
-  const consent = localStorage.getItem('cookieConsent');
-
-  // Si no ha tomado una decisión, mostramos el banner
-  if (!consent) {
+  $('[data-cookie-accept]', banner)?.addEventListener('click', () => {
+    guardar('accepted');
+    cargarMetaPixel();
+  });
+  $('[data-cookie-reject]', banner)?.addEventListener('click', () => {
+    guardar('rejected');
+    if (window.fbq) fbq('consent', 'revoke');       // si ya estaba cargado en esta visita, deja de enviar
+    borrarCookiesMeta();
+  });
+  // "Preferencias de cookies" en el pie: vuelve a mostrar el aviso
+  $$('[data-cookie-settings]').forEach((btn) => btn.addEventListener('click', () => {
     banner.hidden = false;
-  }
-
-  const btnAccept = banner.querySelector('[data-cookie-accept]');
-  const btnReject = banner.querySelector('[data-cookie-reject]');
-
-  btnAccept?.addEventListener('click', () => {
-    localStorage.setItem('cookieConsent', 'accepted');
-    banner.hidden = true;
-    // Activamos el Píxel en el momento exacto de la aceptación
-    if (typeof loadMetaPixel === 'function') {
-      loadMetaPixel();
-    }
-  });
-
-  btnReject?.addEventListener('click', () => {
-    localStorage.setItem('cookieConsent', 'rejected');
-    banner.hidden = true;
-    // No se carga el píxel de Meta
-  });
-});
+    $('[data-cookie-accept]', banner)?.focus();
+  }));
+})();
 
 /* Recalcular posiciones cuando terminan de cargar fuentes e imágenes */
 addEventListener('load', () => ScrollTrigger.refresh());

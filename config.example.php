@@ -63,7 +63,9 @@ return [
     //                Requiere aprobación de Google y autorización (OAuth) del dueño del perfil.
     // Siempre se muestran solo reseñas con comentario y de 4-5 estrellas.
     'resenas' => [
-        'fuente'        => 'demo',
+        // 'business' sin sus datos (abajo) = el carrusel queda oculto (no muestra reseñas de ejemplo en la web real).
+        // Se usa Business Profile porque no exige cuenta de facturación (Places sí).
+        'fuente'        => 'business',
         // Cada cuánto se vuelve a preguntar a Google (minutos). Entre medias se usa la copia guardada
         // en php/cache/. 60 = las reseñas nuevas aparecen como mucho 1 hora después.
         'cache_minutos' => 60,

@@ -8,3 +8,11 @@ config.php
 
 # Copia de las reseñas de Google que guarda resenas.php
 php/cache/
+
+# Borradores de los textos legales (las páginas .html ya se generan a partir de ellos)
+aviso-legal.md
+privacidad.md
+terminos.md
+
+# Carpeta generada por publicar.mjs (lo que se sube al hosting)
+publicar/

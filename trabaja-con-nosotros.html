@@ -4,7 +4,10 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/webp" href="./assets/img/enfermeras-angeles-de-vida-favicon.webp">
   <title>Trabaja con nosotros | ÁNGELES DE VIDA</title>
+  <!-- Dirección oficial de esta página para Google -->
+  <link rel="canonical" href="https://www.enfermerasangelesdevida.com/trabaja-con-nosotros">
   <meta name="description"
     content="¿Eres auxiliar de enfermería, enfermera o cuidadora en Bogotá? Envía tu hoja de vida a Ángeles de Vida y únete a nuestro equipo de cuidado a domicilio."/>
 
@@ -28,14 +31,14 @@
        - data-header-dark: como arriba no hay foto oscura sino fondo claro,
          el header transparente usa ya el logo de color y textos/líneas en
          azul (igual que cuando está blanco), para que se lean (styles.css).
-       - Los enlaces llevan a index.html#seccion; main.js de index.html
+       - Los enlaces llevan a ./#seccion (raíz del sitio); main.js de index.html
          baja a esa sección al llegar.
        - "Solicita tu servicio" lleva a index.html#solicitar, que abre allí
          el modal del formulario de servicio.
        ============================================================ -->
   <header class="header" data-header data-header-dark>
     <div class="header__bar">
-      <a href="index.html" class="header__logo" aria-label="Ángeles de Vida — inicio">
+      <a href="./" class="header__logo" aria-label="Ángeles de Vida — inicio">
         <picture><source media="(max-width: 640px)" srcset="assets/img/enfermeras-angeles-de-vida-logo-movil.webp" width="250" height="250" /><img class="header__logo-mark header__logo-mark--light" src="assets/img/angeles-de-vida-logo-blanco.webp" width="268" height="120"
           alt="Ángeles de Vida" /></picture>
         <picture><source media="(max-width: 640px)" srcset="assets/img/enfermeras-angeles-de-vida-logo-movil.webp" width="250" height="250" /><img class="header__logo-mark header__logo-mark--dark" src="assets/img/angeles-de-vida-logo.webp" width="268" height="120" alt="" /></picture>
@@ -47,7 +50,7 @@
           <span class="menu-toggle__icon"><span></span><span></span></span>
         </button>
 
-        <a href="index.html#solicitar" class="cta-btn">
+        <a href="./#solicitar" class="cta-btn">
           <span class="cta-btn__text">Solicita tu servicio</span>
           <span class="cta-btn__arrow">
             <span class="cta-btn__circle"></span>
@@ -74,23 +77,21 @@
           </svg>
         </button>
         <nav class="menu__nav">
-          <a href="index.html" class="menu__link" style="--d:0s"><span
+          <a href="./" class="menu__link" style="--d:0s"><span
               class="menu__roll"><span>Home</span><span>Home</span></span></a>
-          <a href="index.html#nosotros" class="menu__link" style="--d:.08s"><span
+          <a href="./#nosotros" class="menu__link" style="--d:.08s"><span
               class="menu__roll"><span>Nosotros</span><span>Nosotros</span></span></a>
-          <a href="index.html#servicios" class="menu__link" style="--d:.16s"><span
+          <a href="./#servicios" class="menu__link" style="--d:.16s"><span
               class="menu__roll"><span>Servicios</span><span>Servicios</span></span></a>
-          <a href="index.html#testimonios" class="menu__link" style="--d:.24s"><span
+          <a href="./#testimonios" class="menu__link" style="--d:.24s"><span
               class="menu__roll"><span>Testimonios</span><span>Testimonios</span></span></a>
-          <a href="index.html#preguntas" class="menu__link" style="--d:.32s"><span class="menu__roll"><span>Preguntas
+          <a href="./#preguntas" class="menu__link" style="--d:.32s"><span class="menu__roll"><span>Preguntas
                 frecuentes</span><span>Preguntas frecuentes</span></span></a>
-          <a href="index.html#contacto" class="menu__link" style="--d:.40s"><span
+          <a href="./#contacto" class="menu__link" style="--d:.40s"><span
               class="menu__roll"><span>Contacto</span><span>Contacto</span></span></a>
         </nav>
         <div class="menu__footer">
           <p class="menu__brand">Ángeles <em>de</em> Vida</p>
-          <p class="menu__desc">Tus seres queridos en buenas manos, tu familia en tranquilidad. Cuidado profesional y
-            humano para quienes más amas.<br>• Atención 24/7</p>
           <!-- Redes sociales (mismo bloque que en el pie; aquí en azul sobre el panel crema) -->
           <nav class="social social--menu" aria-label="Redes sociales">
             <a class="social__link" href="https://www.facebook.com/enfermerasangelesdevida" target="_blank" rel="noopener">
@@ -100,6 +101,13 @@
             <a class="social__link" href="https://www.instagram.com/enfermerasangelesdevida/" target="_blank" rel="noopener">
               <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r=".6" /></svg>
               <span class="sr-only">Instagram de Ángeles de Vida (se abre en una pestaña nueva)</span>
+            </a>
+            <a class="social__link" href="https://www.tiktok.com/@enfermerasangelesdevida" target="_blank"
+              rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M21 7.917v4.034a9.948 9.948 0 0 1-5-1.951v4.5a6.5 6.5 0 1 1-8-6.326v4.326a2.5 2.5 0 1 0 4 2v-11.5h4.083a6.005 6.005 0 0 0 4.917 4.917z" />
+              </svg>
+              <span class="sr-only">TikTok de Ángeles de Vida (se abre en una pestaña nueva)</span>
             </a>
             <!-- YouTube: visible pero SIN canal todavía (data-pendiente: main.js evita que el clic haga algo).
                Cuando exista el canal: pon su URL en href, añade target="_blank" rel="noopener" y quita data-pendiente. -->
@@ -116,7 +124,7 @@
   <main>
     <!-- ============================================================
          TRABAJA CON NOSOTROS
-         Formulario de postulación con hoja de vida en PDF (máx. 10 MB).
+         Formulario de postulación con hoja de vida en PDF (máx. 2 MB).
          Mismos estilos que el formulario "Solicita tu servicio" (.form).
          Se envía a aplicar.php, que valida y manda la hoja de vida como
          adjunto al correo de selección (main.js, bloque 11).
@@ -143,9 +151,15 @@
 
             <fieldset class="form__group">
               <legend class="form__legend">Tus datos</legend>
-              <div class="form__field">
-                <label for="a-nombre">Nombre y apellido <span class="form__req" aria-hidden="true">*</span></label>
-                <input id="a-nombre" name="nombre" type="text" autocomplete="name" required maxlength="80" />
+              <div class="form__row">
+                <div class="form__field">
+                  <label for="a-nombre">Nombre completo <span class="form__req" aria-hidden="true">*</span></label>
+                  <input id="a-nombre" name="nombre" type="text" autocomplete="given-name" required maxlength="60" />
+                </div>
+                <div class="form__field">
+                  <label for="a-apellido">Apellido completo <span class="form__req" aria-hidden="true">*</span></label>
+                  <input id="a-apellido" name="apellido" type="text" autocomplete="family-name" required maxlength="60" />
+                </div>
               </div>
               <div class="form__row form__row--doc">
                 <div class="form__field">
@@ -167,32 +181,103 @@
                 <div class="form__field">
                   <label for="a-telefono">Teléfono / WhatsApp <span class="form__req" aria-hidden="true">*</span></label>
                   <input id="a-telefono" name="telefono" type="tel" autocomplete="tel" inputmode="tel" required
-                    placeholder="300 123 4567" pattern="[0-9+\s()-]{7,20}" />
+                    pattern="[0-9+\s()-]{7,20}" />
                 </div>
                 <div class="form__field">
                   <label for="a-correo">Correo <span class="form__req" aria-hidden="true">*</span></label>
                   <input id="a-correo" name="correo" type="email" autocomplete="email" required maxlength="120" />
                 </div>
               </div>
+              <!-- Ciudad y localidad: Bogotá → sus localidades; otra ciudad → solo "No aplica" (main.js, bloque 11 a).
+                   Las opciones deben coincidir con aplicar.php -->
+              <div class="form__row">
+                <div class="form__field">
+                  <label for="a-ciudad">Ciudad donde vives <span class="form__req" aria-hidden="true">*</span></label>
+                  <select id="a-ciudad" name="ciudad" required>
+                    <option value="">Selecciona…</option>
+                    <option>Bogotá</option>
+                    <option>Cajicá</option>
+                    <option>Chía</option>
+                    <option>Chipaque</option>
+                    <option>Cota</option>
+                    <option>Funza</option>
+                    <option>La Calera</option>
+                    <option>Madrid</option>
+                    <option>Mosquera</option>
+                    <option>Sibaté</option>
+                    <option>Soacha</option>
+                    <option>Tenjo</option>
+                  </select>
+                </div>
+                <div class="form__field">
+                  <label for="a-localidad">Localidad <span class="form__req" aria-hidden="true">*</span></label>
+                  <select id="a-localidad" name="localidad" required disabled>
+                    <option value="">Primero elige la ciudad</option>
+                    <option>Antonio Nariño</option>
+                    <option>Barrios Unidos</option>
+                    <option>Bosa</option>
+                    <option>Chapinero</option>
+                    <option>Ciudad Bolívar</option>
+                    <option>Engativá</option>
+                    <option>Fontibón</option>
+                    <option>Kennedy</option>
+                    <option>La Candelaria</option>
+                    <option>Los Mártires</option>
+                    <option>Puente Aranda</option>
+                    <option>Rafael Uribe Uribe</option>
+                    <option>San Cristóbal</option>
+                    <option>Santa Fe</option>
+                    <option>Suba</option>
+                    <option>Sumapaz</option>
+                    <option>Teusaquillo</option>
+                    <option>Tunjuelito</option>
+                    <option>Usaquén</option>
+                    <option>Usme</option>
+                    <option>No aplica</option>
+                  </select>
+                </div>
+              </div>
               <div class="form__field">
-                <label for="a-localidad">Localidad y barrio <span class="form__req" aria-hidden="true">*</span></label>
-                <input id="a-localidad" name="localidad" type="text" required maxlength="120"
-                  placeholder="Ej.: Suba — barrio Pinar" />
+                <label for="a-direccion">Dirección de residencia <span class="form__req" aria-hidden="true">*</span></label>
+                <input id="a-direccion" name="direccion" type="text" autocomplete="street-address" required maxlength="160"
+                  placeholder="Calle, número y barrio" />
               </div>
             </fieldset>
 
+
             <fieldset class="form__group">
               <legend class="form__legend">Tu experiencia</legend>
+              <!-- Perfil: las opciones deben coincidir con aplicar.php -->
+              <div class="form__row">
+                <div class="form__field">
+                  <label for="a-perfil">Perfil profesional <span class="form__req" aria-hidden="true">*</span></label>
+                  <select id="a-perfil" name="perfil" required>
+                    <option value="">Selecciona…</option>
+                    <option>Auxiliar de enfermería</option>
+                    <option>Enfermero(a) profesional</option>
+                    <option>Cuidador(a)</option>
+                    <option>Otro</option>
+                  </select>
+                </div>
+                <div class="form__field">
+                  <label for="a-perfil-detalle">Especialidad o estudios (opcional)</label>
+                  <input id="a-perfil-detalle" name="perfil_detalle" type="text" maxlength="160"
+                    placeholder="Ej.: cuidado del adulto mayor" />
+                </div>
+              </div>
               <div class="form__field">
                 <label for="a-mensaje">Cuéntanos sobre ti <span class="form__req" aria-hidden="true">*</span></label>
-                <textarea id="a-mensaje" name="mensaje" rows="5" required maxlength="1500"
-                  placeholder="Háblanos de tu experiencia en un mensaje breve: tu formación, dónde has trabajado, con qué tipo de pacientes y tu disponibilidad."></textarea>
+                <!-- Entre 100 y 1500 caracteres (los mismos límites en aplicar.php). El contador lo
+                     actualiza main.js (bloque 11 a) -->
+                <textarea id="a-mensaje" name="mensaje" rows="6" required minlength="100" maxlength="1500"
+                  placeholder="Resume tu experiencia laboral: tiempo laborado y tipos de pacientes con los que has trabajado (puedes incluir las prácticas). Menciona también tus estudios adicionales, si los tienes."></textarea>
+                <p class="form__hint" data-contador></p>
               </div>
 
               <!-- Hoja de vida: el <input type="file"> real queda oculto a la vista pero accesible;
                    el <label> grande hace de botón. data-max-mb lo usa la validación (main.js). -->
               <div class="form__field">
-                <span class="form__label" id="a-hoja-label">Hoja de vida (PDF, máx. 10 MB) <span class="form__req"
+                <span class="form__label" id="a-hoja-label">Hoja de vida (PDF, máx. 2 MB) <span class="form__req"
                     aria-hidden="true">*</span></span>
                 <label class="form__file" for="a-hoja">
                   <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -202,7 +287,7 @@
                   <span class="form__file-name" data-file-name>Ningún archivo seleccionado</span>
                 </label>
                 <input class="form__file-input" id="a-hoja" name="hoja_vida" type="file"
-                  accept="application/pdf,.pdf" required data-max-mb="10" aria-labelledby="a-hoja-label" />
+                  accept="application/pdf,.pdf" required data-max-mb="2" aria-labelledby="a-hoja-label" />
               </div>
             </fieldset>
 
@@ -248,7 +333,7 @@
             <p>Gracias por querer formar parte de Ángeles de Vida. Revisaremos tu hoja de vida y, si tu perfil encaja con
               lo que buscamos, te contactaremos.</p>
             <div class="form-done__actions">
-              <a class="form-done__close" href="index.html">Volver al inicio</a>
+              <a class="form-done__close" href="./">Volver al inicio</a>
             </div>
           </div>
         </div>
@@ -257,9 +342,9 @@
     </section>
   </main>
 
-  <footer class="footer">
+  <footer class="footer" id="contacto">
     <!-- Pie en 3 filas separadas por líneas finas:
-         1. logo · 2. columnas (Navegación / Empresa / Legal) + redes a la derecha · 3. derechos -->
+         1. logo · 2. columnas (Navegación / Legal / Empresa / Síguenos) · 3. derechos -->
     <div class="footer__inner footer__inner--grid">
 
       <!-- 1. Logotipo -->
@@ -272,12 +357,12 @@
       <div class="footer__grid">
         <nav class="footer__col" aria-labelledby="footer-nav-titulo">
           <h2 class="footer__heading" id="footer-nav-titulo">Navegación</h2>
-          <a href="index.html#inicio"><span class="menu__roll"><span>Home</span><span>Home</span></span></a>
-          <a href="index.html#nosotros"><span class="menu__roll"><span>Nosotros</span><span>Nosotros</span></span></a>
-          <a href="index.html#servicios"><span class="menu__roll"><span>Servicios</span><span>Servicios</span></span></a>
-          <a href="index.html#testimonios"><span class="menu__roll"><span>Testimonios</span><span>Testimonios</span></span></a>
-          <a href="index.html#preguntas"><span class="menu__roll"><span>Preguntas frecuentes</span><span>Preguntas frecuentes</span></span></a>
-          <a href="index.html#contacto"><span class="menu__roll"><span>Contacto</span><span>Contacto</span></span></a>
+          <a href="./#inicio"><span class="menu__roll"><span>Home</span><span>Home</span></span></a>
+          <a href="./#nosotros"><span class="menu__roll"><span>Nosotros</span><span>Nosotros</span></span></a>
+          <a href="./#servicios"><span class="menu__roll"><span>Servicios</span><span>Servicios</span></span></a>
+          <a href="./#testimonios"><span class="menu__roll"><span>Testimonios</span><span>Testimonios</span></span></a>
+          <a href="./#preguntas"><span class="menu__roll"><span>Preguntas frecuentes</span><span>Preguntas frecuentes</span></span></a>
+          <a href="./#contacto"><span class="menu__roll"><span>Contacto</span><span>Contacto</span></span></a>
         </nav>
 
         <nav class="footer__col" aria-labelledby="footer-legal-titulo">
@@ -285,6 +370,7 @@
           <a href="privacidad.html"><span class="menu__roll"><span>Privacidad</span><span>Privacidad</span></span></a>
           <a href="terminos.html"><span class="menu__roll"><span>Términos</span><span>Términos</span></span></a>
           <a href="aviso-legal.html"><span class="menu__roll"><span>Aviso legal</span><span>Aviso legal</span></span></a>
+          <button type="button" class="footer__cookies" data-cookie-settings><span class="menu__roll"><span>Preferencias de cookies</span><span>Preferencias de cookies</span></span></button>
         </nav>
 
         <!-- Información de contacto y localización (SEO local) + empleo -->
@@ -292,6 +378,7 @@
           <h2 class="footer__heading" id="footer-empresa-titulo">Empresa</h2>
           <p>Enfermeras Ángeles de Vida</p>
           <p>Servicio de enfermería a domicilio las 24 horas en Bogotá, Colombia.</p>
+          <p>+57 320 347 3040</p>
           <a href="trabaja-con-nosotros.html" aria-current="page">
             <span class="menu__roll">
               <span>Trabaja con nosotros</span>
@@ -300,32 +387,42 @@
           </a>
         </section>
 
-        <!-- Redes sociales (YouTube pendiente) -->
-        <nav class="social footer__social" aria-label="Redes sociales">
-          <a class="social__link" href="https://www.facebook.com/enfermerasangelesdevida" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <path d="M14.5 3H13a4 4 0 0 0-4 4v3H7v3h2v8h3v-8h2.5l.5-3h-3V7.5A1.5 1.5 0 0 1 13.5 6h1z" />
-            </svg>
-            <span class="sr-only">Facebook de Enfermeras Ángeles de Vida (se abre en una pestaña nueva)</span>
-          </a>
+        <!-- Redes sociales (YouTube pendiente): columna propia con título -->
+        <div class="footer__col footer__col--social">
+          <h2 class="footer__heading" id="footer-redes-titulo">Síguenos</h2>
+          <nav class="social footer__social" aria-labelledby="footer-redes-titulo">
+            <a class="social__link" href="https://www.facebook.com/enfermerasangelesdevida" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M14.5 3H13a4 4 0 0 0-4 4v3H7v3h2v8h3v-8h2.5l.5-3h-3V7.5A1.5 1.5 0 0 1 13.5 6h1z" />
+              </svg>
+              <span class="sr-only">Facebook de Enfermeras Ángeles de Vida (se abre en una pestaña nueva)</span>
+            </a>
 
-          <a class="social__link" href="https://www.instagram.com/enfermerasangelesdevida/" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <rect x="3" y="3" width="18" height="18" rx="5" />
-              <circle cx="12" cy="12" r="4" />
-              <circle cx="17.5" cy="6.5" r=".6" />
-            </svg>
-            <span class="sr-only">Instagram de Enfermeras Ángeles de Vida (se abre en una pestaña nueva)</span>
-          </a>
+            <a class="social__link" href="https://www.instagram.com/enfermerasangelesdevida/" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <rect x="3" y="3" width="18" height="18" rx="5" />
+                <circle cx="12" cy="12" r="4" />
+                <circle cx="17.5" cy="6.5" r=".6" />
+              </svg>
+              <span class="sr-only">Instagram de Enfermeras Ángeles de Vida (se abre en una pestaña nueva)</span>
+            </a>
 
-          <a class="social__link" href="#" data-pendiente title="Próximamente">
-            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <rect x="2" y="5" width="20" height="14" rx="4" />
-              <path d="m10 9 5 3-5 3z" />
-            </svg>
-            <span class="sr-only">YouTube de Enfermeras Ángeles de Vida</span>
-          </a>
-        </nav>
+            <a class="social__link" href="https://www.tiktok.com/@enfermerasangelesdevida" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M21 7.917v4.034a9.948 9.948 0 0 1-5-1.951v4.5a6.5 6.5 0 1 1-8-6.326v4.326a2.5 2.5 0 1 0 4 2v-11.5h4.083a6.005 6.005 0 0 0 4.917 4.917z" />
+              </svg>
+              <span class="sr-only">TikTok de Enfermeras Ángeles de Vida (se abre en una pestaña nueva)</span>
+            </a>
+
+            <a class="social__link" href="#" data-pendiente title="Próximamente">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <rect x="2" y="5" width="20" height="14" rx="4" />
+                <path d="m10 9 5 3-5 3z" />
+              </svg>
+              <span class="sr-only">YouTube de Enfermeras Ángeles de Vida</span>
+            </a>
+          </nav>
+        </div>
       </div>
 
       <!-- 3. Derechos de autor y créditos -->
@@ -339,10 +436,34 @@
     </div>
   </footer>
 
+  <!-- ============================================================
+       AVISO DE COOKIES (main.js, bloque 13) — igual en todas las páginas.
+       Se muestra mientras la persona no haya decidido. El Meta Pixel solo se
+       carga con "Aceptar". "Preferencias de cookies" (pie) lo vuelve a abrir.
+       ============================================================ -->
+  <div class="cookie-banner" id="cookie-banner" role="region" aria-label="Aviso de cookies" hidden>
+    <div class="cookie-banner__inner">
+      <p class="cookie-banner__text">
+        Utilizamos cookies propias y/o de terceros para mejorar nuestros servicios y analizar la navegación, solo si las aceptas.
+        Puedes cambiar tu decisión cuando quieras en «Preferencias de cookies», al pie de la página.
+        Más información en nuestra <a href="privacidad.html#apartado-18-cookies-y-tecnologias-similares">Política de
+          Tratamiento de Datos</a>.
+      </p>
+      <div class="cookie-banner__actions">
+        <button class="cookie-btn cookie-btn--accept" type="button" data-cookie-accept>
+          <span class="cookie-btn__text">Aceptar</span>
+        </button>
+        <button class="cookie-btn cookie-btn--reject" type="button" data-cookie-reject>
+          <span class="cookie-btn__text">Rechazar</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- WhatsApp flotante: encima de "volver arriba", con sus mismas medidas.
        Aparece a la vez que ese botón (main.js, onScroll). -->
   <a class="wa-float" data-wa-float
-    href="https://wa.me/573132957599?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20los%20servicios%20de%20enfermer%C3%ADa%20a%20domicilio."
+    href="https://wa.me/573142734056?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20los%20servicios%20de%20enfermer%C3%ADa%20a%20domicilio."
     target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp (se abre en una pestaña nueva)">
     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z" />

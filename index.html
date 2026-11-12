@@ -13,7 +13,7 @@
   <meta name="description"
     content="Servicio de enfermeras a domicilio en Bogotá, cuidado profesional en casa para pacientes y adultos mayores. Solicita tu servicio.">
   <link rel="canonical" href="https://www.enfermerasangelesdevida.com/">
-  <link rel="icon" type="image/png" href="./assets/img/enfermeras-angeles-de-vida-favicon.webp">
+  <link rel="icon" type="image/webp" href="./assets/img/enfermeras-angeles-de-vida-favicon.webp">
 
   <!-- ========================================= -->
   <!-- 2. REDES SOCIALES (Open Graph)            -->
@@ -57,12 +57,15 @@
     "url": "https://www.enfermerasangelesdevida.com",
     "telephone": "+573203473040",
     "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Puente Aranda",
-      "addressLocality": "Bogotá",
-      "addressRegion": "Bogotá D.C.",
-      "addressCountry": "CO"
-    },
+    "@type": "PostalAddress",
+    "addressLocality": "Bogotá",
+    "addressRegion": "Bogotá D.C.",
+    "addressCountry": "CO"
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "Bogotá"
+  },
     "medicalSpecialty": "Nursing",
     "description": "Agencia de enfermería a domicilio en Bogotá especializada en cuidado personal, toma de signos vitales, administración de medicamentos y curaciones.",
     "hasOfferCatalog": {
@@ -102,33 +105,6 @@
   }
   </script>
   
-  <!-- Meta Pixel Code (Modificado para carga condicional por consentimiento) -->
-<script>
-  function loadMetaPixel() {
-    if (window.metaPixelLoaded) return;
-    window.metaPixelLoaded = true;
-
-    !function (f, b, e, v, n, t, s) {
-      if (f.fbq) return; n = f.fbq = function () {
-        n.callMethod ?
-        n.callMethod.apply(n, arguments) : n.queue.push(arguments)
-      };
-      if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
-      n.queue = []; t = b.createElement(e); t.async = !0;
-      t.src = v; s = b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t, s)
-    }(window, document, 'script',
-      'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '5051395198337590');
-    fbq('track', 'PageView');
-  }
-
-  // Si el usuario ya aceptó antes en una visita anterior, lo cargamos de inmediato
-  if (localStorage.getItem('cookieConsent') === 'accepted') {loadMetaPixel();}
-</script>
-<noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=5051395198337590&ev=PageView&noscript=1" /></noscript>
-<!-- End Meta Pixel Code -->
   </head>
 
 <body>
@@ -231,6 +207,13 @@
                 <circle cx="17.5" cy="6.5" r=".6" />
               </svg>
               <span class="sr-only">Instagram de Ángeles de Vida (se abre en una pestaña nueva)</span>
+            </a>
+            <a class="social__link" href="https://www.tiktok.com/@enfermerasangelesdevida" target="_blank"
+              rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M21 7.917v4.034a9.948 9.948 0 0 1-5-1.951v4.5a6.5 6.5 0 1 1-8-6.326v4.326a2.5 2.5 0 1 0 4 2v-11.5h4.083a6.005 6.005 0 0 0 4.917 4.917z" />
+              </svg>
+              <span class="sr-only">TikTok de Ángeles de Vida (se abre en una pestaña nueva)</span>
             </a>
             <!-- YouTube: visible pero SIN canal todavía (data-pendiente: main.js evita que el clic haga algo).
                Cuando exista el canal: pon su URL en href, añade target="_blank" rel="noopener" y quita data-pendiente. -->
@@ -728,11 +711,11 @@
             role="region" aria-roledescription="carrusel" aria-label="Reseñas de nuestros clientes en Google" hidden>
             <div class="reviews__head">
               <span class="reviews__source">
-                <svg class="reviews__g" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                  <path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.5a5.6 5.6 0 0 1-2.4 3.6v3h3.9c2.2-2.1 3.5-5.1 3.5-8.8z" />
-                  <path fill="#34A853" d="M12 24c3.2 0 6-1.1 7.9-2.9l-3.9-3c-1 .7-2.4 1.1-4 1.1-3.1 0-5.7-2.1-6.6-4.9h-4v3.1A12 12 0 0 0 12 24z" />
-                  <path fill="#FBBC05" d="M5.4 14.3a7.2 7.2 0 0 1 0-4.6V6.6h-4a12 12 0 0 0 0 10.8z" />
-                  <path fill="#EA4335" d="M12 4.8c1.8 0 3.3.6 4.6 1.8l3.4-3.4A12 12 0 0 0 1.4 6.6l4 3.1C6.3 6.9 8.9 4.8 12 4.8z" />
+                <svg class="reviews__g" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+                  <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z" />
+                  <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z" />
+                  <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z" />
+                  <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z" />
                 </svg>
                 Reseñas de Google
               </span>
@@ -758,6 +741,26 @@
             </div>
           </div>
 
+          <!-- BOTÓN "DÉJANOS TU RESEÑA EN GOOGLE" (main.js, bloque 12)
+               Pega en href el enlace para pedir reseñas de la ficha:
+               Perfil de Empresa de Google → "Pedir reseñas" (u "Obtener más reseñas") → copiar enlace
+               (algo como https://g.page/r/XXXXXXXX/review). Mientras href no empiece por https://,
+               el botón queda oculto. Se muestra siempre, haya reseñas o no.
+               Estilo de botón de Google (blanco con la G de colores) para que resalte sobre el fondo azul. -->
+          <a class="review-btn" data-review-write href="https://g.page/r/CQ0a4_zBTGWMECE/review" target="_blank" rel="noopener" hidden>
+            <svg class="review-btn__g" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+              <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z" />
+              <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z" />
+              <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z" />
+              <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z" />
+            </svg>
+            <span>Déjanos tu reseña en Google</span>
+            <!-- Estrella dorada: refuerza que es para calificar -->
+            <svg class="review-btn__star" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="m12 2.5 2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z" />
+            </svg>
+          </a>
+
           <p class="why__note" data-reveal>
             Brindamos atención presencial y personalizada en toda la ciudad. Consulta nuestra disponibilidad inmediata y
             agenda tu servicio a través de nuestro formulario de contacto.
@@ -769,8 +772,8 @@
            (el texto de las reseñas nunca se inserta como HTML). -->
       <template id="review-tpl">
         <li class="review" role="group" aria-roledescription="reseña">
-          <svg class="review__g" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <path fill="currentColor" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.5a5.6 5.6 0 0 1-2.4 3.6v3h3.9c2.2-2.1 3.5-5.1 3.5-8.8zM12 24c3.2 0 6-1.1 7.9-2.9l-3.9-3c-1 .7-2.4 1.1-4 1.1-3.1 0-5.7-2.1-6.6-4.9h-4v3.1A12 12 0 0 0 12 24zM5.4 14.3a7.2 7.2 0 0 1 0-4.6V6.6h-4a12 12 0 0 0 0 10.8zM12 4.8c1.8 0 3.3.6 4.6 1.8l3.4-3.4A12 12 0 0 0 1.4 6.6l4 3.1C6.3 6.9 8.9 4.8 12 4.8z" />
+          <svg class="review__g" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+            <path fill="currentColor" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5zM46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65zM10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19zM24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z" />
           </svg>
           <div class="review__author">
             <span class="review__avatar" data-r-avatar></span>
@@ -805,7 +808,7 @@
 
           <div class="faq-list" data-faq data-reveal>
 
-            <!-- PREGUNTA 1 (Modificada a H3) -->
+            <!-- PREGUNTA 1 -->
             <div class="faq-item">
               <h3 class="faq-item__heading">
                 <button class="faq-item__q" id="faq-q-1" aria-expanded="false" aria-controls="faq-a-1">
@@ -818,16 +821,15 @@
               </h3>
               <div class="faq-item__a" id="faq-a-1" role="region" aria-labelledby="faq-q-1" hidden>
                 <div class="faq-item__inner">
-                  <p>Acompaña el día a día del paciente en el hogar realizando control de signos vitales, administración
-                    estricta de medicamentos bajo orden médica, apoyo en higiene, movilidad, alimentación y curaciones
-                    técnicas cuando se requieren.</p>
+                  <p>Acompaña el día a día del paciente en el hogar realizando control de signos vitales al menos cada 4 horas y en casos requeridos se registra cada hora, realiza la administración
+                    estricta de medicamentos bajo orden médica, apoyo en higiene, movilidad, alimentación y curaciones cuando se requieren.</p>
                   <p class="faq-item__note">→ El personal de Enfermeras Ángeles de Vida trabaja siempre bajo
                     indicaciones médicas estrictas.</p>
                 </div>
               </div>
             </div>
 
-            <!-- PREGUNTA 2 (Modificada a H3) -->
+            <!-- PREGUNTA 2 -->
             <div class="faq-item">
               <h3 class="faq-item__heading">
                 <button class="faq-item__q" id="faq-q-2" aria-expanded="false" aria-controls="faq-a-2">
@@ -840,15 +842,16 @@
               </h3>
               <div class="faq-item__a" id="faq-a-2" role="region" aria-labelledby="faq-q-2" hidden>
                 <div class="faq-item__inner">
-                  <p>Sí. Ofrecemos cobertura completa mediante turnos diurnos, nocturnos o acompañamiento continuo de 24
-                    horas, adaptándonos por completo a las necesidades y rutinas de tu familiar.</p>
+                  <p>Sí. Ofrecemos cobertura completa mediante modalidades de atención flexibles con turnos de 4, 6, 8, 12 y 24 horas. 
+                    De esta manera, puedes elegir desde un acompañamiento puntual hasta el cuidado contínuo día y noche en casa, clínica u hospital en Bogotá. 
+                    Nos adaptamos por completo a las necesidades y rutinas de tu familiar.</p>
                   <p class="faq-item__note">→ Evaluamos el caso del paciente para sugerir la modalidad de turno más
                     adecuada.</p>
                 </div>
               </div>
             </div>
 
-            <!-- PREGUNTA 3 (Modificada a H3) -->
+            <!-- PREGUNTA 3 -->
             <div class="faq-item">
               <h3 class="faq-item__heading">
                 <button class="faq-item__q" id="faq-q-3" aria-expanded="false" aria-controls="faq-a-3">
@@ -868,7 +871,7 @@
               </div>
             </div>
 
-            <!-- PREGUNTA 4 (Modificada a H3) -->
+            <!-- PREGUNTA 4 -->
             <div class="faq-item">
               <h3 class="faq-item__heading">
                 <button class="faq-item__q" id="faq-q-4" aria-expanded="false" aria-controls="faq-a-4">
@@ -888,7 +891,7 @@
               </div>
             </div>
 
-            <!-- PREGUNTA 5 (Modificada a H3) -->
+            <!-- PREGUNTA 5 -->
             <div class="faq-item">
               <h3 class="faq-item__heading">
                 <button class="faq-item__q" id="faq-q-5" aria-expanded="false" aria-controls="faq-a-5">
@@ -901,14 +904,13 @@
               </h3>
               <div class="faq-item__a" id="faq-a-5" role="region" aria-labelledby="faq-q-5" hidden>
                 <div class="faq-item__inner">
-                  <p>Lo ideal es coordinar el servicio con antelación, especialmente para cuidados postoperatorios
-                    programados. En situaciones de urgencia médica en el hogar, comunícate con nosotros inmediatamente
-                    para gestionar la asignación de personal lo antes posible.</p>
+                  <p>Lo ideal es coordinar el servicio de enfermería a domicilio al menos con 6 horas de antelación, especialmente para cuidados postoperatorios
+                    programados. En caso de no contar con dicho tiempo comunícate telefónicamente con nosotros para verificar disponibilidad y gestionar la asignación de personal lo antes posible.</p>
                 </div>
               </div>
             </div>
 
-            <!-- PREGUNTA 6 (Modificada a H3) -->
+            <!-- PREGUNTA 6  -->
             <div class="faq-item">
               <h3 class="faq-item__heading">
                 <button class="faq-item__q" id="faq-q-6" aria-expanded="false" aria-controls="faq-a-6">
@@ -921,11 +923,28 @@
               </h3>
               <div class="faq-item__a" id="faq-a-6" role="region" aria-labelledby="faq-q-6" hidden>
                 <div class="faq-item__inner">
-                  <p>Ponte en contacto con nuestro equipo y cuéntanos la condición actual del paciente. Estructuramos
-                    juntos los horarios, la modalidad en casa u hospital y asignamos al profesional idóneo para tu
-                    tranquilidad.</p>
+                  <p>Ponte en contacto con nuestro equipo a través de nuestro formulario, WhatsApp o vía telefónica y cuéntanos la condición actual del paciente. 
+                    Estructuramos juntos los horarios, la modalidad en casa u hospital y asignamos al profesional idóneo para tu tranquilidad.</p>
                   <p class="faq-item__note">→ Pedir ayuda profesional no significa amar menos; significa cuidar con
                     mayor responsabilidad.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- PREGUNTA 7  -->
+            <div class="faq-item">
+              <h3 class="faq-item__heading">
+                <button class="faq-item__q" id="faq-q-6" aria-expanded="false" aria-controls="faq-a-6">
+                  <span>¿Qué medios de pago aceptan para contratar el servicio?</span>
+                  <span class="faq-item__icon" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                      <line x1="12" y1="5" x2="12" y2="19" />
+                      <line x1="5" y1="12" x2="19" y2="12" />
+                    </svg></span>
+                </button>
+              </h3>
+              <div class="faq-item__a" id="faq-a-6" role="region" aria-labelledby="faq-q-6" hidden>
+                <div class="faq-item__inner">
+                  <p>Facilitamos la contratación de nuestros servicios de enfermería a domicilio en Bogotá, aceptando pagos rápidos y seguros por medio de Nequi y Daviplata.</p>
                 </div>
               </div>
             </div>
@@ -977,7 +996,7 @@
 
 <footer class="footer" id="contacto">
   <!-- Pie en 3 filas separadas por líneas finas:
-       1. logo · 2. columnas (Navegación / Empresa / Legal) + redes a la derecha · 3. derechos -->
+       1. logo · 2. columnas (Navegación / Legal / Empresa / Síguenos) · 3. derechos -->
   <div class="footer__inner footer__inner--grid">
 
     <!-- 1. Logotipo -->
@@ -1003,6 +1022,7 @@
         <a href="privacidad.html"><span class="menu__roll"><span>Privacidad</span><span>Privacidad</span></span></a>
         <a href="terminos.html"><span class="menu__roll"><span>Términos</span><span>Términos</span></span></a>
         <a href="aviso-legal.html"><span class="menu__roll"><span>Aviso legal</span><span>Aviso legal</span></span></a>
+        <button type="button" class="footer__cookies" data-cookie-settings><span class="menu__roll"><span>Preferencias de cookies</span><span>Preferencias de cookies</span></span></button>
       </nav>
 
       <!-- Información de contacto y localización (SEO local) + empleo -->
@@ -1010,6 +1030,7 @@
         <h2 class="footer__heading" id="footer-empresa-titulo">Empresa</h2>
         <p>Enfermeras Ángeles de Vida</p>
         <p>Servicio de enfermería a domicilio las 24 horas en Bogotá, Colombia.</p>
+        <p>+57 320 347 3040</p>
         <a href="trabaja-con-nosotros.html">
           <span class="menu__roll">
             <span>Trabaja con nosotros</span>
@@ -1018,32 +1039,42 @@
         </a>
       </section>
 
-      <!-- Redes sociales (YouTube pendiente) -->
-      <nav class="social footer__social" aria-label="Redes sociales">
-        <a class="social__link" href="https://www.facebook.com/enfermerasangelesdevida" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <path d="M14.5 3H13a4 4 0 0 0-4 4v3H7v3h2v8h3v-8h2.5l.5-3h-3V7.5A1.5 1.5 0 0 1 13.5 6h1z" />
-          </svg>
-          <span class="sr-only">Facebook de Enfermeras Ángeles de Vida (se abre en una pestaña nueva)</span>
-        </a>
+      <!-- Redes sociales (YouTube pendiente): columna propia con título -->
+      <div class="footer__col footer__col--social">
+        <h2 class="footer__heading" id="footer-redes-titulo">Síguenos</h2>
+        <nav class="social footer__social" aria-labelledby="footer-redes-titulo">
+          <a class="social__link" href="https://www.facebook.com/enfermerasangelesdevida" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M14.5 3H13a4 4 0 0 0-4 4v3H7v3h2v8h3v-8h2.5l.5-3h-3V7.5A1.5 1.5 0 0 1 13.5 6h1z" />
+            </svg>
+            <span class="sr-only">Facebook de Enfermeras Ángeles de Vida (se abre en una pestaña nueva)</span>
+          </a>
 
-        <a class="social__link" href="https://www.instagram.com/enfermerasangelesdevida/" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <rect x="3" y="3" width="18" height="18" rx="5" />
-            <circle cx="12" cy="12" r="4" />
-            <circle cx="17.5" cy="6.5" r=".6" />
-          </svg>
-          <span class="sr-only">Instagram de Enfermeras Ángeles de Vida (se abre en una pestaña nueva)</span>
-        </a>
+          <a class="social__link" href="https://www.instagram.com/enfermerasangelesdevida/" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <rect x="3" y="3" width="18" height="18" rx="5" />
+              <circle cx="12" cy="12" r="4" />
+              <circle cx="17.5" cy="6.5" r=".6" />
+            </svg>
+            <span class="sr-only">Instagram de Enfermeras Ángeles de Vida (se abre en una pestaña nueva)</span>
+          </a>
 
-        <a class="social__link" href="#" data-pendiente title="Próximamente">
-          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <rect x="2" y="5" width="20" height="14" rx="4" />
-            <path d="m10 9 5 3-5 3z" />
-          </svg>
-          <span class="sr-only">YouTube de Enfermeras Ángeles de Vida</span>
-        </a>
-      </nav>
+          <a class="social__link" href="https://www.tiktok.com/@enfermerasangelesdevida" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M21 7.917v4.034a9.948 9.948 0 0 1-5-1.951v4.5a6.5 6.5 0 1 1-8-6.326v4.326a2.5 2.5 0 1 0 4 2v-11.5h4.083a6.005 6.005 0 0 0 4.917 4.917z" />
+            </svg>
+            <span class="sr-only">TikTok de Enfermeras Ángeles de Vida (se abre en una pestaña nueva)</span>
+          </a>
+
+          <a class="social__link" href="#" data-pendiente title="Próximamente">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <rect x="2" y="5" width="20" height="14" rx="4" />
+              <path d="m10 9 5 3-5 3z" />
+            </svg>
+            <span class="sr-only">YouTube de Enfermeras Ángeles de Vida</span>
+          </a>
+        </nav>
+      </div>
     </div>
 
     <!-- 3. Derechos de autor y créditos -->
@@ -1086,7 +1117,7 @@
         <p class="modal__intro_2"><small>* Campos obligatorios</small></p>
       </header>
 
-      <form class="form" id="form-solicitud" action="enviar.php" method="post" novalidate data-whatsapp="573132957599">
+      <form class="form" id="form-solicitud" action="enviar.php" method="post" novalidate data-whatsapp="573142734056">
 
         <!-- 1. Quién solicita -->
         <fieldset class="form__group">
@@ -1098,8 +1129,7 @@
           <div class="form__row">
             <div class="form__field">
               <label for="f-telefono">Teléfono / WhatsApp <span class="form__req" aria-hidden="true">*</span></label>
-              <input id="f-telefono" name="telefono" type="tel" autocomplete="tel" inputmode="tel" required
-                placeholder="300 123 4567" pattern="[0-9+\s()-]{7,20}" />
+              <input id="f-telefono" name="telefono" type="tel" autocomplete="tel" inputmode="tel" required pattern="[0-9+\s()-]{7,20}"/>
             </div>
             <div class="form__field">
               <label for="f-correo">Correo <span class="form__req" aria-hidden="true">*</span></label>
@@ -1125,12 +1155,17 @@
               </select>
             </div>
             <div class="form__field">
-              <label for="f-modalidad">Modalidad / horario <span class="form__req" aria-hidden="true">*</span></label>
+              <label for="f-modalidad">Modalidad / turno <span class="form__req" aria-hidden="true">*</span></label>
               <select id="f-modalidad" name="modalidad" required>
                 <option value="">Selecciona…</option>
-                <option>Turno de día</option>
-                <option>Turno de noche</option>
-                <option>24 horas</option>
+                <!-- data-horas: horas de inicio permitidas ("6-16" = de 6 a 16; sin el atributo, de 6 a 20).
+                     Los turnos de 4, 6 y 8 horas terminan a más tardar a las 8:00 p. m.; el de 12 horas
+                     solo inicia a las 6, 7 u 8 (a. m. o p. m.). Igual en enviar.php (main.js, bloque 10 d) -->
+                <option data-horas="6-16">Turno de 4 horas</option>
+                <option data-horas="6-14">Turno de 6 horas</option>
+                <option data-horas="6-12">Turno de 8 horas</option>
+                <option data-horas="6-8,18-20">Turno de 12 horas</option>
+                <option>Turno de 24 horas</option>
                 <option>Por definir</option>
               </select>
             </div>
@@ -1149,23 +1184,47 @@
               <input id="f-fecha-fin" name="fecha_fin" type="date" required data-fecha-fin />
             </div>
           </div>
-          <p class="form__hint" data-fecha-resumen aria-live="polite"></p>
+          <!-- Hora de inicio: horas en punto de 6:00 a. m. a 8:00 p. m. main.js (bloque 10 d) desactiva
+               las que no cumplen el turno elegido o las 6 horas de anticipación. "Por definir" no tiene restricciones de hora.
+               Los value (HH:00) deben coincidir con la validación de enviar.php. -->
           <div class="form__field">
-            <label for="f-lugar">El servicio se prestará en <span class="form__req" aria-hidden="true">*</span></label>
-            <select id="f-lugar" name="lugar" required data-lugar>
+            <label for="f-hora">Hora de inicio del servicio <span class="form__req" aria-hidden="true">*</span></label>
+            <select id="f-hora" name="hora" required>
               <option value="">Selecciona…</option>
-              <option value="casa">Casa</option>
-              <option value="hospital">Hospital</option>
+              <optgroup label="Jornada AM">
+                <option value="06:00">6:00 a. m.</option>
+                <option value="07:00">7:00 a. m.</option>
+                <option value="08:00">8:00 a. m.</option>
+                <option value="09:00">9:00 a. m.</option>
+                <option value="10:00">10:00 a. m.</option>
+                <option value="11:00">11:00 a. m.</option>
+              </optgroup>
+              <optgroup label="Jornada PM">
+                <option value="12:00">12:00 m.</option>
+                <option value="13:00">1:00 p. m.</option>
+                <option value="14:00">2:00 p. m.</option>
+                <option value="15:00">3:00 p. m.</option>
+                <option value="16:00">4:00 p. m.</option>
+                <option value="17:00">5:00 p. m.</option>
+                <option value="18:00">6:00 p. m.</option>
+                <option value="19:00">7:00 p. m.</option>
+                <option value="20:00">8:00 p. m.</option>
+              </optgroup>
+              <option>Por definir</option>
             </select>
+            <p class="form__hint">Solicita con mínimo 6 horas de anticipación. Los turnos de 4, 6 y 8 horas terminan a más tardar a las 8:00 p. m.; el de 12 horas inicia a las 6, 7 u 8 (a. m. o p. m.).</p>
           </div>
-          <!-- Campos condicionales: ocultos y desactivados hasta elegir el lugar (main.js, paso 4).
-               "disabled" hace que no se validen ni se envíen mientras están ocultos. -->
-          <div class="form__field" data-si-lugar="casa hospital" hidden>
-            <label for="f-direccion">Dirección <span class="form__req" aria-hidden="true">*</span></label>
-            <input id="f-direccion" name="direccion" type="text" autocomplete="street-address" required disabled
+          <p class="form__hint" data-fecha-resumen aria-live="polite"></p>
+          <!-- Dirección: siempre visible y obligatoria -->
+          <div class="form__field">
+            <label for="f-direccion">Dirección donde se prestará el servicio <span class="form__req"
+                aria-hidden="true">*</span></label>
+            <input id="f-direccion" name="direccion" type="text" autocomplete="street-address" required
               placeholder="Calle, número, barrio" maxlength="160" />
           </div>
-          <div class="form__field" data-si-lugar="hospital" hidden>
+          <!-- Campo condicional: solo si el tipo de servicio es "Hospitalario" (main.js, bloque 10 c).
+               Oculto = "disabled": no se valida ni se envía. -->
+          <div class="form__field" data-si-servicio="Hospitalario" hidden>
             <label for="f-hospital">Nombre del hospital o clínica <span class="form__req"
                 aria-hidden="true">*</span></label>
             <input id="f-hospital" name="hospital" type="text" required disabled maxlength="120" />
@@ -1200,6 +1259,17 @@
         <div class="form__trap" aria-hidden="true">
           <label for="f-web">No rellenes este campo</label>
           <input id="f-web" name="web" type="text" tabindex="-1" autocomplete="off" />
+        </div>
+
+        <!-- Declaración de quien solicita: es el paciente o tiene su autorización / representación legal.
+             Obligatoria y separada de la autorización de datos (cada consentimiento va aparte).
+             enviar.php la valida y la deja registrada en el correo. -->
+        <div class="form__check">
+          <input id="f-titular" name="titular" type="checkbox" value="si" required />
+          <label for="f-titular">
+            Declaro que soy el paciente o que cuento con su autorización o representación legal para suministrar
+            y permitir el tratamiento de sus datos personales y de salud. <span class="form__req" aria-hidden="true">*</span>
+          </label>
         </div>
 
         <!-- Autorización de datos (Ley 1581 de 2012). El enlace apuntará a tu política cuando la publiques. -->
@@ -1292,35 +1362,34 @@
     </div>
   </dialog>
 
-  <!-- Banner de Cookies -->
-<!-- Banner de Cookies Optimizado para Accesibilidad -->
-<div class="cookie-banner" id="cookie-banner" role="region" aria-label="Aviso de cookies" hidden>
-  <div class="cookie-banner__inner">
-    <p class="cookie-banner__text">
-      Utilizamos cookies propias y de terceros para mejorar tu experiencia y medir analíticas.
-      Puedes consultar más detalles en nuestra <a href="privacidad.html" target="_blank" rel="noopener">Política de
-        Privacidad</a>.
-    </p>
-    <div class="cookie-banner__actions">
-      <!-- Botón Aceptar con estructura interna de texto accesible -->
-      <button class="cookie-btn cookie-btn--accept" type="button" data-cookie-accept
-        aria-label="Aceptar el uso de cookies">
-        <span class="cookie-btn__text">Aceptar</span>
-      </button>
-
-      <!-- Botón Rechazar con estructura interna de texto accesible -->
-      <button class="cookie-btn cookie-btn--reject" type="button" data-cookie-reject
-        aria-label="Rechazar el uso de cookies">
-        <span class="cookie-btn__text">Rechazar</span>
-      </button>
+  <!-- ============================================================
+       AVISO DE COOKIES (main.js, bloque 13) — igual en todas las páginas.
+       Se muestra mientras la persona no haya decidido. El Meta Pixel solo se
+       carga con "Aceptar". "Preferencias de cookies" (pie) lo vuelve a abrir.
+       ============================================================ -->
+  <div class="cookie-banner" id="cookie-banner" role="region" aria-label="Aviso de cookies" hidden>
+    <div class="cookie-banner__inner">
+      <p class="cookie-banner__text">
+        Utilizamos cookies propias y/o de terceros para mejorar nuestros servicios y analizar la navegación, solo si las aceptas.
+        Puedes cambiar tu decisión cuando quieras en «Preferencias de cookies», al pie de la página.
+        Más información en nuestra <a href="privacidad.html#apartado-18-cookies-y-tecnologias-similares">Política de
+          Tratamiento de Datos</a>.
+      </p>
+      <div class="cookie-banner__actions">
+        <button class="cookie-btn cookie-btn--accept" type="button" data-cookie-accept>
+          <span class="cookie-btn__text">Aceptar</span>
+        </button>
+        <button class="cookie-btn cookie-btn--reject" type="button" data-cookie-reject>
+          <span class="cookie-btn__text">Rechazar</span>
+        </button>
+      </div>
     </div>
   </div>
-</div>
 
   <!-- WhatsApp flotante: encima de "volver arriba", con sus mismas medidas.
        Aparece a la vez que ese botón (main.js, onScroll). -->
   <a class="wa-float" data-wa-float
-    href="https://wa.me/573132957599?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20los%20servicios%20de%20enfermer%C3%ADa%20a%20domicilio."
+    href="https://wa.me/573142734056?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20los%20servicios%20de%20enfermer%C3%ADa%20a%20domicilio."
     target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp (se abre en una pestaña nueva)">
     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z" />

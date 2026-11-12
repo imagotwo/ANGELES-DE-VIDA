@@ -4,9 +4,12 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/webp" href="./assets/img/enfermeras-angeles-de-vida-favicon.webp">
   <title>Política de Tratamiento de Datos Personales — ÁNGELES DE VIDA</title>
+  <!-- Dirección oficial de esta página para Google -->
+  <link rel="canonical" href="https://www.enfermerasangelesdevida.com/privacidad">
   <meta name="description"
-    content="Política de tratamiento de datos personales de Ángeles de Vida: cómo recolectamos, usamos y protegemos tus datos, y cómo ejercer tus derechos (Ley 1581 de 2012)." />
+    content="Política de tratamiento de datos personales de Enfermeras Ángeles de Vida: cómo recolectamos, usamos y protegemos tus datos, cookies y cómo ejercer tus derechos (Ley 1581 de 2012)." />
 
   <!-- Mismas tipografías, librerías y estilos que index.html -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -28,14 +31,14 @@
        - data-header-dark: como arriba no hay foto oscura sino fondo claro,
          el header transparente usa ya el logo de color y textos/líneas en
          azul (igual que cuando está blanco), para que se lean (styles.css).
-       - Los enlaces llevan a index.html#seccion; main.js de index.html
+       - Los enlaces llevan a ./#seccion (raíz del sitio); main.js de index.html
          baja a esa sección al llegar.
        - "Solicita tu servicio" lleva a index.html#solicitar, que abre allí
          el modal del formulario de servicio.
        ============================================================ -->
   <header class="header" data-header data-header-dark>
     <div class="header__bar">
-      <a href="index.html" class="header__logo" aria-label="Ángeles de Vida — inicio">
+      <a href="./" class="header__logo" aria-label="Ángeles de Vida — inicio">
         <picture><source media="(max-width: 640px)" srcset="assets/img/enfermeras-angeles-de-vida-logo-movil.webp" width="250" height="250" /><img class="header__logo-mark header__logo-mark--light" src="assets/img/angeles-de-vida-logo-blanco.webp" width="268" height="120"
           alt="Ángeles de Vida" /></picture>
         <picture><source media="(max-width: 640px)" srcset="assets/img/enfermeras-angeles-de-vida-logo-movil.webp" width="250" height="250" /><img class="header__logo-mark header__logo-mark--dark" src="assets/img/angeles-de-vida-logo.webp" width="268" height="120" alt="" /></picture>
@@ -47,7 +50,7 @@
           <span class="menu-toggle__icon"><span></span><span></span></span>
         </button>
 
-        <a href="index.html#solicitar" class="cta-btn">
+        <a href="./#solicitar" class="cta-btn">
           <span class="cta-btn__text">Solicita tu servicio</span>
           <span class="cta-btn__arrow">
             <span class="cta-btn__circle"></span>
@@ -74,23 +77,21 @@
           </svg>
         </button>
         <nav class="menu__nav">
-          <a href="index.html" class="menu__link" style="--d:0s"><span
+          <a href="./" class="menu__link" style="--d:0s"><span
               class="menu__roll"><span>Home</span><span>Home</span></span></a>
-          <a href="index.html#nosotros" class="menu__link" style="--d:.08s"><span
+          <a href="./#nosotros" class="menu__link" style="--d:.08s"><span
               class="menu__roll"><span>Nosotros</span><span>Nosotros</span></span></a>
-          <a href="index.html#servicios" class="menu__link" style="--d:.16s"><span
+          <a href="./#servicios" class="menu__link" style="--d:.16s"><span
               class="menu__roll"><span>Servicios</span><span>Servicios</span></span></a>
-          <a href="index.html#testimonios" class="menu__link" style="--d:.24s"><span
+          <a href="./#testimonios" class="menu__link" style="--d:.24s"><span
               class="menu__roll"><span>Testimonios</span><span>Testimonios</span></span></a>
-          <a href="index.html#preguntas" class="menu__link" style="--d:.32s"><span class="menu__roll"><span>Preguntas
+          <a href="./#preguntas" class="menu__link" style="--d:.32s"><span class="menu__roll"><span>Preguntas
                 frecuentes</span><span>Preguntas frecuentes</span></span></a>
-          <a href="index.html#contacto" class="menu__link" style="--d:.40s"><span
+          <a href="./#contacto" class="menu__link" style="--d:.40s"><span
               class="menu__roll"><span>Contacto</span><span>Contacto</span></span></a>
         </nav>
         <div class="menu__footer">
           <p class="menu__brand">Ángeles <em>de</em> Vida</p>
-          <p class="menu__desc">Tus seres queridos en buenas manos, tu familia en tranquilidad. Cuidado profesional y
-            humano para quienes más amas.<br>• Atención 24/7</p>
           <!-- Redes sociales (mismo bloque que en el pie; aquí en azul sobre el panel crema) -->
           <nav class="social social--menu" aria-label="Redes sociales">
             <a class="social__link" href="https://www.facebook.com/enfermerasangelesdevida" target="_blank" rel="noopener">
@@ -100,6 +101,13 @@
             <a class="social__link" href="https://www.instagram.com/enfermerasangelesdevida/" target="_blank" rel="noopener">
               <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r=".6" /></svg>
               <span class="sr-only">Instagram de Ángeles de Vida (se abre en una pestaña nueva)</span>
+            </a>
+            <a class="social__link" href="https://www.tiktok.com/@enfermerasangelesdevida" target="_blank"
+              rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M21 7.917v4.034a9.948 9.948 0 0 1-5-1.951v4.5a6.5 6.5 0 1 1-8-6.326v4.326a2.5 2.5 0 1 0 4 2v-11.5h4.083a6.005 6.005 0 0 0 4.917 4.917z" />
+              </svg>
+              <span class="sr-only">TikTok de Ángeles de Vida (se abre en una pestaña nueva)</span>
             </a>
             <!-- YouTube: visible pero SIN canal todavía (data-pendiente: main.js evita que el clic haga algo).
                Cuando exista el canal: pon su URL en href, añade target="_blank" rel="noopener" y quita data-pendiente. -->
@@ -116,19 +124,16 @@
   <main>
     <!-- ============================================================
          POLÍTICA DE TRATAMIENTO DE DATOS PERSONALES
-         Página generada a partir de Privacidad.docx (mismo texto, solo formato).
-         Los campos entre corchetes resaltados (mark.legal__pendiente) están SIN
-         RELLENAR en el documento original: completarlos antes de publicar.
-         No se publican: la nota interna del documento ni la sección de anexos
-         ("textos listos para el sitio web").
-         Nota interna del documento (no visible en la página):
-         "Nota para el equipo de Ángeles de Vida: complete los campos entre corchetes [ ] antes de publicar (razón social, NIT, dirección, correo, teléfono y fecha). Se recomienda que un abogado especialista en protección de datos revise este texto antes de su publicación, ya que esta política debe reflejar fielmente la operación real de la empresa."
+         Página generada a partir de privacida.md (mismo texto, solo formato).
+         Títulos, listas, tablas y negritas se recuperan del documento de Word
+         original; los apartados nuevos se formatean igual que el resto.
+         Si se cambia el .md, hay que volver a generar esta página.
          ============================================================ -->
     <article class="legal">
       <header class="legal__intro">
-        <p class="eyebrow text-gold">Ángeles de Vida</p>
+        <p class="eyebrow text-gold">Enfermeras Ángeles de Vida</p>
         <h1 class="legal__title">Política de Tratamiento de Datos Personales</h1>
-        <p class="legal__meta">Versión 1.0  ·  Vigente desde: 23 de octubre de 2023 · Última actualización: 23 de octubre de 2023</p>
+        <p class="legal__meta">Última actualización: 1 de noviembre de 2026</p>
       </header>
 
       <div class="legal__body">
@@ -164,25 +169,25 @@
 
         <div class="legal__content">
           <h2 id="apartado-1-introduccion">1. Introducción</h2>
-          <p>En enero de 2010 nació Ángeles de Vida con un sueño: ayudar a las familias a cuidar de las personas que más aman. Durante más de 16 años hemos acompañado a familias con cariño, respeto y dedicación, brindando cuidado en casa o en el hospital. Sabemos que confiarnos el cuidado de un ser querido implica también confiarnos información muy valiosa y, en muchos casos, muy íntima.</p>
+          <p>En enero de 2010 nació Enfermeras Ángeles de Vida con un sueño: ayudar a las familias a cuidar de las personas que más aman. Durante más de 16 años hemos acompañado a familias con cariño, respeto y dedicación, brindando cuidado en casa o en el hospital. Sabemos que confiarnos el cuidado de un ser querido implica también confiarnos información muy valiosa y, en muchos casos, muy íntima.</p>
           <p>Por eso, protegemos los datos personales de nuestros usuarios, familiares, cuidadores y colaboradores con el mismo compromiso con el que cuidamos a las personas. Esta Política explica, de forma clara y transparente, qué datos recolectamos, para qué los usamos, cómo los protegemos y cómo puede ejercer sus derechos.</p>
           <p>Esta Política se expide en cumplimiento del artículo 15 de la Constitución Política de Colombia, la Ley Estatutaria 1581 de 2012 y sus decretos reglamentarios.</p>
           <h2 id="apartado-2-identificacion-del-responsable-del-tratamiento">2. Identificación del Responsable del Tratamiento</h2>
-          <div class="legal__tabla-wrap"><table class="legal__tabla"><tbody><tr><th scope="row">Razón social</th><td><mark class="legal__pendiente">[Razón social completa]</mark>, en adelante “Ángeles de Vida”</td></tr><tr><th scope="row">NIT</th><td><mark class="legal__pendiente">[NIT]</mark></td></tr><tr><th scope="row">Domicilio principal</th><td><mark class="legal__pendiente">[Dirección]</mark>, Bogotá D.C., Colombia</td></tr><tr><th scope="row">Correo para asuntos de datos personales</th><td><mark class="legal__pendiente">[correo@angelesdevida.com]</mark></td></tr><tr><th scope="row">Teléfono</th><td><mark class="legal__pendiente">[Teléfono]</mark></td></tr><tr><th scope="row">Sitio web</th><td><mark class="legal__pendiente">[www.angelesdevida.com]</mark></td></tr><tr><th scope="row">Área responsable de consultas y reclamos</th><td><mark class="legal__pendiente">[Nombre del área o cargo, por ejemplo: Oficial de Protección de Datos / Coordinación Administrativa]</mark></td></tr></tbody></table></div>
+          <div class="legal__tabla-wrap"><table class="legal__tabla"><tbody><tr><th scope="row">Razón social</th><td>MARYI MARIA TRUJILLO VALBUENA, en adelante “Enfermeras Ángeles de Vida”</td></tr><tr><th scope="row">CC</th><td>26870323</td></tr><tr><th scope="row">Domicilio principal</th><td>Avenida Calle 3 No. 40B-37, Bogotá D.C., Colombia</td></tr><tr><th scope="row">Correo para asuntos de datos personales</th><td>enfermeriaangelesdevida@gmail.com</td></tr><tr><th scope="row">Teléfono</th><td>320 347 3040</td></tr><tr><th scope="row">Sitio web</th><td>www.enfermerasangelesdevida.com</td></tr><tr><th scope="row">Área responsable de consultas y reclamos</th><td>Maryi Trujillo, Oficial de Protección de Datos.</td></tr></tbody></table></div>
           <h2 id="apartado-3-marco-normativo">3. Marco normativo</h2>
           <p>Esta Política se fundamenta en:</p>
           <ul class="legal__lista"><li>Artículos 15 y 20 de la Constitución Política de Colombia (derecho a la intimidad, al buen nombre, hábeas data y acceso a la información).</li><li>Ley Estatutaria 1581 de 2012, por la cual se dictan disposiciones generales para la protección de datos personales.</li><li>Decreto 1377 de 2013, compilado en el Decreto 1074 de 2015, y demás normas que lo modifiquen, adicionen o complementen.</li><li>Sentencia C-748 de 2011 de la Corte Constitucional, que efectuó el control de constitucionalidad de la Ley 1581 de 2012.</li><li>Circulares e instrucciones de la Superintendencia de Industria y Comercio (SIC), autoridad de protección de datos personales en Colombia.</li></ul>
           <h2 id="apartado-4-ambito-de-aplicacion">4. Ámbito de aplicación</h2>
-          <p>Esta Política aplica a todos los datos personales registrados en las bases de datos de Ángeles de Vida que sean objeto de Tratamiento, y se aplica a las personas que se relacionen con la empresa, entre ellas:</p>
+          <p>Esta Política aplica a todos los datos personales registrados en las bases de datos de Enfermeras Ángeles de Vida que sean objeto de Tratamiento, y se aplica a las personas que se relacionen con la empresa, entre ellas:</p>
           <ul class="legal__lista"><li>Clientes, familiares y personas que solicitan nuestros servicios de cuidado.</li><li>Pacientes o personas cuidadas.</li><li>Personal de cuidado, auxiliares, enfermeros y demás colaboradores, así como candidatos a vinculación.</li><li>Proveedores, aliados y contratistas.</li><li>Visitantes del sitio web y personas que nos contactan por cualquier canal.</li></ul>
           <h2 id="apartado-5-definiciones">5. Definiciones</h2>
           <p>De conformidad con el artículo 3 de la Ley 1581 de 2012, se entiende por:</p>
           <ul class="legal__lista"><li><strong>Autorización:</strong> consentimiento previo, expreso e informado del Titular para llevar a cabo el Tratamiento de datos personales.</li><li><strong>Base de datos:</strong> conjunto organizado de datos personales que sea objeto de Tratamiento.</li><li><strong>Dato personal:</strong> cualquier información vinculada o que pueda asociarse a una o varias personas naturales determinadas o determinables.</li><li><strong>Dato sensible:</strong> aquel que afecta la intimidad del Titular o cuyo uso indebido puede generar su discriminación, como los datos relativos a la salud, la vida sexual, el origen racial o étnico, la orientación política, las convicciones religiosas o filosóficas, la pertenencia a sindicatos u organizaciones sociales, y los datos biométricos.</li><li><strong>Encargado del Tratamiento:</strong> persona natural o jurídica, pública o privada, que por sí misma o en asocio con otros, realice el Tratamiento de datos personales por cuenta del Responsable.</li><li><strong>Responsable del Tratamiento:</strong> persona natural o jurídica, pública o privada, que por sí misma o en asocio con otros, decida sobre la base de datos y/o el Tratamiento de los datos.</li><li><strong>Titular:</strong> persona natural cuyos datos personales sean objeto de Tratamiento.</li><li><strong>Tratamiento:</strong> cualquier operación o conjunto de operaciones sobre datos personales, tales como la recolección, almacenamiento, uso, circulación o supresión.</li><li><strong>Transferencia:</strong> envío de datos personales por parte del Responsable o Encargado ubicado en Colombia a un receptor que, a su vez, es Responsable del Tratamiento y se encuentra dentro o fuera del país.</li><li><strong>Transmisión:</strong> comunicación de datos personales dentro o fuera de Colombia cuando tenga por objeto la realización de un Tratamiento por el Encargado por cuenta del Responsable.</li></ul>
           <h2 id="apartado-6-principios-rectores">6. Principios rectores</h2>
-          <p>En el Tratamiento de datos personales, Ángeles de Vida aplica de manera armónica e integral los principios del artículo 4 de la Ley 1581 de 2012:</p>
+          <p>En el Tratamiento de datos personales, Enfermeras Ángeles de Vida aplica de manera armónica e integral los principios del artículo 4 de la Ley 1581 de 2012:</p>
           <ol class="legal__lista"><li><strong>Legalidad:</strong> el Tratamiento es una actividad reglada que se sujeta a la ley y a las normas que la desarrollan.</li><li><strong>Finalidad:</strong> el Tratamiento obedece a una finalidad legítima, que es informada al Titular.</li><li><strong>Libertad:</strong> el Tratamiento sólo se ejerce con el consentimiento previo, expreso e informado del Titular, salvo mandato legal o judicial.</li><li><strong>Veracidad o calidad:</strong> la información sujeta a Tratamiento debe ser veraz, completa, exacta, actualizada, comprobable y comprensible.</li><li><strong>Transparencia:</strong> se garantiza al Titular el derecho de obtener, en cualquier momento y sin restricciones, información sobre la existencia de datos que le conciernan.</li><li><strong>Acceso y circulación restringida:</strong> el Tratamiento sólo se hace por personas autorizadas por el Titular o por la ley. Los datos personales, salvo la información pública, no estarán disponibles en Internet u otros medios masivos, salvo que el acceso sea técnicamente controlable.</li><li><strong>Seguridad:</strong> la información se maneja con las medidas técnicas, humanas y administrativas necesarias para evitar su adulteración, pérdida, consulta, uso o acceso no autorizado o fraudulento.</li><li><strong>Confidencialidad:</strong> todas las personas que intervienen en el Tratamiento de datos que no sean públicos están obligadas a garantizar su reserva, incluso después de finalizada su relación con la empresa.</li></ol>
           <h2 id="apartado-7-datos-personales-que-recolectamos">7. Datos personales que recolectamos</h2>
-          <p>Según la relación que usted tenga con Ángeles de Vida, podemos tratar las siguientes categorías de datos:</p>
+          <p>Según la relación que usted tenga con Enfermeras Ángeles de Vida, podemos tratar las siguientes categorías de datos:</p>
           <p><strong>Datos de identificación y contacto:</strong> nombres y apellidos, tipo y número de documento de identidad, fecha de nacimiento, dirección de residencia, teléfono, correo electrónico, parentesco con la persona cuidada.</p>
           <p><strong>Datos de la persona cuidada:</strong> nombre, edad, documento de identidad, dirección donde se prestará el servicio, entidad de salud (EPS, medicina prepagada), contacto de familiares y personas autorizadas, hábitos, rutinas y preferencias necesarias para su cuidado.</p>
           <p><strong>Datos sensibles (salud):</strong> diagnósticos, condiciones médicas, tratamientos, medicamentos, alergias, discapacidades, antecedentes, recomendaciones médicas, historia clínica y reportes de evolución, en la medida en que sean necesarios para prestar un cuidado seguro y adecuado.</p>
@@ -191,7 +196,7 @@
           <p><strong>Datos de navegación:</strong> dirección IP, tipo de dispositivo y navegador, páginas visitadas y datos recopilados mediante cookies, conforme a la sección 18 de esta Política.</p>
           <p><strong>Imágenes y grabaciones:</strong> registros de video de seguridad en nuestras instalaciones, si las hubiere, y fotografías o videos únicamente con autorización expresa del Titular.</p>
           <h2 id="apartado-8-finalidades-del-tratamiento">8. Finalidades del Tratamiento</h2>
-          <p>Ángeles de Vida tratará los datos personales para las siguientes finalidades, las cuales son informadas al Titular al momento de solicitar su autorización:</p>
+          <p>Enfermeras Ángeles de Vida tratará los datos personales para las siguientes finalidades, las cuales son informadas al Titular al momento de solicitar su autorización:</p>
           <h3 id="apartado-8-1-usuarios-clientes-y-familiares">8.1 Usuarios, clientes y familiares</h3>
           <ol class="legal__lista"><li>Atender solicitudes de información, cotización, contacto y asesoría sobre nuestros servicios de cuidado en casa o en el hospital.</li><li>Evaluar las necesidades de cuidado de la persona a atender y asignar el personal idóneo.</li><li>Celebrar, ejecutar y hacer seguimiento al contrato de prestación de servicios.</li><li>Coordinar con familiares, representantes y personas autorizadas la comunicación sobre el estado y la evolución del cuidado.</li><li>Gestionar la facturación, el cobro, el recaudo y la atención de pagos.</li><li>Atender peticiones, quejas, reclamos, sugerencias y encuestas de satisfacción.</li><li>Enviar información sobre nuestros servicios, novedades y contenidos de interés, siempre que usted lo haya autorizado, con la posibilidad de retirar su consentimiento en cualquier momento.</li><li>Cumplir obligaciones legales, contractuales y requerimientos de autoridades competentes.</li><li>Realizar análisis estadísticos y de mejora de la calidad del servicio, preferiblemente con datos anonimizados.</li></ol>
           <h3 id="apartado-8-2-personas-cuidadas-datos-sensibles-de-salud">8.2 Personas cuidadas (datos sensibles de salud)</h3>
@@ -229,7 +234,7 @@
           <h2 id="apartado-14-procedimiento-para-ejercer-sus-derechos-consultas-y-recla">14. Procedimiento para ejercer sus derechos: consultas y reclamos</h2>
           <h3 id="apartado-14-1-canales-de-atencion">14.1 Canales de atención</h3>
           <p>Puede presentar sus consultas y reclamos a través de:</p>
-          <ul class="legal__lista"><li><strong>Correo electrónico:</strong> <mark class="legal__pendiente">[correo@angelesdevida.com]</mark></li><li><strong>Dirección física:</strong> <mark class="legal__pendiente">[Dirección]</mark>, Bogotá D.C.</li><li><strong>Teléfono:</strong> <mark class="legal__pendiente">[Teléfono]</mark></li><li><strong>Formulario web:</strong> <mark class="legal__pendiente">[enlace al formulario de la página web, si aplica]</mark></li></ul>
+          <ul class="legal__lista"><li><strong>Correo electrónico:</strong> enfermeriaangelesdevida@gmail.com</li><li><strong>Dirección física:</strong> Avenida Calle 3 No. 40B-37, Bogotá D.C.</li><li><strong>Teléfono:</strong> 320 347 3040</li></ul>
           <p>Para proteger su información, Ángeles de Vida verificará la identidad del solicitante o la calidad con la que actúa (causahabiente, representante legal o apoderado) antes de suministrar datos personales.</p>
           <h3 id="apartado-14-2-consultas">14.2 Consultas</h3>
           <p>El Titular o sus causahabientes pueden consultar la información personal que repose en nuestras bases de datos. Ángeles de Vida suministrará toda la información contenida en el registro individual o vinculada con la identificación del Titular (artículo 14 de la Ley 1581 de 2012).</p>
@@ -253,27 +258,45 @@
           <h2 id="apartado-17-confidencialidad">17. Confidencialidad</h2>
           <p>Todas las personas que intervienen en el Tratamiento de datos personales que no tengan naturaleza pública están obligadas a garantizar la reserva de la información, incluso después de finalizada su relación con Ángeles de Vida. Esta obligación es especialmente rigurosa respecto de la información de salud y de la vida privada de las personas que cuidamos y de sus familias.</p>
           <h2 id="apartado-18-cookies-y-tecnologias-similares">18. Cookies y tecnologías similares</h2>
-          <p>Nuestro sitio web puede utilizar cookies y tecnologías similares para:</p>
-          <ul class="legal__lista"><li><strong>Cookies necesarias:</strong> permiten el funcionamiento básico del sitio y la seguridad.</li><li><strong>Cookies de análisis:</strong> nos ayudan a entender cómo se usa el sitio para mejorarlo (por ejemplo, páginas visitadas y tiempo de navegación).</li><li><strong>Cookies de funcionalidad o marketing:</strong> si se implementan, sólo se activarán con su consentimiento.</li></ul>
-          <p>Usted puede configurar su navegador para rechazar o eliminar cookies, aunque algunas funciones del sitio podrían verse afectadas. <mark class="legal__pendiente">[Ajustar esta sección a las herramientas realmente utilizadas, por ejemplo Google Analytics, Meta Pixel, etc.]</mark></p>
+          <p>El sitio web de Enfermeras Ángeles de Vida puede utilizar cookies y tecnologías similares para garantizar su funcionamiento, analizar el uso del sitio, mejorar la experiencia de navegación y, cuando corresponda, medir la efectividad de sus actividades publicitarias.</p>
+          <p>Estas tecnologías pueden incluir cookies propias y de terceros, herramientas de analítica y píxeles de seguimiento.</p>
+          <h3 id="apartado-meta-pixel-facebook-e-instagram">Meta Pixel (Facebook e Instagram)</h3>
+          <p>El sitio web puede utilizar Meta Pixel, una herramienta tecnológica proporcionada por Meta Platforms, Inc. y sus empresas vinculadas, que permite medir las interacciones de los visitantes con el sitio web y evaluar el rendimiento de las campañas publicitarias realizadas en plataformas como Facebook e Instagram.</p>
+          <p>Mediante esta herramienta se pueden recopilar datos técnicos y de navegación, como las páginas visitadas, las acciones realizadas en el sitio, información del navegador y dispositivo, dirección IP, identificadores de cookies y otros eventos de navegación, según la configuración implementada.</p>
+          <p>Esta información puede ser utilizada para:</p>
+          <ul class="legal__lista"><li>Medir y analizar el rendimiento de las campañas publicitarias.</li><li>Conocer las interacciones de los visitantes con el sitio web.</li><li>Crear audiencias para campañas publicitarias, cuando corresponda.</li><li>Mostrar anuncios relacionados con los servicios de Enfermeras Ángeles de Vida en las plataformas de Meta.</li><li>Mejorar la efectividad de las estrategias de comunicación y publicidad.</li></ul>
+          <p>Meta puede tratar esta información conforme a sus propias políticas y condiciones de privacidad. Para conocer cómo Meta recopila y utiliza los datos, el usuario puede consultar su Política de privacidad.</p>
+          <h3 id="apartado-consentimiento-y-configuracion">Consentimiento y configuración</h3>
+          <p>Las cookies y tecnologías de seguimiento que no sean estrictamente necesarias para el funcionamiento del sitio web deberán estar sujetas a la elección previa del usuario mediante el mecanismo de consentimiento implementado en la página.</p>
+          <p>El usuario podrá aceptar, rechazar o configurar las categorías de cookies opcionales, así como modificar o retirar posteriormente su consentimiento mediante el panel de preferencias de cookies, cuando se encuentre disponible.</p>
+          <p>El rechazo de las cookies opcionales no deberá impedir el acceso a las funcionalidades esenciales del sitio web.</p>
+          <h3 id="apartado-proteccion-de-datos-personales">Protección de datos personales</h3>
+          <p>Enfermeras Ángeles de Vida procurará que la información recopilada mediante cookies y herramientas de seguimiento sea tratada de acuerdo con la legislación colombiana sobre protección de datos personales, especialmente la Ley 1581 de 2012 y sus normas reglamentarias.</p>
+          <p>No se deberán transmitir a través de Meta Pixel datos sensibles relacionados con la salud, diagnósticos, tratamientos, condiciones médicas, información clínica, datos de pacientes ni información que permita inferir este tipo de circunstancias.</p>
+          <p>Para conocer más sobre el tratamiento de datos personales, sus finalidades, derechos y mecanismos de consulta o reclamación, el usuario podrá consultar nuestra Política de Tratamiento de Datos Personales.</p>
           <h2 id="apartado-19-conservacion-de-los-datos">19. Conservación de los datos</h2>
           <p>Los datos personales se conservarán durante el tiempo que sea necesario para cumplir las finalidades para las que fueron recolectados y las obligaciones legales, contractuales, contables, tributarias, laborales o de salud aplicables. Una vez cumplida la finalidad y vencidos los plazos legales de conservación, los datos serán suprimidos, anonimizados o archivados de forma segura.</p>
           <h2 id="apartado-20-registro-nacional-de-bases-de-datos">20. Registro Nacional de Bases de Datos</h2>
-          <p>Ángeles de Vida inscribirá y mantendrá actualizadas sus bases de datos en el Registro Nacional de Bases de Datos (RNBD) administrado por la Superintendencia de Industria y Comercio, en los términos y plazos que establezca la reglamentación vigente, aportando esta Política de Tratamiento de la información cuando corresponda. <mark class="legal__pendiente">[Verificar con el asesor jurídico si la empresa está obligada a la inscripción según los criterios vigentes.]</mark></p>
+          <p>De conformidad con el Decreto 1074 de 2015, modificado por el Decreto 090 de 2018, Enfermeras Ángeles de Vida, al operar bajo la figura de persona natural, no se encuentra obligada a inscribir sus bases de datos personales en el Registro Nacional de Bases de Datos (RNBD), administrado por la Superintendencia de Industria y Comercio (SIC).</p>
+          <p>No obstante, esta condición no la exime del cumplimiento de las obligaciones establecidas en la Ley 1581 de 2012 y sus normas reglamentarias en materia de protección de datos personales.</p>
+          <p>En consecuencia, Enfermeras Ángeles de Vida se compromete a implementar y mantener las medidas necesarias para garantizar el tratamiento adecuado, seguro y confidencial de la información personal bajo su responsabilidad, incluyendo la adopción de una Política de Tratamiento de Datos Personales, la obtención de las autorizaciones correspondientes cuando sean exigibles, la atención de consultas y reclamos de los titulares y la protección de la información frente al acceso, uso o divulgación no autorizados.</p>
           <h2 id="apartado-21-autoridad-de-proteccion-de-datos">21. Autoridad de protección de datos</h2>
           <p>La Superintendencia de Industria y Comercio (SIC), a través de su Delegatura para la Protección de Datos Personales, es la autoridad que vigila el cumplimiento de la normativa de protección de datos personales en Colombia. Una vez agotado el trámite de consulta o reclamo ante Ángeles de Vida, el Titular podrá presentar queja ante esta entidad.</p>
           <h2 id="apartado-22-modificaciones-a-la-politica">22. Modificaciones a la Política</h2>
-          <p>Ángeles de Vida podrá modificar esta Política para adaptarla a cambios normativos, jurisprudenciales o en sus procesos internos. Cualquier cambio sustancial será comunicado a los Titulares mediante publicación en nuestro sitio web y, cuando sea necesario, por medios directos como el correo electrónico. La versión vigente y la fecha de la última actualización estarán siempre indicadas al inicio de este documento.</p>
+          <p>Enfermeras Ángeles de Vida podrá modificar esta Política para adaptarla a cambios normativos, jurisprudenciales o en sus procesos internos. Cualquier cambio sustancial será comunicado a los Titulares mediante publicación en nuestro sitio web y, cuando sea necesario, por medios directos como el correo electrónico. La versión vigente y la fecha de la última actualización estarán siempre indicadas al inicio de este documento.</p>
           <h2 id="apartado-23-vigencia">23. Vigencia</h2>
-          <p>Esta Política rige a partir de <mark class="legal__pendiente">[DD de MES de AAAA]</mark> y permanecerá vigente mientras Ángeles de Vida realice Tratamiento de datos personales. Las bases de datos se mantendrán vigentes por el tiempo que dure la finalidad para la cual fueron creadas y las obligaciones legales aplicables.</p>
+          <p>La presente Política de Tratamiento de Datos Personales de Enfermeras Ángeles de Vida entra en vigor a partir del 1 de noviembre de 2026 y permanecerá vigente mientras la empresa realice actividades de recolección, almacenamiento, uso, circulación, actualización o cualquier otra forma de tratamiento de datos personales.</p>
+          <p>Las bases de datos y la información personal serán conservadas durante el tiempo que resulte necesario para cumplir las finalidades para las cuales fueron recopiladas, atender las obligaciones legales, contractuales, contables y administrativas aplicables, y garantizar el ejercicio de los derechos de sus titulares.</p>
+          <p>Una vez cumplidas las finalidades del tratamiento y siempre que no exista una obligación legal o contractual que justifique su conservación, los datos personales serán suprimidos, anonimizados o sometidos a las medidas que correspondan, de conformidad con la normativa vigente.</p>
+          <p>Enfermeras Ángeles de Vida podrá actualizar esta Política cuando resulte necesario, especialmente cuando se presenten cambios en sus procedimientos, servicios, finalidades de tratamiento o disposiciones legales aplicables. Las modificaciones serán comunicadas a los titulares a través de los canales de contacto o medios disponibles de la empresa.</p>
         </div>
       </div>
     </article>
   </main>
 
-  <footer class="footer">
+  <footer class="footer" id="contacto">
     <!-- Pie en 3 filas separadas por líneas finas:
-         1. logo · 2. columnas (Navegación / Empresa / Legal) + redes a la derecha · 3. derechos -->
+         1. logo · 2. columnas (Navegación / Legal / Empresa / Síguenos) · 3. derechos -->
     <div class="footer__inner footer__inner--grid">
 
       <!-- 1. Logotipo -->
@@ -286,12 +309,12 @@
       <div class="footer__grid">
         <nav class="footer__col" aria-labelledby="footer-nav-titulo">
           <h2 class="footer__heading" id="footer-nav-titulo">Navegación</h2>
-          <a href="index.html#inicio"><span class="menu__roll"><span>Home</span><span>Home</span></span></a>
-          <a href="index.html#nosotros"><span class="menu__roll"><span>Nosotros</span><span>Nosotros</span></span></a>
-          <a href="index.html#servicios"><span class="menu__roll"><span>Servicios</span><span>Servicios</span></span></a>
-          <a href="index.html#testimonios"><span class="menu__roll"><span>Testimonios</span><span>Testimonios</span></span></a>
-          <a href="index.html#preguntas"><span class="menu__roll"><span>Preguntas frecuentes</span><span>Preguntas frecuentes</span></span></a>
-          <a href="index.html#contacto"><span class="menu__roll"><span>Contacto</span><span>Contacto</span></span></a>
+          <a href="./#inicio"><span class="menu__roll"><span>Home</span><span>Home</span></span></a>
+          <a href="./#nosotros"><span class="menu__roll"><span>Nosotros</span><span>Nosotros</span></span></a>
+          <a href="./#servicios"><span class="menu__roll"><span>Servicios</span><span>Servicios</span></span></a>
+          <a href="./#testimonios"><span class="menu__roll"><span>Testimonios</span><span>Testimonios</span></span></a>
+          <a href="./#preguntas"><span class="menu__roll"><span>Preguntas frecuentes</span><span>Preguntas frecuentes</span></span></a>
+          <a href="./#contacto"><span class="menu__roll"><span>Contacto</span><span>Contacto</span></span></a>
         </nav>
 
         <nav class="footer__col" aria-labelledby="footer-legal-titulo">
@@ -299,6 +322,7 @@
           <a href="privacidad.html" aria-current="page"><span class="menu__roll"><span>Privacidad</span><span>Privacidad</span></span></a>
           <a href="terminos.html"><span class="menu__roll"><span>Términos</span><span>Términos</span></span></a>
           <a href="aviso-legal.html"><span class="menu__roll"><span>Aviso legal</span><span>Aviso legal</span></span></a>
+          <button type="button" class="footer__cookies" data-cookie-settings><span class="menu__roll"><span>Preferencias de cookies</span><span>Preferencias de cookies</span></span></button>
         </nav>
 
         <!-- Información de contacto y localización (SEO local) + empleo -->
@@ -306,6 +330,7 @@
           <h2 class="footer__heading" id="footer-empresa-titulo">Empresa</h2>
           <p>Enfermeras Ángeles de Vida</p>
           <p>Servicio de enfermería a domicilio las 24 horas en Bogotá, Colombia.</p>
+          <p>+57 320 347 3040</p>
           <a href="trabaja-con-nosotros.html">
             <span class="menu__roll">
               <span>Trabaja con nosotros</span>
@@ -314,32 +339,42 @@
           </a>
         </section>
 
-        <!-- Redes sociales (YouTube pendiente) -->
-        <nav class="social footer__social" aria-label="Redes sociales">
-          <a class="social__link" href="https://www.facebook.com/enfermerasangelesdevida" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <path d="M14.5 3H13a4 4 0 0 0-4 4v3H7v3h2v8h3v-8h2.5l.5-3h-3V7.5A1.5 1.5 0 0 1 13.5 6h1z" />
-            </svg>
-            <span class="sr-only">Facebook de Enfermeras Ángeles de Vida (se abre en una pestaña nueva)</span>
-          </a>
+        <!-- Redes sociales (YouTube pendiente): columna propia con título -->
+        <div class="footer__col footer__col--social">
+          <h2 class="footer__heading" id="footer-redes-titulo">Síguenos</h2>
+          <nav class="social footer__social" aria-labelledby="footer-redes-titulo">
+            <a class="social__link" href="https://www.facebook.com/enfermerasangelesdevida" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M14.5 3H13a4 4 0 0 0-4 4v3H7v3h2v8h3v-8h2.5l.5-3h-3V7.5A1.5 1.5 0 0 1 13.5 6h1z" />
+              </svg>
+              <span class="sr-only">Facebook de Enfermeras Ángeles de Vida (se abre en una pestaña nueva)</span>
+            </a>
 
-          <a class="social__link" href="https://www.instagram.com/enfermerasangelesdevida/" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <rect x="3" y="3" width="18" height="18" rx="5" />
-              <circle cx="12" cy="12" r="4" />
-              <circle cx="17.5" cy="6.5" r=".6" />
-            </svg>
-            <span class="sr-only">Instagram de Enfermeras Ángeles de Vida (se abre en una pestaña nueva)</span>
-          </a>
+            <a class="social__link" href="https://www.instagram.com/enfermerasangelesdevida/" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <rect x="3" y="3" width="18" height="18" rx="5" />
+                <circle cx="12" cy="12" r="4" />
+                <circle cx="17.5" cy="6.5" r=".6" />
+              </svg>
+              <span class="sr-only">Instagram de Enfermeras Ángeles de Vida (se abre en una pestaña nueva)</span>
+            </a>
 
-          <a class="social__link" href="#" data-pendiente title="Próximamente">
-            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <rect x="2" y="5" width="20" height="14" rx="4" />
-              <path d="m10 9 5 3-5 3z" />
-            </svg>
-            <span class="sr-only">YouTube de Enfermeras Ángeles de Vida</span>
-          </a>
-        </nav>
+            <a class="social__link" href="https://www.tiktok.com/@enfermerasangelesdevida" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M21 7.917v4.034a9.948 9.948 0 0 1-5-1.951v4.5a6.5 6.5 0 1 1-8-6.326v4.326a2.5 2.5 0 1 0 4 2v-11.5h4.083a6.005 6.005 0 0 0 4.917 4.917z" />
+              </svg>
+              <span class="sr-only">TikTok de Enfermeras Ángeles de Vida (se abre en una pestaña nueva)</span>
+            </a>
+
+            <a class="social__link" href="#" data-pendiente title="Próximamente">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <rect x="2" y="5" width="20" height="14" rx="4" />
+                <path d="m10 9 5 3-5 3z" />
+              </svg>
+              <span class="sr-only">YouTube de Enfermeras Ángeles de Vida</span>
+            </a>
+          </nav>
+        </div>
       </div>
 
       <!-- 3. Derechos de autor y créditos -->
@@ -353,10 +388,34 @@
     </div>
   </footer>
 
+  <!-- ============================================================
+       AVISO DE COOKIES (main.js, bloque 13) — igual en todas las páginas.
+       Se muestra mientras la persona no haya decidido. El Meta Pixel solo se
+       carga con "Aceptar". "Preferencias de cookies" (pie) lo vuelve a abrir.
+       ============================================================ -->
+  <div class="cookie-banner" id="cookie-banner" role="region" aria-label="Aviso de cookies" hidden>
+    <div class="cookie-banner__inner">
+      <p class="cookie-banner__text">
+        Utilizamos cookies propias y/o de terceros para mejorar nuestros servicios y analizar la navegación, solo si las aceptas.
+        Puedes cambiar tu decisión cuando quieras en «Preferencias de cookies», al pie de la página.
+        Más información en nuestra <a href="privacidad.html#apartado-18-cookies-y-tecnologias-similares">Política de
+          Tratamiento de Datos</a>.
+      </p>
+      <div class="cookie-banner__actions">
+        <button class="cookie-btn cookie-btn--accept" type="button" data-cookie-accept>
+          <span class="cookie-btn__text">Aceptar</span>
+        </button>
+        <button class="cookie-btn cookie-btn--reject" type="button" data-cookie-reject>
+          <span class="cookie-btn__text">Rechazar</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- WhatsApp flotante: encima de "volver arriba", con sus mismas medidas.
        Aparece a la vez que ese botón (main.js, onScroll). -->
   <a class="wa-float" data-wa-float
-    href="https://wa.me/573132957599?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20los%20servicios%20de%20enfermer%C3%ADa%20a%20domicilio."
+    href="https://wa.me/573142734056?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20los%20servicios%20de%20enfermer%C3%ADa%20a%20domicilio."
     target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp (se abre en una pestaña nueva)">
     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z" />

@@ -3,6 +3,34 @@
 # Impide abrir desde el navegador los archivos que solo usa el servidor.
 # =================================================================
 
+# Dirección única: todo va a https://www.enfermerasangelesdevida.com (la oficial para Google).
+# - http:// → https:// (el interruptor "Forzar HTTPS" de cPanel no está disponible en este dominio)
+# - sin www o dirección temporal de HostGator → www
+# - .well-known queda fuera: AutoSSL la usa para renovar el certificado.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{REQUEST_URI} !^/\.well-known/
+  RewriteCond %{HTTPS} !=on [OR]
+  RewriteCond %{HTTP_HOST} !^www\.enfermerasangelesdevida\.com$ [NC]
+  RewriteRule ^ https://www.enfermerasangelesdevida.com%{REQUEST_URI} [L,R=301]
+
+  # /index.html → / (una sola dirección para la página de inicio). THE_REQUEST = lo que pidió
+  # el navegador: así no se redirige la carga interna de index.html al abrir "/".
+  # El ancla (#servicios…) la conserva el navegador tras la redirección.
+  RewriteCond %{THE_REQUEST} \s/index\.html[\s?] [NC]
+  RewriteRule ^index\.html$ https://www.enfermerasangelesdevida.com/ [L,R=301]
+
+  # Direcciones sin .html (p. ej. /terminos en vez de /terminos.html):
+  # 1) Quien pida /pagina.html va a /pagina (301). Solo si lo pidió el navegador (THE_REQUEST),
+  #    no en las cargas internas del paso 2.
+  RewriteCond %{THE_REQUEST} \s/([^?\s]+)\.html[\s?] [NC]
+  RewriteRule ^ https://www.enfermerasangelesdevida.com/%1 [L,R=301]
+  # 2) /pagina muestra pagina.html si ese archivo existe (la dirección no cambia).
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME}.html -f
+  RewriteRule ^(.+)$ $1.html [L]
+</IfModule>
+
 # config.php (contiene la contraseña del correo), su plantilla y .user.ini (configuración de PHP)
 <FilesMatch "^(config(\.example)?\.php|\.user\.ini)$">
   <IfModule mod_authz_core.c>
@@ -16,3 +44,32 @@
 
 # Ocultar el listado de carpetas (p. ej. /assets/img/)
 Options -Indexes
+
+# Página propia para direcciones que no existen (404) y para las prohibidas (403: carpetas
+# sin listado, config.php…). Así no se ve la página genérica en inglés de HostGator.
+ErrorDocument 404 /404.html
+ErrorDocument 403 /404.html
+
+# Compresión: el servidor envía HTML, CSS, JS y SVG comprimidos (≈ 4 veces menos peso)
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript application/json image/svg+xml text/plain text/xml application/xml
+</IfModule>
+
+# Caché del navegador: cuánto tiempo guarda cada tipo de archivo sin volver a pedirlo.
+# - HTML: nunca se guarda, así los cambios se ven al momento.
+# - CSS y JS: 7 días. publicar.mjs les pone ?v=<huella>, y en cada versión nueva la
+#   dirección cambia y se descargan enseguida.
+# - Imágenes e iconos: 30 días. Si cambias una imagen, súbela con otro nombre.
+# Las respuestas de los .php (reseñas, formularios) no se tocan: cada una pone las suyas.
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/html "access plus 0 seconds"
+  ExpiresByType text/css "access plus 7 days"
+  ExpiresByType text/javascript "access plus 7 days"
+  ExpiresByType application/javascript "access plus 7 days"
+  ExpiresByType image/webp "access plus 30 days"
+  ExpiresByType image/png "access plus 30 days"
+  ExpiresByType image/jpeg "access plus 30 days"
+  ExpiresByType image/svg+xml "access plus 30 days"
+  ExpiresByType image/x-icon "access plus 30 days"
+</IfModule>

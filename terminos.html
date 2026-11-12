@@ -4,9 +4,12 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/webp" href="./assets/img/enfermeras-angeles-de-vida-favicon.webp">
   <title>Términos y Condiciones de Uso del Sitio Web — ÁNGELES DE VIDA</title>
+  <!-- Dirección oficial de esta página para Google -->
+  <link rel="canonical" href="https://www.enfermerasangelesdevida.com/terminos">
   <meta name="description"
-    content="Términos y condiciones de uso del sitio web de Ángeles de Vida, enfermeras y cuidado a domicilio en Bogotá." />
+    content="Términos y condiciones de uso del sitio web y de los servicios de Enfermeras Ángeles de Vida, cuidado y acompañamiento a domicilio en Bogotá." />
 
   <!-- Mismas tipografías, librerías y estilos que index.html -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -28,14 +31,14 @@
        - data-header-dark: como arriba no hay foto oscura sino fondo claro,
          el header transparente usa ya el logo de color y textos/líneas en
          azul (igual que cuando está blanco), para que se lean (styles.css).
-       - Los enlaces llevan a index.html#seccion; main.js de index.html
+       - Los enlaces llevan a ./#seccion (raíz del sitio); main.js de index.html
          baja a esa sección al llegar.
        - "Solicita tu servicio" lleva a index.html#solicitar, que abre allí
          el modal del formulario de servicio.
        ============================================================ -->
   <header class="header" data-header data-header-dark>
     <div class="header__bar">
-      <a href="index.html" class="header__logo" aria-label="Ángeles de Vida — inicio">
+      <a href="./" class="header__logo" aria-label="Ángeles de Vida — inicio">
         <picture><source media="(max-width: 640px)" srcset="assets/img/enfermeras-angeles-de-vida-logo-movil.webp" width="250" height="250" /><img class="header__logo-mark header__logo-mark--light" src="assets/img/angeles-de-vida-logo-blanco.webp" width="268" height="120"
           alt="Ángeles de Vida" /></picture>
         <picture><source media="(max-width: 640px)" srcset="assets/img/enfermeras-angeles-de-vida-logo-movil.webp" width="250" height="250" /><img class="header__logo-mark header__logo-mark--dark" src="assets/img/angeles-de-vida-logo.webp" width="268" height="120" alt="" /></picture>
@@ -47,7 +50,7 @@
           <span class="menu-toggle__icon"><span></span><span></span></span>
         </button>
 
-        <a href="index.html#solicitar" class="cta-btn">
+        <a href="./#solicitar" class="cta-btn">
           <span class="cta-btn__text">Solicita tu servicio</span>
           <span class="cta-btn__arrow">
             <span class="cta-btn__circle"></span>
@@ -74,23 +77,21 @@
           </svg>
         </button>
         <nav class="menu__nav">
-          <a href="index.html" class="menu__link" style="--d:0s"><span
+          <a href="./" class="menu__link" style="--d:0s"><span
               class="menu__roll"><span>Home</span><span>Home</span></span></a>
-          <a href="index.html#nosotros" class="menu__link" style="--d:.08s"><span
+          <a href="./#nosotros" class="menu__link" style="--d:.08s"><span
               class="menu__roll"><span>Nosotros</span><span>Nosotros</span></span></a>
-          <a href="index.html#servicios" class="menu__link" style="--d:.16s"><span
+          <a href="./#servicios" class="menu__link" style="--d:.16s"><span
               class="menu__roll"><span>Servicios</span><span>Servicios</span></span></a>
-          <a href="index.html#testimonios" class="menu__link" style="--d:.24s"><span
+          <a href="./#testimonios" class="menu__link" style="--d:.24s"><span
               class="menu__roll"><span>Testimonios</span><span>Testimonios</span></span></a>
-          <a href="index.html#preguntas" class="menu__link" style="--d:.32s"><span class="menu__roll"><span>Preguntas
+          <a href="./#preguntas" class="menu__link" style="--d:.32s"><span class="menu__roll"><span>Preguntas
                 frecuentes</span><span>Preguntas frecuentes</span></span></a>
-          <a href="index.html#contacto" class="menu__link" style="--d:.40s"><span
+          <a href="./#contacto" class="menu__link" style="--d:.40s"><span
               class="menu__roll"><span>Contacto</span><span>Contacto</span></span></a>
         </nav>
         <div class="menu__footer">
           <p class="menu__brand">Ángeles <em>de</em> Vida</p>
-          <p class="menu__desc">Tus seres queridos en buenas manos, tu familia en tranquilidad. Cuidado profesional y
-            humano para quienes más amas.<br>• Atención 24/7</p>
           <!-- Redes sociales (mismo bloque que en el pie; aquí en azul sobre el panel crema) -->
           <nav class="social social--menu" aria-label="Redes sociales">
             <a class="social__link" href="https://www.facebook.com/enfermerasangelesdevida" target="_blank" rel="noopener">
@@ -100,6 +101,13 @@
             <a class="social__link" href="https://www.instagram.com/enfermerasangelesdevida/" target="_blank" rel="noopener">
               <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r=".6" /></svg>
               <span class="sr-only">Instagram de Ángeles de Vida (se abre en una pestaña nueva)</span>
+            </a>
+            <a class="social__link" href="https://www.tiktok.com/@enfermerasangelesdevida" target="_blank"
+              rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M21 7.917v4.034a9.948 9.948 0 0 1-5-1.951v4.5a6.5 6.5 0 1 1-8-6.326v4.326a2.5 2.5 0 1 0 4 2v-11.5h4.083a6.005 6.005 0 0 0 4.917 4.917z" />
+              </svg>
+              <span class="sr-only">TikTok de Ángeles de Vida (se abre en una pestaña nueva)</span>
             </a>
             <!-- YouTube: visible pero SIN canal todavía (data-pendiente: main.js evita que el clic haga algo).
                Cuando exista el canal: pon su URL en href, añade target="_blank" rel="noopener" y quita data-pendiente. -->
@@ -116,19 +124,16 @@
   <main>
     <!-- ============================================================
          TÉRMINOS Y CONDICIONES DE USO DEL SITIO WEB
-         Página generada a partir de Terminos.docx (mismo texto, solo formato).
-         Los campos entre corchetes resaltados (mark.legal__pendiente) están SIN
-         RELLENAR en el documento original: completarlos antes de publicar.
-         No se publican: la nota interna del documento ni la sección de anexos
-         ("textos listos para el sitio web").
-         Nota interna del documento (no visible en la página):
-         "Nota para el equipo de Ángeles de Vida: complete los campos entre corchetes [ ] antes de publicar. Estos términos regulan el uso del sitio web; la prestación de los servicios de cuidado se formaliza en un contrato aparte. Se recomienda que un abogado revise el texto para ajustarlo a la operación real de la empresa, en especial las secciones 6, 7 y 9."
+         Página generada a partir de terminos.md (mismo texto, solo formato).
+         Títulos, listas, tablas y negritas se recuperan del documento de Word
+         original; los apartados nuevos se formatean igual que el resto.
+         Si se cambia el .md, hay que volver a generar esta página.
          ============================================================ -->
     <article class="legal">
       <header class="legal__intro">
-        <p class="eyebrow text-gold">Ángeles de Vida</p>
+        <p class="eyebrow text-gold">Enfermeras Ángeles de Vida</p>
         <h1 class="legal__title">Términos y Condiciones de Uso del Sitio Web</h1>
-        <p class="legal__meta">Versión 1.0  ·  Vigente desde: 23 de octubre de 2023 · Última actualización: 23 de octubre de 2023</p>
+        <p class="legal__meta">Última actualización: 1 de noviembre de 2026</p>
       </header>
 
       <div class="legal__body">
@@ -162,28 +167,55 @@
 
         <div class="legal__content">
           <h2 id="apartado-1-aceptacion-de-los-terminos">1. Aceptación de los términos</h2>
-          <p>Estos Términos y Condiciones (los “Términos”) regulan el acceso y uso del sitio web <mark class="legal__pendiente">[www.angelesdevida.com]</mark> (el “Sitio”), propiedad de <mark class="legal__pendiente">[Razón social completa]</mark>, identificada con NIT <mark class="legal__pendiente">[NIT]</mark>, en adelante “Ángeles de Vida”, con domicilio en <mark class="legal__pendiente">[Dirección]</mark>, Bogotá D.C., Colombia.</p>
+          <p>Estos Términos y Condiciones (los “Términos”) regulan el acceso y uso del sitio web www.enfermerasangelesdevida.com, propiedad de MARYI MARIA TRUJILLO VALBUENA, identificada con CC 26870323, en adelante “Enfermeras Ángeles de Vida”, con domicilio en Avenida Calle 3 No. 40B-37, Bogotá D.C., Colombia.</p>
           <p>Al navegar por el Sitio, diligenciar un formulario o usar cualquiera de sus funciones, usted declara que ha leído, entendido y aceptado estos Términos, así como nuestra Política de Tratamiento de Datos Personales. Si no está de acuerdo con ellos, le pedimos abstenerse de usar el Sitio.</p>
           <h2 id="apartado-2-quienes-somos">2. Quiénes somos</h2>
           <p>En enero de 2010 nació Ángeles de Vida con un sueño: ayudar a las familias a cuidar de las personas que más aman. Durante más de 16 años hemos acompañado a familias con cariño, respeto y dedicación, brindando cuidado en casa o en el hospital, para que cada persona esté acompañada y su familia pueda sentirse más tranquila.</p>
           <h2 id="apartado-3-definiciones">3. Definiciones</h2>
-          <ul class="legal__lista"><li><strong>Sitio:</strong> páginas web, formularios, contenidos y funcionalidades disponibles en <mark class="legal__pendiente">[www.angelesdevida.com]</mark>.</li><li><strong>Usuario:</strong> toda persona que accede o utiliza el Sitio.</li><li><strong>Cliente:</strong> persona que contrata o solicita la prestación de servicios de cuidado a Ángeles de Vida, en nombre propio o de un tercero.</li><li><strong>Persona cuidada:</strong> persona natural que recibe los servicios de cuidado.</li><li><strong>Servicios:</strong> servicios de acompañamiento y cuidado en casa o en instituciones de salud ofrecidos por Ángeles de Vida.</li><li><strong>Contenidos:</strong> textos, imágenes, logotipos, videos, diseños, marcas y demás materiales del Sitio.</li></ul>
+          <ul class="legal__lista"><li><strong>Sitio:</strong> páginas web, formularios, contenidos y funcionalidades disponibles en www.enfermerasangelesdevida.com.</li><li><strong>Usuario:</strong> toda persona que accede o utiliza el Sitio.</li><li><strong>Cliente:</strong> persona que contrata o solicita la prestación de servicios de cuidado a Ángeles de Vida, en nombre propio o de un tercero.</li><li><strong>Persona cuidada:</strong> persona natural que recibe los servicios de cuidado.</li><li><strong>Servicios:</strong> servicios de acompañamiento y cuidado en casa o en instituciones de salud ofrecidos por Ángeles de Vida.</li><li><strong>Contenidos:</strong> textos, imágenes, logotipos, videos, diseños, marcas y demás materiales del Sitio.</li></ul>
           <h2 id="apartado-4-capacidad-para-usar-el-sitio">4. Capacidad para usar el Sitio</h2>
           <p>Para usar el Sitio y solicitar nuestros Servicios, el Usuario debe ser mayor de edad y tener capacidad legal para contratar. Los menores de edad no deben suministrar datos personales a través del Sitio sin la intervención de su representante legal. Quien solicite servicios para otra persona declara que cuenta con la autorización o representación necesaria para hacerlo.</p>
           <h2 id="apartado-5-naturaleza-informativa-del-sitio">5. Naturaleza informativa del Sitio</h2>
           <p>El Sitio tiene un propósito informativo y de contacto. La información publicada sobre nuestros Servicios, descripciones, planes, horarios o tarifas es de carácter general y puede cambiar. La contratación efectiva de un servicio se perfecciona únicamente cuando las partes suscriben o aceptan expresamente el contrato o la propuesta de servicios correspondiente, previa valoración de las necesidades de la persona a cuidar.</p>
           <p>Enviar un formulario, escribir por WhatsApp o solicitar una cotización <strong>no constituye</strong> por sí solo un contrato ni garantiza la disponibilidad inmediata de personal.</p>
           <h2 id="apartado-6-alcance-de-los-servicios-y-advertencia-importante-sobre-em">6. Alcance de los servicios y advertencia importante sobre emergencias</h2>
-          <p><strong>El Sitio y los contenidos que publicamos no sustituyen la consulta, el diagnóstico ni el tratamiento de un profesional de la salud.</strong> La información sobre cuidado, bienestar o salud que aparezca en el Sitio es orientativa y no constituye consejo médico.</p>
-          <p><strong>En caso de emergencia médica, no utilice el Sitio ni nuestros formularios.</strong> Llame de inmediato a la línea de emergencias (123 en Colombia) o diríjase al servicio de urgencias más cercano.</p>
-          <p>Los Servicios de Ángeles de Vida se prestan según lo pactado en el contrato respectivo y de acuerdo con el perfil, la formación y las funciones del personal asignado. <mark class="legal__pendiente">[Indicar aquí, según corresponda, qué tipo de personal ofrece la empresa (por ejemplo, auxiliares de cuidado, auxiliares de enfermería, enfermeros profesionales) y que las actividades médicas o de enfermería que requieran formulación o supervisión médica se realizan conforme a las indicaciones del médico tratante.]</mark></p>
+          <p>Enfermeras Ángeles de Vida ofrece servicios de cuidado y acompañamiento domiciliario dirigidos a adultos mayores, pacientes en recuperación y personas que requieren asistencia en sus actividades cotidianas.</p>
+          <p>Los servicios son prestados por auxiliares de enfermería, de acuerdo con su formación, competencias y funciones legalmente permitidas, así como con las condiciones particulares de cada servicio contratado.</p>
+          <p>Según las necesidades del usuario y el servicio acordado, las actividades podrán comprender apoyo en higiene personal, alimentación, movilidad, acompañamiento, asistencia durante la recuperación y otras actividades de cuidado que correspondan al perfil del personal asignado.</p>
+          <p>Las actividades relacionadas con procedimientos de enfermería se realizarán exclusivamente cuando correspondan a las competencias y autorizaciones del personal, y cumplan los requisitos legales y sanitarios aplicables. Cuando sea necesario, se atenderán las indicaciones y el plan de cuidado establecidos por el profesional de salud tratante.</p>
+          <p>La prestación de los servicios no implica sustitución del médico tratante, de las instituciones prestadoras de servicios de salud ni de los servicios de urgencias.</p>
+          <p>La información publicada en este sitio web tiene carácter informativo y orientativo. No constituye diagnóstico médico, prescripción, tratamiento ni recomendación para modificar o suspender las indicaciones de un profesional de salud.</p>
+          <p><strong>Advertencia sobre emergencias:</strong> En caso de presentarse una emergencia médica, una alteración grave del estado de salud o una situación que requiera atención inmediata, el usuario, sus familiares o las personas presentes deberán comunicarse con la línea de emergencias 123 en Colombia o acudir al servicio de urgencias correspondiente. El sitio web, los formularios de contacto y los canales comerciales de Ángeles de Vida no constituyen medios de atención de emergencias.</p>
           <h2 id="apartado-7-solicitud-y-contratacion-de-servicios">7. Solicitud y contratación de servicios</h2>
-          <ol class="legal__lista"><li><strong>Solicitud:</strong> el Usuario puede solicitar información o servicios mediante los formularios, el correo electrónico, el teléfono u otros canales habilitados.</li><li><strong>Valoración inicial:</strong> Ángeles de Vida podrá solicitar información sobre la persona a cuidar, sus condiciones y necesidades, con el fin de recomendar el servicio adecuado y asignar el personal idóneo. El Cliente se compromete a suministrar información veraz, completa y actualizada, pues de ella depende la seguridad y calidad del cuidado.</li><li><strong>Propuesta y contrato:</strong> una vez valoradas las necesidades, Ángeles de Vida presentará una propuesta con las condiciones, alcance, horarios y tarifas. El servicio se entiende contratado cuando el Cliente acepte la propuesta o firme el contrato.</li><li><strong>Asignación de personal:</strong> Ángeles de Vida asignará el personal según las necesidades identificadas y su disponibilidad, y podrá reemplazarlo cuando sea necesario para garantizar la continuidad y calidad del servicio, informando al Cliente.</li><li><strong>Condiciones específicas:</strong> los precios, formas de pago, cancelaciones, cambios, suspensión y terminación de los Servicios se regirán por el contrato o la propuesta aceptada. <mark class="legal__pendiente">[Incluir política de cancelación y reprogramación, si aplica.]</mark></li></ol>
+          <p>La contratación de los servicios de Enfermeras Ángeles de Vida estará sujeta a la disponibilidad operativa, las características del servicio solicitado y la aceptación de la propuesta comercial, contrato u orden de servicio correspondiente.</p>
+          <p>Los servicios de cuidado y acompañamiento podrán contratarse bajo las siguientes modalidades de tiempo:</p>
+          <ul class="legal__lista"><li>Turnos de seis (6) horas.</li><li>Turnos de ocho (8) horas.</li><li>Turnos de doce (12) horas.</li><li>Turnos de veinticuatro (24) horas.</li></ul>
+          <p>La disponibilidad de cada modalidad dependerá de la programación, las necesidades del usuario y la capacidad operativa de Ángeles de Vida.</p>
+          <p>Antes de iniciar la prestación del servicio, se informará al usuario o a su representante sobre las características del acompañamiento, las actividades incluidas, la duración de los turnos, los horarios, el perfil del personal asignado, las tarifas y las condiciones particulares aplicables.</p>
+          <p>La contratación podrá formalizarse mediante contrato, propuesta comercial aceptada, orden de servicio o los mecanismos de aceptación acordados entre las partes, incluyendo medios electrónicos cuando corresponda.</p>
+          <p>Cualquier actividad adicional que no esté contemplada en la propuesta o contrato deberá ser consultada y aceptada previamente por las partes.</p>
+          <h3 id="apartado-cancelaciones-modificaciones-y-reprogramaciones">Cancelaciones, modificaciones y reprogramaciones</h3>
+          <p>Las solicitudes de cancelación, modificación, reprogramación o suspensión del servicio deberán comunicarse a través de los canales oficiales de atención de Ángeles de Vida.</p>
+          <p>Las condiciones específicas aplicables a estas solicitudes deberán quedar informadas y acordadas con el usuario antes de formalizar la contratación, mediante la propuesta comercial o el contrato correspondiente.</p>
+          <p>En caso de presentarse situaciones que puedan afectar la continuidad del servicio, Ángeles de Vida informará oportunamente al usuario o a su representante y coordinará las medidas que correspondan según las condiciones contratadas.</p>
+          <p>La empresa no aplicará penalizaciones o cobros por cancelación que no hayan sido previamente informados y aceptados, sin perjuicio de los derechos legales del consumidor.</p>
           <h2 id="apartado-8-precios-pagos-y-facturacion">8. Precios, pagos y facturación</h2>
-          <p>Los precios y tarifas que se informen a través del Sitio son de carácter indicativo, se expresan en pesos colombianos (COP) e incluyen o excluyen impuestos según se indique. Las tarifas definitivas son las señaladas en la propuesta o contrato aceptado. Ángeles de Vida expedirá la factura correspondiente conforme a la normativa tributaria vigente. <mark class="legal__pendiente">[Indicar medios de pago habilitados, si el Sitio permite pagos en línea y la pasarela utilizada.]</mark></p>
+          <p>Los precios y tarifas comunicados por Enfermeras Ángeles de Vida a través del sitio web, WhatsApp, correo electrónico u otros canales oficiales se expresarán en pesos colombianos (COP).</p>
+          <p>Los valores publicados o comunicados con carácter informativo estarán sujetos a las condiciones particulares del servicio solicitado. El precio definitivo será el indicado en la propuesta comercial o contrato aceptado por el usuario.</p>
+          <p>Las tarifas podrán variar de acuerdo con el tipo de servicio, la duración del turno, los horarios, las necesidades particulares del usuario y las condiciones de prestación del acompañamiento.</p>
+          <p>Antes de formalizar la contratación, Ángeles de Vida informará el valor correspondiente, los conceptos incluidos, los posibles costos adicionales y los impuestos aplicables, cuando corresponda.</p>
+          <h3 id="apartado-medios-de-pago">Medios de pago</h3>
+          <p>Los pagos podrán realizarse mediante los medios habilitados y comunicados oficialmente por Ángeles de Vida, entre ellos:</p>
+          <ul class="legal__lista"><li>Transferencias bancarias.</li><li>Efectivo, cuando esté habilitado.</li><li>Billeteras digitales y otros medios electrónicos disponibles.</li><li>Otros mecanismos de pago previamente autorizados por la empresa.</li></ul>
+          <p>Los datos y las instrucciones de pago serán suministrados al usuario durante el proceso de contratación. El usuario deberá verificar que los datos correspondan a los canales oficiales de Ángeles de Vida antes de realizar cualquier transacción.</p>
+          <h3 id="apartado-facturacion">Facturación</h3>
+          <p>Enfermeras Ángeles de Vida expedirá la factura electrónica o el documento equivalente que corresponda, de acuerdo con su responsabilidad y las obligaciones tributarias establecidas en la normativa colombiana vigente.</p>
+          <p>En caso de presentarse dudas o inconvenientes relacionados con los cobros, pagos o facturación, el usuario podrá comunicarse con los canales oficiales de atención para solicitar la revisión correspondiente.</p>
           <h2 id="apartado-9-derechos-del-consumidor-retracto-y-reversion-del-pago">9. Derechos del consumidor, retracto y reversión del pago</h2>
-          <p>Ángeles de Vida respeta los derechos de los consumidores consagrados en la Ley 1480 de 2011 (Estatuto del Consumidor) y sus normas reglamentarias. En particular:</p>
-          <ul class="legal__lista"><li>Informaremos de manera clara, suficiente y veraz las características, condiciones y precio de los Servicios.</li><li>Cuando la contratación se realice a distancia o por medios electrónicos, el consumidor podrá ejercer el derecho de retracto y, cuando aplique, la reversión del pago, en los términos y con las excepciones previstas en la ley. Entre las excepciones legales se encuentran los servicios cuya prestación haya comenzado con el acuerdo del consumidor. <mark class="legal__pendiente">[Verificar con el asesor jurídico la redacción final de esta cláusula según el modelo de contratación de la empresa.]</mark></li><li>Las peticiones, quejas y reclamos pueden presentarse por los canales indicados en la sección 17, y serán atendidos con prontitud.</li></ul>
+          <p>El consumidor podrá ejercer el derecho de retracto en los casos, términos y condiciones establecidos en el artículo 47 de la Ley 1480 de 2011.</p>
+          <p>Como regla general, el término para ejercer este derecho será de cinco (5) días hábiles, contados a partir de la celebración del contrato cuando se trate de la prestación de servicios.</p>
+          <p>Este derecho estará sujeto a las excepciones previstas en la ley. En particular, no será aplicable cuando la prestación del servicio haya comenzado con el acuerdo del consumidor, en los términos establecidos legalmente.</p>
+          <p>Cuando el retracto sea procedente, Ángeles de Vida realizará la devolución de las sumas pagadas conforme a los plazos y condiciones establecidos en la normativa vigente.</p>
           <h2 id="apartado-10-uso-permitido-del-sitio">10. Uso permitido del Sitio</h2>
           <p>El Usuario se compromete a usar el Sitio de forma lícita, responsable y de buena fe. Está prohibido:</p>
           <ul class="legal__lista"><li>Suministrar información falsa, inexacta o de terceros sin autorización, o suplantar la identidad de otra persona.</li><li>Usar el Sitio para fines fraudulentos, ilícitos, ofensivos o contrarios al orden público y a las buenas costumbres.</li><li>Intentar acceder sin autorización a los sistemas, cuentas o bases de datos de Ángeles de Vida o de otros usuarios.</li><li>Introducir virus, códigos maliciosos o realizar acciones que dañen, inutilicen o sobrecarguen el Sitio.</li><li>Extraer, copiar o reutilizar masivamente los contenidos del Sitio (por ejemplo, mediante técnicas automatizadas de extracción de datos) sin autorización escrita.</li><li>Enviar mensajes no solicitados, publicidad masiva o contenido que afecte los derechos de terceros.</li></ul>
@@ -194,7 +226,7 @@
           <h2 id="apartado-12-propiedad-intelectual">12. Propiedad intelectual</h2>
           <p>Todos los Contenidos del Sitio, incluidos el nombre y logotipo de Ángeles de Vida, marcas, diseños, textos, fotografías, videos, estructura y código, son propiedad de Ángeles de Vida o de terceros que han autorizado su uso, y están protegidos por las normas colombianas e internacionales sobre propiedad intelectual y derechos de autor, incluida la Ley 23 de 1982.</p>
           <p>Se permite visualizar el Sitio y compartir enlaces a sus páginas para uso personal y no comercial. Queda prohibida la reproducción, distribución, comunicación pública, transformación o cualquier otro uso comercial de los Contenidos sin autorización previa y escrita de Ángeles de Vida.</p>
-          <p>Si usted considera que algún contenido del Sitio infringe sus derechos, puede escribirnos a <mark class="legal__pendiente">[correo@angelesdevida.com]</mark> para revisarlo.</p>
+          <p>Si usted considera que algún contenido del Sitio infringe sus derechos, puede escribirnos a enfermeriaangelesdevida@gmail.com para revisarlo.</p>
           <h2 id="apartado-13-proteccion-de-datos-personales">13. Protección de datos personales</h2>
           <p>Ángeles de Vida trata los datos personales de acuerdo con la Ley Estatutaria 1581 de 2012, sus decretos reglamentarios y nuestra Política de Tratamiento de Datos Personales, que forma parte integral de estos Términos. Allí se explican las finalidades del Tratamiento, los derechos de los Titulares y los procedimientos para presentar consultas y reclamos.</p>
           <p>Tenga presente que los datos de salud son datos sensibles y que es facultativo responder preguntas sobre ellos, así como sobre datos de niños, niñas y adolescentes.</p>
@@ -207,7 +239,7 @@
           <ul class="legal__lista"><li>Ángeles de Vida procura mantener el Sitio disponible, actualizado y libre de errores, pero no garantiza su funcionamiento ininterrumpido ni la ausencia total de fallas técnicas, interrupciones por mantenimiento, ataques informáticos o causas fuera de su control razonable.</li><li>Ángeles de Vida no será responsable por los daños derivados del uso indebido del Sitio, de la información falsa o incompleta suministrada por el Usuario, ni de decisiones tomadas únicamente con base en los contenidos informativos del Sitio.</li><li>La responsabilidad de Ángeles de Vida por la prestación de los Servicios se regirá por el contrato correspondiente y por la ley colombiana. Nada en estos Términos excluye ni limita la responsabilidad que no pueda excluirse o limitarse legalmente, en particular frente a daños causados por dolo o culpa grave.</li></ul>
           <h2 id="apartado-17-peticiones-quejas-reclamos-y-sugerencias-pqrs">17. Peticiones, quejas, reclamos y sugerencias (PQRS)</h2>
           <p>Para presentar peticiones, quejas, reclamos o sugerencias sobre el Sitio o nuestros Servicios, puede comunicarse con nosotros por:</p>
-          <ul class="legal__lista"><li><strong>Correo electrónico:</strong> <mark class="legal__pendiente">[correo@angelesdevida.com]</mark></li><li><strong>Teléfono / WhatsApp:</strong> <mark class="legal__pendiente">[Teléfono]</mark></li><li><strong>Dirección física:</strong> <mark class="legal__pendiente">[Dirección]</mark>, Bogotá D.C.</li><li><strong>Horario de atención:</strong> <mark class="legal__pendiente">[Horario]</mark></li></ul>
+          <ul class="legal__lista"><li><strong>Correo electrónico:</strong> enfermeriaangelesdevida@gmail.com</li><li><strong>Teléfono / WhatsApp:</strong> 320 347 3040</li><li><strong>Dirección física:</strong> Avenida Calle 3 No. 40B-37, Bogotá D.C.</li></ul>
           <p>Tramitaremos su solicitud con prontitud y respetando los plazos legales. Las solicitudes relacionadas con datos personales se atenderán conforme al procedimiento de consultas y reclamos descrito en nuestra Política de Tratamiento de Datos Personales. Si no está conforme con nuestra respuesta, puede acudir a la Superintendencia de Industria y Comercio (SIC), autoridad nacional de protección al consumidor y de protección de datos personales.</p>
           <h2 id="apartado-18-modificaciones">18. Modificaciones</h2>
           <p>Ángeles de Vida podrá modificar estos Términos en cualquier momento para adaptarlos a cambios normativos, tecnológicos o en la operación de la empresa. La versión vigente estará siempre publicada en el Sitio con la fecha de su última actualización. El uso continuado del Sitio después de publicados los cambios implica su aceptación, sin perjuicio de que los contratos de servicios ya celebrados se rijan por las condiciones pactadas en ellos.</p>
@@ -216,15 +248,15 @@
           <h2 id="apartado-20-ley-aplicable-y-jurisdiccion">20. Ley aplicable y jurisdicción</h2>
           <p>Estos Términos se rigen por las leyes de la República de Colombia. Cualquier controversia que surja con ocasión de su interpretación o aplicación se someterá, en primer lugar, a un intento de solución directa y amistosa entre las partes y, de no lograrse, será resuelta por las autoridades competentes de Colombia, sin perjuicio de las competencias que la ley otorga a la Superintendencia de Industria y Comercio en materia de protección al consumidor y a los jueces del domicilio del consumidor cuando la ley así lo disponga.</p>
           <h2 id="apartado-21-contacto">21. Contacto</h2>
-          <p>Para cualquier duda sobre estos Términos puede escribirnos a <mark class="legal__pendiente">[correo@angelesdevida.com]</mark> o llamarnos al <mark class="legal__pendiente">[Teléfono]</mark>. Con gusto lo escucharemos y lo acompañaremos.</p>
+          <p>Para cualquier duda sobre estos Términos puede escribirnos a enfermeriaangelesdevida@gmail.com o llamarnos al 320 347 3040. Con gusto lo escucharemos y lo acompañaremos.</p>
         </div>
       </div>
     </article>
   </main>
 
-  <footer class="footer">
+  <footer class="footer" id="contacto">
     <!-- Pie en 3 filas separadas por líneas finas:
-         1. logo · 2. columnas (Navegación / Empresa / Legal) + redes a la derecha · 3. derechos -->
+         1. logo · 2. columnas (Navegación / Legal / Empresa / Síguenos) · 3. derechos -->
     <div class="footer__inner footer__inner--grid">
 
       <!-- 1. Logotipo -->
@@ -237,12 +269,12 @@
       <div class="footer__grid">
         <nav class="footer__col" aria-labelledby="footer-nav-titulo">
           <h2 class="footer__heading" id="footer-nav-titulo">Navegación</h2>
-          <a href="index.html#inicio"><span class="menu__roll"><span>Home</span><span>Home</span></span></a>
-          <a href="index.html#nosotros"><span class="menu__roll"><span>Nosotros</span><span>Nosotros</span></span></a>
-          <a href="index.html#servicios"><span class="menu__roll"><span>Servicios</span><span>Servicios</span></span></a>
-          <a href="index.html#testimonios"><span class="menu__roll"><span>Testimonios</span><span>Testimonios</span></span></a>
-          <a href="index.html#preguntas"><span class="menu__roll"><span>Preguntas frecuentes</span><span>Preguntas frecuentes</span></span></a>
-          <a href="index.html#contacto"><span class="menu__roll"><span>Contacto</span><span>Contacto</span></span></a>
+          <a href="./#inicio"><span class="menu__roll"><span>Home</span><span>Home</span></span></a>
+          <a href="./#nosotros"><span class="menu__roll"><span>Nosotros</span><span>Nosotros</span></span></a>
+          <a href="./#servicios"><span class="menu__roll"><span>Servicios</span><span>Servicios</span></span></a>
+          <a href="./#testimonios"><span class="menu__roll"><span>Testimonios</span><span>Testimonios</span></span></a>
+          <a href="./#preguntas"><span class="menu__roll"><span>Preguntas frecuentes</span><span>Preguntas frecuentes</span></span></a>
+          <a href="./#contacto"><span class="menu__roll"><span>Contacto</span><span>Contacto</span></span></a>
         </nav>
 
         <nav class="footer__col" aria-labelledby="footer-legal-titulo">
@@ -250,6 +282,7 @@
           <a href="privacidad.html"><span class="menu__roll"><span>Privacidad</span><span>Privacidad</span></span></a>
           <a href="terminos.html" aria-current="page"><span class="menu__roll"><span>Términos</span><span>Términos</span></span></a>
           <a href="aviso-legal.html"><span class="menu__roll"><span>Aviso legal</span><span>Aviso legal</span></span></a>
+          <button type="button" class="footer__cookies" data-cookie-settings><span class="menu__roll"><span>Preferencias de cookies</span><span>Preferencias de cookies</span></span></button>
         </nav>
 
         <!-- Información de contacto y localización (SEO local) + empleo -->
@@ -257,6 +290,7 @@
           <h2 class="footer__heading" id="footer-empresa-titulo">Empresa</h2>
           <p>Enfermeras Ángeles de Vida</p>
           <p>Servicio de enfermería a domicilio las 24 horas en Bogotá, Colombia.</p>
+          <p>+57 320 347 3040</p>
           <a href="trabaja-con-nosotros.html">
             <span class="menu__roll">
               <span>Trabaja con nosotros</span>
@@ -265,32 +299,42 @@
           </a>
         </section>
 
-        <!-- Redes sociales (YouTube pendiente) -->
-        <nav class="social footer__social" aria-label="Redes sociales">
-          <a class="social__link" href="https://www.facebook.com/enfermerasangelesdevida" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <path d="M14.5 3H13a4 4 0 0 0-4 4v3H7v3h2v8h3v-8h2.5l.5-3h-3V7.5A1.5 1.5 0 0 1 13.5 6h1z" />
-            </svg>
-            <span class="sr-only">Facebook de Enfermeras Ángeles de Vida (se abre en una pestaña nueva)</span>
-          </a>
+        <!-- Redes sociales (YouTube pendiente): columna propia con título -->
+        <div class="footer__col footer__col--social">
+          <h2 class="footer__heading" id="footer-redes-titulo">Síguenos</h2>
+          <nav class="social footer__social" aria-labelledby="footer-redes-titulo">
+            <a class="social__link" href="https://www.facebook.com/enfermerasangelesdevida" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M14.5 3H13a4 4 0 0 0-4 4v3H7v3h2v8h3v-8h2.5l.5-3h-3V7.5A1.5 1.5 0 0 1 13.5 6h1z" />
+              </svg>
+              <span class="sr-only">Facebook de Enfermeras Ángeles de Vida (se abre en una pestaña nueva)</span>
+            </a>
 
-          <a class="social__link" href="https://www.instagram.com/enfermerasangelesdevida/" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <rect x="3" y="3" width="18" height="18" rx="5" />
-              <circle cx="12" cy="12" r="4" />
-              <circle cx="17.5" cy="6.5" r=".6" />
-            </svg>
-            <span class="sr-only">Instagram de Enfermeras Ángeles de Vida (se abre en una pestaña nueva)</span>
-          </a>
+            <a class="social__link" href="https://www.instagram.com/enfermerasangelesdevida/" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <rect x="3" y="3" width="18" height="18" rx="5" />
+                <circle cx="12" cy="12" r="4" />
+                <circle cx="17.5" cy="6.5" r=".6" />
+              </svg>
+              <span class="sr-only">Instagram de Enfermeras Ángeles de Vida (se abre en una pestaña nueva)</span>
+            </a>
 
-          <a class="social__link" href="#" data-pendiente title="Próximamente">
-            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <rect x="2" y="5" width="20" height="14" rx="4" />
-              <path d="m10 9 5 3-5 3z" />
-            </svg>
-            <span class="sr-only">YouTube de Enfermeras Ángeles de Vida</span>
-          </a>
-        </nav>
+            <a class="social__link" href="https://www.tiktok.com/@enfermerasangelesdevida" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M21 7.917v4.034a9.948 9.948 0 0 1-5-1.951v4.5a6.5 6.5 0 1 1-8-6.326v4.326a2.5 2.5 0 1 0 4 2v-11.5h4.083a6.005 6.005 0 0 0 4.917 4.917z" />
+              </svg>
+              <span class="sr-only">TikTok de Enfermeras Ángeles de Vida (se abre en una pestaña nueva)</span>
+            </a>
+
+            <a class="social__link" href="#" data-pendiente title="Próximamente">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <rect x="2" y="5" width="20" height="14" rx="4" />
+                <path d="m10 9 5 3-5 3z" />
+              </svg>
+              <span class="sr-only">YouTube de Enfermeras Ángeles de Vida</span>
+            </a>
+          </nav>
+        </div>
       </div>
 
       <!-- 3. Derechos de autor y créditos -->
@@ -304,10 +348,34 @@
     </div>
   </footer>
 
+  <!-- ============================================================
+       AVISO DE COOKIES (main.js, bloque 13) — igual en todas las páginas.
+       Se muestra mientras la persona no haya decidido. El Meta Pixel solo se
+       carga con "Aceptar". "Preferencias de cookies" (pie) lo vuelve a abrir.
+       ============================================================ -->
+  <div class="cookie-banner" id="cookie-banner" role="region" aria-label="Aviso de cookies" hidden>
+    <div class="cookie-banner__inner">
+      <p class="cookie-banner__text">
+        Utilizamos cookies propias y/o de terceros para mejorar nuestros servicios y analizar la navegación, solo si las aceptas.
+        Puedes cambiar tu decisión cuando quieras en «Preferencias de cookies», al pie de la página.
+        Más información en nuestra <a href="privacidad.html#apartado-18-cookies-y-tecnologias-similares">Política de
+          Tratamiento de Datos</a>.
+      </p>
+      <div class="cookie-banner__actions">
+        <button class="cookie-btn cookie-btn--accept" type="button" data-cookie-accept>
+          <span class="cookie-btn__text">Aceptar</span>
+        </button>
+        <button class="cookie-btn cookie-btn--reject" type="button" data-cookie-reject>
+          <span class="cookie-btn__text">Rechazar</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- WhatsApp flotante: encima de "volver arriba", con sus mismas medidas.
        Aparece a la vez que ese botón (main.js, onScroll). -->
   <a class="wa-float" data-wa-float
-    href="https://wa.me/573132957599?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20los%20servicios%20de%20enfermer%C3%ADa%20a%20domicilio."
+    href="https://wa.me/573142734056?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20los%20servicios%20de%20enfermer%C3%ADa%20a%20domicilio."
     target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp (se abre en una pestaña nueva)">
     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z" />
